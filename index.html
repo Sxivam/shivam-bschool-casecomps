@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Reenie+Beanie&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
 <style>
 /* ============================================================
@@ -259,66 +260,102 @@ header.hero{
 .scroll-card.coral{background:var(--blush)}
 .scroll-card.coral:hover .label{color:#C66660}
 
-/* ---------- Three-phone preview ---------- */
-#preview{padding:80px 0 100px;text-align:center}
-.phones{
-  position:relative;height:680px;
-  display:flex;justify-content:center;align-items:flex-start;
-  margin-top:50px;
+/* ---------- CardSwap preview (replaces three-phone) ---------- */
+#preview{padding:80px 0 120px;text-align:center}
+.swap-stage{
+  position:relative;height:600px;
+  margin:60px auto 0;
+  display:flex;align-items:center;justify-content:center;
+  perspective:1200px;
 }
-.phone{
-  position:absolute;width:280px;height:580px;
-  background:#fff;border-radius:42px;
-  border:2px solid var(--ink);
+.swap-container{
+  position:relative;width:440px;height:340px;
+  transform-style:preserve-3d;
+}
+.swap-card{
+  position:absolute;top:50%;left:50%;
+  width:440px;height:340px;
+  border-radius:30px;
+  border:1px solid var(--stone-200);
+  background:#fff;
   box-shadow:var(--shadow-lift);
-  padding:14px;overflow:hidden;
+  transform-style:preserve-3d;
+  backface-visibility:hidden;
+  will-change:transform;
+  padding:28px;
+  display:flex;flex-direction:column;
+  overflow:hidden;
+  cursor:pointer;user-select:none;
 }
-.phone .notch{
-  width:90px;height:22px;background:var(--ink);
-  border-radius:0 0 14px 14px;
-  margin:-14px auto 12px;
+.swap-card.bg-coral{background:linear-gradient(155deg,#FFF6F4 0%,#FFE4E1 100%)}
+.swap-card.bg-sage{background:linear-gradient(155deg,#F4F8F4 0%,#E0EAE0 100%)}
+.swap-card.bg-lavender{background:linear-gradient(155deg,#F5F3F8 0%,#E4DFEE 100%)}
+.swap-card.bg-blush{background:linear-gradient(155deg,#FFF5F2 0%,#FCDDD8 100%)}
+.swap-card.bg-paper{background:linear-gradient(155deg,#FDFCF8 0%,#F4F2EC 100%)}
+.swap-top{
+  display:flex;align-items:flex-start;justify-content:space-between;gap:12px;
+  margin-bottom:14px;
 }
-.phone-left{left:50%;transform:translateX(-260%);top:48px;opacity:.8;background:var(--sage)}
-.phone-right{left:50%;transform:translateX(160%);top:96px;opacity:.8;background:var(--lavender)}
-.phone-center{
-  width:300px;height:620px;border-radius:46px;
-  z-index:2;background:var(--paper);
-  position:relative;
+.swap-month{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:12px;font-weight:500;letter-spacing:.02em;
+  padding:5px 12px;border-radius:9999px;
+  background:rgba(255,255,255,.7);
+  border:1px solid rgba(41,37,36,.08);color:var(--stone-700);
+  backdrop-filter:blur(8px);
 }
-.phone-screen{
-  display:flex;flex-direction:column;gap:10px;
-  padding:6px 10px 0;height:calc(100% - 12px);overflow:hidden;
+.swap-month .dot{width:5px;height:5px;border-radius:50%;background:var(--coral)}
+.swap-corp{height:26px;display:flex;align-items:center;opacity:.55}
+.swap-corp img{max-height:26px;max-width:90px;object-fit:contain}
+.swap-body{display:flex;align-items:center;gap:20px;flex:1}
+.swap-logo-big{
+  width:108px;height:108px;border-radius:22px;flex:none;
+  background:#fff;display:grid;place-items:center;overflow:hidden;
+  border:1px solid rgba(41,37,36,.08);
+  box-shadow:0 6px 20px -4px rgba(41,37,36,.12);
 }
-.phone-h{font-size:14px;color:var(--stone-500);font-weight:500;text-align:left;margin-top:6px}
-.phone-h b{font-size:22px;color:var(--ink);font-weight:500;display:block;letter-spacing:-.02em}
-.phone-row{
-  background:rgba(255,255,255,.75);border-radius:14px;
-  padding:10px 12px;display:flex;align-items:center;gap:10px;text-align:left;
-  font-size:12px;color:var(--ink);
+.swap-logo-big img{max-width:84px;max-height:84px;object-fit:contain}
+.swap-info{flex:1;text-align:left;min-width:0}
+.swap-name{
+  font-size:26px;font-weight:600;letter-spacing:-.02em;line-height:1.1;
+  margin-bottom:4px;color:var(--ink);
 }
-.phone-row .lg{width:28px;height:28px;border-radius:8px;background:var(--stone-100);flex:none;display:grid;place-items:center;overflow:hidden}
-.phone-row .lg img{max-width:22px;max-height:22px;object-fit:contain}
-.phone-row .ph-name{font-weight:500;font-size:13px}
-.phone-row .ph-meta{font-size:10px;color:var(--stone-500)}
-.breathe{
-  width:88px;height:88px;border-radius:50%;background:var(--coral);
-  margin:auto;display:grid;place-items:center;
-  font-size:13px;font-weight:500;color:var(--ink);
-  box-shadow:0 0 0 0 rgba(255,183,178,.6);
-  animation:pulse 2.4s ease-in-out infinite;
+.swap-org{
+  font-size:13px;color:var(--stone-500);font-weight:500;
+  margin-bottom:10px;
 }
-@keyframes pulse{
-  0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(255,183,178,.6)}
-  50%{transform:scale(1.08);box-shadow:0 0 0 18px rgba(255,183,178,0)}
+.swap-prize{
+  font-size:13px;color:var(--stone-700);line-height:1.4;font-weight:400;
 }
-.phone-tag{
-  display:inline-block;font-size:10px;font-weight:500;
-  padding:3px 9px;border-radius:9999px;background:var(--coral);color:var(--ink);
+.swap-prize b{font-weight:600;color:var(--ink)}
+.swap-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px;text-align:left}
+.swap-tag{
+  font-size:11px;font-weight:500;padding:4px 11px;
+  border-radius:9999px;
+  background:rgba(255,255,255,.7);color:var(--stone-700);
+  border:1px solid rgba(41,37,36,.08);
+  backdrop-filter:blur(6px);
+}
+.swap-tag.coral{background:var(--coral);color:var(--ink);border-color:transparent}
+.swap-hint{
+  font-size:13px;color:var(--stone-400);
+  margin-top:30px;font-weight:500;
+}
+.swap-hint .key{
+  padding:1px 7px;border-radius:5px;background:#fff;
+  border:1px solid var(--stone-200);font-size:11px;
+  font-family:'Outfit';color:var(--stone-700);margin:0 2px;
 }
 @media (max-width:760px){
-  .phones{height:auto;flex-direction:column;align-items:center;gap:18px}
-  .phone{position:relative;left:auto!important;top:auto!important;transform:none!important;width:240px;height:480px;opacity:1!important}
-  .phone-center{width:260px;height:520px}
+  #preview{padding:60px 0 90px}
+  .swap-stage{height:480px;margin-top:40px}
+  .swap-container{width:320px;height:300px}
+  .swap-card{width:320px;height:300px;padding:22px;border-radius:24px}
+  .swap-logo-big{width:80px;height:80px;border-radius:18px}
+  .swap-logo-big img{max-width:62px;max-height:62px}
+  .swap-name{font-size:22px}
+  .swap-prize{font-size:12px}
+  .swap-body{gap:14px}
 }
 
 /* ---------- Catalog filters + grid ---------- */
@@ -635,72 +672,120 @@ footer .wrap{display:flex;flex-direction:column;gap:14px;align-items:center}
   </div>
 </section>
 
-<!-- Three-phone preview -->
+<!-- CardSwap preview -->
 <section id="preview">
   <div class="wrap-tight">
-    <span class="section-eyebrow"><span class="dot"></span> The way it should feel</span>
-    <h2 style="font-size:clamp(30px,4.2vw,42px);max-width:600px;margin:0 auto">Plan a year of comps the way you'd <span class="cursive">plan a trip</span>.</h2>
-    <p style="color:var(--stone-500);font-size:16px;max-width:480px;margin:14px auto 0;line-height:1.55">Quiet, scannable, mobile-first. By month, by track, by whether it leads to a PPI.</p>
+    <span class="section-eyebrow"><span class="dot"></span> The marquee five, on loop</span>
+    <h2 style="font-size:clamp(30px,4.2vw,42px);max-width:640px;margin:0 auto">The comps that genuinely <span class="cursive">shift</span> a CV.</h2>
+    <p style="color:var(--stone-500);font-size:16px;max-width:520px;margin:14px auto 0;line-height:1.55">Five marquee programs the calendar starts every season with. Hover the stack to pause, click any card to deep-link to its catalog row.</p>
   </div>
-  <div class="phones">
-    <div class="phone phone-left">
-      <div class="notch"></div>
-      <div class="phone-screen">
-        <div class="phone-h"><b>August</b><br>peak window opens</div>
-        <div class="phone-row"><div class="lg"><img src="logos/hindustan-unilever/hul-lime_competition.png" alt=""></div><div><div class="ph-name">HUL LIME</div><div class="ph-meta">Marketing · ₹10L</div></div></div>
-        <div class="phone-row"><div class="lg"><img src="logos/aditya-birla-group/abg-stratos_competition.png" alt=""></div><div><div class="ph-name">ABG Stratos</div><div class="ph-meta">Gen-Mgmt · PPI</div></div></div>
-        <div class="phone-row"><div class="lg"><img src="logos/mahindra-group/mahindra-war-room_competition.jpg" alt=""></div><div><div class="ph-name">Mahindra War Room</div><div class="ph-meta">Strategy · ₹5L</div></div></div>
-        <div class="phone-row"><div class="lg"><img src="logos/amazon/amazon-ace_competition.png" alt=""></div><div><div class="ph-name">Amazon ACE</div><div class="ph-meta">Product · PPI</div></div></div>
-        <div class="phone-row"><div class="lg"><img src="logos/itc/itc-interrobang_competition.webp" alt=""></div><div><div class="ph-name">ITC Interrobang</div><div class="ph-meta">3 tracks · AUT</div></div></div>
+
+  <div class="swap-stage">
+    <div class="swap-container" id="swap">
+      <div class="swap-card bg-coral" data-id="hul-lime">
+        <div class="swap-top">
+          <span class="swap-month"><span class="dot"></span>Jul–Aug</span>
+          <span class="swap-corp"><img src="logos/hindustan-unilever/hul_corporate.svg" alt=""></span>
+        </div>
+        <div class="swap-body">
+          <div class="swap-logo-big"><img src="logos/hindustan-unilever/hul-lime_competition.png" alt=""></div>
+          <div class="swap-info">
+            <div class="swap-name">HUL LIME</div>
+            <div class="swap-org">Hindustan Unilever · the marketing gold standard</div>
+            <div class="swap-prize"><b>₹10L</b> + Unilever Future Leaders' League (London)</div>
+          </div>
+        </div>
+        <div class="swap-tags">
+          <span class="swap-tag coral">Marketing</span>
+          <span class="swap-tag">PPI</span>
+          <span class="swap-tag">International</span>
+          <span class="swap-tag">~18 premier B-schools</span>
+        </div>
       </div>
-    </div>
-    <div class="phone phone-center">
-      <div class="notch"></div>
-      <div class="phone-screen">
-        <div class="phone-h" style="margin-bottom:6px"><b>Filter</b>by what fits you</div>
-        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px">
-          <span class="phone-tag">Marketing</span>
-          <span class="phone-tag" style="background:var(--sage);color:#3F5B3F">Strategy</span>
-          <span class="phone-tag" style="background:var(--lavender);color:#5A4D7A">Finance</span>
+
+      <div class="swap-card bg-sage" data-id="abg-stratos">
+        <div class="swap-top">
+          <span class="swap-month"><span class="dot"></span>Aug</span>
+          <span class="swap-corp"><img src="logos/aditya-birla-group/aditya-birla-group_corporate.svg" alt=""></span>
         </div>
-        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px">
-          <span class="phone-tag" style="background:var(--stone-100);color:var(--stone-700)">PPI</span>
-          <span class="phone-tag" style="background:var(--stone-100);color:var(--stone-700)">PPO</span>
-          <span class="phone-tag" style="background:var(--stone-100);color:var(--stone-700)">International</span>
+        <div class="swap-body">
+          <div class="swap-logo-big"><img src="logos/aditya-birla-group/abg-stratos_competition.png" alt=""></div>
+          <div class="swap-info">
+            <div class="swap-name">ABG Stratos</div>
+            <div class="swap-org">Aditya Birla Group · gen-mgmt simulation</div>
+            <div class="swap-prize"><b>72-hour</b> 6-round biz sim → ABG GMT pipeline</div>
+          </div>
         </div>
-        <div style="text-align:center;flex:1;display:flex;flex-direction:column;justify-content:center">
-          <div class="breathe">filter →</div>
-          <p style="font-size:11px;color:var(--stone-500);margin-top:14px;line-height:1.5">tap to apply</p>
+        <div class="swap-tags">
+          <span class="swap-tag coral">General mgmt</span>
+          <span class="swap-tag">PPO</span>
+          <span class="swap-tag">Top 15 schools</span>
         </div>
-        <div class="phone-row" style="margin-bottom:6px"><div class="lg" style="background:var(--coral-soft)"><img src="logos/reliance/reliance-tup_competition.jpg" alt=""></div><div><div class="ph-name">Reliance TUP</div><div class="ph-meta">Entr. · ₹25L pool</div></div></div>
       </div>
-    </div>
-    <div class="phone phone-right">
-      <div class="notch"></div>
-      <div class="phone-screen">
-        <div style="display:flex;align-items:center;gap:10px;margin-top:4px;margin-bottom:10px">
-          <div style="width:40px;height:40px;border-radius:10px;background:#fff;display:grid;place-items:center;overflow:hidden;border:1px solid var(--stone-200)"><img src="logos/aditya-birla-group/abg-stratos_competition.png" alt="" style="max-width:32px;max-height:32px"></div>
-          <div style="text-align:left"><div style="font-size:14px;font-weight:600">ABG Stratos</div><div style="font-size:11px;color:var(--stone-500)">Aditya Birla Group</div></div>
+
+      <div class="swap-card bg-lavender" data-id="mahindra-war-room">
+        <div class="swap-top">
+          <span class="swap-month"><span class="dot"></span>Aug–Oct</span>
+          <span class="swap-corp"><img src="logos/mahindra-group/mahindra-and-mahindra_corporate.svg" alt=""></span>
         </div>
-        <div style="background:rgba(255,255,255,.7);border-radius:14px;padding:10px 12px;text-align:left">
-          <div style="font-size:10px;color:var(--stone-400);font-weight:500">LAUNCH</div>
-          <div style="font-size:13px;color:var(--ink);font-weight:500">Aug — Sep</div>
+        <div class="swap-body">
+          <div class="swap-logo-big"><img src="logos/mahindra-group/mahindra-war-room_competition.jpg" alt=""></div>
+          <div class="swap-info">
+            <div class="swap-name">Mahindra War Room</div>
+            <div class="swap-org">Mahindra &amp; Mahindra · the strategy flagship</div>
+            <div class="swap-prize"><b>₹5L</b> + Club Mahindra stay · 22 Indian + 4 intl B-schools</div>
+          </div>
         </div>
-        <div style="background:rgba(255,255,255,.7);border-radius:14px;padding:10px 12px;text-align:left">
-          <div style="font-size:10px;color:var(--stone-400);font-weight:500">TRACK</div>
-          <div style="font-size:13px;color:var(--ink);font-weight:500">General management · simulation</div>
+        <div class="swap-tags">
+          <span class="swap-tag coral">Strategy</span>
+          <span class="swap-tag">PPI</span>
+          <span class="swap-tag">International</span>
         </div>
-        <div style="background:rgba(255,255,255,.7);border-radius:14px;padding:10px 12px;text-align:left">
-          <div style="font-size:10px;color:var(--stone-400);font-weight:500">PERKS</div>
-          <div style="font-size:13px;color:var(--ink);font-weight:500">Cash + PPI + ABG MT pipeline</div>
+      </div>
+
+      <div class="swap-card bg-blush" data-id="amazon-ace">
+        <div class="swap-top">
+          <span class="swap-month"><span class="dot"></span>Aug</span>
+          <span class="swap-corp"><img src="logos/amazon/amazon-india_corporate.svg" alt=""></span>
         </div>
-        <div style="background:rgba(255,255,255,.7);border-radius:14px;padding:10px 12px;text-align:left">
-          <div style="font-size:10px;color:var(--stone-400);font-weight:500">ELIGIBILITY</div>
-          <div style="font-size:13px;color:var(--ink);font-weight:500">Top 15 premier B-schools</div>
+        <div class="swap-body">
+          <div class="swap-logo-big"><img src="logos/amazon/amazon-ace_competition.png" alt=""></div>
+          <div class="swap-info">
+            <div class="swap-name">Amazon ACE</div>
+            <div class="swap-org">Amazon India · Unstop's #1 ranked</div>
+            <div class="swap-prize"><b>₹2L</b> + PPI + Alexa devices · customer obsession</div>
+          </div>
+        </div>
+        <div class="swap-tags">
+          <span class="swap-tag coral">Product</span>
+          <span class="swap-tag">PPI</span>
+          <span class="swap-tag">12+ editions</span>
+        </div>
+      </div>
+
+      <div class="swap-card bg-paper" data-id="loreal-brandstorm">
+        <div class="swap-top">
+          <span class="swap-month"><span class="dot"></span>Jan–Apr</span>
+          <span class="swap-corp"><img src="logos/loreal/loreal_corporate.svg" alt=""></span>
+        </div>
+        <div class="swap-body">
+          <div class="swap-logo-big"><img src="logos/loreal/loreal-brandstorm_competition.png" alt=""></div>
+          <div class="swap-info">
+            <div class="swap-name">L'Oréal Brandstorm</div>
+            <div class="swap-org">L'Oréal · the only global youth comp on the list</div>
+            <div class="swap-prize"><b>Paris HQ</b> 3-mo mission + permanent MT role · 64 countries</div>
+          </div>
+        </div>
+        <div class="swap-tags">
+          <span class="swap-tag coral">Marketing</span>
+          <span class="swap-tag">International</span>
+          <span class="swap-tag">135K+ entrants</span>
         </div>
       </div>
     </div>
   </div>
+
+  <p class="swap-hint">hover the stack to pause · auto-cycles every 4s</p>
 </section>
 
 <!-- Catalog -->
@@ -1084,6 +1169,136 @@ function checkReveals(){
 checkReveals();
 window.addEventListener('scroll',checkReveals,{passive:true});
 window.addEventListener('resize',checkReveals,{passive:true});
+
+/* ============================================================
+   CardSwap — vanilla GSAP port (locked: elastic, wider, big logos)
+   ============================================================ */
+(function(){
+  const container = document.getElementById('swap');
+  if(!container || typeof gsap === 'undefined') return;
+
+  const SWAP = {
+    cards: [...container.querySelectorAll('.swap-card')],
+    cardDistance: 60,
+    verticalDistance: 60,
+    delay: 4000,
+    skewAmount: 8,
+    pauseOnHover: true,
+    intervalId: 0,
+    tl: null,
+    order: []
+  };
+
+  const cfg = {
+    ease: 'elastic.out(0.6,0.9)',
+    durDrop: 2, durMove: 2, durReturn: 2,
+    promoteOverlap: 0.9, returnDelay: 0.05
+  };
+
+  function makeSlot(i, dx, dy, total){
+    return { x: i*dx, y: -i*dy, z: -i*dx*1.5, zIndex: total-i };
+  }
+  function placeNow(el, slot, skew){
+    gsap.set(el, {
+      x: slot.x, y: slot.y, z: slot.z,
+      xPercent: -50, yPercent: -50,
+      skewY: skew,
+      transformOrigin: 'center center',
+      zIndex: slot.zIndex,
+      force3D: true
+    });
+  }
+  function placeAll(){
+    const total = SWAP.cards.length;
+    SWAP.cards.forEach((el,i) => placeNow(el, makeSlot(i, SWAP.cardDistance, SWAP.verticalDistance, total), SWAP.skewAmount));
+    SWAP.order = SWAP.cards.map((_,i)=>i);
+  }
+  function swap(){
+    if(SWAP.order.length < 2) return;
+    const total = SWAP.cards.length;
+    const front = SWAP.order[0];
+    const rest = SWAP.order.slice(1);
+    const elFront = SWAP.cards[front];
+    if(!elFront) return;
+
+    const tl = gsap.timeline();
+    SWAP.tl = tl;
+
+    tl.to(elFront, { y: '+=520', duration: cfg.durDrop, ease: cfg.ease });
+    tl.addLabel('promote', `-=${cfg.durDrop * cfg.promoteOverlap}`);
+
+    rest.forEach((idx, i) => {
+      const el = SWAP.cards[idx];
+      if(!el) return;
+      const slot = makeSlot(i, SWAP.cardDistance, SWAP.verticalDistance, total);
+      tl.set(el, { zIndex: slot.zIndex }, 'promote');
+      tl.to(el, {
+        x: slot.x, y: slot.y, z: slot.z,
+        duration: cfg.durMove, ease: cfg.ease
+      }, `promote+=${i * 0.15}`);
+    });
+
+    const backSlot = makeSlot(total - 1, SWAP.cardDistance, SWAP.verticalDistance, total);
+    tl.addLabel('return', `promote+=${cfg.durMove * cfg.returnDelay}`);
+    tl.call(() => gsap.set(elFront, { zIndex: backSlot.zIndex }), null, 'return');
+    tl.to(elFront, {
+      x: backSlot.x, y: backSlot.y, z: backSlot.z,
+      duration: cfg.durReturn, ease: cfg.ease
+    }, 'return');
+    tl.call(() => { SWAP.order = [...rest, front]; });
+  }
+  function startInterval(){
+    clearInterval(SWAP.intervalId);
+    SWAP.intervalId = window.setInterval(swap, SWAP.delay);
+  }
+
+  placeAll();
+  startInterval();
+
+  if(SWAP.pauseOnHover){
+    container.addEventListener('mouseenter', () => {
+      SWAP.tl?.pause();
+      clearInterval(SWAP.intervalId);
+    });
+    container.addEventListener('mouseleave', () => {
+      SWAP.tl?.play();
+      startInterval();
+    });
+  }
+
+  SWAP.cards.forEach((el) => {
+    el.addEventListener('click', () => {
+      const id = el.dataset.id;
+      if(!id) return;
+      // Scroll to catalog and surface this card's filter
+      const search = document.getElementById('search');
+      if(search){
+        const card = SWAP.cards[SWAP.order[0]];
+        const name = card?.querySelector('.swap-name')?.textContent || '';
+        search.value = name;
+        search.dispatchEvent(new Event('input',{bubbles:true}));
+      }
+      document.getElementById('catalog')?.scrollIntoView({behavior:'smooth',block:'start'});
+    });
+  });
+
+  // Reposition if viewport changes between desktop/mobile breakpoint
+  let lastIsMobile = window.matchMedia('(max-width:760px)').matches;
+  window.addEventListener('resize', () => {
+    const isMobile = window.matchMedia('(max-width:760px)').matches;
+    if(isMobile !== lastIsMobile){
+      lastIsMobile = isMobile;
+      SWAP.cardDistance = isMobile ? 40 : 60;
+      SWAP.verticalDistance = isMobile ? 40 : 60;
+      placeAll();
+    }
+  });
+  if(lastIsMobile){
+    SWAP.cardDistance = 40;
+    SWAP.verticalDistance = 40;
+    placeAll();
+  }
+})();
 </script>
 
 </body>
