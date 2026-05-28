@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Experiment 01 · card swap · b-school case comps</title>
+<meta name="description" content="GSAP CardSwap experiment for the B-school case comps tracker.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Reenie+Beanie&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+<style>
+:root{
+  --paper:#FDFCF8;
+  --sage:#E8EFE8;
+  --sage-deep:#C7D5C7;
+  --lavender:#EFEDF4;
+  --lavender-deep:#CFC9DE;
+  --coral:#FFB7B2;
+  --coral-soft:#FFE4E1;
+  --blush:#FCDDD8;
+  --ink:#292524;
+  --stone-50:#FAFAF9;
+  --stone-100:#F5F5F4;
+  --stone-200:#E7E5E4;
+  --stone-300:#D6D3D1;
+  --stone-400:#A8A29E;
+  --stone-500:#78716C;
+  --stone-700:#44403C;
+  --shadow-soft:0 4px 20px -2px rgba(0,0,0,.05);
+  --shadow-card:0 2px 12px -2px rgba(41,37,36,.06);
+  --shadow-lift:0 16px 48px -8px rgba(41,37,36,.15);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Outfit',system-ui,-apple-system,sans-serif;
+  background:var(--paper);color:var(--ink);
+  min-height:100vh;line-height:1.55;
+  overflow-x:hidden;position:relative;letter-spacing:-0.005em;
+}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+img{display:block;max-width:100%}
+
+.cursive{font-family:'Reenie Beanie',cursive;color:#E69991;letter-spacing:0}
+
+/* grain */
+.grain{
+  position:fixed;inset:0;z-index:50;pointer-events:none;
+  opacity:.3;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.8 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:200px 200px;
+}
+
+/* blobs */
+.blob{position:fixed;border-radius:50%;filter:blur(80px);opacity:.5;z-index:-1;pointer-events:none}
+.blob-1{width:480px;height:480px;background:var(--coral-soft);top:-120px;right:-140px}
+.blob-2{width:420px;height:420px;background:#E6E6FA;bottom:-160px;left:-180px}
+.blob-3{width:380px;height:380px;background:var(--sage);top:40vh;right:20vw;opacity:.35}
+
+/* nav */
+nav.pill{
+  position:fixed;top:18px;left:50%;transform:translateX(-50%);
+  width:calc(100% - 32px);max-width:880px;z-index:40;
+  background:rgba(255,255,255,.72);backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border:1px solid rgba(231,229,228,.7);
+  border-radius:9999px;padding:10px 14px 10px 18px;
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  box-shadow:var(--shadow-soft);
+}
+.brand{display:flex;align-items:center;gap:10px}
+.brand-dot{
+  width:26px;height:26px;border-radius:50%;background:var(--coral);
+  display:grid;place-items:center;
+  box-shadow:inset 0 0 0 4px rgba(255,255,255,.65);
+}
+.brand-dot::after{content:"";width:6px;height:6px;border-radius:50%;background:#fff}
+.brand-name{font-weight:600;font-size:13px;letter-spacing:-.01em}
+.brand-name small{color:var(--stone-500);font-weight:400;margin-left:6px}
+.nav-back{
+  font-size:13px;font-weight:500;color:var(--stone-700);
+  padding:8px 16px;border-radius:9999px;border:1px solid var(--stone-200);background:#fff;
+  transition:background .2s,color .2s,transform .2s;
+}
+.nav-back:hover{background:var(--ink);color:var(--paper);transform:translate(-1px,-1px)}
+
+/* main */
+main.wrap{
+  width:100%;max-width:1100px;margin:0 auto;
+  padding:140px 24px 80px;
+  position:relative;
+}
+.kicker{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:13px;font-weight:500;color:var(--stone-500);
+  padding:6px 14px;border-radius:9999px;
+  background:rgba(255,255,255,.6);
+  border:1px solid var(--stone-200);
+  margin-bottom:18px;
+}
+.kicker .dot{width:6px;height:6px;border-radius:50%;background:var(--coral);animation:blink 2s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
+
+h1.exp-title{
+  font-size:clamp(36px,5vw,62px);
+  font-weight:500;letter-spacing:-0.025em;line-height:1.05;
+  max-width:780px;margin-bottom:18px;
+}
+h1.exp-title .cursive{display:inline-block;transform:rotate(-3deg);font-size:1.15em;line-height:.8;margin:0 .04em}
+.lead{
+  font-size:18px;color:var(--stone-500);max-width:560px;
+  line-height:1.55;margin-bottom:48px;
+}
+
+/* swap stage */
+.swap-stage{
+  position:relative;
+  height:520px;
+  margin:0 auto 80px;
+  display:flex;align-items:center;justify-content:center;
+  perspective:1200px;
+}
+@media (max-width:760px){.swap-stage{height:460px}}
+
+.swap-container{
+  position:relative;
+  width:400px;height:300px;
+  transform-style:preserve-3d;
+}
+@media (max-width:760px){.swap-container{width:320px;height:280px}}
+
+.swap-card{
+  position:absolute;
+  top:50%;left:50%;
+  width:400px;height:300px;
+  border-radius:28px;
+  border:1px solid var(--stone-200);
+  background:#fff;
+  box-shadow:var(--shadow-lift);
+  transform-style:preserve-3d;
+  backface-visibility:hidden;
+  will-change:transform;
+  padding:26px;
+  display:flex;flex-direction:column;
+  overflow:hidden;
+  cursor:pointer;
+  user-select:none;
+}
+@media (max-width:760px){.swap-card{width:320px;height:280px;padding:22px}}
+
+.swap-card.bg-coral{background:linear-gradient(155deg,#FFF6F4 0%,#FFE4E1 100%)}
+.swap-card.bg-sage{background:linear-gradient(155deg,#F4F8F4 0%,#E0EAE0 100%)}
+.swap-card.bg-lavender{background:linear-gradient(155deg,#F5F3F8 0%,#E4DFEE 100%)}
+.swap-card.bg-blush{background:linear-gradient(155deg,#FFF5F2 0%,#FCDDD8 100%)}
+.swap-card.bg-paper{background:linear-gradient(155deg,#FDFCF8 0%,#F4F2EC 100%)}
+
+.card-top{
+  display:flex;align-items:flex-start;justify-content:space-between;gap:12px;
+  margin-bottom:auto;
+}
+.card-month{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:12px;font-weight:500;letter-spacing:.02em;
+  padding:5px 12px;border-radius:9999px;
+  background:rgba(255,255,255,.65);
+  border:1px solid rgba(41,37,36,.08);color:var(--stone-700);
+  backdrop-filter:blur(8px);
+}
+.card-month .dot{width:5px;height:5px;border-radius:50%;background:var(--coral)}
+.card-org-mark{
+  height:24px;display:flex;align-items:center;opacity:.55;
+}
+.card-org-mark img{max-height:24px;max-width:90px;object-fit:contain}
+
+.card-logo{
+  width:62px;height:62px;border-radius:16px;background:#fff;
+  display:grid;place-items:center;overflow:hidden;
+  border:1px solid rgba(41,37,36,.08);
+  box-shadow:0 2px 8px -2px rgba(41,37,36,.08);
+  margin-bottom:14px;
+}
+.card-logo img{max-width:48px;max-height:48px;object-fit:contain}
+
+.card-name{
+  font-size:26px;font-weight:600;letter-spacing:-.02em;line-height:1.1;
+  margin-bottom:4px;color:var(--ink);
+}
+.card-org{
+  font-size:13px;color:var(--stone-500);font-weight:500;
+  margin-bottom:14px;
+}
+.card-prize{
+  font-size:14px;color:var(--stone-700);line-height:1.45;
+  margin-bottom:14px;font-weight:400;
+}
+.card-prize b{font-weight:600;color:var(--ink)}
+.card-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto}
+.card-tag{
+  font-size:11px;font-weight:500;padding:4px 10px;
+  border-radius:9999px;
+  background:rgba(255,255,255,.7);color:var(--stone-700);
+  border:1px solid rgba(41,37,36,.08);
+  backdrop-filter:blur(6px);
+}
+.card-tag.coral{background:var(--coral);color:var(--ink);border-color:transparent}
+
+/* hint */
+.hint{
+  font-size:13px;color:var(--stone-400);
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  margin-top:-40px;margin-bottom:80px;font-weight:500;
+}
+.hint .key{
+  padding:2px 8px;border-radius:6px;background:#fff;
+  border:1px solid var(--stone-200);font-size:11px;
+  font-family:'Outfit';color:var(--stone-700);
+}
+
+/* notes panel */
+.notes{
+  background:#fff;border:1px solid var(--stone-100);
+  border-radius:24px;padding:36px;
+  box-shadow:var(--shadow-card);max-width:760px;margin:0 auto;
+}
+.notes h2{
+  font-size:24px;font-weight:500;letter-spacing:-.02em;
+  margin-bottom:8px;
+}
+.notes .sub{
+  font-size:14px;color:var(--stone-500);
+  margin-bottom:24px;
+}
+.notes h3{
+  font-size:13px;font-weight:600;color:var(--stone-400);
+  text-transform:uppercase;letter-spacing:.08em;margin:24px 0 10px;
+}
+.notes h3:first-of-type{margin-top:0}
+.notes ul{list-style:none;padding:0}
+.notes li{
+  padding:10px 0;border-bottom:1px dashed var(--stone-200);
+  font-size:14px;color:var(--stone-700);
+  display:flex;align-items:flex-start;gap:12px;
+}
+.notes li:last-child{border-bottom:none}
+.notes li b{color:var(--ink);font-weight:600}
+.notes li::before{
+  content:"";flex:none;width:5px;height:5px;border-radius:50%;
+  background:var(--coral);margin-top:9px;
+}
+
+.controls{
+  display:flex;gap:10px;flex-wrap:wrap;margin-top:24px;
+}
+.controls button{
+  font-size:13px;font-weight:500;padding:8px 16px;
+  border-radius:9999px;border:1px solid var(--stone-200);
+  background:var(--stone-50);color:var(--stone-700);
+  transition:background .2s,color .2s,transform .2s;
+}
+.controls button:hover{background:var(--ink);color:var(--paper);transform:translate(-1px,-1px)}
+.controls button.live{background:var(--coral);color:var(--ink);border-color:transparent}
+
+footer{
+  text-align:center;font-size:13px;color:var(--stone-400);
+  padding:60px 0 40px;
+}
+footer a{color:var(--ink);font-weight:500;border-bottom:1px solid var(--stone-300);padding-bottom:1px}
+</style>
+</head>
+
+<body>
+
+<div class="grain"></div>
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="blob blob-3"></div>
+
+<nav class="pill">
+  <div class="brand">
+    <span class="brand-dot"></span>
+    <span class="brand-name">experiment 01<small>card swap</small></span>
+  </div>
+  <a href="index.html" class="nav-back">← back to main</a>
+</nav>
+
+<main class="wrap">
+  <span class="kicker"><span class="dot"></span> live · auto-cycling every 4s</span>
+  <h1 class="exp-title">Five marquee comps <span class="cursive">shuffle</span> themselves.</h1>
+  <p class="lead">Same GSAP elastic curve as the source component, ported to vanilla so it lives inside the static site. Hover to pause. Click a card to log it (preview hook for "open details" later).</p>
+
+  <div class="swap-stage">
+    <div class="swap-container" id="swap">
+      <div class="swap-card bg-coral" data-id="hul-lime">
+        <div class="card-top">
+          <span class="card-month"><span class="dot"></span>Jul–Aug</span>
+          <span class="card-org-mark"><img src="logos/hindustan-unilever/hul_corporate.svg" alt=""></span>
+        </div>
+        <div class="card-logo"><img src="logos/hindustan-unilever/hul-lime_competition.png" alt=""></div>
+        <h3 class="card-name">HUL LIME</h3>
+        <p class="card-org">Hindustan Unilever · the marketing gold standard</p>
+        <p class="card-prize"><b>₹10L</b> + Unilever Future Leaders' League in London</p>
+        <div class="card-tags">
+          <span class="card-tag coral">Marketing</span>
+          <span class="card-tag">PPI</span>
+          <span class="card-tag">International</span>
+        </div>
+      </div>
+
+      <div class="swap-card bg-sage" data-id="abg-stratos">
+        <div class="card-top">
+          <span class="card-month"><span class="dot"></span>Aug</span>
+          <span class="card-org-mark"><img src="logos/aditya-birla-group/aditya-birla-group_corporate.svg" alt=""></span>
+        </div>
+        <div class="card-logo"><img src="logos/aditya-birla-group/abg-stratos_competition.png" alt=""></div>
+        <h3 class="card-name">ABG Stratos</h3>
+        <p class="card-org">Aditya Birla Group · gen-mgmt simulation</p>
+        <p class="card-prize"><b>72-hour</b> 6-round biz simulation → ABG GMT pipeline</p>
+        <div class="card-tags">
+          <span class="card-tag coral">General mgmt</span>
+          <span class="card-tag">PPO</span>
+          <span class="card-tag">Top 15 schools</span>
+        </div>
+      </div>
+
+      <div class="swap-card bg-lavender" data-id="mahindra-war-room">
+        <div class="card-top">
+          <span class="card-month"><span class="dot"></span>Aug–Oct</span>
+          <span class="card-org-mark"><img src="logos/mahindra-group/mahindra-and-mahindra_corporate.svg" alt=""></span>
+        </div>
+        <div class="card-logo"><img src="logos/mahindra-group/mahindra-war-room_competition.jpg" alt=""></div>
+        <h3 class="card-name">Mahindra War Room</h3>
+        <p class="card-org">Mahindra &amp; Mahindra · the strategy flagship</p>
+        <p class="card-prize"><b>₹5L</b> + Club Mahindra stay · 22 Indian + 4 international B-schools</p>
+        <div class="card-tags">
+          <span class="card-tag coral">Strategy</span>
+          <span class="card-tag">PPI</span>
+          <span class="card-tag">International</span>
+        </div>
+      </div>
+
+      <div class="swap-card bg-blush" data-id="amazon-ace">
+        <div class="card-top">
+          <span class="card-month"><span class="dot"></span>Aug</span>
+          <span class="card-org-mark"><img src="logos/amazon/amazon-india_corporate.svg" alt=""></span>
+        </div>
+        <div class="card-logo"><img src="logos/amazon/amazon-ace_competition.png" alt=""></div>
+        <h3 class="card-name">Amazon ACE</h3>
+        <p class="card-org">Amazon India · Unstop's #1 ranked</p>
+        <p class="card-prize"><b>₹2L</b> winner + PPI + Alexa devices · customer obsession</p>
+        <div class="card-tags">
+          <span class="card-tag coral">Product</span>
+          <span class="card-tag">PPI</span>
+          <span class="card-tag">12+ editions</span>
+        </div>
+      </div>
+
+      <div class="swap-card bg-paper" data-id="loreal-brandstorm">
+        <div class="card-top">
+          <span class="card-month"><span class="dot"></span>Jan–Apr</span>
+          <span class="card-org-mark"><img src="logos/loreal/loreal_corporate.svg" alt=""></span>
+        </div>
+        <div class="card-logo"><img src="logos/loreal/loreal-brandstorm_competition.png" alt=""></div>
+        <h3 class="card-name">L'Oréal Brandstorm</h3>
+        <p class="card-org">L'Oréal · the only global youth comp on the list</p>
+        <p class="card-prize"><b>Paris HQ</b> 3-mo mission + permanent MT role · 64 countries</p>
+        <div class="card-tags">
+          <span class="card-tag coral">Marketing</span>
+          <span class="card-tag">International</span>
+          <span class="card-tag">135K+ entrants</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hint">hover anywhere on the stack to pause · click a card to log to console</div>
+
+  <div class="notes">
+    <h2>What I'm trying out</h2>
+    <p class="sub">Vanilla-JS port of the React/GSAP CardSwap. Same elastic timeline. Tunable in seconds.</p>
+
+    <h3>Knobs we can play with</h3>
+    <ul>
+      <li><b>delay</b> — how long each card stays in front (currently <code>4000ms</code>)</li>
+      <li><b>cardDistance / verticalDistance</b> — how spread out the stack feels (currently <code>40 / 40</code>)</li>
+      <li><b>skewAmount</b> — the tilt that creates depth (currently <code>5°</code>)</li>
+      <li><b>easing</b> — <code>elastic</code> (soft, bouncy, ~2s per move) or <code>linear</code> (snappy, ~0.8s)</li>
+      <li><b>card content</b> — month chip, logo, name, prize line, tags. Easy to redesign.</li>
+      <li><b>card backgrounds</b> — soft pastel gradients (sage / lavender / coral / blush / paper)</li>
+    </ul>
+
+    <h3>Where this could land on the main site</h3>
+    <ul>
+      <li><b>Replace the "marquee headlines" horizontal scroll</b> — same purpose (featuring top comps), more dynamic.</li>
+      <li><b>Replace the three-phone preview</b> — the swap IS the "product preview" since it shows real comps.</li>
+      <li><b>Add as a new section above the catalog</b> — "this week's spotlight" feel, then catalog below.</li>
+      <li><b>Keep both</b> — swap as hero centerpiece, horizontal scroll as quick-scan below.</li>
+    </ul>
+
+    <div class="controls">
+      <button class="live" data-act="elastic">Elastic (current)</button>
+      <button data-act="linear">Linear / snappy</button>
+      <button data-act="slow">Slower (6s delay)</button>
+      <button data-act="fast">Faster (2.5s delay)</button>
+      <button data-act="spread">Wider spread</button>
+      <button data-act="tight">Tighter stack</button>
+      <button data-act="reset">Reset to default</button>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>experiment 01 · <a href="index.html">main tracker</a> · by shivam meet</p>
+</footer>
+
+<script>
+/* ============================================================
+   CardSwap — vanilla GSAP port
+   ============================================================ */
+const SWAP = {
+  container: document.getElementById('swap'),
+  cards: [...document.querySelectorAll('.swap-card')],
+  cardDistance: 40,
+  verticalDistance: 40,
+  delay: 4000,
+  skewAmount: 5,
+  pauseOnHover: true,
+  easing: 'elastic',
+  intervalId: 0,
+  tl: null,
+  order: [],
+};
+
+const EASING_CONFIGS = {
+  elastic: {
+    ease: 'elastic.out(0.6,0.9)',
+    durDrop: 2, durMove: 2, durReturn: 2,
+    promoteOverlap: 0.9, returnDelay: 0.05
+  },
+  linear: {
+    ease: 'power1.inOut',
+    durDrop: 0.8, durMove: 0.8, durReturn: 0.8,
+    promoteOverlap: 0.45, returnDelay: 0.2
+  }
+};
+
+function makeSlot(i, distX, distY, total){
+  return {
+    x: i * distX,
+    y: -i * distY,
+    z: -i * distX * 1.5,
+    zIndex: total - i
+  };
+}
+
+function placeNow(el, slot, skew){
+  gsap.set(el, {
+    x: slot.x, y: slot.y, z: slot.z,
+    xPercent: -50, yPercent: -50,
+    skewY: skew,
+    transformOrigin: 'center center',
+    zIndex: slot.zIndex,
+    force3D: true
+  });
+}
+
+function placeAll(){
+  const total = SWAP.cards.length;
+  SWAP.cards.forEach((el, i) => {
+    placeNow(el, makeSlot(i, SWAP.cardDistance, SWAP.verticalDistance, total), SWAP.skewAmount);
+  });
+  SWAP.order = SWAP.cards.map((_, i) => i);
+}
+
+function swap(){
+  if(SWAP.order.length < 2) return;
+  const cfg = EASING_CONFIGS[SWAP.easing];
+  const total = SWAP.cards.length;
+  const front = SWAP.order[0];
+  const rest = SWAP.order.slice(1);
+  const elFront = SWAP.cards[front];
+  if(!elFront) return;
+
+  const tl = gsap.timeline();
+  SWAP.tl = tl;
+
+  // Drop the front card
+  tl.to(elFront, {
+    y: '+=500',
+    duration: cfg.durDrop,
+    ease: cfg.ease
+  });
+
+  // Promote the rest forward
+  tl.addLabel('promote', `-=${cfg.durDrop * cfg.promoteOverlap}`);
+  rest.forEach((idx, i) => {
+    const el = SWAP.cards[idx];
+    if(!el) return;
+    const slot = makeSlot(i, SWAP.cardDistance, SWAP.verticalDistance, total);
+    tl.set(el, { zIndex: slot.zIndex }, 'promote');
+    tl.to(el, {
+      x: slot.x, y: slot.y, z: slot.z,
+      duration: cfg.durMove,
+      ease: cfg.ease
+    }, `promote+=${i * 0.15}`);
+  });
+
+  // Return dropped card to back
+  const backSlot = makeSlot(total - 1, SWAP.cardDistance, SWAP.verticalDistance, total);
+  tl.addLabel('return', `promote+=${cfg.durMove * cfg.returnDelay}`);
+  tl.call(() => gsap.set(elFront, { zIndex: backSlot.zIndex }), null, 'return');
+  tl.to(elFront, {
+    x: backSlot.x, y: backSlot.y, z: backSlot.z,
+    duration: cfg.durReturn,
+    ease: cfg.ease
+  }, 'return');
+
+  // Rotate order
+  tl.call(() => {
+    SWAP.order = [...rest, front];
+  });
+}
+
+function startInterval(){
+  clearInterval(SWAP.intervalId);
+  SWAP.intervalId = window.setInterval(swap, SWAP.delay);
+}
+
+function init(){
+  placeAll();
+  startInterval();
+
+  // pause on hover
+  if(SWAP.pauseOnHover){
+    SWAP.container.addEventListener('mouseenter', () => {
+      SWAP.tl?.pause();
+      clearInterval(SWAP.intervalId);
+    });
+    SWAP.container.addEventListener('mouseleave', () => {
+      SWAP.tl?.play();
+      startInterval();
+    });
+  }
+
+  // click logging
+  SWAP.cards.forEach((el, i) => {
+    el.addEventListener('click', () => {
+      console.log('[card click]', i, el.dataset.id);
+    });
+  });
+}
+
+init();
+
+/* ============================================================
+   Live control buttons — tune without reloading
+   ============================================================ */
+document.querySelectorAll('.controls button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const act = btn.dataset.act;
+    document.querySelectorAll('.controls button').forEach(b => b.classList.remove('live'));
+    btn.classList.add('live');
+
+    SWAP.tl?.kill();
+    clearInterval(SWAP.intervalId);
+
+    if(act === 'elastic'){
+      SWAP.easing = 'elastic';
+      SWAP.delay = 4000;
+    } else if(act === 'linear'){
+      SWAP.easing = 'linear';
+      SWAP.delay = 3500;
+    } else if(act === 'slow'){
+      SWAP.delay = 6000;
+    } else if(act === 'fast'){
+      SWAP.delay = 2500;
+    } else if(act === 'spread'){
+      SWAP.cardDistance = 60;
+      SWAP.verticalDistance = 60;
+      SWAP.skewAmount = 8;
+    } else if(act === 'tight'){
+      SWAP.cardDistance = 22;
+      SWAP.verticalDistance = 22;
+      SWAP.skewAmount = 3;
+    } else if(act === 'reset'){
+      SWAP.easing = 'elastic';
+      SWAP.delay = 4000;
+      SWAP.cardDistance = 40;
+      SWAP.verticalDistance = 40;
+      SWAP.skewAmount = 5;
+    }
+
+    placeAll();
+    startInterval();
+  });
+});
+</script>
+
+</body>
+</html>
