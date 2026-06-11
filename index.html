@@ -3,268 +3,243 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Indian MBA corporate case comps — softly tracked · Shivam Meet</title>
+<title>THE CASE-COMP INDEX — Indian B-school corporate case competitions · Shivam Meet</title>
 <meta name="description" content="HUL LIME, ITC Interrobang, ABG Stratos, Mahindra War Room, Amazon ACE and 80+ more — every corporate case comp for Indian B-schools, mapped by month, track and hiring intent.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Reenie+Beanie&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
 <style>
 /* ============================================================
-   SOFTLY · digital-living-room palette for case-comp tracker
+   SWISS INTERNATIONAL — case-comp index
+   #FFFFFF · #000000 · #F2F2F2 · #FF3000 · Inter · radius 0
    ============================================================ */
-
 :root{
-  --paper:#FDFCF8;
-  --sage:#E8EFE8;
-  --sage-deep:#C7D5C7;
-  --lavender:#EFEDF4;
-  --lavender-deep:#CFC9DE;
-  --coral:#FFB7B2;
-  --coral-soft:#FFE4E1;
-  --blush:#FCDDD8;
-  --ink:#292524;
-  --stone-50:#FAFAF9;
-  --stone-100:#F5F5F4;
-  --stone-200:#E7E5E4;
-  --stone-300:#D6D3D1;
-  --stone-400:#A8A29E;
-  --stone-500:#78716C;
-  --stone-700:#44403C;
-  --stone-800:#292524;
-  --r-sm:1rem;
-  --r-md:1.5rem;
-  --r-lg:2rem;
-  --r-xl:3rem;
-  --r-2xl:4rem;
-  --shadow-soft:0 4px 20px -2px rgba(0,0,0,.05);
-  --shadow-card:0 2px 12px -2px rgba(41,37,36,.06);
-  --shadow-lift:0 12px 40px -8px rgba(41,37,36,.12);
+  --bg:#FFFFFF;
+  --ink:#000000;
+  --muted:#F2F2F2;
+  --red:#FF3000;
+  --gray:#6B6B6B;
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{
-  font-family:'Outfit',system-ui,-apple-system,sans-serif;
-  font-weight:400;
-  background:var(--paper);
+  font-family:'Inter',Helvetica,Arial,sans-serif;
+  background:var(--bg);
   color:var(--ink);
-  line-height:1.55;
+  line-height:1.5;
   overflow-x:hidden;
   position:relative;
-  min-height:100vh;
-  letter-spacing:-0.005em;
 }
-
 a{color:inherit;text-decoration:none}
 button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
 img{display:block;max-width:100%}
+::selection{background:var(--red);color:#fff}
 
-/* ---------- Grain overlay ---------- */
-.grain{
-  position:fixed;inset:0;z-index:50;pointer-events:none;
-  opacity:.35;mix-blend-mode:overlay;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.8 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+/* ---------- textures ---------- */
+body::before{
+  content:"";position:fixed;inset:0;z-index:60;pointer-events:none;
+  opacity:.015;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size:200px 200px;
 }
-
-/* ---------- Floating background blobs ---------- */
-.blob{
-  position:fixed;border-radius:50%;filter:blur(80px);
-  opacity:.55;z-index:-1;pointer-events:none;
-  animation:bob 7s ease-in-out infinite;
+.swiss-grid-pattern{
+  background-image:
+    linear-gradient(rgba(0,0,0,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,0,0,.04) 1px,transparent 1px);
+  background-size:24px 24px;
 }
-.blob-coral{width:520px;height:520px;background:var(--coral-soft);top:-180px;right:-160px;animation-delay:0s}
-.blob-lavender{width:460px;height:460px;background:#E6E6FA;top:30vh;left:-180px;animation-delay:1.6s}
-.blob-sage{width:400px;height:400px;background:var(--sage);bottom:-160px;right:-120px;animation-delay:3.2s}
-.blob-blush{width:340px;height:340px;background:var(--blush);top:120vh;left:30vw;animation-delay:2.4s;opacity:.4}
-@keyframes bob{
-  0%,100%{transform:translateY(0) scale(1)}
-  50%{transform:translateY(-14px) scale(1.03)}
+.swiss-dots{
+  background-image:radial-gradient(rgba(0,0,0,.14) 1px,transparent 1px);
+  background-size:16px 16px;
+}
+.swiss-diagonal{
+  background-image:repeating-linear-gradient(45deg,rgba(0,0,0,.05) 0,rgba(0,0,0,.05) 1px,transparent 1px,transparent 10px);
 }
 
-/* ---------- Reveal on scroll ---------- */
-.reveal{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease}
+/* ---------- type utilities ---------- */
+.sec-label{
+  display:flex;align-items:center;gap:12px;
+  font-size:12px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;
+  margin-bottom:28px;
+}
+.sec-label .no{color:var(--red)}
+.sec-label::after{content:"";flex:1;height:2px;background:var(--ink);max-width:120px}
+.sec-title{
+  font-weight:900;text-transform:uppercase;letter-spacing:-.03em;line-height:.95;
+  font-size:clamp(38px,6vw,84px);
+}
+.sec-title .red{color:var(--red)}
+.sec-sub{
+  font-size:16px;font-weight:400;color:var(--gray);
+  max-width:560px;margin-top:20px;line-height:1.6;
+}
+.wrap{width:100%;max-width:1280px;margin:0 auto;padding:0 24px}
+section{padding:96px 0;border-top:4px solid var(--ink)}
+@media (max-width:760px){section{padding:64px 0}}
+
+/* ---------- reveal ---------- */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .25s ease-out,transform .25s ease-out}
 .reveal.in{opacity:1;transform:translateY(0)}
 
-/* ---------- Floating nav ---------- */
-nav.pill-nav{
-  position:fixed;top:18px;left:50%;transform:translateX(-50%);
-  width:calc(100% - 32px);max-width:980px;z-index:40;
-  background:rgba(255,255,255,.72);backdrop-filter:blur(20px);
-  -webkit-backdrop-filter:blur(20px);
-  border:1px solid rgba(231,229,228,.7);
-  border-radius:9999px;
-  padding:10px 14px 10px 18px;
-  display:flex;align-items:center;justify-content:space-between;gap:10px;
-  box-shadow:var(--shadow-soft);
+/* ---------- nav ---------- */
+nav.bar{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  background:var(--bg);
+  border-bottom:2px solid var(--ink);
+  height:64px;
+  display:flex;align-items:center;
 }
-.brand{display:flex;align-items:center;gap:10px;flex:none}
-.brand-dot{
-  width:28px;height:28px;border-radius:50%;background:var(--coral);
-  display:grid;place-items:center;position:relative;
-  box-shadow:inset 0 0 0 4px rgba(255,255,255,.65);
-}
-.brand-dot::after{content:"";width:6px;height:6px;border-radius:50%;background:#fff}
-.brand-name{font-weight:600;font-size:14px;letter-spacing:-.01em;white-space:nowrap}
-.nav-links{display:flex;align-items:center;gap:4px}
+nav.bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:900;font-size:15px;letter-spacing:-.01em;text-transform:uppercase;white-space:nowrap}
+.brand .sq{width:14px;height:14px;background:var(--red);flex:none}
+.brand small{font-weight:500;color:var(--gray);letter-spacing:.15em;font-size:10px}
+.nav-links{display:flex;align-items:center;gap:28px}
 .nav-links a{
-  font-size:14px;font-weight:500;color:var(--stone-700);
-  padding:8px 12px;border-radius:9999px;
-  transition:color .2s,background .2s;
+  font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+  position:relative;transition:color .15s linear;
 }
-.nav-links a:hover{color:var(--ink);background:rgba(232,239,232,.5)}
+.nav-links a:hover{color:var(--red)}
 .nav-cta{
-  background:var(--ink);color:var(--paper)!important;
-  padding:10px 18px!important;font-size:13px!important;font-weight:500;
-  border-radius:9999px;white-space:nowrap;
+  background:var(--ink);color:#fff !important;
+  padding:12px 22px;font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+  transition:background .15s linear;
 }
-.nav-cta:hover{background:#3c3835!important;color:var(--paper)!important}
-@media (max-width:760px){
-  .nav-links a:not(.nav-cta){display:none}
-  .brand-name{font-size:13px}
-}
+.nav-cta:hover{background:var(--red) !important;color:#fff !important}
+@media (max-width:860px){.nav-links a:not(.nav-cta){display:none}}
 
-/* ---------- Layout helpers ---------- */
-section{padding:80px 0;position:relative}
-.wrap{width:100%;max-width:1140px;margin:0 auto;padding:0 24px}
-.wrap-tight{max-width:920px;margin:0 auto;padding:0 24px}
-
-h1,h2,h3,h4{font-weight:500;letter-spacing:-0.025em;line-height:1.05}
-.cursive{font-family:'Reenie Beanie',cursive;font-weight:400;color:var(--coral);letter-spacing:0}
-
-.section-eyebrow{
-  display:inline-flex;align-items:center;gap:8px;
-  font-size:13px;font-weight:500;color:var(--stone-500);
-  padding:6px 14px;border-radius:9999px;
-  background:rgba(255,255,255,.6);
-  border:1px solid var(--stone-200);
-  margin-bottom:20px;
-}
-.section-eyebrow .dot{
-  width:6px;height:6px;border-radius:50%;background:var(--coral);
-}
-
-/* ---------- Hero ---------- */
+/* ---------- hero ---------- */
 header.hero{
-  padding:160px 0 80px;text-align:center;
-  position:relative;
+  padding:160px 0 96px;position:relative;border-top:none;
 }
+.hero-grid{display:grid;grid-template-columns:8fr 4fr;gap:48px;align-items:start}
+@media (max-width:960px){.hero-grid{grid-template-columns:1fr}}
 .hero h1{
-  font-size:clamp(40px,7.2vw,72px);
-  font-weight:500;color:var(--ink);
-  max-width:900px;margin:0 auto 24px;
+  font-weight:900;text-transform:uppercase;letter-spacing:-.035em;line-height:.92;
+  font-size:clamp(52px,9vw,136px);
 }
-.hero h1 .cursive{
-  font-size:1.18em;line-height:.8;margin:0 .05em;
-  display:inline-block;transform:rotate(-3deg);
-  color:#E69991;
+.hero h1 .red{color:var(--red)}
+.hero-sub{
+  font-size:17px;color:var(--gray);max-width:520px;margin-top:32px;line-height:1.6;
 }
-.hero p.sub{
-  font-size:clamp(17px,2vw,20px);
-  color:var(--stone-500);max-width:560px;margin:0 auto 36px;
-  font-weight:400;
-}
-.hero-ctas{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.hero-ctas{display:flex;gap:0;margin-top:40px;flex-wrap:wrap}
 .btn{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:14px 26px;border-radius:9999px;
-  font-size:15px;font-weight:500;
-  transition:transform .2s,box-shadow .2s,background .2s;
-  cursor:pointer;
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:18px 32px;font-size:13px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+  transition:background .15s linear,color .15s linear;
+  min-height:44px;
 }
-.btn-primary{
-  background:var(--coral);color:var(--ink);
-  box-shadow:var(--shadow-soft);
+.btn-primary{background:var(--ink);color:#fff}
+.btn-primary:hover{background:var(--red)}
+.btn-secondary{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+.btn-secondary:hover{background:var(--ink);color:#fff}
+@media (max-width:560px){.hero-ctas .btn{width:100%}}
+.notice{
+  margin-top:48px;border:2px solid var(--ink);
+  display:flex;align-items:stretch;max-width:640px;
 }
-.btn-primary:hover{background:#FFA9A3;transform:translateY(-1px);box-shadow:0 8px 24px -4px rgba(255,183,178,.5)}
-.btn-secondary{
-  background:#fff;color:var(--ink);
-  border:1px solid var(--stone-200);
+.notice .flag{
+  background:var(--red);color:#fff;display:flex;align-items:center;
+  padding:14px 16px;font-size:11px;font-weight:900;letter-spacing:.2em;text-transform:uppercase;
+  writing-mode:initial;flex:none;
 }
-.btn-secondary:hover{background:var(--stone-50);transform:translateY(-1px)}
+.notice p{padding:14px 18px;font-size:13px;line-height:1.55;color:var(--ink)}
+.notice b{font-weight:700}
 
-.hero-tracker-note{
-  margin:48px auto 0;max-width:540px;
-  background:var(--sage);border:1px dashed rgba(41,37,36,.18);
-  padding:14px 22px;border-radius:var(--r-md);
-  font-size:14px;color:var(--stone-700);line-height:1.5;
-  transform:rotate(-.4deg);
+/* hero composition */
+.hero-comp{
+  position:relative;min-height:420px;border:2px solid var(--ink);
+  overflow:hidden;
 }
-.hero-tracker-note b{font-family:'Reenie Beanie';font-weight:400;font-size:18px;color:var(--ink)}
+.hero-comp .hc-circle{
+  position:absolute;width:200px;height:200px;border-radius:50%;
+  background:var(--red);top:48px;left:48px;
+  box-shadow:0 0 0 8px rgba(255,48,0,.1);
+}
+.hero-comp .hc-square{
+  position:absolute;width:140px;height:140px;background:var(--ink);
+  bottom:64px;right:40px;
+}
+.hero-comp .hc-bar{
+  position:absolute;height:2px;background:var(--ink);left:0;right:0;
+}
+.hero-comp .hc-bar.b1{top:33%}
+.hero-comp .hc-bar.b2{top:66%}
+.hero-comp .hc-tag{
+  position:absolute;bottom:16px;left:16px;
+  font-size:10px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--gray);
+}
+@media (max-width:960px){.hero-comp{display:none}}
 
-/* ---------- Big picture cluster ---------- */
-#cluster{padding-top:40px}
-#cluster .wrap{position:relative}
-.cluster-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
-  margin-top:36px;
+/* ---------- stats (count-up) ---------- */
+#data .stat-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border:4px solid var(--ink);background:var(--ink);gap:2px;
 }
-.cluster-card{
-  background:#fff;border-radius:var(--r-lg);
-  padding:28px;border:1px solid var(--stone-100);
-  box-shadow:var(--shadow-card);
-  transition:transform .25s ease;
+@media (max-width:860px){#data .stat-grid{grid-template-columns:repeat(2,1fr)}}
+.stat{
+  background:#fff;padding:40px 28px;position:relative;
+  transition:background .15s linear;
 }
-.cluster-card:hover{transform:translateY(-3px)}
-.cluster-card.sage{background:var(--sage)}
-.cluster-card.lavender{background:var(--lavender)}
-.cluster-card h3{font-size:20px;margin-bottom:8px;font-weight:500}
-.cluster-card .big{font-family:'Reenie Beanie';font-size:42px;color:var(--ink);display:block;line-height:1;margin:8px 0 12px}
-.cluster-card.muted .big{color:var(--stone-400)}
-.cluster-card p{font-size:14px;color:var(--stone-500);line-height:1.55}
-@media (max-width:760px){.cluster-grid{grid-template-columns:1fr}}
+.stat:hover{background:var(--muted)}
+.stat .plus{
+  position:absolute;top:16px;right:16px;font-size:20px;font-weight:900;color:var(--red);
+  transition:transform .2s ease-out;line-height:1;
+}
+.stat:hover .plus{transform:rotate(90deg)}
+.stat .num{
+  font-size:clamp(48px,6vw,84px);font-weight:900;letter-spacing:-.04em;line-height:1;
+  font-variant-numeric:tabular-nums;
+  transition:transform .2s ease-out;display:inline-block;
+}
+.stat:hover .num{transform:scale(1.05)}
+.stat .lbl{
+  margin-top:12px;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gray);
+}
 
-.heat{display:grid;grid-template-columns:repeat(12,1fr);gap:6px;margin-top:36px}
-.heat-mo{
-  background:#fff;border:1px solid var(--stone-200);
-  padding:14px 4px;border-radius:var(--r-sm);text-align:center;
-  font-size:12px;font-weight:500;color:var(--stone-500);
+/* ---------- season journey (scroll-drawn line) ---------- */
+#season .season-grid{display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:start}
+@media (max-width:960px){#season .season-grid{grid-template-columns:1fr;gap:40px}}
+.season-head{position:sticky;top:96px}
+@media (max-width:960px){.season-head{position:static}}
+.journey{position:relative;padding-left:64px}
+.journey svg.j-line{
+  position:absolute;left:0;top:0;height:100%;width:48px;overflow:visible;
 }
-.heat-mo small{display:block;font-size:10px;color:var(--stone-400);margin-top:2px;font-weight:400}
-.heat-mo.peak{background:var(--coral);color:var(--ink);border-color:var(--coral)}
-.heat-mo.peak small{color:var(--stone-700)}
-.heat-mo.warm{background:var(--blush);color:var(--ink);border-color:var(--blush)}
-.heat-mo.cool{background:var(--sage);color:var(--ink);border-color:var(--sage)}
-@media (max-width:760px){.heat{grid-template-columns:repeat(6,1fr)}}
+.journey svg.j-line .track{stroke:rgba(0,0,0,.15);stroke-width:2;fill:none}
+.journey svg.j-line .draw{stroke:var(--red);stroke-width:4;fill:none}
+.station{
+  position:relative;border-bottom:2px solid var(--ink);
+  padding:28px 0;
+}
+.station:first-child{border-top:4px solid var(--ink)}
+.station .node{
+  position:absolute;left:-46px;top:34px;width:14px;height:14px;
+  background:#fff;border:2px solid var(--ink);
+  transition:background .15s linear;
+}
+.station.passed .node{background:var(--red);border-color:var(--ink)}
+.station .st-row{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap}
+.station .st-mo{
+  font-size:28px;font-weight:900;letter-spacing:-.02em;text-transform:uppercase;line-height:1;
+  transition:color .15s linear;
+}
+.station.passed .st-mo{color:var(--red)}
+.station .st-count{
+  font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+  border:2px solid var(--ink);padding:3px 10px;
+}
+.station .st-names{
+  margin-top:10px;font-size:13px;color:var(--gray);line-height:1.6;
+}
+.station .st-names b{color:var(--ink);font-weight:700}
 
-/* ---------- Horizontal scenario scroll ---------- */
-#scenarios{padding:60px 0 80px}
-.scroll-track{
-  display:flex;gap:18px;overflow-x:auto;padding:24px 24px 32px;
-  scroll-snap-type:x mandatory;
-  -webkit-overflow-scrolling:touch;
-  scrollbar-width:none;
-}
-.scroll-track::-webkit-scrollbar{display:none}
-.scroll-card{
-  flex:none;width:288px;height:170px;background:#fff;
-  border-radius:24px;padding:24px;
-  border:1px solid var(--stone-100);
-  box-shadow:var(--shadow-card);
-  display:flex;flex-direction:column;justify-content:space-between;
-  scroll-snap-align:start;
-  transition:transform .25s ease,background .25s ease;
-  cursor:pointer;
-}
-.scroll-card:hover{transform:translateY(-4px)}
-.scroll-card .ts{font-size:14px;color:var(--stone-400);font-weight:500}
-.scroll-card .ts .prize{color:var(--coral);margin-left:8px}
-.scroll-card .label{font-size:20px;color:var(--stone-800);font-weight:500;line-height:1.2;transition:color .25s ease}
-.scroll-card:hover .label{color:#B8A4D6}
-.scroll-card.sage{background:var(--sage)}
-.scroll-card.sage:hover .label{color:#5A7A5A}
-.scroll-card.lavender{background:var(--lavender)}
-.scroll-card.lavender:hover .label{color:#7866A0}
-.scroll-card.coral{background:var(--blush)}
-.scroll-card.coral:hover .label{color:#C66660}
-
-/* ---------- CardSwap preview (replaces three-phone) ---------- */
-#preview{padding:80px 0 120px;text-align:center}
-.swap-stage{
-  position:relative;height:600px;
-  margin:60px auto 0;
+/* ---------- marquee swap ---------- */
+#marquee .swap-stage{
+  position:relative;height:560px;
+  margin:64px auto 0;
   display:flex;align-items:center;justify-content:center;
   perspective:1200px;
 }
@@ -275,554 +250,496 @@ header.hero{
 .swap-card{
   position:absolute;top:50%;left:50%;
   width:440px;height:340px;
-  border-radius:30px;
-  border:1px solid var(--stone-200);
+  border:2px solid var(--ink);
   background:#fff;
-  box-shadow:var(--shadow-lift);
   transform-style:preserve-3d;
   backface-visibility:hidden;
   will-change:transform;
-  padding:28px;
+  padding:24px;
   display:flex;flex-direction:column;
   overflow:hidden;
   cursor:pointer;user-select:none;
 }
-.swap-card.bg-coral{background:linear-gradient(155deg,#FFF6F4 0%,#FFE4E1 100%)}
-.swap-card.bg-sage{background:linear-gradient(155deg,#F4F8F4 0%,#E0EAE0 100%)}
-.swap-card.bg-lavender{background:linear-gradient(155deg,#F5F3F8 0%,#E4DFEE 100%)}
-.swap-card.bg-blush{background:linear-gradient(155deg,#FFF5F2 0%,#FCDDD8 100%)}
-.swap-card.bg-paper{background:linear-gradient(155deg,#FDFCF8 0%,#F4F2EC 100%)}
-.swap-top{
-  display:flex;align-items:flex-start;justify-content:space-between;gap:12px;
-  margin-bottom:14px;
-}
+.swap-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
 .swap-month{
-  display:inline-flex;align-items:center;gap:6px;
-  font-size:12px;font-weight:500;letter-spacing:.02em;
-  padding:5px 12px;border-radius:9999px;
-  background:rgba(255,255,255,.7);
-  border:1px solid rgba(41,37,36,.08);color:var(--stone-700);
-  backdrop-filter:blur(8px);
+  font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+  border:2px solid var(--ink);padding:4px 10px;
 }
-.swap-month .dot{width:5px;height:5px;border-radius:50%;background:var(--coral)}
-.swap-corp{height:26px;display:flex;align-items:center;opacity:.55}
-.swap-corp img{max-height:26px;max-width:90px;object-fit:contain}
+.swap-corp{height:22px;display:flex;align-items:center;opacity:.7}
+.swap-corp img{max-height:22px;max-width:90px;object-fit:contain;filter:grayscale(1)}
 .swap-body{display:flex;align-items:center;gap:20px;flex:1}
 .swap-logo-big{
-  width:108px;height:108px;border-radius:22px;flex:none;
+  width:104px;height:104px;flex:none;
   background:#fff;display:grid;place-items:center;overflow:hidden;
-  border:1px solid rgba(41,37,36,.08);
-  box-shadow:0 6px 20px -4px rgba(41,37,36,.12);
+  border:2px solid var(--ink);
 }
-.swap-logo-big img{max-width:84px;max-height:84px;object-fit:contain}
+.swap-logo-big img{max-width:80px;max-height:80px;object-fit:contain;filter:grayscale(1);transition:filter .15s linear}
+.swap-card:hover .swap-logo-big img,.swap-card:hover .swap-corp img{filter:none}
 .swap-info{flex:1;text-align:left;min-width:0}
-.swap-name{
-  font-size:26px;font-weight:600;letter-spacing:-.02em;line-height:1.1;
-  margin-bottom:4px;color:var(--ink);
-}
-.swap-org{
-  font-size:13px;color:var(--stone-500);font-weight:500;
-  margin-bottom:10px;
-}
-.swap-prize{
-  font-size:13px;color:var(--stone-700);line-height:1.4;font-weight:400;
-}
-.swap-prize b{font-weight:600;color:var(--ink)}
-.swap-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px;text-align:left}
+.swap-name{font-size:24px;font-weight:900;text-transform:uppercase;letter-spacing:-.02em;line-height:1;margin-bottom:8px}
+.swap-org{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);margin-bottom:10px}
+.swap-prize{font-size:13px;color:var(--ink);line-height:1.5}
+.swap-prize b{font-weight:700;color:var(--red)}
+.swap-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:16px}
 .swap-tag{
-  font-size:11px;font-weight:500;padding:4px 11px;
-  border-radius:9999px;
-  background:rgba(255,255,255,.7);color:var(--stone-700);
-  border:1px solid rgba(41,37,36,.08);
-  backdrop-filter:blur(6px);
+  font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  padding:4px 10px;border:2px solid var(--ink);
 }
-.swap-tag.coral{background:var(--coral);color:var(--ink);border-color:transparent}
+.swap-tag.red{background:var(--red);color:#fff;border-color:var(--red)}
 .swap-hint{
-  font-size:13px;color:var(--stone-400);
-  margin-top:30px;font-weight:500;
-}
-.swap-hint .key{
-  padding:1px 7px;border-radius:5px;background:#fff;
-  border:1px solid var(--stone-200);font-size:11px;
-  font-family:'Outfit';color:var(--stone-700);margin:0 2px;
+  text-align:center;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gray);margin-top:32px;
 }
 @media (max-width:760px){
-  #preview{padding:60px 0 90px}
-  .swap-stage{height:480px;margin-top:40px}
+  #marquee .swap-stage{height:480px;margin-top:40px}
   .swap-container{width:320px;height:300px}
-  .swap-card{width:320px;height:300px;padding:22px;border-radius:24px}
-  .swap-logo-big{width:80px;height:80px;border-radius:18px}
-  .swap-logo-big img{max-width:62px;max-height:62px}
-  .swap-name{font-size:22px}
-  .swap-prize{font-size:12px}
-  .swap-body{gap:14px}
+  .swap-card{width:320px;height:300px;padding:18px}
+  .swap-logo-big{width:72px;height:72px}
+  .swap-logo-big img{max-width:56px;max-height:56px}
+  .swap-name{font-size:19px}
 }
 
-/* ---------- Catalog filters + grid ---------- */
-#catalog{padding:80px 0 60px}
+/* ---------- catalog ---------- */
 .filters{
-  background:#fff;border-radius:var(--r-md);
-  padding:22px;margin-top:32px;
-  border:1px solid var(--stone-100);box-shadow:var(--shadow-card);
+  border:4px solid var(--ink);padding:28px;margin-top:48px;background:#fff;
 }
-.filter-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
-.filter-row:last-child{margin-bottom:0}
-.filter-label{font-size:13px;font-weight:500;color:var(--stone-500);min-width:64px}
+.filter-row{display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap;padding:14px 0;border-bottom:2px solid var(--muted)}
+.filter-row:last-child{border-bottom:none}
+.filter-label{
+  font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  min-width:72px;padding-top:9px;color:var(--gray);
+}
 .chips{display:flex;gap:8px;flex-wrap:wrap;flex:1}
 .chip{
-  display:inline-flex;align-items:center;gap:6px;
-  font-size:13px;padding:7px 14px;
-  background:var(--stone-50);color:var(--stone-700);
-  border-radius:9999px;cursor:pointer;
-  border:1px solid transparent;
-  transition:background .2s,color .2s,border-color .2s;
+  font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  padding:8px 14px;border:2px solid var(--ink);background:#fff;color:var(--ink);
+  cursor:pointer;transition:background .15s linear,color .15s linear;
+  min-height:34px;
 }
-.chip:hover{background:var(--stone-100)}
-.chip.active{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.chip:hover{background:var(--red);border-color:var(--red);color:#fff}
+.chip.active{background:var(--ink);color:#fff}
 .search-input{
-  flex:1;min-width:200px;
-  padding:11px 18px;border-radius:9999px;
-  background:var(--stone-50);border:1px solid var(--stone-200);
-  font-family:inherit;font-size:14px;color:var(--ink);
-  outline:none;transition:border-color .2s,background .2s;
+  flex:1;min-width:220px;
+  padding:12px 4px;border:none;border-bottom:4px solid var(--ink);
+  font-family:inherit;font-size:15px;font-weight:500;color:var(--ink);
+  outline:none;background:transparent;
+  transition:border-color .15s linear;
 }
-.search-input:focus{border-color:var(--coral);background:#fff}
+.search-input:focus{border-color:var(--red)}
+.search-input::placeholder{color:var(--gray);text-transform:uppercase;font-size:12px;letter-spacing:.1em;font-weight:700}
 .count{
-  font-size:13px;color:var(--stone-500);
-  margin-top:18px;font-weight:500;
+  font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  margin-top:24px;color:var(--gray);
 }
-.count b{color:var(--ink);font-weight:600}
+.count b{color:var(--red);font-weight:900}
 
 .grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
-  margin-top:24px;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:2px;
+  margin-top:24px;background:var(--ink);border:4px solid var(--ink);
 }
 @media (max-width:980px){.grid{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:640px){.grid{grid-template-columns:1fr}}
-
 .card{
-  background:#fff;border-radius:var(--r-md);
-  border:1px solid var(--stone-100);
-  padding:22px;display:flex;flex-direction:column;gap:14px;
-  box-shadow:var(--shadow-card);
-  transition:transform .25s ease,box-shadow .25s ease;
-  position:relative;
+  background:#fff;padding:24px;display:flex;flex-direction:column;gap:14px;
+  position:relative;transition:background .15s linear;
 }
-.card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lift)}
+.card:hover{background:var(--muted)}
 .card.marquee::after{
   content:"";position:absolute;top:14px;right:14px;
-  width:8px;height:8px;border-radius:50%;background:var(--coral);
-  box-shadow:0 0 0 4px rgba(255,183,178,.3);
+  width:10px;height:10px;background:var(--red);
 }
 .card-head{display:flex;align-items:center;gap:14px}
 .card-logo{
-  width:56px;height:56px;border-radius:14px;
-  background:var(--stone-50);
-  display:grid;place-items:center;overflow:hidden;flex:none;
-  border:1px solid var(--stone-100);
+  width:56px;height:56px;border:2px solid var(--ink);
+  background:#fff;display:grid;place-items:center;overflow:hidden;flex:none;
 }
-.card-logo img{max-width:44px;max-height:44px;object-fit:contain}
-.card-title{font-size:17px;font-weight:600;letter-spacing:-.01em;line-height:1.25}
-.card-org{font-size:12px;color:var(--stone-500);margin-top:2px;display:flex;align-items:center;gap:6px}
-.card-org img{height:14px;max-width:34px;object-fit:contain;opacity:.7}
-.card-blurb{font-size:13px;color:var(--stone-700);line-height:1.5}
-.card-meta{display:flex;flex-direction:column;gap:8px;font-size:12px;color:var(--stone-500);margin-top:auto}
-.card-meta .row{display:flex;align-items:center;gap:8px}
-.card-meta .k{color:var(--stone-400);min-width:54px;font-weight:500}
-.card-meta .v{color:var(--stone-700);font-weight:500}
-.card-tags{display:flex;gap:6px;flex-wrap:wrap}
+.card-logo img{max-width:42px;max-height:42px;object-fit:contain;filter:grayscale(1);transition:filter .15s linear}
+.card:hover .card-logo img{filter:none}
+.card-title{font-size:15px;font-weight:900;text-transform:uppercase;letter-spacing:-.01em;line-height:1.15}
+.card-org{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gray);margin-top:4px;display:flex;align-items:center;gap:6px}
+.card-org img{height:12px;max-width:32px;object-fit:contain;filter:grayscale(1)}
+.card-blurb{font-size:12.5px;color:var(--ink);line-height:1.55}
+.card-meta{display:flex;flex-direction:column;gap:7px;font-size:11px;margin-top:auto}
+.card-meta .row{display:flex;align-items:baseline;gap:10px}
+.card-meta .k{color:var(--gray);min-width:58px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:9.5px}
+.card-meta .v{color:var(--ink);font-weight:500;font-size:11.5px}
+.card-tags{display:flex;gap:5px;flex-wrap:wrap}
 .tag{
-  font-size:11px;padding:3px 9px;border-radius:9999px;
-  background:var(--stone-100);color:var(--stone-700);font-weight:500;
+  font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  padding:3px 8px;border:1px solid var(--ink);color:var(--ink);
 }
-.tag.coral{background:var(--coral-soft);color:#A8514B}
-.tag.sage{background:var(--sage);color:#3F5B3F}
-.tag.lavender{background:var(--lavender);color:#5A4D7A}
-.tag.women{background:#FDE2EF;color:#A03579}
+.tag.red{background:var(--red);border-color:var(--red);color:#fff}
+.tag.women{border-color:var(--red);color:var(--red)}
 .empty{
-  grid-column:1/-1;padding:60px 20px;text-align:center;
-  color:var(--stone-500);font-size:15px;
+  grid-column:1/-1;padding:80px 24px;text-align:left;background:#fff;
 }
-.empty .cursive{font-size:48px;color:var(--stone-400);display:block;margin-bottom:8px}
+.empty .big{font-size:32px;font-weight:900;text-transform:uppercase;letter-spacing:-.02em;display:block;margin-bottom:8px}
+.empty p{color:var(--gray);font-size:13px}
 
-/* ---------- Testimonials ---------- */
-#testimonials{padding:100px 0}
-.diary-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:30px;margin-top:48px}
-@media (max-width:760px){.diary-grid{grid-template-columns:1fr}}
+/* ---------- vault (interactive folders) ---------- */
+#vault .vault-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:2px;
+  background:var(--ink);border:4px solid var(--ink);margin-top:48px;
+}
+@media (max-width:860px){#vault .vault-grid{grid-template-columns:1fr}}
+.vault-cell{
+  background:var(--muted);padding:48px 28px 36px;
+  display:flex;flex-direction:column;align-items:center;gap:0;
+}
+.folder-zone{
+  height:240px;display:flex;align-items:flex-end;justify-content:center;
+  width:100%;
+}
+.folder-stage{
+  position:relative;width:170px;height:130px;cursor:pointer;
+  transform:scale(1.15);transform-origin:bottom center;
+  margin-bottom:24px;
+}
+.folder-back{
+  position:absolute;bottom:0;left:50%;transform:translateX(-50%);
+  width:160px;height:118px;background:#fff;border:2px solid var(--ink);
+}
+.folder-tab{
+  position:absolute;bottom:100%;left:-2px;width:52px;height:14px;
+  background:#fff;border:2px solid var(--ink);border-bottom:none;
+}
+.paper{
+  position:absolute;left:50%;bottom:10px;z-index:2;
+  width:108px;height:84px;background:#fff;border:2px solid var(--ink);
+  padding:10px;display:flex;flex-direction:column;gap:6px;
+  transform:translate(calc(-50% + var(--dx,0px)),calc(8% + var(--dy,0px))) rotate(0deg) scale(var(--s,1));
+  transition:transform .25s ease-out;
+}
+.paper .p-tag{
+  align-self:flex-start;font-size:7px;font-weight:900;letter-spacing:.2em;text-transform:uppercase;
+  background:var(--red);color:#fff;padding:2px 6px;
+}
+.paper b{font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.04em;line-height:1.2}
+.paper i{display:block;height:2px;background:var(--ink);opacity:.18}
+.paper i.w1{width:75%}
+.paper i.w2{width:50%}
+.folder-stage.open .paper.p1{transform:translate(calc(-122% + var(--dx,0px)),calc(-86% + var(--dy,0px))) rotate(-7deg) scale(var(--s,1))}
+.folder-stage.open .paper.p2{transform:translate(calc(18% + var(--dx,0px)),calc(-86% + var(--dy,0px))) rotate(7deg) scale(var(--s,1))}
+.folder-stage.open .paper.p3{transform:translate(calc(-50% + var(--dx,0px)),calc(-122% + var(--dy,0px))) rotate(0deg) scale(var(--s,1))}
+.flap{
+  position:absolute;bottom:0;left:50%;margin-left:-80px;
+  width:160px;height:118px;z-index:3;background:var(--ink);
+  transform-origin:bottom center;
+  transition:transform .25s ease-out,background .15s linear;
+  box-shadow:inset 0 0 0 2px var(--ink);
+}
+.flap-l{clip-path:polygon(0 0,50% 0,50% 100%,0 100%)}
+.flap-r{clip-path:polygon(50% 0,100% 0,100% 100%,50% 100%)}
+.folder-stage:hover .flap{background:var(--red)}
+.folder-stage.open .flap-l{transform:skewX(13deg) scaleY(.62) translateY(4px)}
+.folder-stage.open .flap-r{transform:skewX(-13deg) scaleY(.62) translateY(4px)}
+.folder-label{
+  position:absolute;bottom:46px;left:50%;transform:translateX(-50%);z-index:4;
+  color:#fff;font-size:10px;font-weight:900;letter-spacing:.25em;text-transform:uppercase;
+  pointer-events:none;white-space:nowrap;
+  transition:opacity .15s linear;
+}
+.folder-stage.open .folder-label{opacity:0}
+.vault-meta{width:100%;border-top:2px solid var(--ink);padding-top:18px}
+.vault-meta .vt-pill{
+  display:inline-block;font-size:9px;font-weight:900;letter-spacing:.2em;text-transform:uppercase;
+  background:var(--red);color:#fff;padding:4px 10px;margin-bottom:10px;
+}
+.vault-meta h3{font-size:17px;font-weight:900;text-transform:uppercase;letter-spacing:-.01em}
+.vault-meta p{font-size:12.5px;color:var(--gray);line-height:1.55;margin-top:8px}
+.vault-cta-row{margin-top:32px}
+
+/* ---------- record (testimonials) ---------- */
+#record .diary-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:32px;margin-top:48px}
+@media (max-width:760px){#record .diary-grid{grid-template-columns:1fr}}
 .diary{
-  background:#fff;border-radius:var(--r-lg);padding:32px 28px;
-  border:1px solid var(--stone-100);box-shadow:var(--shadow-card);
+  border-left:4px solid var(--ink);padding:8px 0 8px 28px;
+  transition:border-color .15s linear;
 }
-.diary:nth-child(odd){transform:rotate(-1deg)}
-.diary:nth-child(even){transform:rotate(1deg)}
-.diary p.quote{font-size:18px;line-height:1.5;color:var(--ink);font-weight:400;margin-bottom:24px}
-.diary p.quote::before{content:"\201C";font-family:'Reenie Beanie';font-size:46px;color:var(--coral);line-height:0;vertical-align:-12px;margin-right:4px}
-.diary .sig-line{width:32px;height:1.5px;background:var(--stone-300);margin-bottom:8px}
-.diary .sig{font-family:'Reenie Beanie';font-size:26px;color:var(--stone-500);line-height:1}
-.diary .sig-meta{font-size:12px;color:var(--stone-400);margin-top:6px;font-weight:500}
+.diary:hover{border-color:var(--red)}
+.diary p.quote{font-size:17px;line-height:1.55;font-weight:500;margin-bottom:20px}
+.diary .sig{font-size:12px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--red)}
+.diary .sig-meta{font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--gray);margin-top:4px}
 
-/* ---------- Deck vault (paid teaser) ---------- */
-#vault{padding:80px 0}
-.vault-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px}
-@media (max-width:760px){.vault-grid{grid-template-columns:1fr}}
-.vault-tile{
-  position:relative;background:#fff;border:1px solid var(--stone-100);
-  border-radius:var(--r-md);padding:24px;box-shadow:var(--shadow-card);
-  display:flex;flex-direction:column;gap:10px;
-  transition:transform .25s ease;
-}
-.vault-tile:hover{transform:translateY(-3px)}
-.vt-pill{
-  align-self:flex-start;display:inline-flex;align-items:center;gap:6px;
-  font-size:11px;font-weight:600;padding:4px 11px;border-radius:9999px;
-  background:var(--coral);color:var(--ink);
-}
-.vt-title{font-size:18px;font-weight:600;letter-spacing:-.01em;color:var(--ink)}
-.vt-desc{font-size:13px;color:var(--stone-500);line-height:1.5}
-.vt-bars{display:flex;flex-direction:column;gap:6px;margin-top:8px}
-.vt-bars i{height:8px;border-radius:4px;background:linear-gradient(90deg,var(--stone-100),var(--stone-200));display:block}
-.vt-bars i:nth-child(1){width:90%}
-.vt-bars i:nth-child(2){width:72%}
-.vt-bars i:nth-child(3){width:84%}
-
-/* ---------- FAQ ---------- */
-#faq{padding:80px 0}
-.faq-list{margin-top:36px;display:flex;flex-direction:column;gap:10px}
-.faq-item{
-  background:#fff;border-radius:16px;
-  border:1px solid var(--stone-100);
-  overflow:hidden;
-}
+/* ---------- faq ---------- */
+.faq-list{margin-top:48px;display:flex;flex-direction:column}
+.faq-item{border:2px solid var(--ink);margin-bottom:-2px;background:#fff;transition:background .15s linear}
 .faq-q{
-  width:100%;text-align:left;padding:24px;
-  font-size:16px;font-weight:500;color:var(--ink);
+  width:100%;text-align:left;padding:22px 24px;
+  font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;
   display:flex;align-items:center;justify-content:space-between;gap:16px;
+  min-height:44px;
 }
 .faq-q .plus{
-  width:24px;height:24px;flex:none;
-  display:grid;place-items:center;
-  color:var(--stone-400);transition:transform .4s ease,color .2s;
-  font-size:18px;font-weight:300;
+  flex:none;font-size:22px;font-weight:900;color:var(--red);line-height:1;
+  transition:transform .2s ease-out;
 }
-.faq-item.open .plus{transform:rotate(45deg);color:var(--coral)}
-.faq-a{
-  height:0;overflow:hidden;
-  transition:height .5s ease-in-out;
-}
-.faq-a-inner{
-  padding:0 24px 24px;color:var(--stone-700);font-size:15px;line-height:1.65;
-}
-.faq-a-inner b{color:var(--ink);font-weight:500}
+.faq-item.open .plus{transform:rotate(45deg)}
+.faq-item:hover{background:var(--muted)}
+.faq-a{height:0;overflow:hidden;transition:height .2s ease-out}
+.faq-a-inner{padding:0 24px 24px;color:var(--ink);font-size:14px;line-height:1.65;border-top:2px solid var(--muted);padding-top:18px;margin:0 0}
+.faq-a-inner b{font-weight:700}
 
-/* ---------- Waitlist ---------- */
-#waitlist{
-  padding:120px 0;text-align:center;
-  position:relative;overflow:hidden;
-}
-#waitlist::before,#waitlist::after{
-  content:"";position:absolute;z-index:-1;border-radius:50%;
-  filter:blur(100px);opacity:.6;
-}
-#waitlist::before{width:480px;height:480px;background:var(--coral-soft);top:-40px;left:10vw}
-#waitlist::after{width:380px;height:380px;background:#E6E6FA;bottom:-40px;right:10vw}
-.waitlist-icon{
-  width:64px;height:64px;border-radius:18px;background:var(--ink);
-  display:inline-grid;place-items:center;color:var(--paper);
-  font-size:30px;font-weight:300;position:relative;margin-bottom:24px;
-}
-.waitlist-icon::after{
-  content:"";position:absolute;top:-6px;right:-6px;
-  width:14px;height:14px;border-radius:50%;background:var(--coral);
-  border:3px solid var(--paper);
-}
-#waitlist h2{font-size:clamp(36px,5.5vw,56px);max-width:680px;margin:0 auto 20px}
-#waitlist p{max-width:480px;margin:0 auto 32px;color:var(--stone-500);font-size:17px}
+/* ---------- waitlist ---------- */
+#signal{position:relative}
+#signal .signal-grid{display:grid;grid-template-columns:7fr 5fr;gap:64px;align-items:start}
+@media (max-width:960px){#signal .signal-grid{grid-template-columns:1fr}}
 .waitlist-form{
-  display:flex;gap:8px;max-width:440px;margin:0 auto;
-  background:var(--stone-50);border-radius:9999px;
-  padding:6px;border:1px solid var(--stone-200);
+  display:flex;gap:0;max-width:520px;margin-top:40px;border:4px solid var(--ink);
 }
 .waitlist-form input{
-  flex:1;padding:14px 22px;background:transparent;border:none;
-  font-family:inherit;font-size:15px;color:var(--ink);outline:none;
+  flex:1;padding:18px 20px;background:#fff;border:none;
+  font-family:inherit;font-size:14px;font-weight:500;color:var(--ink);outline:none;min-width:0;
 }
-.waitlist-form input::placeholder{color:var(--stone-400)}
+.waitlist-form input:focus{box-shadow:inset 0 -4px 0 var(--red)}
+.waitlist-form input::placeholder{color:var(--gray);text-transform:uppercase;font-size:11px;letter-spacing:.15em;font-weight:700}
 .waitlist-form button{
-  padding:14px 28px;background:var(--ink);color:var(--paper);
-  font-size:14px;font-weight:500;border-radius:9999px;
-  transition:transform .2s,background .2s;
+  padding:18px 28px;background:var(--ink);color:#fff;
+  font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+  transition:background .15s linear;white-space:nowrap;
 }
-.waitlist-form button:hover{transform:scale(1.04);background:#3c3835}
-.waitlist-done{font-family:'Reenie Beanie';font-size:32px;color:var(--coral);margin-top:18px;display:none}
+.waitlist-form button:hover{background:var(--red)}
+.waitlist-done{
+  display:none;margin-top:20px;
+  font-size:13px;font-weight:900;letter-spacing:.15em;text-transform:uppercase;color:var(--red);
+}
 .waitlist-done.show{display:block}
-
-/* ---------- Footer ---------- */
-footer{
-  padding:60px 0 80px;text-align:center;
-  border-top:1px solid var(--stone-100);
-  position:relative;
+.signal-box{
+  border:2px solid var(--ink);padding:32px;
 }
-footer .wrap{display:flex;flex-direction:column;gap:14px;align-items:center}
-.foot-brand{font-family:'Reenie Beanie';font-size:32px;color:var(--ink);line-height:1}
-.foot-meta{font-size:13px;color:var(--stone-500);max-width:520px;line-height:1.6}
-.foot-meta a{color:var(--ink);font-weight:500;border-bottom:1px solid var(--stone-300);padding-bottom:1px}
-.foot-meta a:hover{border-color:var(--coral)}
-.foot-socials{display:flex;gap:10px;margin-top:6px}
-.foot-socials a{
-  width:38px;height:38px;border-radius:50%;
-  background:#fff;border:1px solid var(--stone-200);
-  display:grid;place-items:center;color:var(--stone-700);
-  transition:background .2s,color .2s,transform .2s;
+.signal-box h4{font-size:12px;font-weight:900;letter-spacing:.2em;text-transform:uppercase;margin-bottom:16px;color:var(--red)}
+.signal-box ul{list-style:none}
+.signal-box li{
+  font-size:13px;padding:10px 0;border-bottom:2px solid var(--muted);
+  display:flex;gap:12px;align-items:baseline;line-height:1.5;
 }
-.foot-socials a:hover{background:var(--coral);color:var(--ink);transform:translateY(-2px)}
+.signal-box li:last-child{border-bottom:none}
+.signal-box li::before{content:"";width:8px;height:8px;background:var(--red);flex:none;align-self:center}
 
-/* ---------- responsive ---------- */
-@media (max-width:760px){
-  section{padding:60px 0}
-  header.hero{padding:130px 0 60px}
-  .filter-row{gap:10px}
-  .chip{font-size:12px;padding:6px 12px}
-  .nav-pill{padding:8px 8px 8px 14px}
+/* ---------- footer ---------- */
+footer{border-top:4px solid var(--ink);padding:64px 0 48px}
+.foot-grid{display:grid;grid-template-columns:6fr 3fr 3fr;gap:48px}
+@media (max-width:860px){.foot-grid{grid-template-columns:1fr;gap:32px}}
+.foot-brand{font-size:clamp(32px,4vw,52px);font-weight:900;text-transform:uppercase;letter-spacing:-.03em;line-height:.95}
+.foot-brand .red{color:var(--red)}
+.foot-col h5{font-size:11px;font-weight:900;letter-spacing:.2em;text-transform:uppercase;color:var(--gray);margin-bottom:16px}
+.foot-col a{display:block;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:6px 0;transition:color .15s linear}
+.foot-col a:hover{color:var(--red)}
+.foot-legal{
+  margin-top:48px;padding-top:24px;border-top:2px solid var(--muted);
+  font-size:11px;color:var(--gray);line-height:1.7;max-width:760px;
+}
+
+/* ---------- a11y / motion ---------- */
+:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none !important;transition:none !important}
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none}
 }
 </style>
 </head>
 
 <body>
 
-<!-- Grain overlay -->
-<div class="grain" aria-hidden="true"></div>
-
-<!-- Floating blobs -->
-<div class="blob blob-coral" aria-hidden="true"></div>
-<div class="blob blob-lavender" aria-hidden="true"></div>
-<div class="blob blob-sage" aria-hidden="true"></div>
-<div class="blob blob-blush" aria-hidden="true"></div>
-
-<!-- Nav -->
-<nav class="pill-nav">
-  <div class="brand">
-    <span class="brand-dot"></span>
-    <span class="brand-name">corporate case comps · India</span>
-  </div>
-  <div class="nav-links">
-    <a href="#catalog">Catalog</a>
-    <a href="#scenarios">By month</a>
-    <a href="#faq">FAQ</a>
-    <a href="#waitlist" class="nav-cta">Get the drop</a>
+<!-- nav -->
+<nav class="bar">
+  <div class="wrap">
+    <a href="#top" class="brand"><span class="sq"></span>CASE—COMPS <small>INDIA</small></a>
+    <div class="nav-links">
+      <a href="#season">Season</a>
+      <a href="#catalog">Catalog</a>
+      <a href="#vault">Vault</a>
+      <a href="#faq">FAQ</a>
+      <a href="#signal" class="nav-cta">Get the drop</a>
+    </div>
   </div>
 </nav>
 
-<!-- Hero -->
-<header class="hero">
-  <div class="wrap-tight">
-    <span class="section-eyebrow"><span class="dot"></span> 80+ competitions · indexed for Indian B-schools</span>
-    <h1>Every corporate case comp for Indian B-schools,<br><span class="cursive">softly</span> tracked.</h1>
-    <p class="sub">HUL LIME, ABG Stratos, Mahindra War Room, Amazon ACE, ITC Interrobang, Reliance TUP — mapped by launch month, functional track, and whether they actually pipe into a PPI/PPO.</p>
-    <div class="hero-ctas">
-      <a href="#catalog" class="btn btn-primary">Explore the catalog</a>
-      <a href="#cluster" class="btn btn-secondary">The big picture</a>
-    </div>
-    <div class="hero-tracker-note">
-      <b>heads-up —</b> this is a tracker, not a links repository. Registration windows here are the historical patterns; the actual links go live as &amp; when each firm launches its season on Unstop or their careers microsite.
+<!-- 01 · hero -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="sec-label"><span class="no">01</span> The index — <span id="hero-count">86</span> competitions, Jun→May</div>
+    <div class="hero-grid">
+      <div>
+        <h1>Every corporate case comp. <span class="red">One grid.</span></h1>
+        <p class="hero-sub">HUL LIME, ITC Interrobang, ABG Stratos, Mahindra War Room, Amazon ACE, Reliance TUP — mapped by launch month, functional track, and whether they actually pipe into a PPI or PPO.</p>
+        <div class="hero-ctas">
+          <a href="#catalog" class="btn btn-primary">Explore the catalog</a>
+          <a href="#season" class="btn btn-secondary">Season journey</a>
+        </div>
+        <div class="notice">
+          <span class="flag">Notice</span>
+          <p><b>This is a tracker, not a links repository.</b> Windows shown are historical patterns; registration links go live as &amp; when each firm launches its season on Unstop or its careers microsite.</p>
+        </div>
+      </div>
+      <div class="hero-comp swiss-grid-pattern" aria-hidden="true">
+        <div class="hc-bar b1"></div>
+        <div class="hc-bar b2"></div>
+        <div class="hc-circle"></div>
+        <div class="hc-square"></div>
+        <div class="hc-tag">FIG. 01 — THE SEASON</div>
+      </div>
     </div>
   </div>
 </header>
 
-<!-- Big Picture cluster -->
-<section id="cluster">
+<!-- 02 · data -->
+<section id="data">
   <div class="wrap">
-    <span class="section-eyebrow"><span class="dot"></span> The shape of the year</span>
-    <h2 style="font-size:clamp(32px,4.5vw,46px);max-width:760px">One heavy cluster. Aug through November is when the corporate calendar <span class="cursive">actually</span> wakes up.</h2>
-    <p style="color:var(--stone-500);font-size:17px;max-width:600px;margin-top:14px;line-height:1.55">If you can only optimise one quarter as a 1st-year MBA, optimise Aug–Nov — that's when the bulk of the 80+ comps launch, including HUL LIME, ITC Interrobang, ABG Stratos, Mahindra War Room, Reliance TUP &amp; Amazon ACE.</p>
-
-    <div class="cluster-grid">
-      <div class="cluster-card sage">
-        <h3>Peak season</h3>
-        <span class="big">Aug → Nov</span>
-        <p>The HUL / ITC / ABG / Mahindra / Marico / Bajaj Finserv / Asian Paints / Tata Steel-a-thon / Reliance TUP / Amazon ACE / Flipkart WiRED window. ~30 marquee comps in 4 months.</p>
-      </div>
-      <div class="cluster-card lavender">
-        <h3>Shoulder</h3>
-        <span class="big">Dec → Feb</span>
-        <p>Mondelez tail, GSK ECube, RPG Blizzard, HUL TechTonic finale, Vedanta XStrat, Tata Consumer Grow Beyond Better, then L'Oréal Brandstorm kicks off the global track in January.</p>
-      </div>
-      <div class="cluster-card muted">
-        <h3>The drought</h3>
-        <span class="big">Mar → Jul</span>
-        <p>Summer-internship season. Most flagships pause. Use it for L'Oréal Brandstorm finals (Apr), PwC Campus Contender mid-cycle, and prepping submissions for the August onset.</p>
-      </div>
-    </div>
-
-    <div class="heat" id="heat" style="margin-top:48px">
-      <div class="heat-mo cool">JAN<small>L'Oréal</small></div>
-      <div class="heat-mo cool">FEB<small>quiet</small></div>
-      <div class="heat-mo cool">MAR<small>quiet</small></div>
-      <div class="heat-mo cool">APR<small>Brandstorm</small></div>
-      <div class="heat-mo cool">MAY<small>quiet</small></div>
-      <div class="heat-mo cool">JUN<small>PwC start</small></div>
-      <div class="heat-mo warm">JUL<small>builds</small></div>
-      <div class="heat-mo peak">AUG<small>peak</small></div>
-      <div class="heat-mo peak">SEP<small>peak</small></div>
-      <div class="heat-mo peak">OCT<small>peak</small></div>
-      <div class="heat-mo peak">NOV<small>peak</small></div>
-      <div class="heat-mo warm">DEC<small>tail</small></div>
-    </div>
-    <div style="display:flex;gap:18px;flex-wrap:wrap;margin-top:18px;font-size:13px;color:var(--stone-500)">
-      <span style="display:inline-flex;align-items:center;gap:6px"><i style="width:10px;height:10px;border-radius:3px;background:var(--coral)"></i>Peak — most launches</span>
-      <span style="display:inline-flex;align-items:center;gap:6px"><i style="width:10px;height:10px;border-radius:3px;background:var(--blush)"></i>Building / tailing</span>
-      <span style="display:inline-flex;align-items:center;gap:6px"><i style="width:10px;height:10px;border-radius:3px;background:var(--sage)"></i>Quieter</span>
+    <div class="sec-label"><span class="no">02</span> Data</div>
+    <h2 class="sec-title">The season,<br>counted.</h2>
+    <div class="stat-grid" style="margin-top:48px">
+      <div class="stat"><span class="plus">+</span><span class="num" data-stat="total">0</span><div class="lbl">Competitions indexed</div></div>
+      <div class="stat"><span class="plus">+</span><span class="num" data-stat="marquee">0</span><div class="lbl">Marquee tier</div></div>
+      <div class="stat"><span class="plus">+</span><span class="num" data-stat="pipeline">0</span><div class="lbl">PPI / PPO pipelines</div></div>
+      <div class="stat"><span class="plus">+</span><span class="num" data-stat="intl">0</span><div class="lbl">International finales</div></div>
     </div>
   </div>
 </section>
 
-<!-- Horizontal scenario scroll -->
-<section id="scenarios">
+<!-- 03 · season journey -->
+<section id="season">
   <div class="wrap">
-    <span class="section-eyebrow"><span class="dot"></span> The marquee headlines</span>
-    <h2 style="font-size:clamp(30px,4.2vw,42px);max-width:620px">A few comps that genuinely <span class="cursive">shift</span> a CV.</h2>
-    <p style="color:var(--stone-500);font-size:16px;max-width:520px;margin-top:12px;line-height:1.55">Scroll through. These carry international travel, ₹10L+ pools, or a direct hiring pipeline into the host firm.</p>
-  </div>
-  <div class="scroll-track">
-    <div class="scroll-card coral"><div class="ts">Jul–Aug<span class="prize">· ₹10L + London</span></div><div class="label">HUL LIME — the marketing gold standard</div></div>
-    <div class="scroll-card lavender"><div class="ts">Aug–Oct<span class="prize">· ₹5L + PPI</span></div><div class="label">Mahindra War Room — strategy, 22 Indian + 4 intl B-schools</div></div>
-    <div class="scroll-card sage"><div class="ts">Aug<span class="prize">· ABG MT pipeline</span></div><div class="label">ABG Stratos — general-management simulation, top 15</div></div>
-    <div class="scroll-card"><div class="ts">Aug<span class="prize">· Amazon PPI</span></div><div class="label">Amazon ACE — Unstop's #1 ranked, customer obsession</div></div>
-    <div class="scroll-card lavender"><div class="ts">Aug–Sep<span class="prize">· ITC AUT pipeline</span></div><div class="label">ITC Interrobang?! — mktg / HR / SCM (3 tracks)</div></div>
-    <div class="scroll-card coral"><div class="ts">Oct–Nov<span class="prize">· ₹25L pool · ₹10L winner</span></div><div class="label">Reliance TUP — the ultimate pitch, all-MBA</div></div>
-    <div class="scroll-card sage"><div class="ts">Jan–Apr<span class="prize">· Paris HQ trip</span></div><div class="label">L'Oréal Brandstorm — global · 64 countries · 135K+ entrants</div></div>
-    <div class="scroll-card"><div class="ts">Aug–Sep<span class="prize">· e-com PPI</span></div><div class="label">Flipkart WiRED — all-MBA, 4 tracks, Bengaluru finale</div></div>
-    <div class="scroll-card lavender"><div class="ts">Oct<span class="prize">· ₹10L · 20 CXO mentors</span></div><div class="label">Vedanta XStrat — strategy, ₹10L cash</div></div>
-    <div class="scroll-card sage"><div class="ts">Oct–Nov<span class="prize">· ₹25L pool</span></div><div class="label">Hero Campus Challenge — 200K+ participants, ₹25L pool</div></div>
-  </div>
-</section>
-
-<!-- CardSwap preview -->
-<section id="preview">
-  <div class="wrap-tight">
-    <span class="section-eyebrow"><span class="dot"></span> The marquee five, on loop</span>
-    <h2 style="font-size:clamp(30px,4.2vw,42px);max-width:640px;margin:0 auto">The comps that genuinely <span class="cursive">shift</span> a CV.</h2>
-    <p style="color:var(--stone-500);font-size:16px;max-width:520px;margin:14px auto 0;line-height:1.55">Five marquee programs the calendar starts every season with. Hover the stack to pause, click any card to deep-link to its catalog row.</p>
-  </div>
-
-  <div class="swap-stage">
-    <div class="swap-container" id="swap">
-      <div class="swap-card bg-coral" data-id="hul-lime">
-        <div class="swap-top">
-          <span class="swap-month"><span class="dot"></span>Jul–Aug</span>
-          <span class="swap-corp"><img src="logos/hindustan-unilever/hul_corporate.svg" alt=""></span>
-        </div>
-        <div class="swap-body">
-          <div class="swap-logo-big"><img src="logos/hindustan-unilever/hul-lime_competition.png" alt=""></div>
-          <div class="swap-info">
-            <div class="swap-name">HUL LIME</div>
-            <div class="swap-org">Hindustan Unilever · the marketing gold standard</div>
-            <div class="swap-prize"><b>₹10L</b> + Unilever Future Leaders' League (London)</div>
-          </div>
-        </div>
-        <div class="swap-tags">
-          <span class="swap-tag coral">Marketing</span>
-          <span class="swap-tag">PPI</span>
-          <span class="swap-tag">International</span>
-          <span class="swap-tag">~18 premier B-schools</span>
-        </div>
+    <div class="season-grid">
+      <div class="season-head">
+        <div class="sec-label"><span class="no">03</span> The season</div>
+        <h2 class="sec-title">Jun→May. The whole loop.</h2>
+        <p class="sec-sub">The corporate calendar wakes up in August and peaks through November — that single window carries most of the year's PPI pipelines. Scroll the line. Marquee names in bold.</p>
       </div>
-
-      <div class="swap-card bg-sage" data-id="abg-stratos">
-        <div class="swap-top">
-          <span class="swap-month"><span class="dot"></span>Aug</span>
-          <span class="swap-corp"><img src="logos/aditya-birla-group/aditya-birla-group_corporate.svg" alt=""></span>
-        </div>
-        <div class="swap-body">
-          <div class="swap-logo-big"><img src="logos/aditya-birla-group/abg-stratos_competition.png" alt=""></div>
-          <div class="swap-info">
-            <div class="swap-name">ABG Stratos</div>
-            <div class="swap-org">Aditya Birla Group · gen-mgmt simulation</div>
-            <div class="swap-prize"><b>72-hour</b> 6-round biz sim → ABG GMT pipeline</div>
-          </div>
-        </div>
-        <div class="swap-tags">
-          <span class="swap-tag coral">General mgmt</span>
-          <span class="swap-tag">PPO</span>
-          <span class="swap-tag">Top 15 schools</span>
-        </div>
-      </div>
-
-      <div class="swap-card bg-lavender" data-id="mahindra-war-room">
-        <div class="swap-top">
-          <span class="swap-month"><span class="dot"></span>Aug–Oct</span>
-          <span class="swap-corp"><img src="logos/mahindra-group/mahindra-and-mahindra_corporate.svg" alt=""></span>
-        </div>
-        <div class="swap-body">
-          <div class="swap-logo-big"><img src="logos/mahindra-group/mahindra-war-room_competition.jpg" alt=""></div>
-          <div class="swap-info">
-            <div class="swap-name">Mahindra War Room</div>
-            <div class="swap-org">Mahindra &amp; Mahindra · the strategy flagship</div>
-            <div class="swap-prize"><b>₹5L</b> + Club Mahindra stay · 22 Indian + 4 intl B-schools</div>
-          </div>
-        </div>
-        <div class="swap-tags">
-          <span class="swap-tag coral">Strategy</span>
-          <span class="swap-tag">PPI</span>
-          <span class="swap-tag">International</span>
-        </div>
-      </div>
-
-      <div class="swap-card bg-blush" data-id="amazon-ace">
-        <div class="swap-top">
-          <span class="swap-month"><span class="dot"></span>Aug</span>
-          <span class="swap-corp"><img src="logos/amazon/amazon-india_corporate.svg" alt=""></span>
-        </div>
-        <div class="swap-body">
-          <div class="swap-logo-big"><img src="logos/amazon/amazon-ace_competition.png" alt=""></div>
-          <div class="swap-info">
-            <div class="swap-name">Amazon ACE</div>
-            <div class="swap-org">Amazon India · Unstop's #1 ranked</div>
-            <div class="swap-prize"><b>₹2L</b> + PPI + Alexa devices · customer obsession</div>
-          </div>
-        </div>
-        <div class="swap-tags">
-          <span class="swap-tag coral">Product</span>
-          <span class="swap-tag">PPI</span>
-          <span class="swap-tag">12+ editions</span>
-        </div>
-      </div>
-
-      <div class="swap-card bg-paper" data-id="loreal-brandstorm">
-        <div class="swap-top">
-          <span class="swap-month"><span class="dot"></span>Jan–Apr</span>
-          <span class="swap-corp"><img src="logos/loreal/loreal_corporate.svg" alt=""></span>
-        </div>
-        <div class="swap-body">
-          <div class="swap-logo-big"><img src="logos/loreal/loreal-brandstorm_competition.png" alt=""></div>
-          <div class="swap-info">
-            <div class="swap-name">L'Oréal Brandstorm</div>
-            <div class="swap-org">L'Oréal · the only global youth comp on the list</div>
-            <div class="swap-prize"><b>Paris HQ</b> 3-mo mission + permanent MT role · 64 countries</div>
-          </div>
-        </div>
-        <div class="swap-tags">
-          <span class="swap-tag coral">Marketing</span>
-          <span class="swap-tag">International</span>
-          <span class="swap-tag">135K+ entrants</span>
-        </div>
+      <div class="journey" id="journey">
+        <svg class="j-line" aria-hidden="true"><path class="track" d=""/><path class="draw" d=""/></svg>
+        <div id="stations"></div>
       </div>
     </div>
   </div>
-
-  <p class="swap-hint">hover the stack to pause · auto-cycles every 4s</p>
 </section>
 
-<!-- Catalog -->
+<!-- 04 · marquee swap -->
+<section id="marquee">
+  <div class="wrap">
+    <div class="sec-label"><span class="no">04</span> Marquee</div>
+    <h2 class="sec-title">The five that <span class="red">shift</span> a CV.</h2>
+    <p class="sec-sub">Five marquee programs on rotation. Hover the stack to pause. Click a card to pull it up in the catalog.</p>
+
+    <div class="swap-stage">
+      <div class="swap-container" id="swap">
+        <div class="swap-card" data-id="hul-lime">
+          <div class="swap-top">
+            <span class="swap-month">Jul–Aug</span>
+            <span class="swap-corp"><img src="logos/hindustan-unilever/hul_corporate.svg" alt=""></span>
+          </div>
+          <div class="swap-body">
+            <div class="swap-logo-big"><img src="logos/hindustan-unilever/hul-lime_competition.png" alt=""></div>
+            <div class="swap-info">
+              <div class="swap-name">HUL LIME</div>
+              <div class="swap-org">Hindustan Unilever · marketing</div>
+              <div class="swap-prize"><b>₹10L</b> + Unilever Future Leaders' League (London)</div>
+            </div>
+          </div>
+          <div class="swap-tags">
+            <span class="swap-tag red">Marketing</span>
+            <span class="swap-tag">PPI</span>
+            <span class="swap-tag">International</span>
+          </div>
+        </div>
+
+        <div class="swap-card" data-id="abg-stratos">
+          <div class="swap-top">
+            <span class="swap-month">Aug</span>
+            <span class="swap-corp"><img src="logos/aditya-birla-group/aditya-birla-group_corporate.svg" alt=""></span>
+          </div>
+          <div class="swap-body">
+            <div class="swap-logo-big"><img src="logos/aditya-birla-group/abg-stratos_competition.png" alt=""></div>
+            <div class="swap-info">
+              <div class="swap-name">ABG Stratos</div>
+              <div class="swap-org">Aditya Birla Group · gen-mgmt</div>
+              <div class="swap-prize"><b>72-hour</b> 6-round simulation → ABG GMT pipeline</div>
+            </div>
+          </div>
+          <div class="swap-tags">
+            <span class="swap-tag red">General mgmt</span>
+            <span class="swap-tag">PPO</span>
+            <span class="swap-tag">Top 15 schools</span>
+          </div>
+        </div>
+
+        <div class="swap-card" data-id="mahindra-war-room">
+          <div class="swap-top">
+            <span class="swap-month">Aug–Oct</span>
+            <span class="swap-corp"><img src="logos/mahindra-group/mahindra-and-mahindra_corporate.svg" alt=""></span>
+          </div>
+          <div class="swap-body">
+            <div class="swap-logo-big"><img src="logos/mahindra-group/mahindra-war-room_competition.jpg" alt=""></div>
+            <div class="swap-info">
+              <div class="swap-name">Mahindra War Room</div>
+              <div class="swap-org">Mahindra &amp; Mahindra · strategy</div>
+              <div class="swap-prize"><b>₹5L</b> + Club Mahindra stay · 22 Indian + 4 intl B-schools</div>
+            </div>
+          </div>
+          <div class="swap-tags">
+            <span class="swap-tag red">Strategy</span>
+            <span class="swap-tag">PPI</span>
+            <span class="swap-tag">International</span>
+          </div>
+        </div>
+
+        <div class="swap-card" data-id="amazon-ace">
+          <div class="swap-top">
+            <span class="swap-month">Aug</span>
+            <span class="swap-corp"><img src="logos/amazon/amazon-india_corporate.svg" alt=""></span>
+          </div>
+          <div class="swap-body">
+            <div class="swap-logo-big"><img src="logos/amazon/amazon-ace_competition.png" alt=""></div>
+            <div class="swap-info">
+              <div class="swap-name">Amazon ACE</div>
+              <div class="swap-org">Amazon India · product</div>
+              <div class="swap-prize"><b>₹2L</b> + PPI + Alexa devices · Unstop's #1 ranked</div>
+            </div>
+          </div>
+          <div class="swap-tags">
+            <span class="swap-tag red">Product</span>
+            <span class="swap-tag">PPI</span>
+            <span class="swap-tag">12+ editions</span>
+          </div>
+        </div>
+
+        <div class="swap-card" data-id="loreal-brandstorm">
+          <div class="swap-top">
+            <span class="swap-month">Jan–Apr</span>
+            <span class="swap-corp"><img src="logos/loreal/loreal_corporate.svg" alt=""></span>
+          </div>
+          <div class="swap-body">
+            <div class="swap-logo-big"><img src="logos/loreal/loreal-brandstorm_competition.png" alt=""></div>
+            <div class="swap-info">
+              <div class="swap-name">L'Oréal Brandstorm</div>
+              <div class="swap-org">L'Oréal · global marketing</div>
+              <div class="swap-prize"><b>Paris HQ</b> 3-mo mission + MT contract · 64 countries</div>
+            </div>
+          </div>
+          <div class="swap-tags">
+            <span class="swap-tag red">Marketing</span>
+            <span class="swap-tag">International</span>
+            <span class="swap-tag">135K+ entrants</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="swap-hint">Hover to pause — auto-cycles every 3.5s</p>
+  </div>
+</section>
+
+<!-- 05 · catalog -->
 <section id="catalog">
   <div class="wrap">
-    <span class="section-eyebrow"><span class="dot"></span> The full catalog</span>
-    <h2 style="font-size:clamp(30px,4.2vw,42px);max-width:620px">80+ corporate case comps, <span class="cursive">filterable</span> by track &amp; perks.</h2>
-    <p style="color:var(--stone-500);font-size:16px;max-width:540px;margin-top:12px;line-height:1.55">Marquee tier (43) carries the highest prestige &amp; clearest PPI/PPO funnels. Coral dot = marquee.</p>
+    <div class="sec-label"><span class="no">05</span> Catalog</div>
+    <h2 class="sec-title"><span id="cat-count">86</span> comps. <span class="red">Filterable.</span></h2>
+    <p class="sec-sub">Marquee tier carries the highest prestige and the clearest PPI/PPO funnels. Red square = marquee.</p>
 
     <div class="filters">
       <div class="filter-row">
         <span class="filter-label">Search</span>
-        <input id="search" class="search-input" placeholder="Type a competition, firm, or theme — e.g. HUL, marketing, ₹10L">
+        <input id="search" class="search-input" placeholder="Competition, firm, or theme — e.g. HUL, marketing">
       </div>
       <div class="filter-row">
         <span class="filter-label">Track</span>
@@ -847,33 +764,107 @@ footer .wrap{display:flex;flex-direction:column;gap:14px;align-items:center}
   </div>
 </section>
 
-<!-- Diary testimonials -->
-<section id="testimonials">
+<!-- 06 · vault (interactive folders) -->
+<section id="vault">
   <div class="wrap">
-    <span class="section-eyebrow"><span class="dot"></span> Winners' diaries</span>
-    <h2 style="font-size:clamp(30px,4.2vw,42px);max-width:640px">Past finalists, in their <span class="cursive">own</span> handwriting.</h2>
+    <div class="sec-label"><span class="no">06</span> The deck vault — in the works</div>
+    <h2 class="sec-title">Winning decks, <span class="red">annotated.</span></h2>
+    <p class="sec-sub">High-quality decks from the comps above — sourced with author permission and full credit, plus judge-lens notes on why each slide works. Ships with the paid pass. Click a folder.</p>
+
+    <div class="vault-grid">
+      <div class="vault-cell swiss-diagonal">
+        <div class="folder-zone">
+          <div class="folder-stage" role="button" tabindex="0" aria-label="Marketing flagships folder — click to open">
+            <div class="folder-back">
+              <div class="folder-tab"></div>
+              <div class="paper p1"><span class="p-tag">Locked</span><b>LIME-calibre GTM</b><i class="w1"></i><i class="w2"></i></div>
+              <div class="paper p2"><span class="p-tag">Locked</span><b>Brand P&amp;L builds</b><i class="w1"></i><i class="w2"></i></div>
+              <div class="paper p3"><span class="p-tag">Locked</span><b>Insight → idea</b><i class="w1"></i><i class="w2"></i></div>
+              <div class="flap flap-l"></div>
+              <div class="flap flap-r"></div>
+              <div class="folder-label">Marketing</div>
+            </div>
+          </div>
+        </div>
+        <div class="vault-meta">
+          <span class="vt-pill">Paid drop</span>
+          <h3>Marketing flagships</h3>
+          <p>How national finalists structure a brand answer: insight → idea → GTM → P&amp;L.</p>
+        </div>
+      </div>
+
+      <div class="vault-cell swiss-diagonal">
+        <div class="folder-zone">
+          <div class="folder-stage" role="button" tabindex="0" aria-label="Strategy and simulations folder — click to open">
+            <div class="folder-back">
+              <div class="folder-tab"></div>
+              <div class="paper p1"><span class="p-tag">Locked</span><b>Market entry</b><i class="w1"></i><i class="w2"></i></div>
+              <div class="paper p2"><span class="p-tag">Locked</span><b>Turnaround decks</b><i class="w1"></i><i class="w2"></i></div>
+              <div class="paper p3"><span class="p-tag">Locked</span><b>Judge-lens notes</b><i class="w1"></i><i class="w2"></i></div>
+              <div class="flap flap-l"></div>
+              <div class="flap flap-r"></div>
+              <div class="folder-label">Strategy</div>
+            </div>
+          </div>
+        </div>
+        <div class="vault-meta">
+          <span class="vt-pill">Paid drop</span>
+          <h3>Strategy &amp; simulations</h3>
+          <p>War-Room-style market-entry and turnaround decks, annotated through the judges' lens.</p>
+        </div>
+      </div>
+
+      <div class="vault-cell swiss-diagonal">
+        <div class="folder-zone">
+          <div class="folder-stage" role="button" tabindex="0" aria-label="Product and e-commerce folder — click to open">
+            <div class="folder-back">
+              <div class="folder-tab"></div>
+              <div class="paper p1"><span class="p-tag">Locked</span><b>Metrics trees</b><i class="w1"></i><i class="w2"></i></div>
+              <div class="paper p2"><span class="p-tag">Locked</span><b>PRD templates</b><i class="w1"></i><i class="w2"></i></div>
+              <div class="paper p3"><span class="p-tag">Locked</span><b>Case structures</b><i class="w1"></i><i class="w2"></i></div>
+              <div class="flap flap-l"></div>
+              <div class="flap flap-r"></div>
+              <div class="folder-label">Product</div>
+            </div>
+          </div>
+        </div>
+        <div class="vault-meta">
+          <span class="vt-pill">Paid drop</span>
+          <h3>Product &amp; e-commerce</h3>
+          <p>ACE / WiRED-style problem structuring and metrics trees, rebuilt as reusable templates.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="vault-cta-row">
+      <a href="#signal" class="btn btn-primary">Get the drop first</a>
+    </div>
+  </div>
+</section>
+
+<!-- 07 · record -->
+<section id="record">
+  <div class="wrap">
+    <div class="sec-label"><span class="no">07</span> The record</div>
+    <h2 class="sec-title">Past finalists, on record.</h2>
     <div class="diary-grid">
       <div class="diary">
-        <p class="quote">We competed against 10,000+ participants. Navigating mentorship rounds, consumer research, and a CXO panel — it was the closest thing to actually working at the firm before we'd even interviewed.</p>
-        <div class="sig-line"></div>
+        <p class="quote">"We competed against 10,000+ participants. Navigating mentorship rounds, consumer research, and a CXO panel — it was the closest thing to actually working at the firm before we'd even interviewed."</p>
         <div class="sig">Team NotJustACadbury</div>
         <div class="sig-meta">Mondelez Maestros 2024 · Commercial Track Winners · NMIMS Mumbai</div>
       </div>
       <div class="diary">
-        <p class="quote">From 195 teams down to a national finale at ABG HQ. The HR case round changed how I think about employee experience — and gave us the GIP internship that became a PPO.</p>
-        <div class="sig-line"></div>
+        <p class="quote">"From 195 teams down to a national finale at ABG HQ. The HR case round changed how I think about employee experience — and gave us the GIP internship that became a PPO."</p>
         <div class="sig">Team Bombay Ducks</div>
         <div class="sig-meta">ABG HeadstaRt 2022 · National Winners · TISS Mumbai</div>
       </div>
       <div class="diary">
-        <p class="quote">Four tracks, three rounds, four months. By Grand Finale you don't just pitch — you defend an e-commerce thesis to Flipkart's leadership in Bengaluru.</p>
-        <div class="sig-line"></div>
+        <p class="quote">"Four tracks, three rounds, four months. By Grand Finale you don't just pitch — you defend an e-commerce thesis to Flipkart's leadership in Bengaluru."</p>
         <div class="sig">Team Sikarios</div>
         <div class="sig-meta">Flipkart WiRED 2018 · National Winners · IIM Calcutta</div>
       </div>
       <div class="diary">
-        <p class="quote">The "Write Like an Amazonian" workshop alone was worth it. Then you build a 50× scale plan in 72 hours. Hardest, sharpest competition we'd been in.</p>
-        <div class="sig-line"></div>
+        <p class="quote">"The 'Write Like an Amazonian' workshop alone was worth it. Then you build a 50× scale plan in 72 hours. Hardest, sharpest competition we'd been in."</p>
         <div class="sig">Team Pulsars</div>
         <div class="sig-meta">Amazon ACE 2022 · National Winners · ISB Hyderabad</div>
       </div>
@@ -881,120 +872,99 @@ footer .wrap{display:flex;flex-direction:column;gap:14px;align-items:center}
   </div>
 </section>
 
-<!-- Deck vault (paid teaser) -->
-<section id="vault">
-  <div class="wrap">
-    <span class="section-eyebrow"><span class="dot"></span> The deck vault · in the works</span>
-    <h2 style="font-size:clamp(30px,4.2vw,42px);max-width:640px">Winning decks, annotated <span class="cursive">slide-by-slide</span>.</h2>
-    <p style="color:var(--stone-500);font-size:16px;max-width:560px;margin-top:12px;line-height:1.55">High-quality decks from the comps above — sourced with author permission and full credit — plus judge-lens notes on why each slide works. Ships as part of the paid pass.</p>
-
-    <div class="vault-grid">
-      <div class="vault-tile">
-        <span class="vt-pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>paid drop</span>
-        <div class="vt-title">Marketing flagships</div>
-        <p class="vt-desc">How national finalists structure a brand answer: insight → idea → GTM → P&amp;L, LIME-calibre.</p>
-        <div class="vt-bars"><i></i><i></i><i></i></div>
-      </div>
-      <div class="vault-tile">
-        <span class="vt-pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>paid drop</span>
-        <div class="vt-title">Strategy &amp; simulations</div>
-        <p class="vt-desc">War-Room-style market-entry and turnaround decks, annotated through the judges' lens.</p>
-        <div class="vt-bars"><i></i><i></i><i></i></div>
-      </div>
-      <div class="vault-tile">
-        <span class="vt-pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>paid drop</span>
-        <div class="vt-title">Product &amp; e-commerce</div>
-        <p class="vt-desc">ACE / WiRED-style problem structuring and metrics trees, rebuilt as reusable templates.</p>
-        <div class="vt-bars"><i></i><i></i><i></i></div>
-      </div>
-    </div>
-
-    <div style="margin-top:28px">
-      <a href="#waitlist" class="btn btn-primary">Get the drop first</a>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ -->
+<!-- 08 · faq -->
 <section id="faq">
-  <div class="wrap-tight">
-    <span class="section-eyebrow"><span class="dot"></span> Things people quietly ask</span>
-    <h2 style="font-size:clamp(30px,4.2vw,42px);max-width:560px">The <span class="cursive">honest</span> answers.</h2>
+  <div class="wrap">
+    <div class="sec-label"><span class="no">08</span> FAQ</div>
+    <h2 class="sec-title">The honest answers.</h2>
 
     <div class="faq-list">
       <div class="faq-item">
-        <button class="faq-q">Are these only for premier B-school students?
-          <span class="plus">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner">Mostly the <b>marquee 40</b> are curated to ~15–25 premier institutes — typically IIM A/B/C/L/K/I, XLRI, FMS, SPJIMR, MDI, JBIMS, NITIE/IIM Mumbai, IIFT, NMIMS, MICA, SIBM Pune, ISB, IMT Ghaziabad, XIMB. <b>But</b> several are open to all MBA programs in India — Flipkart WiRED, Bajaj Finserv ATOM, ICICI Beat the Curve, Reliance TUP, EY Techathon, Hero Campus Challenge, L'Oréal Brandstorm. Each card tells you which tier it sits in.</div></div>
+        <button class="faq-q" aria-expanded="false">Are these only for premier B-school students?<span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Mostly the <b>marquee tier</b> is curated to ~15–25 premier institutes — typically IIM A/B/C/L/K/I, XLRI, FMS, SPJIMR, MDI, JBIMS, NITIE/IIM Mumbai, IIFT, NMIMS, MICA, SIBM Pune, ISB, IMT Ghaziabad, XIMB. <b>But</b> several are open to all MBA programs in India — Flipkart WiRED, ICICI Beat the Curve, Reliance TUP, EY Techathon, Hero Campus Challenge, L'Oréal Brandstorm. Each card tells you which tier it sits in.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q">Do all of these actually lead to job offers?
-          <span class="plus">+</span></button>
+        <button class="faq-q" aria-expanded="false">Do all of these actually lead to job offers?<span class="plus">+</span></button>
         <div class="faq-a"><div class="faq-a-inner">Most marquee comps offer a <b>PPI</b> (Pre-Placement Interview) to national finalists at minimum. A smaller set runs direct hiring funnels — <b>ABG Stratos, J&amp;J Imagivators, Bajaj Finserv ATOM, ITC Interrobang, HUL LIME, TAS InvicTAS, Tata Steel-a-thon, Marico Over The Wall</b> have explicit PPO pipelines for finalists. Filter by "PPI" or "PPO" to see only those.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q">When should I start preparing for the August–November cluster?
-          <span class="plus">+</span></button>
+        <button class="faq-q" aria-expanded="false">When should I start preparing for the August–November cluster?<span class="plus">+</span></button>
         <div class="faq-a"><div class="faq-a-inner">The golden rule: <b>two months before launch</b>. So mid-June for HUL LIME / Pidilite Bond / ABG HeadstaRt; mid-July for ABG Stratos / Mahindra War Room / ITC / Amazon ACE / Flipkart WiRED; late August for ICICI Beat the Curve / Asian Paints CANVAS. Most are 1st-year MBA flagships, so right after induction is the right time to assemble teams.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q">Are these only for first-year MBA students?
-          <span class="plus">+</span></button>
+        <button class="faq-q" aria-expanded="false">Are these only for first-year MBA students?<span class="plus">+</span></button>
         <div class="faq-a"><div class="faq-a-inner">Roughly 60% of marquee comps prefer 1st-years (since the hiring funnel feeds summer internships). Examples: HUL LIME, ABG HeadstaRt, ITC Interrobang, Pidilite Bond, Dabur Verve, Tata Consumer Grow Beyond Better. The rest are <b>1st &amp; 2nd year open</b> — Mahindra War Room, Marico Over The Wall, Reliance TUP, Amazon ACE, Flipkart WiRED, Bajaj Finserv ATOM.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q">How accurate are the registration windows shown?
-          <span class="plus">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner">They're <b>historical patterns</b> — accurate to within ±3–4 weeks year-to-year. Don't anchor on them; use them to plan, then watch Unstop &amp; the firm's careers microsite (LinkedIn careers pages also leak early). A competition like Reliance TUP has scaled its prize pool ₹6L → ₹25L+ across seasons — assume ranges are approximate.</div></div>
+        <button class="faq-q" aria-expanded="false">How accurate are the registration windows shown?<span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">They're <b>historical patterns</b> — accurate to within ±3–4 weeks year-to-year. Don't anchor on them; use them to plan, then watch Unstop &amp; the firm's careers microsite (LinkedIn careers pages also leak early). A competition like Reliance TUP has scaled its prize pool across seasons — treat figures as approximate ranges.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q">What about quizzes, hackathons, and women-only comps?
-          <span class="plus">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner">Mostly excluded from this catalog (TATA Crucible, Reliance Quiz-a-thon = quizzes; TezAsia, Code for GovTech, RuPay Designathon = hackathons / designathons). Women-only flagships <b>are</b> included and tagged: <b>Goldman Sachs Women's Possibilities Summit</b> and <b>J&amp;J Women in Sales</b>.</div></div>
+        <button class="faq-q" aria-expanded="false">What about quizzes, hackathons, and women-only comps?<span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Quizzes (TATA Crucible, Reliance Quiz-a-thon) and pure hackathons are mostly excluded — they behave differently from case comps. Women-only flagships <b>are</b> included and tagged: <b>Goldman Sachs Women's Possibilities Summit</b> and <b>J&amp;J Women in Sales</b>.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q">Who maintains this list?
-          <span class="plus">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner">Built by <b>Shivam Meet</b>. The dataset is consolidated from official competition pages, Unstop listings, MediaBrief / People Matters / The Hans India press releases, and verified winner reports. Best to cross-check live windows against Unstop &amp; the firm's microsite before applying.</div></div>
+        <button class="faq-q" aria-expanded="false">Who maintains this list?<span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Built by <b>Shivam Meet</b>. The dataset is consolidated from official competition pages, Unstop listings, press releases, and verified winner reports — and re-verified each season. Cross-check live windows against Unstop &amp; the firm's microsite before applying.</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Waitlist -->
-<section id="waitlist">
-  <div class="wrap-tight">
-    <div class="waitlist-icon">✱</div>
-    <h2>Want the season opener <span class="cursive">drop</span> in your inbox?</h2>
-    <p>When the big August window opens — HUL LIME, ABG, ITC, Mahindra — we'll send one short note with this season's actual links, dates, &amp; brief.</p>
-    <form class="waitlist-form" onsubmit="event.preventDefault();this.querySelector('button').textContent='✓ on the list';this.parentNode.querySelector('.waitlist-done').classList.add('show')">
-      <input type="email" required placeholder="your.email@example.com">
-      <button type="submit">Notify me</button>
-    </form>
-    <div class="waitlist-done">noted. — shivam</div>
+<!-- 09 · signal -->
+<section id="signal">
+  <div class="wrap">
+    <div class="sec-label"><span class="no">09</span> The signal</div>
+    <div class="signal-grid">
+      <div>
+        <h2 class="sec-title">Get the season opener. <span class="red">First.</span></h2>
+        <p class="sec-sub">When the big August window opens — HUL LIME, ABG, ITC, Mahindra — one short note with this season's actual links, dates &amp; briefs.</p>
+        <form class="waitlist-form" onsubmit="event.preventDefault();this.querySelector('button').textContent='✓ ON THE LIST';this.parentNode.querySelector('.waitlist-done').classList.add('show')">
+          <input type="email" required placeholder="your.email@example.com" aria-label="Email address">
+          <button type="submit">Notify me</button>
+        </form>
+        <div class="waitlist-done">Noted. — Shivam</div>
+      </div>
+      <div class="signal-box swiss-dots">
+        <h4>What you get</h4>
+        <ul>
+          <li>Season-open alerts for the marquee tier</li>
+          <li>Actual registration links, not month guesses</li>
+          <li>Deck-vault drops as they're cleared &amp; credited</li>
+          <li>Zero spam — one note per window</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- Footer -->
+<!-- footer -->
 <footer>
   <div class="wrap">
-    <div class="foot-brand">— shivam meet</div>
-    <p class="foot-meta">Career navigation for college students · 86K+ on Instagram. This list rotates each season; cross-verify on Unstop &amp; the firm's microsite. Spotted an error or missing comp? <a href="https://instagram.com/meet_.shivam" target="_blank" rel="noopener">DM me</a>.</p>
-    <p class="foot-meta" style="font-size:11px;color:var(--stone-400)">All competition names &amp; logos belong to their respective organisers — used here for identification only. No affiliation or endorsement implied.</p>
-    <div class="foot-socials">
-      <a href="https://instagram.com/meet_.shivam" target="_blank" rel="noopener" aria-label="Instagram">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-      </a>
-      <a href="https://www.linkedin.com/in/meetshivam" target="_blank" rel="noopener" aria-label="LinkedIn">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-      </a>
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">Case—Comps<br><span class="red">India.</span></div>
+      </div>
+      <div class="foot-col">
+        <h5>Index</h5>
+        <a href="#season">Season journey</a>
+        <a href="#catalog">Catalog</a>
+        <a href="#vault">Deck vault</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="foot-col">
+        <h5>Shivam Meet</h5>
+        <a href="https://instagram.com/meet_.shivam" target="_blank" rel="noopener">Instagram — 86K+</a>
+        <a href="https://www.linkedin.com/in/meetshivam" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
     </div>
+    <p class="foot-legal">Career navigation for college students. This list rotates each season; cross-verify on Unstop &amp; the firm's microsite. Spotted an error or missing comp? DM <a href="https://instagram.com/meet_.shivam" target="_blank" rel="noopener" style="font-weight:700;border-bottom:2px solid var(--red)">@meet_.shivam</a>.<br><br>All competition names &amp; logos belong to their respective organisers — used here for identification only. No affiliation or endorsement implied.</p>
   </div>
 </footer>
 
 <script>
 /* ============================================================
-   DATA — 40 marquee + 12 directory case competitions
+   DATA
    ============================================================ */
 const COMPS = [
   // ---------- MARQUEE ----------
@@ -1093,20 +1063,20 @@ const COMPS = [
 ];
 
 /* ============================================================
-   FILTER STATE & RENDERING
+   FILTERS
    ============================================================ */
 const TRACKS = [
-  {k:"marketing",l:"Marketing",color:"coral"},
-  {k:"strategy",l:"Strategy",color:"lavender"},
-  {k:"general-mgmt",l:"General Mgmt",color:"sage"},
-  {k:"finance",l:"Finance / BFSI",color:""},
-  {k:"product-tech",l:"Product / Tech",color:"lavender"},
-  {k:"ops-supply",l:"Ops / Supply",color:""},
-  {k:"hr",l:"HR / People",color:""},
-  {k:"analytics",l:"Analytics",color:"sage"},
-  {k:"entrepreneurship",l:"Entrepreneurship",color:"coral"},
-  {k:"sustainability",l:"Sustainability",color:"sage"},
-  {k:"pharma",l:"Pharma",color:""},
+  {k:"marketing",l:"Marketing"},
+  {k:"strategy",l:"Strategy"},
+  {k:"general-mgmt",l:"General Mgmt"},
+  {k:"finance",l:"Finance / BFSI"},
+  {k:"product-tech",l:"Product / Tech"},
+  {k:"ops-supply",l:"Ops / Supply"},
+  {k:"hr",l:"HR / People"},
+  {k:"analytics",l:"Analytics"},
+  {k:"entrepreneurship",l:"Entrepreneurship"},
+  {k:"sustainability",l:"Sustainability"},
+  {k:"pharma",l:"Pharma"},
 ];
 const TIERS = [
   {k:"premier",l:"Premier-curated"},
@@ -1121,27 +1091,28 @@ const PERKS = [
   {k:"cash",l:"Cash prize"},
 ];
 const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const MONTH_FULL = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
 let state = {track:"all",tier:"all",perk:"all",mo:0,q:""};
 
 function makeChips(id,items,key){
   const el = document.getElementById(id);
-  let html = `<span class="chip active" data-v="all">All</span>`;
-  items.forEach(it=>{html += `<span class="chip" data-v="${it.k}">${it.l}</span>`;});
+  let html = `<button type="button" class="chip active" data-v="all">All</button>`;
+  items.forEach(it=>{html += `<button type="button" class="chip" data-v="${it.k}">${it.l}</button>`;});
   el.innerHTML = html;
   el.querySelectorAll('.chip').forEach(c=>{
     c.addEventListener('click',()=>{
       el.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));
       c.classList.add('active');
-      state[key] = c.dataset.v === 'all' ? (key==='mo'?0:'all') : c.dataset.v;
+      state[key] = c.dataset.v === 'all' ? 'all' : c.dataset.v;
       render();
     });
   });
 }
 function makeMonthChips(){
   const el = document.getElementById('month-chips');
-  let html = `<span class="chip active" data-v="0">Any</span>`;
-  MONTHS.forEach((m,i)=>{html += `<span class="chip" data-v="${i+1}">${m}</span>`;});
+  let html = `<button type="button" class="chip active" data-v="0">Any</button>`;
+  MONTHS.forEach((m,i)=>{html += `<button type="button" class="chip" data-v="${i+1}">${m}</button>`;});
   el.innerHTML = html;
   el.querySelectorAll('.chip').forEach(c=>{
     c.addEventListener('click',()=>{
@@ -1159,16 +1130,11 @@ makeChips('perk-chips',PERKS,'perk');
 makeMonthChips();
 document.getElementById('search').addEventListener('input',e=>{state.q=e.target.value.toLowerCase().trim();render();});
 
-function trackColor(t){
-  const c = TRACKS.find(x=>x.k===t);
-  return c && c.color || '';
-}
-
 function renderCard(c){
   const tracksHtml = c.tracks.map(t=>{
     const meta = TRACKS.find(x=>x.k===t);
     if(!meta) return '';
-    return `<span class="tag ${meta.color}">${meta.l}</span>`;
+    return `<span class="tag red">${meta.l}</span>`;
   }).join('');
   const perksHtml = (c.perks||[]).map(p=>{
     const meta = PERKS.find(x=>x.k===p);
@@ -1177,12 +1143,12 @@ function renderCard(c){
   const womenTag = c.women ? `<span class="tag women">Women-only</span>` : '';
   const tierLabel = (TIERS.find(t=>t.k===c.tier)||{}).l || c.tier;
   return `
-    <div class="card ${c.marquee?'marquee':''}">
+    <article class="card ${c.marquee?'marquee':''}">
       <div class="card-head">
         <div class="card-logo"><img src="${c.logo}" alt="${c.n} logo" loading="lazy"></div>
         <div>
           <div class="card-title">${c.n}</div>
-          <div class="card-org">${c.org}${c.orgLogo?` · <img src="${c.orgLogo}" alt="">`:''}</div>
+          <div class="card-org">${c.org}${c.orgLogo?` <img src="${c.orgLogo}" alt="">`:''}</div>
         </div>
       </div>
       <div class="card-tags">${tracksHtml}${womenTag}</div>
@@ -1192,9 +1158,9 @@ function renderCard(c){
         <div class="row"><span class="k">Eligible</span><span class="v">${tierLabel}</span></div>
         <div class="row"><span class="k">Team</span><span class="v">${c.team}</span></div>
         <div class="row"><span class="k">Prize</span><span class="v">${c.prize}</span></div>
-        ${perksHtml ? `<div class="card-tags" style="margin-top:4px">${perksHtml}</div>` : ''}
+        ${perksHtml ? `<div class="card-tags" style="margin-top:6px">${perksHtml}</div>` : ''}
       </div>
-    </div>
+    </article>
   `;
 }
 
@@ -1216,7 +1182,7 @@ function render(){
   });
   const grid = document.getElementById('grid');
   if(filtered.length===0){
-    grid.innerHTML = `<div class="empty"><span class="cursive">nothing here yet</span>try clearing a filter or two.</div>`;
+    grid.innerHTML = `<div class="empty"><span class="big">Nothing here.</span><p>Try clearing a filter or two.</p></div>`;
   } else {
     grid.innerHTML = filtered.map(renderCard).join('');
   }
@@ -1229,24 +1195,106 @@ function render(){
 }
 render();
 
-/* FAQ toggle */
-document.querySelectorAll('.faq-item').forEach(item=>{
-  const q = item.querySelector('.faq-q');
-  const a = item.querySelector('.faq-a');
-  q.addEventListener('click',()=>{
-    const open = item.classList.contains('open');
-    if(open){
-      a.style.height = '0px';
-      item.classList.remove('open');
-    } else {
-      const inner = a.firstElementChild;
-      a.style.height = inner.scrollHeight + 'px';
-      item.classList.add('open');
+/* ============================================================
+   STATS — count-up on viewport entry
+   ============================================================ */
+const STATS = {
+  total: COMPS.length,
+  marquee: COMPS.filter(c=>c.marquee).length,
+  pipeline: COMPS.filter(c=>(c.perks||[]).includes('ppi')||(c.perks||[]).includes('ppo')).length,
+  intl: COMPS.filter(c=>(c.perks||[]).includes('international')).length,
+};
+document.getElementById('hero-count').textContent = STATS.total;
+document.getElementById('cat-count').textContent = STATS.total;
+
+const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const counted = new Set();
+function animateCount(el,target){
+  if(REDUCED){ el.textContent = target; return; }
+  const dur = 900;
+  let start = null;
+  function step(t){
+    if(!start) start = t;
+    const p = Math.min((t-start)/dur,1);
+    const eased = 1-Math.pow(1-p,2);
+    el.textContent = Math.round(target*eased);
+    if(p<1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+function checkCounts(){
+  document.querySelectorAll('.num[data-stat]').forEach(el=>{
+    if(counted.has(el)) return;
+    const r = el.getBoundingClientRect();
+    if(r.top < window.innerHeight - 60 && r.bottom > 0){
+      counted.add(el);
+      animateCount(el, STATS[el.dataset.stat] || 0);
     }
   });
-});
+}
 
-/* Reveal-on-scroll (scroll-listener based for max reliability) */
+/* ============================================================
+   SEASON JOURNEY — scroll-drawn SVG line
+   ============================================================ */
+const SEASON_ORDER = [6,7,8,9,10,11,12,1,2,3,4,5];
+(function buildStations(){
+  const byMo = {};
+  COMPS.forEach(c=>{ (byMo[c.mo] = byMo[c.mo] || []).push(c); });
+  const host = document.getElementById('stations');
+  host.innerHTML = SEASON_ORDER.map(mo=>{
+    const list = (byMo[mo]||[]).slice().sort((a,b)=>(a.marquee===b.marquee)?0:(a.marquee?-1:1));
+    const top = list.slice(0,3).map(c=>c.marquee?`<b>${c.n}</b>`:c.n).join(' · ');
+    const extra = list.length>3 ? ` · +${list.length-3} more` : '';
+    return `
+      <div class="station" data-mo="${mo}">
+        <span class="node"></span>
+        <div class="st-row">
+          <span class="st-mo">${MONTH_FULL[mo-1]}</span>
+          <span class="st-count">${list.length} comp${list.length===1?'':'s'}</span>
+        </div>
+        <div class="st-names">${top || '<i>Quiet — prep window.</i>'}${extra}</div>
+      </div>
+    `;
+  }).join('');
+})();
+
+const journeyEl = document.getElementById('journey');
+const jSvg = journeyEl.querySelector('svg.j-line');
+const jTrack = jSvg.querySelector('.track');
+const jDraw = jSvg.querySelector('.draw');
+let jLen = 0;
+
+function layoutJourney(){
+  const h = journeyEl.offsetHeight;
+  jSvg.setAttribute('viewBox', `0 0 48 ${h}`);
+  jSvg.style.height = h + 'px';
+  const d = `M 24 0 L 24 ${h}`;
+  jTrack.setAttribute('d', d);
+  jDraw.setAttribute('d', d);
+  jLen = h;
+  jDraw.style.strokeDasharray = jLen;
+  jDraw.style.strokeDashoffset = jLen;
+}
+function updateJourney(){
+  if(!jLen) return;
+  const r = journeyEl.getBoundingClientRect();
+  const vh = window.innerHeight;
+  // progress: 0 when section top hits 75% viewport, 1 when bottom passes 40% viewport
+  const total = r.height + vh*0.35;
+  const passed = (vh*0.75 - r.top);
+  const progress = Math.max(0, Math.min(1, passed/total));
+  const drawn = REDUCED ? jLen : jLen * progress;
+  jDraw.style.strokeDashoffset = jLen - drawn;
+  journeyEl.querySelectorAll('.station').forEach(st=>{
+    const sr = st.getBoundingClientRect();
+    const nodeY = (sr.top - r.top) + 40;
+    st.classList.toggle('passed', drawn >= nodeY);
+  });
+}
+
+/* ============================================================
+   REVEALS (scroll-listener based)
+   ============================================================ */
 const revealEls = document.querySelectorAll('section, header.hero');
 revealEls.forEach(s=>s.classList.add('reveal'));
 function checkReveals(){
@@ -1254,17 +1302,22 @@ function checkReveals(){
   revealEls.forEach(s=>{
     if(s.classList.contains('in')) return;
     const r = s.getBoundingClientRect();
-    if(r.top < vh - 40 && r.bottom > 40){
-      s.classList.add('in');
-    }
+    if(r.top < vh - 40 && r.bottom > 40) s.classList.add('in');
   });
 }
-checkReveals();
-window.addEventListener('scroll',checkReveals,{passive:true});
-window.addEventListener('resize',checkReveals,{passive:true});
+function onScroll(){
+  checkReveals();
+  checkCounts();
+  updateJourney();
+}
+layoutJourney();
+onScroll();
+window.addEventListener('scroll',onScroll,{passive:true});
+window.addEventListener('resize',()=>{layoutJourney();onScroll();},{passive:true});
+window.addEventListener('load',()=>{layoutJourney();onScroll();});
 
 /* ============================================================
-   CardSwap — vanilla GSAP port (locked: elastic, wider, big logos)
+   CARD SWAP — vanilla GSAP port (Swiss: linear/mechanical)
    ============================================================ */
 (function(){
   const container = document.getElementById('swap');
@@ -1274,18 +1327,16 @@ window.addEventListener('resize',checkReveals,{passive:true});
     cards: [...container.querySelectorAll('.swap-card')],
     cardDistance: 60,
     verticalDistance: 60,
-    delay: 4000,
-    skewAmount: 8,
-    pauseOnHover: true,
+    delay: 3500,
+    skewAmount: 6,
     intervalId: 0,
     tl: null,
     order: []
   };
-
   const cfg = {
-    ease: 'elastic.out(0.6,0.9)',
-    durDrop: 2, durMove: 2, durReturn: 2,
-    promoteOverlap: 0.9, returnDelay: 0.05
+    ease: 'power1.inOut',
+    durDrop: .7, durMove: .7, durReturn: .7,
+    promoteOverlap: .45, returnDelay: .2
   };
 
   function makeSlot(i, dx, dy, total){
@@ -1316,58 +1367,38 @@ window.addEventListener('resize',checkReveals,{passive:true});
 
     const tl = gsap.timeline();
     SWAP.tl = tl;
-
     tl.to(elFront, { y: '+=520', duration: cfg.durDrop, ease: cfg.ease });
     tl.addLabel('promote', `-=${cfg.durDrop * cfg.promoteOverlap}`);
-
     rest.forEach((idx, i) => {
       const el = SWAP.cards[idx];
       if(!el) return;
       const slot = makeSlot(i, SWAP.cardDistance, SWAP.verticalDistance, total);
       tl.set(el, { zIndex: slot.zIndex }, 'promote');
-      tl.to(el, {
-        x: slot.x, y: slot.y, z: slot.z,
-        duration: cfg.durMove, ease: cfg.ease
-      }, `promote+=${i * 0.15}`);
+      tl.to(el, { x: slot.x, y: slot.y, z: slot.z, duration: cfg.durMove, ease: cfg.ease }, `promote+=${i * 0.1}`);
     });
-
     const backSlot = makeSlot(total - 1, SWAP.cardDistance, SWAP.verticalDistance, total);
     tl.addLabel('return', `promote+=${cfg.durMove * cfg.returnDelay}`);
     tl.call(() => gsap.set(elFront, { zIndex: backSlot.zIndex }), null, 'return');
-    tl.to(elFront, {
-      x: backSlot.x, y: backSlot.y, z: backSlot.z,
-      duration: cfg.durReturn, ease: cfg.ease
-    }, 'return');
+    tl.to(elFront, { x: backSlot.x, y: backSlot.y, z: backSlot.z, duration: cfg.durReturn, ease: cfg.ease }, 'return');
     tl.call(() => { SWAP.order = [...rest, front]; });
   }
   function startInterval(){
     clearInterval(SWAP.intervalId);
+    if(REDUCED) return;
     SWAP.intervalId = window.setInterval(swap, SWAP.delay);
   }
 
   placeAll();
   startInterval();
 
-  if(SWAP.pauseOnHover){
-    container.addEventListener('mouseenter', () => {
-      SWAP.tl?.pause();
-      clearInterval(SWAP.intervalId);
-    });
-    container.addEventListener('mouseleave', () => {
-      SWAP.tl?.play();
-      startInterval();
-    });
-  }
+  container.addEventListener('mouseenter', () => { SWAP.tl?.pause(); clearInterval(SWAP.intervalId); });
+  container.addEventListener('mouseleave', () => { SWAP.tl?.play(); startInterval(); });
 
   SWAP.cards.forEach((el) => {
     el.addEventListener('click', () => {
-      const id = el.dataset.id;
-      if(!id) return;
-      // Scroll to catalog and surface this card's filter
       const search = document.getElementById('search');
       if(search){
-        const card = SWAP.cards[SWAP.order[0]];
-        const name = card?.querySelector('.swap-name')?.textContent || '';
+        const name = el.querySelector('.swap-name')?.textContent || '';
         search.value = name;
         search.dispatchEvent(new Event('input',{bubbles:true}));
       }
@@ -1375,9 +1406,8 @@ window.addEventListener('resize',checkReveals,{passive:true});
     });
   });
 
-  // Reposition if viewport changes between desktop/mobile breakpoint
   let lastIsMobile = window.matchMedia('(max-width:760px)').matches;
-  window.addEventListener('resize', () => {
+  function fitSwap(){
     const isMobile = window.matchMedia('(max-width:760px)').matches;
     if(isMobile !== lastIsMobile){
       lastIsMobile = isMobile;
@@ -1385,13 +1415,58 @@ window.addEventListener('resize',checkReveals,{passive:true});
       SWAP.verticalDistance = isMobile ? 40 : 60;
       placeAll();
     }
-  });
-  if(lastIsMobile){
-    SWAP.cardDistance = 40;
-    SWAP.verticalDistance = 40;
-    placeAll();
   }
+  window.addEventListener('resize', fitSwap);
+  if(lastIsMobile){ SWAP.cardDistance = 40; SWAP.verticalDistance = 40; placeAll(); }
 })();
+
+/* ============================================================
+   VAULT FOLDERS — vanilla port of InteractiveFolder
+   ============================================================ */
+document.querySelectorAll('.folder-stage').forEach(stage=>{
+  const toggle = ()=>stage.classList.toggle('open');
+  stage.addEventListener('click', toggle);
+  stage.addEventListener('keydown', e=>{
+    if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggle(); }
+  });
+  stage.querySelectorAll('.paper').forEach(p=>{
+    p.addEventListener('mousemove', e=>{
+      if(!stage.classList.contains('open')) return;
+      const r = p.getBoundingClientRect();
+      const dx = (e.clientX - (r.left + r.width/2)) * .18;
+      const dy = (e.clientY - (r.top + r.height/2)) * .18;
+      p.style.setProperty('--dx', dx.toFixed(1)+'px');
+      p.style.setProperty('--dy', dy.toFixed(1)+'px');
+      p.style.setProperty('--s', '1.06');
+    });
+    p.addEventListener('mouseleave', ()=>{
+      p.style.setProperty('--dx','0px');
+      p.style.setProperty('--dy','0px');
+      p.style.setProperty('--s','1');
+    });
+  });
+});
+
+/* ============================================================
+   FAQ
+   ============================================================ */
+document.querySelectorAll('.faq-item').forEach(item=>{
+  const q = item.querySelector('.faq-q');
+  const a = item.querySelector('.faq-a');
+  q.addEventListener('click',()=>{
+    const open = item.classList.contains('open');
+    if(open){
+      a.style.height = '0px';
+      item.classList.remove('open');
+      q.setAttribute('aria-expanded','false');
+    } else {
+      const inner = a.firstElementChild;
+      a.style.height = inner.scrollHeight + 'px';
+      item.classList.add('open');
+      q.setAttribute('aria-expanded','true');
+    }
+  });
+});
 </script>
 
 </body>
