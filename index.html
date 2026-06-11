@@ -461,6 +461,30 @@ header.hero{
 .diary .sig{font-family:'Reenie Beanie';font-size:26px;color:var(--stone-500);line-height:1}
 .diary .sig-meta{font-size:12px;color:var(--stone-400);margin-top:6px;font-weight:500}
 
+/* ---------- Deck vault (paid teaser) ---------- */
+#vault{padding:80px 0}
+.vault-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px}
+@media (max-width:760px){.vault-grid{grid-template-columns:1fr}}
+.vault-tile{
+  position:relative;background:#fff;border:1px solid var(--stone-100);
+  border-radius:var(--r-md);padding:24px;box-shadow:var(--shadow-card);
+  display:flex;flex-direction:column;gap:10px;
+  transition:transform .25s ease;
+}
+.vault-tile:hover{transform:translateY(-3px)}
+.vt-pill{
+  align-self:flex-start;display:inline-flex;align-items:center;gap:6px;
+  font-size:11px;font-weight:600;padding:4px 11px;border-radius:9999px;
+  background:var(--coral);color:var(--ink);
+}
+.vt-title{font-size:18px;font-weight:600;letter-spacing:-.01em;color:var(--ink)}
+.vt-desc{font-size:13px;color:var(--stone-500);line-height:1.5}
+.vt-bars{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+.vt-bars i{height:8px;border-radius:4px;background:linear-gradient(90deg,var(--stone-100),var(--stone-200));display:block}
+.vt-bars i:nth-child(1){width:90%}
+.vt-bars i:nth-child(2){width:72%}
+.vt-bars i:nth-child(3){width:84%}
+
 /* ---------- FAQ ---------- */
 #faq{padding:80px 0}
 .faq-list{margin-top:36px;display:flex;flex-direction:column;gap:10px}
@@ -857,6 +881,40 @@ footer .wrap{display:flex;flex-direction:column;gap:14px;align-items:center}
   </div>
 </section>
 
+<!-- Deck vault (paid teaser) -->
+<section id="vault">
+  <div class="wrap">
+    <span class="section-eyebrow"><span class="dot"></span> The deck vault · in the works</span>
+    <h2 style="font-size:clamp(30px,4.2vw,42px);max-width:640px">Winning decks, annotated <span class="cursive">slide-by-slide</span>.</h2>
+    <p style="color:var(--stone-500);font-size:16px;max-width:560px;margin-top:12px;line-height:1.55">High-quality decks from the comps above — sourced with author permission and full credit — plus judge-lens notes on why each slide works. Ships as part of the paid pass.</p>
+
+    <div class="vault-grid">
+      <div class="vault-tile">
+        <span class="vt-pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>paid drop</span>
+        <div class="vt-title">Marketing flagships</div>
+        <p class="vt-desc">How national finalists structure a brand answer: insight → idea → GTM → P&amp;L, LIME-calibre.</p>
+        <div class="vt-bars"><i></i><i></i><i></i></div>
+      </div>
+      <div class="vault-tile">
+        <span class="vt-pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>paid drop</span>
+        <div class="vt-title">Strategy &amp; simulations</div>
+        <p class="vt-desc">War-Room-style market-entry and turnaround decks, annotated through the judges' lens.</p>
+        <div class="vt-bars"><i></i><i></i><i></i></div>
+      </div>
+      <div class="vault-tile">
+        <span class="vt-pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>paid drop</span>
+        <div class="vt-title">Product &amp; e-commerce</div>
+        <p class="vt-desc">ACE / WiRED-style problem structuring and metrics trees, rebuilt as reusable templates.</p>
+        <div class="vt-bars"><i></i><i></i><i></i></div>
+      </div>
+    </div>
+
+    <div style="margin-top:28px">
+      <a href="#waitlist" class="btn btn-primary">Get the drop first</a>
+    </div>
+  </div>
+</section>
+
 <!-- FAQ -->
 <section id="faq">
   <div class="wrap-tight">
@@ -922,6 +980,7 @@ footer .wrap{display:flex;flex-direction:column;gap:14px;align-items:center}
   <div class="wrap">
     <div class="foot-brand">— shivam meet</div>
     <p class="foot-meta">Career navigation for college students · 86K+ on Instagram. This list rotates each season; cross-verify on Unstop &amp; the firm's microsite. Spotted an error or missing comp? <a href="https://instagram.com/meet_.shivam" target="_blank" rel="noopener">DM me</a>.</p>
+    <p class="foot-meta" style="font-size:11px;color:var(--stone-400)">All competition names &amp; logos belong to their respective organisers — used here for identification only. No affiliation or endorsement implied.</p>
     <div class="foot-socials">
       <a href="https://instagram.com/meet_.shivam" target="_blank" rel="noopener" aria-label="Instagram">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
@@ -1027,6 +1086,10 @@ const COMPS = [
   {id:"mmt-young-turks",n:"MMT Young Turks",org:"MakeMyTrip",tracks:["product-tech","marketing"],tier:"premier",schools:"Premier B-schools",team:"team",mo:1,window:"Dec–Jan",prize:"Cash + MMT PPI",perks:["ppi","cash"],edition:"Active",marquee:false,logo:"logos/other-conglomerates/mmt-young-turks_competition.jpg",orgLogo:"logos/other-conglomerates/makemytrip_corporate.png",blurb:"MakeMyTrip's travel / e-commerce business challenge."},
   {id:"nation-with-namo",n:"Nation with NaMo: Nation Building",org:"Nation with NaMo",tracks:["strategy"],tier:"all-india",schools:"All-India open",team:"team",mo:2,window:"Feb (varies)",prize:"Recognition + platform",perks:[],edition:"Civic / policy",marquee:false,logo:"logos/other-conglomerates/nationbuilding-case-study_competition.png",orgLogo:"logos/other-conglomerates/nation-with-namo_logo.jpg",blurb:"Civic / nation-building case (advocacy-oriented rather than corporate) — included for completeness."},
   {id:"boat-wavemakers",n:"boAt Wavemaker's Challenge",org:"boAt Lifestyle",tracks:["marketing","product-tech"],tier:"premier",schools:"Premier MBA",team:"team",mo:2,window:"Feb (varies)",prize:"Cash + boAt PPI",perks:["ppi","cash"],edition:"Active",marquee:false,logo:"logos/other-conglomerates/boat-wavemakers_competition.jpg",orgLogo:"logos/other-conglomerates/boat-lifestyle_corporate.webp",blurb:"boAt's consumer-electronics marketing case."},
+
+  // ---------- GLOBAL · stretch-goal comps ----------
+  {id:"harvard-gcc",n:"Global Case Competition at Harvard",org:"Student-run · Harvard University",tracks:["finance","strategy"],tier:"global",schools:"Open worldwide — UG + grad teams (Indian B-school teams compete every year)",team:"4–6",mo:1,window:"Regs ~Dec–Jan · Grand Finale Apr (Boston)",prize:"$20K+ pool + finale at Harvard",perks:["international","cash"],edition:"Active",marquee:false,logo:"logos/global/harvard-gcc_competition.svg",blurb:"Student-organised global comp at Harvard — typically a live M&A / corporate-strategy case on a real company. A genuine CV differentiator. Dates shift each season; verify on the official site."},
+  {id:"cbs-case-comp",n:"CBS Case Competition",org:"Copenhagen Business School",tracks:["strategy","general-mgmt"],tier:"global",schools:"12 invited global universities + Open Track (any team worldwide can apply)",team:"4",mo:11,window:"Open Track apps ~Oct–Nov · case week Feb–Mar (Copenhagen)",prize:"Cash podium + fully-hosted case week in Copenhagen",perks:["international","cash"],edition:"20+ editions",marquee:false,logo:"logos/global/cbs-case-competition_competition.svg",blurb:"One of the world's most prestigious case competitions — a week-long live case for a major corporate, solved on-site in Copenhagen. Indian teams enter via the Open Track application."},
 ];
 
 /* ============================================================
@@ -1049,6 +1112,7 @@ const TIERS = [
   {k:"premier",l:"Premier-curated"},
   {k:"all-mba",l:"All-MBA"},
   {k:"all-india",l:"All-India open"},
+  {k:"global",l:"Global open"},
 ];
 const PERKS = [
   {k:"ppi",l:"PPI"},
