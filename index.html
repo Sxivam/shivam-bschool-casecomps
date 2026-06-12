@@ -27,8 +27,9 @@
   --white:#ffffff;
   --paper:#fafaf8;
   --ink-70:rgba(23,30,25,.7);
-  --ink-50:rgba(23,30,25,.5);
+  --ink-50:#5e6360;
   --ink-10:rgba(23,30,25,.1);
+  --amber-3:#8a6d00;
   --sage-10:rgba(183,198,194,.1);
   --sage-20:rgba(183,198,194,.2);
   --ease:cubic-bezier(.4,0,.2,1);
@@ -289,7 +290,7 @@ header.hero{padding:104px 0 56px;text-align:center;position:relative;overflow:hi
 
 /* ---------------- MARQUEE SWAP ---------------- */
 #marquee-comps{background:var(--paper)}
-.swap-stage{position:relative;height:480px;margin:40px auto 0;display:flex;align-items:center;justify-content:center;perspective:1200px}
+.swap-stage{position:relative;height:480px;margin:40px auto 0;display:flex;align-items:center;justify-content:center;perspective:1200px;overflow:hidden}
 .swap-container{position:relative;width:340px;height:300px;transform-style:preserve-3d;transform:scale(.92)}
 .swap-card{
   position:absolute;top:50%;left:50%;width:340px;height:300px;
@@ -443,7 +444,7 @@ header.hero{padding:104px 0 56px;text-align:center;position:relative;overflow:hi
 .faq-item{border:1px solid var(--ink-10);border-radius:14px;background:var(--white);overflow:hidden;transition:background .2s var(--ease)}
 .faq-item.open{background:var(--paper)}
 .faq-q{width:100%;text-align:left;padding:20px 22px;font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:44px}
-.faq-q .plus{flex:none;width:22px;height:22px;display:grid;place-items:center;color:var(--yellow-deep);font-size:22px;line-height:1;transition:transform .3s var(--ease)}
+.faq-q .plus{flex:none;width:22px;height:22px;display:grid;place-items:center;color:var(--amber-3);font-size:22px;line-height:1;transition:transform .3s var(--ease)}
 .faq-item.open .plus{transform:rotate(45deg)}
 .faq-a{height:0;overflow:hidden;transition:height .3s var(--ease)}
 .faq-a-inner{padding:0 22px 22px;color:var(--ink-70);font-size:14px;line-height:1.65}
@@ -466,7 +467,7 @@ footer{background:var(--charcoal);color:var(--white);padding:56px 0 40px}
 .foot-grid{display:grid;grid-template-columns:1fr;gap:30px}
 .foot-brand{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:clamp(40px,12vw,72px);line-height:.9}
 .foot-brand .pd{color:var(--yellow)}
-.foot-col h5{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--sage);margin-bottom:14px}
+.foot-col h5,.foot-col .foot-h{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--sage);margin-bottom:14px}
 .foot-col a{display:block;font-size:14px;font-weight:500;padding:6px 0;color:var(--white);transition:color .2s var(--ease)}
 .foot-col a:hover{color:var(--yellow)}
 .foot-cols{display:grid;grid-template-columns:1fr 1fr;gap:24px}
@@ -513,7 +514,7 @@ footer{background:var(--charcoal);color:var(--white);padding:56px 0 40px}
       <input type="email" required placeholder="your.email@example.com" aria-label="Email address">
       <button type="submit" class="btn btn-yellow btn-anton">Get the drop</button>
     </form>
-    <div class="waitlist-done"><span class="check">✓</span> Noted — see you in August.</div>
+    <div class="waitlist-done" role="status" aria-live="polite"><span class="check">✓</span> Noted — see you in August.</div>
     <p class="hero-note">A tracker, not a links repo · windows are historical patterns, links go live when each firm launches</p>
   </div>
 </header>
@@ -781,7 +782,7 @@ footer{background:var(--charcoal);color:var(--white);padding:56px 0 40px}
     </div>
     <div class="vault-grid">
       <div class="vault-cell">
-        <div class="folder-zone"><div class="folder-stage" role="button" tabindex="0" aria-label="Marketing flagships folder — open">
+        <div class="folder-zone"><div class="folder-stage" role="button" tabindex="0" aria-expanded="false" aria-label="Marketing flagships folder">
           <div class="folder-back"><div class="folder-tab"></div>
             <div class="paper p1"><span class="p-tag">Locked</span><b>LIME GTM</b><i class="w1"></i><i class="w2"></i></div>
             <div class="paper p2"><span class="p-tag">Locked</span><b>Brand P&amp;L</b><i class="w1"></i><i class="w2"></i></div>
@@ -792,7 +793,7 @@ footer{background:var(--charcoal);color:var(--white);padding:56px 0 40px}
         <div class="vault-meta"><span class="vt-pill">Paid drop</span><h3>Marketing flagships</h3><p>How national finalists structure a brand answer: insight → idea → GTM → P&amp;L.</p></div>
       </div>
       <div class="vault-cell">
-        <div class="folder-zone"><div class="folder-stage" role="button" tabindex="0" aria-label="Strategy folder — open">
+        <div class="folder-zone"><div class="folder-stage" role="button" tabindex="0" aria-expanded="false" aria-label="Strategy folder">
           <div class="folder-back"><div class="folder-tab"></div>
             <div class="paper p1"><span class="p-tag">Locked</span><b>Market entry</b><i class="w1"></i><i class="w2"></i></div>
             <div class="paper p2"><span class="p-tag">Locked</span><b>Turnaround</b><i class="w1"></i><i class="w2"></i></div>
@@ -803,7 +804,7 @@ footer{background:var(--charcoal);color:var(--white);padding:56px 0 40px}
         <div class="vault-meta"><span class="vt-pill">Paid drop</span><h3>Strategy &amp; simulations</h3><p>Market-entry and turnaround decks, annotated through the judges' lens.</p></div>
       </div>
       <div class="vault-cell">
-        <div class="folder-zone"><div class="folder-stage" role="button" tabindex="0" aria-label="Product folder — open">
+        <div class="folder-zone"><div class="folder-stage" role="button" tabindex="0" aria-expanded="false" aria-label="Product folder">
           <div class="folder-back"><div class="folder-tab"></div>
             <div class="paper p1"><span class="p-tag">Locked</span><b>Metrics tree</b><i class="w1"></i><i class="w2"></i></div>
             <div class="paper p2"><span class="p-tag">Locked</span><b>PRD template</b><i class="w1"></i><i class="w2"></i></div>
@@ -872,7 +873,7 @@ footer{background:var(--charcoal);color:var(--white);padding:56px 0 40px}
       <input type="email" required placeholder="your.email@example.com" aria-label="Email address">
       <button type="submit" class="btn btn-anton">Notify me</button>
     </form>
-    <div class="waitlist-done"><span class="check">✓</span> Noted — see you in August.</div>
+    <div class="waitlist-done" role="status" aria-live="polite"><span class="check">✓</span> Noted — see you in August.</div>
   </div>
 </section>
 
@@ -883,14 +884,14 @@ footer{background:var(--charcoal);color:var(--white);padding:56px 0 40px}
       <div class="foot-brand">Case<br>Comps<span class="pd">.</span></div>
       <div class="foot-cols" style="display:contents">
         <div class="foot-col">
-          <h5>Index</h5>
+          <h2 class="foot-h">Index</h2>
           <a href="#assembly">How it works</a>
           <a href="#catalog">Catalog</a>
           <a href="#season">Season</a>
           <a href="#vault">Deck vault</a>
         </div>
         <div class="foot-col">
-          <h5>Shivam Meet</h5>
+          <h2 class="foot-h">Shivam Meet</h2>
           <a href="https://instagram.com/meet_.shivam" target="_blank" rel="noopener">Instagram — 86K+</a>
           <a href="https://www.linkedin.com/in/meetshivam" target="_blank" rel="noopener">LinkedIn</a>
         </div>
@@ -1005,22 +1006,23 @@ const MONTHS=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov",
 const MONTH_FULL=["January","February","March","April","May","June","July","August","September","October","November","December"];
 let state={track:"all",tier:"all",perk:"all",mo:0,q:""};
 
+function setActive(group,chip){group.querySelectorAll('.chip').forEach(x=>{x.classList.remove('active');x.setAttribute('aria-pressed','false');});chip.classList.add('active');chip.setAttribute('aria-pressed','true');}
 function makeChips(id,items,key){
   const el=document.getElementById(id);
-  let h=`<button type="button" class="chip active" data-v="all">All</button>`;
-  items.forEach(it=>{h+=`<button type="button" class="chip" data-v="${it.k}">${it.l}</button>`;});
+  let h=`<button type="button" class="chip active" data-v="all" aria-pressed="true">All</button>`;
+  items.forEach(it=>{h+=`<button type="button" class="chip" data-v="${it.k}" aria-pressed="false">${it.l}</button>`;});
   el.innerHTML=h;
-  el.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>{el.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));c.classList.add('active');state[key]=c.dataset.v==='all'?'all':c.dataset.v;render();}));
+  el.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>{setActive(el,c);state[key]=c.dataset.v==='all'?'all':c.dataset.v;render();}));
 }
 function makeMonthChips(){
   const el=document.getElementById('month-chips');
-  let h=`<button type="button" class="chip active" data-v="0">Any</button>`;
-  MONTHS.forEach((m,i)=>{h+=`<button type="button" class="chip" data-v="${i+1}">${m}</button>`;});
+  let h=`<button type="button" class="chip active" data-v="0" aria-pressed="true">Any</button>`;
+  MONTHS.forEach((m,i)=>{h+=`<button type="button" class="chip" data-v="${i+1}" aria-pressed="false">${m}</button>`;});
   el.innerHTML=h;
-  el.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>{el.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));c.classList.add('active');state.mo=parseInt(c.dataset.v,10);render();}));
+  el.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>{setActive(el,c);state.mo=parseInt(c.dataset.v,10);render();}));
 }
 makeChips('track-chips',TRACKS,'track');makeChips('tier-chips',TIERS,'tier');makeChips('perk-chips',PERKS,'perk');makeMonthChips();
-document.getElementById('search').addEventListener('input',e=>{state.q=e.target.value.toLowerCase().trim();render();});
+let _searchT;document.getElementById('search').addEventListener('input',e=>{const v=e.target.value.toLowerCase().trim();clearTimeout(_searchT);_searchT=setTimeout(()=>{state.q=v;render();},120);});
 
 function renderCard(c){
   const tracks=c.tracks.map(t=>{const m=TRACKS.find(x=>x.k===t);return m?`<span class="tag y">${m.l}</span>`:'';}).join('');
@@ -1169,7 +1171,7 @@ function updateJourney(){
   }
   place(0);
   window.addEventListener('scroll',onScrollAsm,{passive:true});
-  window.addEventListener('resize',()=>{place(0);onScrollAsm();},{passive:true});
+  window.addEventListener('resize',onScrollAsm,{passive:true});
 })();
 
 /* ============================================================ REVEALS + scroll hub ============================================================ */
@@ -1203,14 +1205,24 @@ window.addEventListener('load',()=>{layoutJourney();onScroll();});
   }
   function startInterval(){clearInterval(SWAP.intervalId);if(REDUCED)return;SWAP.intervalId=window.setInterval(swap,SWAP.delay);}
   placeAll();startInterval();
-  container.addEventListener('mouseenter',()=>{SWAP.tl?.pause();clearInterval(SWAP.intervalId);});
-  container.addEventListener('mouseleave',()=>{SWAP.tl?.play();startInterval();});
-  SWAP.cards.forEach(el=>el.addEventListener('click',()=>{const s=document.getElementById('search');if(s){s.value=el.querySelector('.swap-name')?.textContent||'';s.dispatchEvent(new Event('input',{bubbles:true}));}document.getElementById('catalog')?.scrollIntoView({behavior:'smooth',block:'start'});}));
+  if(window.matchMedia('(hover:hover)').matches){
+    container.addEventListener('mouseenter',()=>{SWAP.tl?.pause();clearInterval(SWAP.intervalId);});
+    container.addEventListener('mouseleave',()=>{SWAP.tl?.play();startInterval();});
+  }
+  SWAP.cards.forEach(el=>{
+    const name=el.querySelector('.swap-name')?.textContent||'';
+    el.setAttribute('role','button');
+    el.setAttribute('tabindex','0');
+    el.setAttribute('aria-label',name+' — show in catalog');
+    const activate=()=>{const s=document.getElementById('search');if(s){s.value=name;s.dispatchEvent(new Event('input',{bubbles:true}));}document.getElementById('catalog')?.scrollIntoView({behavior:'smooth',block:'start'});};
+    el.addEventListener('click',activate);
+    el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();activate();}});
+  });
 })();
 
 /* ============================================================ VAULT FOLDERS ============================================================ */
 document.querySelectorAll('.folder-stage').forEach(stage=>{
-  const toggle=()=>stage.classList.toggle('open');
+  const toggle=()=>{const open=stage.classList.toggle('open');stage.setAttribute('aria-expanded',open?'true':'false');};
   stage.addEventListener('click',toggle);
   stage.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle();}});
   stage.querySelectorAll('.paper').forEach(p=>{
