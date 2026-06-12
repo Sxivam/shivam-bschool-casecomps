@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>THE CASE-COMP INDEX — Indian B-school corporate case competitions · Shivam Meet</title>
-<meta name="description" content="HUL LIME, ITC Interrobang, ABG Stratos, Mahindra War Room, Amazon ACE and 80+ more — every corporate case comp for Indian B-schools, mapped by month, track and hiring intent.">
+<meta name="description" content="HUL LIME, ITC Interrobang, ABG Stratos, Reliance TUP, Amazon ACE and 80+ more — every corporate case comp for Indian B-schools, mapped by month, track and hiring intent.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -25,12 +25,14 @@
 
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
+html{overflow-x:hidden;overflow-x:clip;scroll-padding-top:80px}
 body{
   font-family:'Inter',Helvetica,Arial,sans-serif;
   background:var(--bg);
   color:var(--ink);
   line-height:1.5;
   overflow-x:hidden;
+  overflow-x:clip;
   position:relative;
 }
 a{color:inherit;text-decoration:none}
@@ -105,8 +107,9 @@ nav.bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:
 .nav-cta{
   background:var(--ink);color:#fff !important;
   padding:12px 22px;font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
-  transition:background .15s linear;
+  transition:background .15s linear;white-space:nowrap;
 }
+@media (max-width:480px){.nav-cta{padding:10px 14px;font-size:11px;letter-spacing:.1em}}
 .nav-cta:hover{background:var(--red) !important;color:#fff !important}
 @media (max-width:860px){.nav-links a:not(.nav-cta){display:none}}
 
@@ -135,7 +138,7 @@ header.hero{
 .btn-primary:hover{background:var(--red)}
 .btn-secondary{background:#fff;color:var(--ink);border:2px solid var(--ink)}
 .btn-secondary:hover{background:var(--ink);color:#fff}
-@media (max-width:560px){.hero-ctas .btn{width:100%}}
+@media (max-width:560px){.hero-ctas{gap:2px}.hero-ctas .btn{width:100%}}
 .notice{
   margin-top:48px;border:2px solid var(--ink);
   display:flex;align-items:stretch;max-width:640px;
@@ -235,6 +238,12 @@ header.hero{
   margin-top:10px;font-size:13px;color:var(--gray);line-height:1.6;
 }
 .station .st-names b{color:var(--ink);font-weight:700}
+@media (max-width:760px){
+  .journey{padding-left:40px}
+  .journey svg.j-line{width:30px}
+  .station .node{left:-30px;width:12px;height:12px}
+  .station .st-mo{font-size:22px}
+}
 
 /* ---------- marquee swap ---------- */
 #marquee .swap-stage{
@@ -291,8 +300,8 @@ header.hero{
   color:var(--gray);margin-top:32px;
 }
 @media (max-width:760px){
-  #marquee .swap-stage{height:480px;margin-top:40px}
-  .swap-container{width:320px;height:300px}
+  #marquee .swap-stage{height:420px;margin-top:40px}
+  .swap-container{width:320px;height:300px;transform:scale(.72)}
   .swap-card{width:320px;height:300px;padding:18px}
   .swap-logo-big{width:72px;height:72px}
   .swap-logo-big img{max-width:56px;max-height:56px}
@@ -318,6 +327,7 @@ header.hero{
 }
 .chip:hover{background:var(--red);border-color:var(--red);color:#fff}
 .chip.active{background:var(--ink);color:#fff}
+@media (max-width:760px){.chip{min-height:44px;padding:11px 14px}}
 .search-input{
   flex:1;min-width:220px;
   padding:12px 4px;border:none;border-bottom:4px solid var(--ink);
@@ -381,7 +391,10 @@ header.hero{
   display:grid;grid-template-columns:repeat(3,1fr);gap:2px;
   background:var(--ink);border:4px solid var(--ink);margin-top:48px;
 }
-@media (max-width:860px){#vault .vault-grid{grid-template-columns:1fr}}
+@media (max-width:860px){
+  #vault .vault-grid{grid-template-columns:1fr}
+  .vault-cell{padding:40px 20px 32px}
+}
 .vault-cell{
   background:var(--muted);padding:48px 28px 36px;
   display:flex;flex-direction:column;align-items:center;gap:0;
@@ -440,6 +453,10 @@ header.hero{
   transition:opacity .15s linear;
 }
 .folder-stage.open .folder-label{opacity:0}
+@media (max-width:860px){
+  .folder-stage{transform:scale(1)}
+  .folder-zone{height:210px}
+}
 .vault-meta{width:100%;border-top:2px solid var(--ink);padding-top:18px}
 .vault-meta .vt-pill{
   display:inline-block;font-size:9px;font-weight:900;letter-spacing:.2em;text-transform:uppercase;
@@ -563,7 +580,7 @@ footer{border-top:4px solid var(--ink);padding:64px 0 48px}
     <div class="hero-grid">
       <div>
         <h1>Every corporate case comp. <span class="red">One grid.</span></h1>
-        <p class="hero-sub">HUL LIME, ITC Interrobang, ABG Stratos, Mahindra War Room, Amazon ACE, Reliance TUP — mapped by launch month, functional track, and whether they actually pipe into a PPI or PPO.</p>
+        <p class="hero-sub">HUL LIME, ITC Interrobang, ABG Stratos, Reliance TUP, Amazon ACE, Marico OTW — mapped by launch month, functional track, and whether they actually pipe into a PPI or PPO.</p>
         <div class="hero-ctas">
           <a href="#catalog" class="btn btn-primary">Explore the catalog</a>
           <a href="#season" class="btn btn-secondary">Season journey</a>
@@ -626,7 +643,7 @@ footer{border-top:4px solid var(--ink);padding:64px 0 48px}
       <div class="swap-container" id="swap">
         <div class="swap-card" data-id="hul-lime">
           <div class="swap-top">
-            <span class="swap-month">Jul–Aug</span>
+            <span class="swap-month">Aug–Sep</span>
             <span class="swap-corp"><img src="logos/hindustan-unilever/hul_corporate.svg" alt=""></span>
           </div>
           <div class="swap-body">
@@ -659,28 +676,28 @@ footer{border-top:4px solid var(--ink);padding:64px 0 48px}
           </div>
           <div class="swap-tags">
             <span class="swap-tag red">General mgmt</span>
-            <span class="swap-tag">PPO</span>
+            <span class="swap-tag">PPI</span>
             <span class="swap-tag">Top 15 schools</span>
           </div>
         </div>
 
-        <div class="swap-card" data-id="mahindra-war-room">
+        <div class="swap-card" data-id="reliance-tup">
           <div class="swap-top">
-            <span class="swap-month">Aug–Oct</span>
-            <span class="swap-corp"><img src="logos/mahindra-group/mahindra-and-mahindra_corporate.svg" alt=""></span>
+            <span class="swap-month">Oct–Nov</span>
+            <span class="swap-corp"><img src="logos/reliance/reliance-industries_corporate.png" alt=""></span>
           </div>
           <div class="swap-body">
-            <div class="swap-logo-big"><img src="logos/mahindra-group/mahindra-war-room_competition.jpg" alt=""></div>
+            <div class="swap-logo-big"><img src="logos/reliance/reliance-tup_competition.jpg" alt=""></div>
             <div class="swap-info">
-              <div class="swap-name">Mahindra War Room</div>
-              <div class="swap-org">Mahindra &amp; Mahindra · strategy</div>
-              <div class="swap-prize"><b>₹5L</b> + Club Mahindra stay · 22 Indian + 4 intl B-schools</div>
+              <div class="swap-name">Reliance TUP</div>
+              <div class="swap-org">Reliance Industries · the ultimate pitch</div>
+              <div class="swap-prize"><b>₹25L pool</b> · Winner ₹6L + PPI · open to all MBA programs</div>
             </div>
           </div>
           <div class="swap-tags">
-            <span class="swap-tag red">Strategy</span>
+            <span class="swap-tag red">Entrepreneurship</span>
             <span class="swap-tag">PPI</span>
-            <span class="swap-tag">International</span>
+            <span class="swap-tag">All-MBA</span>
           </div>
         </div>
 
@@ -720,7 +737,7 @@ footer{border-top:4px solid var(--ink);padding:64px 0 48px}
           <div class="swap-tags">
             <span class="swap-tag red">Marketing</span>
             <span class="swap-tag">International</span>
-            <span class="swap-tag">135K+ entrants</span>
+            <span class="swap-tag">240K+ entrants</span>
           </div>
         </div>
       </div>
@@ -885,15 +902,15 @@ footer{border-top:4px solid var(--ink);padding:64px 0 48px}
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">Do all of these actually lead to job offers?<span class="plus">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner">Most marquee comps offer a <b>PPI</b> (Pre-Placement Interview) to national finalists at minimum. A smaller set runs direct hiring funnels — <b>ABG Stratos, J&amp;J Imagivators, Bajaj Finserv ATOM, ITC Interrobang, HUL LIME, TAS InvicTAS, Tata Steel-a-thon, Marico Over The Wall</b> have explicit PPO pipelines for finalists. Filter by "PPI" or "PPO" to see only those.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">Most marquee comps offer a <b>PPI</b> (Pre-Placement Interview) to national finalists at minimum. A smaller set runs direct hiring funnels — <b>Bajaj Finserv ATOM, TAS InvicTAS, Tata Steel-a-thon, ITC Interrobang, IDFC FIRST FAME</b> carry explicit PPO routes; <b>ABG Stratos, HUL LIME, Marico Over The Wall, J&amp;J Imagivators</b> feed PPI pipelines into the host firm. Filter by "PPI" or "PPO" to see only those.</div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">When should I start preparing for the August–November cluster?<span class="plus">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner">The golden rule: <b>two months before launch</b>. So mid-June for HUL LIME / Pidilite Bond / ABG HeadstaRt; mid-July for ABG Stratos / Mahindra War Room / ITC / Amazon ACE / Flipkart WiRED; late August for ICICI Beat the Curve / Asian Paints CANVAS. Most are 1st-year MBA flagships, so right after induction is the right time to assemble teams.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">The golden rule: <b>two months before launch</b>. So early-June for Bajaj Finserv ATOM / Pidilite Bond / ABG HeadstaRt; mid-July for ABG Stratos / ITC Interrobang / Amazon ACE / Flipkart WiRED / HUL LIME; late August for Asian Paints CANVAS / Tata Steel-a-thon. Most are 1st-year MBA flagships, so right after induction is the right time to assemble teams.</div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">Are these only for first-year MBA students?<span class="plus">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner">Roughly 60% of marquee comps prefer 1st-years (since the hiring funnel feeds summer internships). Examples: HUL LIME, ABG HeadstaRt, ITC Interrobang, Pidilite Bond, Dabur Verve, Tata Consumer Grow Beyond Better. The rest are <b>1st &amp; 2nd year open</b> — Mahindra War Room, Marico Over The Wall, Reliance TUP, Amazon ACE, Flipkart WiRED, Bajaj Finserv ATOM.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">Roughly 60% of marquee comps prefer 1st-years (since the hiring funnel feeds summer internships). Examples: HUL LIME, ABG HeadstaRt, ITC Interrobang, Pidilite Bond, Dabur Verve, Amazon ACE, Tata Consumer Grow Beyond Better. The rest are <b>1st &amp; 2nd year open</b> — Marico Over The Wall, Reliance TUP, Flipkart WiRED, Bajaj Finserv ATOM, EY Techathon.</div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">How accurate are the registration windows shown?<span class="plus">+</span></button>
@@ -968,48 +985,47 @@ footer{border-top:4px solid var(--ink);padding:64px 0 48px}
    ============================================================ */
 const COMPS = [
   // ---------- MARQUEE ----------
-  {id:"hul-lime",n:"HUL LIME",full:"Lessons in Marketing Excellence",org:"Hindustan Unilever",tracks:["marketing"],tier:"premier",schools:"~18 premier B-schools + wildcard",team:"3",mo:7,window:"Jul–Aug",prize:"₹10L winner + Unilever Future Leaders' League (London/global)",perks:["ppi","international","cash"],edition:"S14+",marquee:true,logo:"logos/hindustan-unilever/hul-lime_competition.png",orgLogo:"logos/hindustan-unilever/hul_corporate.svg",blurb:"HUL's flagship marketing case, televised by CNBC-TV18. Past themes: gaming integration, NGO partnerships (Goonj)."},
-  {id:"itc-interrobang",n:"ITC Interrobang?!",org:"ITC",tracks:["marketing","hr","ops-supply"],tier:"premier",schools:"18 premier institutes (4,600+ students, 2024)",team:"3–4",mo:8,window:"Aug–Sep",prize:"Cash + ITC AUT (Assistant Under Trainee) pipeline",perks:["ppo","cash"],edition:"S15 = 2025",marquee:true,logo:"logos/itc/itc-interrobang_competition.webp",orgLogo:"logos/itc/itc-limited_corporate.svg",blurb:"3 tracks (Marketing, HR, Supply Chain). Past brands: Dark Fantasy, Mangaldeep, Nimyle, Aashirvad Spices. Grand Finale in Kolkata."},
-  {id:"abg-stratos",n:"ABG Stratos",org:"Aditya Birla Group",tracks:["general-mgmt","strategy"],tier:"premier",schools:"Top 15 (IIMs A/B/C/L/K/I, ISB, XLRI, SPJIMR, FMS, JBIMS, MDI, IIFT...)",team:"3",mo:8,window:"Aug–Sep",prize:"Cash + PPI + ABG Group Management Trainee (GMT) pipeline",perks:["ppo","cash"],edition:"since 2015",marquee:true,logo:"logos/aditya-birla-group/abg-stratos_competition.png",orgLogo:"logos/aditya-birla-group/aditya-birla-group_corporate.svg",blurb:"6 back-to-back simulation micro-rounds in 72 hours. Hiring funnel for ABG's future-CEO GMT pipeline. Consistently top-3 in prestige rankings."},
-  {id:"abg-headstart",n:"ABG HeadstaRt",org:"Aditya Birla Group",tracks:["hr"],tier:"premier",schools:"Curated 6 (MDI, SCMHRD, SIBM Pune, TISS Mumbai, XIMB, XLRI-HRM)",team:"3 (1st-yr HR)",mo:7,window:"Late Jul",prize:"ABG Group Internship Program (GIP) + direct PPO",perks:["ppo"],edition:"Active",marquee:true,logo:"logos/aditya-birla-group/abg-headstart_competition.png",orgLogo:"logos/aditya-birla-group/aditya-birla-group_corporate.svg",blurb:"4 rounds: iLead Business Simulation → HR Case → Mumbai National Finale. Winners get GIP with direct PPO."},
-  {id:"mahindra-war-room",n:"Mahindra War Room",org:"Mahindra & Mahindra",tracks:["strategy","general-mgmt"],tier:"premier",schools:"22 Indian + 4 international (Fudan, Yonsei, AIM Manila, NTU SG)",team:"4 (2-yr PGP)",mo:8,window:"Aug–Oct (~3 mo)",prize:"₹5L winner + Club Mahindra stay; Finalist PPIs",perks:["ppi","international","cash"],edition:"S12+ (since 2007)",marquee:true,logo:"logos/mahindra-group/mahindra-war-room_competition.jpg",orgLogo:"logos/mahindra-group/mahindra-and-mahindra_corporate.svg",blurb:"4-tier: Campus → Golden → Silver (audience vote) → Platinum Grand Finale. Among India's most prestigious strategy comps."},
-  {id:"loreal-brandstorm",n:"L'Oréal Brandstorm",org:"L'Oréal",tracks:["marketing","entrepreneurship"],tier:"all-india",schools:"All under-30s (135,000+ globally in 2025)",team:"3",mo:1,window:"Jan–Apr (India national: Apr)",prize:"3-mo Paris HQ mission + permanent Management Trainee contract",perks:["international"],edition:"64 countries · 2025",marquee:true,logo:"logos/loreal/loreal-brandstorm_competition.png",orgLogo:"logos/loreal/loreal_corporate.svg",blurb:"The only truly global youth innovation competition on the list. Submission → Country Final → Paris Global Finale. 2026 partnered with L'Oréal Luxe."},
-  {id:"reliance-tup",n:"Reliance TUP",full:"The Ultimate Pitch",org:"Reliance Industries",tracks:["entrepreneurship","general-mgmt"],tier:"all-mba",schools:"All full-time MBA/PGDM in India (1st & 2nd yr)",team:"1–3",mo:10,window:"Oct–Nov",prize:"₹25L+ pool; Winner ₹10L + PPI + GenNext Hub mentorship + Jamnagar visit",perks:["ppi","cash"],edition:"XI = 2025",marquee:true,logo:"logos/reliance/reliance-tup_competition.jpg",orgLogo:"logos/reliance/reliance-industries_corporate.png",blurb:"11 seasons. Idea Submission → Elimination → Semi-Finale → Grand Finale at RIL Corporate Park, Navi Mumbai (2-day Idea Fair)."},
-  {id:"accenture-strategy",n:"Accenture B-School Strategy Challenge",org:"Accenture India",tracks:["strategy"],tier:"premier",schools:"16 premier (IIMs A/B/C/L/K/I/U, ISB, FMS, JBIMS, SPJIMR, XLRI, IIFT, MDI, NITIE, TISS)",team:"4",mo:8,window:"Aug",prize:"~₹10L cumulative for top 3 + PPIs",perks:["ppi","cash"],edition:"S9 = 2025 (won by SPJIMR)",marquee:true,logo:"logos/accenture/accenture-bschool-strategy_competition.png",orgLogo:"logos/accenture/accenture_corporate.svg",blurb:"4 rounds: rapid-fire quiz → CEO/COO simulation → industry case → top-8 mentored finale. Themes: Total Enterprise Reinvention, Gen AI."},
+  {id:"hul-lime",n:"HUL LIME",full:"Lessons in Marketing Excellence",org:"Hindustan Unilever",tracks:["marketing"],tier:"all-mba",schools:"1st-yr full-time MBA, open across all Indian B-schools",team:"3",mo:8,window:"Aug–Sep",prize:"₹10L winner + Unilever Future Leaders' League (London/global)",perks:["ppi","international","cash"],edition:"S17 = 2025",marquee:true,logo:"logos/hindustan-unilever/hul-lime_competition.png",orgLogo:"logos/hindustan-unilever/hul_corporate.svg",blurb:"HUL's flagship marketing case, televised by CNBC-TV18. Recent seasons opened to 1st-years across all B-schools."},
+  {id:"itc-interrobang",n:"ITC Interrobang?!",org:"ITC",tracks:["marketing","hr","ops-supply"],tier:"premier",schools:"18 premier institutes (4,600+ students, 2024)",team:"3–4",mo:8,window:"Aug–Sep",prize:"Cash + PPI → ITC AUT (Assistant Under Training) pipeline",perks:["ppi","cash"],edition:"S15 = 2025",marquee:true,logo:"logos/itc/itc-interrobang_competition.webp",orgLogo:"logos/itc/itc-limited_corporate.svg",blurb:"3 tracks (Marketing, HR, Supply Chain). Past brands: Dark Fantasy, Mangaldeep, Nimyle, Aashirvad Spices. Grand Finale in Kolkata."},
+  {id:"abg-stratos",n:"ABG Stratos",org:"Aditya Birla Group",tracks:["general-mgmt","strategy"],tier:"premier",schools:"Top 15 (IIMs A/B/C/L/K/I, ISB, XLRI, SPJIMR, FMS, JBIMS, MDI, IIFT...)",team:"3",mo:8,window:"Aug–Sep",prize:"Cash + PPI + ABG Group Management Trainee (GMT) pipeline",perks:["ppi","cash"],edition:"since 2015",marquee:true,logo:"logos/aditya-birla-group/abg-stratos_competition.png",orgLogo:"logos/aditya-birla-group/aditya-birla-group_corporate.svg",blurb:"6 back-to-back simulation micro-rounds in 72 hours. Hiring funnel for ABG's future-CEO GMT pipeline. Consistently top-3 in prestige rankings."},
+  {id:"abg-headstart",n:"ABG HeadstaRt",org:"Aditya Birla Group",tracks:["hr"],tier:"premier",schools:"Curated 6 (MDI, SCMHRD, SIBM Pune, TISS Mumbai, XIMB, XLRI-HRM)",team:"3 (1st-yr HR)",mo:7,window:"Late Jul",prize:"₹5L / ₹3L / ₹1L cash + internship PPIs (ABG GIP / leadership pipeline)",perks:["ppi","cash"],edition:"Active",marquee:true,logo:"logos/aditya-birla-group/abg-headstart_competition.png",orgLogo:"logos/aditya-birla-group/aditya-birla-group_corporate.svg",blurb:"4 rounds: iLead Business Simulation → HR Case → Mumbai National Finale. Winners get cash + internship PPIs into the ABG GIP."},
+  {id:"mahindra-war-room",n:"Mahindra War Room",org:"Mahindra & Mahindra",tracks:["strategy","general-mgmt"],tier:"premier",schools:"22 Indian + 4 international (Fudan, Yonsei, AIM Manila, NTU SG)",team:"4 (2-yr PGP)",mo:8,window:"Dormant (last run 2019)",prize:"₹5L + Club Mahindra stay (last awarded 2019)",perks:["ppi","international","cash"],edition:"Dormant — last S12, 2019",marquee:false,logo:"logos/mahindra-group/mahindra-war-room_competition.jpg",orgLogo:"logos/mahindra-group/mahindra-and-mahindra_corporate.svg",blurb:"Dormant under this name since Season 12 (2019). Mahindra's active campus successor is the Rise Challenge — see its entry."},
+  {id:"loreal-brandstorm",n:"L'Oréal Brandstorm",org:"L'Oréal",tracks:["marketing","entrepreneurship"],tier:"all-india",schools:"All under-30s (240,000+ globally in 2025)",team:"3",mo:1,window:"Jan–Apr (India national: Apr)",prize:"3-mo Paris HQ mission + permanent Management Trainee contract",perks:["international"],edition:"64 countries · 2025",marquee:true,logo:"logos/loreal/loreal-brandstorm_competition.png",orgLogo:"logos/loreal/loreal_corporate.svg",blurb:"The only truly global youth innovation competition on the list. Submission → Country Final → Paris Global Finale. 2026 partnered with L'Oréal Luxe."},
+  {id:"reliance-tup",n:"Reliance TUP",full:"The Ultimate Pitch",org:"Reliance Industries",tracks:["entrepreneurship","general-mgmt"],tier:"all-mba",schools:"All full-time MBA/PGDM in India (1st & 2nd yr)",team:"1–4 (same institute)",mo:10,window:"Oct–Nov",prize:"₹25L+ pool; Winner ₹6L + PPI; 2-day Grand Finale at Reliance Corporate Park, Navi Mumbai",perks:["ppi","cash"],edition:"XI = 2025",marquee:true,logo:"logos/reliance/reliance-tup_competition.jpg",orgLogo:"logos/reliance/reliance-industries_corporate.png",blurb:"11 seasons. Idea Submission → Elimination → Semi-Finale → Grand Finale at RIL Corporate Park, Navi Mumbai (2-day Idea Fair)."},
+  {id:"accenture-strategy",n:"Accenture B-School Strategy Challenge",org:"Accenture India",tracks:["strategy"],tier:"premier",schools:"16 premier (IIMs A/B/C/L/K/I/U, ISB, FMS, JBIMS, SPJIMR, XLRI, IIFT, MDI, NITIE, TISS)",team:"4",mo:7,window:"Jun–Jul reg · Aug–Sep rounds",prize:"~₹10L cumulative for top 3 + PPIs",perks:["ppi","cash"],edition:"S9 = 2025 (won by SPJIMR)",marquee:true,logo:"logos/accenture/accenture-bschool-strategy_competition.png",orgLogo:"logos/accenture/accenture_corporate.svg",blurb:"4 rounds: rapid-fire quiz → CEO/COO simulation → industry case → top-8 mentored finale. Themes: Total Enterprise Reinvention, Gen AI."},
   {id:"marico-otw",n:"Marico Over The Wall",org:"Marico",tracks:["marketing","strategy"],tier:"premier",schools:"20 curated + 30 wildcard",team:"3 (1st & 2nd yr)",mo:9,window:"Sep",prize:"₹4L winner / ₹2L / ₹1L / ₹1L People's Choice + PPI + Marico Innovation Foundation seed",perks:["ppi","cash"],edition:"S13 = 2025",marquee:true,logo:"logos/marico/marico-over-the-wall_competition.png",orgLogo:"logos/marico/marico-limited_corporate.svg",blurb:"3 pivots: Marketing / Sales / Strategy. Past winners include Team Game Changers (SPJIMR S10). 2019 winner pipeline → Marico Area Sales Manager."},
-  {id:"hul-finace",n:"HUL FinAce",org:"Hindustan Unilever",tracks:["finance"],tier:"premier",schools:"Premier MBA finance",team:"3",mo:9,window:"Sep–Nov",prize:"Cash + PPI; Unilever Finance Leadership Programme pipeline",perks:["ppi","cash"],edition:"S8 = 2024",marquee:true,logo:"logos/hindustan-unilever/hul-finace_competition.png",orgLogo:"logos/hindustan-unilever/hul_corporate.svg",blurb:"HUL's finance track (less televised than LIME, equally pipeline-relevant). Feeds into Unilever Finance Leadership Programme."},
-  {id:"hul-techtonic",n:"HUL TechTonic",org:"Hindustan Unilever",tracks:["product-tech"],tier:"premier",schools:"IIM K/L/I, SPJIMR, XLRI, NITIE/IIM Mumbai, NMIMS, XIMB",team:"3",mo:11,window:"Nov",prize:"~₹4L + PPI",perks:["ppi","cash"],edition:"S7 = 2025 (won by IIM Calcutta)",marquee:true,logo:"logos/hindustan-unilever/hul-techtonic_competition.png",orgLogo:"logos/hindustan-unilever/hul_corporate.svg",blurb:"HUL's tech/product-mgmt track (formerly 'IT Reboot'). S7 had 3,700+ team registrations."},
-  {id:"hul-nutcracker",n:"HUL Nutcracker",org:"Hindustan Unilever",tracks:["strategy","analytics"],tier:"premier",schools:"Premier B-schools",team:"3",mo:8,window:"Aug onwards",prize:"PPI into HUL Future Leadership Programme",perks:["ppi"],edition:"Active",marquee:true,logo:"logos/hindustan-unilever/hul-nutcracker_competition.jpg",orgLogo:"logos/hindustan-unilever/hul_corporate.svg",blurb:"Strategy/analytics track that pipelines alongside LIME, FinAce, TechTonic into HUL's Future Leadership Programme."},
-  {id:"icici-btc",n:"ICICI Beat the Curve",org:"ICICI Bank",tracks:["finance"],tier:"all-mba",schools:"76 campuses (MBA + BA + LLB)",team:"3–4",mo:9,window:"Sep",prize:"Cash + PPI/PPO; top 12 to Mumbai finale",perks:["ppi","ppo","cash"],edition:"S4+ (since 2018)",marquee:true,logo:"logos/icici/icici-beat-the-curve_competition.jpg",orgLogo:"logos/icici/icici-bank_corporate.svg",blurb:"BFSI flagship. Campus → Village Immersion → Top 12 Mumbai Grand Finale (8-min pitch + 7-min Q&A to ICICI leadership)."},
-  {id:"bajaj-atom",n:"Bajaj Finserv ATOM",full:"CEO's Challenge",org:"Bajaj Finserv",tracks:["finance","strategy"],tier:"premier",schools:"17 premier (IIMs A/B/C/I/K/L, FMS, ISB, IMT, JBIMS, NMIMS, TAPMI, SPJIMR, XLRI, IIFT, SIBM, SP Jain)",team:"3",mo:10,window:"Oct",prize:"₹3L + GYLP Program + PPI",perks:["ppi","cash"],edition:"S6+ (since 2018)",marquee:true,logo:"logos/bajaj-group/bajaj-atom-ceos-challenge_competition.gif",orgLogo:"logos/bajaj-group/bajaj-finserv_corporate.svg",blurb:"'Un-case-study' using scenario planning + design thinking for futuristic fintech problems. 4 rounds: Seed → Series A → Series B → Grand Finale (Pune HQ)."},
-  {id:"amex-bowl",n:"Amex Campus Super Bowl",org:"American Express",tracks:["analytics","finance"],tier:"premier",schools:"~28 (IIMs, IITs, ISB, MDI, NITIE, NMIMS, SPJIMR, XLRI, FMS, MSE, DSE, IGIDR, ISI)",team:"team + individual",mo:10,window:"Oct deadline",prize:"Apple products + PPI",perks:["ppi"],edition:"Active",marquee:true,logo:"logos/other-conglomerates/amex-campus-super-bowl_competition.png",orgLogo:"logos/other-conglomerates/american-express_corporate.png",blurb:"Analytics/data science (Kaggle-style ML prediction). One of the highest-quality decision-science comps."},
-  {id:"asian-paints-canvas",n:"Asian Paints CANVAS",org:"Asian Paints",tracks:["marketing"],tier:"premier",schools:"~25 premier",team:"3 (1st-yr MBA)",mo:9,window:"Sep–Oct",prize:"Cash + PPI + Asian Paints MT pipeline",perks:["ppi","cash"],edition:"since 2017+",marquee:true,logo:"logos/asian-paints/asian-paints-canvas_competition.png",orgLogo:"logos/asian-paints/asian-paints_corporate.svg",blurb:"Marketing / consumer insights. 2021 winners Team Slice of Art (IIM Bangalore) beat 972 teams."},
+  {id:"hul-finace",n:"HUL FinAce",org:"Hindustan Unilever",tracks:["finance"],tier:"premier",schools:"Premier MBA finance",team:"3",mo:8,window:"Aug reg · Sep–Oct rounds",prize:"Cash + PPI; Unilever ULIP internship pipeline",perks:["ppi","cash"],edition:"S9 = 2025",marquee:true,logo:"logos/hindustan-unilever/hul-finace_competition.png",orgLogo:"logos/hindustan-unilever/hul_corporate.svg",blurb:"HUL's finance track (less televised than LIME, equally pipeline-relevant). Semi-finalists get Unilever ULIP internship PPIs."},
+  {id:"hul-techtonic",n:"HUL TechTonic",org:"Hindustan Unilever",tracks:["product-tech"],tier:"premier",schools:"IIM K/L/I, SPJIMR, XLRI, NITIE/IIM Mumbai, NMIMS, XIMB",team:"3",mo:8,window:"Aug",prize:"~₹4L + PPI",perks:["ppi","cash"],edition:"S7 = 2025 (won by IIM Calcutta)",marquee:true,logo:"logos/hindustan-unilever/hul-techtonic_competition.png",orgLogo:"logos/hindustan-unilever/hul_corporate.svg",blurb:"HUL's tech/product-mgmt track (formerly 'IT Reboot'). S7 registration ran Aug 2025; finale later in the year."},
+  {id:"hul-nutcracker",n:"HUL Nutcracker",org:"Hindustan Unilever",tracks:["strategy","analytics"],tier:"premier",schools:"Premier B-schools",team:"3",mo:8,window:"Aug onwards",prize:"PPI into HUL Future Leadership Programme",perks:["ppi"],edition:"Dormant — last 2021",marquee:false,logo:"logos/hindustan-unilever/hul-nutcracker_competition.jpg",orgLogo:"logos/hindustan-unilever/hul_corporate.svg",blurb:"Strategy/analytics track that pipelined into HUL's leadership programme. No edition found since 2021 — likely dormant."},
+  {id:"icici-btc",n:"ICICI Beat the Curve",org:"ICICI Bank",tracks:["finance"],tier:"all-mba",schools:"76 campuses (MBA + BA + LLB)",team:"3–4",mo:9,window:"Sep",prize:"Cash + PPI/PPO; top 12 to Mumbai finale",perks:["ppi","ppo","cash"],edition:"Dormant — last verified 2022",marquee:false,logo:"logos/icici/icici-beat-the-curve_competition.jpg",orgLogo:"logos/icici/icici-bank_corporate.svg",blurb:"BFSI flagship. Campus → Village Immersion → Top 12 Mumbai Grand Finale. No 2023–25 edition found — verify before relying on it."},
+  {id:"bajaj-atom",n:"Bajaj Finserv ATOM",full:"CEO's Challenge",org:"Bajaj Finserv",tracks:["finance","strategy"],tier:"premier",schools:"17 premier (IIMs A/B/C/I/K/L, FMS, ISB, IMT, JBIMS, NMIMS, TAPMI, SPJIMR, XLRI, IIFT, SIBM, SP Jain)",team:"4 (same campus)",mo:7,window:"Jul",prize:"Winner ₹5L + PPO/PPI; R-up ₹3L + GYLP",perks:["ppi","ppo","cash"],edition:"S8 = 2025",marquee:true,logo:"logos/bajaj-group/bajaj-atom-ceos-challenge_competition.gif",orgLogo:"logos/bajaj-group/bajaj-finserv_corporate.svg",blurb:"'Un-case-study' using scenario planning + design thinking for futuristic fintech problems. 4 rounds: Seed → Series A → Series B → Grand Finale (Pune HQ)."},
+  {id:"amex-bowl",n:"American Express Campus Challenge",org:"American Express",tracks:["analytics","finance"],tier:"premier",schools:"~28 (IIMs, IITs, ISB, MDI, NITIE, NMIMS, SPJIMR, XLRI, FMS, MSE, DSE, IGIDR, ISI)",team:"team + individual",mo:5,window:"Apr–Jun deadline",prize:"Apple products + PPI",perks:["ppi"],edition:"Active (formerly Campus Super Bowl)",marquee:true,logo:"logos/other-conglomerates/amex-campus-super-bowl_competition.png",orgLogo:"logos/other-conglomerates/american-express_corporate.png",blurb:"Analytics / decision-science (Kaggle-style ML prediction). Rebranded from 'Campus Super Bowl' (2022–24)."},
+  {id:"asian-paints-canvas",n:"Asian Paints CANVAS",org:"Asian Paints",tracks:["marketing"],tier:"premier",schools:"~25 premier",team:"3 (2nd/final-yr flagship)",mo:8,window:"Aug reg · Oct finale",prize:"Cash + PPI + Asian Paints MT pipeline",perks:["ppi","cash"],edition:"since 2017+",marquee:true,logo:"logos/asian-paints/asian-paints-canvas_competition.png",orgLogo:"logos/asian-paints/asian-paints_corporate.svg",blurb:"Marketing / consumer insights. 2021 winners Team Slice of Art (IIM Bangalore) beat 972 teams."},
   {id:"dabur-verve",n:"Dabur Verve",org:"Dabur India",tracks:["marketing"],tier:"premier",schools:"Premier-curated (XLRI, SPJIMR, NMIMS, TAPMI, KJ Somaiya…)",team:"2–3 (1st-yr)",mo:8,window:"Aug",prize:"Up to ₹10L pool + Dabur summer internship ('Campus Star')",perks:["ppi","cash"],edition:"since 2022",marquee:true,logo:"logos/dabur/dabur-verve_competition.png",orgLogo:"logos/dabur/dabur-india_corporate.svg",blurb:"Quiz → Case Submission → Finale with Dabur Leadership. 6,000+ MBA participants in 2023."},
-  {id:"flipkart-wired",n:"Flipkart WiRED",org:"Flipkart",tracks:["product-tech","ops-supply","hr","general-mgmt"],tier:"all-mba",schools:"All B-schools in India (started 7 institutes, now open)",team:"3 (cross-spec, same campus)",mo:8,window:"Aug–Sep",prize:"₹2L per track winner + R-up ₹50K + PPIs",perks:["ppi","cash"],edition:"S9 = 2025",marquee:true,logo:"logos/flipkart/flipkart-wired_competition.png",orgLogo:"logos/flipkart/flipkart_corporate.svg",blurb:"4 tracks: Business, Product, Supply Chain, HR. 4 stages culminating in Grand Finale at Flipkart Bengaluru."},
-  {id:"amazon-ace",n:"Amazon ACE",full:"Customer Excellence Challenge",org:"Amazon India",tracks:["product-tech","general-mgmt"],tier:"premier",schools:"12+ premier + wildcards",team:"3–4 (1st & 2nd yr)",mo:8,window:"Aug",prize:"₹2L / ₹1.5L / ₹50K + PPI + Alexa devices",perks:["ppi","cash"],edition:"12+ editions (since 2011)",marquee:true,logo:"logos/amazon/amazon-ace_competition.png",orgLogo:"logos/amazon/amazon-india_corporate.svg",blurb:"Ranked #1 most-prestigious MBA case comp 2021/22 by Unstop. Preliminary quiz → Case Breakers (Amazon-style writing) → Grand Finale (scale a business 50×)."},
+  {id:"flipkart-wired",n:"Flipkart WiRED",org:"Flipkart",tracks:["product-tech","ops-supply","hr","general-mgmt"],tier:"all-mba",schools:"All B-schools in India (started 7 institutes, now open)",team:"1–3 (cross-campus / year / spec)",mo:8,window:"Aug–Sep",prize:"₹1–1.25L EGV per track winner + R-up ₹75K EGV + PPIs",perks:["ppi","cash"],edition:"S9 = 2025",marquee:true,logo:"logos/flipkart/flipkart-wired_competition.png",orgLogo:"logos/flipkart/flipkart_corporate.svg",blurb:"4 tracks: Business, Product, Supply Chain, HR. 4 stages culminating in Grand Finale at Flipkart Bengaluru."},
+  {id:"amazon-ace",n:"Amazon ACE",full:"Customer Excellence Challenge",org:"Amazon India",tracks:["product-tech","general-mgmt"],tier:"premier",schools:"12+ premier + wildcards",team:"4 (1st-yr full-time MBA)",mo:8,window:"Aug",prize:"₹2L / ₹1.5L / ₹50K + PPI + Alexa devices",perks:["ppi","cash"],edition:"12+ editions (since 2011)",marquee:true,logo:"logos/amazon/amazon-ace_competition.png",orgLogo:"logos/amazon/amazon-india_corporate.svg",blurb:"Ranked #1 most-prestigious MBA case comp 2021/22 by Unstop. Preliminary quiz → Case Breakers (Amazon-style writing) → Grand Finale (scale a business 50×)."},
   {id:"msft-pmengage",n:"Microsoft PM Engage",org:"Microsoft India",tracks:["product-tech"],tier:"premier",schools:"Premier MBA",team:"2 (separate PGP1 / PGP2-PGPX / 1-yr tracks)",mo:8,window:"Post-induction",prize:"Cash + Microsoft internship",perks:["ppi"],edition:"Active (formerly PM Challenge)",marquee:true,logo:"logos/microsoft/microsoft-pm-engage_competition.png",orgLogo:"logos/microsoft/microsoft-india_corporate.svg",blurb:"Product-management case. 3 phases: Campus (functional spec + PPT) → Top picks per campus → Final with Microsoft leadership + PM mentors."},
   {id:"ey-techathon",n:"EY Techathon",org:"EY India",tracks:["product-tech","analytics","entrepreneurship"],tier:"all-india",schools:"All-India open (eng + mgmt). 1.5L+ regs · 6,500 team submissions (S5)",team:"team",mo:10,window:"Oct",prize:"Winner ₹3L / R-up ₹2L + EY internship + leadership mentorship",perks:["ppi","cash"],edition:"6.0 = 2026",marquee:true,logo:"logos/ey/ey-techathon_competition.jpg",orgLogo:"logos/ey/ey_corporate.svg",blurb:"Tech/AI hackathon-cum-case. S5 winners: Team CaseWizz (IIT Kharagpur) for V.A.R.U.N. AI financial assistant."},
-  {id:"infosys-ingenious",n:"Infosys Ingenious",org:"Infosys",tracks:["strategy","product-tech"],tier:"premier",schools:"80 select B-schools (2-yr full-time + 1-yr Exec MBA)",team:"4",mo:8,window:"Aug–Sep (Oct finale)",prize:"₹4L / ₹2.5L / ₹1.5L + Infosys Consulting PPI",perks:["ppi","cash"],edition:"12+ editions (since 2008)",marquee:true,logo:"logos/infosys/infosys-ingenious_competition.png",orgLogo:"logos/infosys/infosys_corporate.svg",blurb:"3 rounds: online quiz/sim → 5–7 page case → 8–10 slide B-plan at Infosys Bangalore HQ."},
+  {id:"infosys-ingenious",n:"Infosys Ingenious",org:"Infosys",tracks:["strategy","product-tech"],tier:"premier",schools:"80 select B-schools (2-yr full-time + 1-yr Exec MBA)",team:"3 (same college)",mo:8,window:"Aug–Sep (Oct finale)",prize:"₹4L / ₹3L / ₹2L + Infosys Consulting PPI (top-15 finalists)",perks:["ppi","cash"],edition:"12+ editions (since 2008)",marquee:true,logo:"logos/infosys/infosys-ingenious_competition.png",orgLogo:"logos/infosys/infosys_corporate.svg",blurb:"3 rounds: online quiz/sim → 5–7 page case → 8–10 slide B-plan at Infosys Bangalore HQ."},
   {id:"wipro-earthian",n:"Wipro Earthian (i2I)",org:"Wipro Foundation",tracks:["sustainability","entrepreneurship"],tier:"all-india",schools:"School (6-12) + college track (IIT-M partnered since 2023)",team:"2–5",mo:9,window:"Sep deadline",prize:"₹1L top 5 + ₹50K prototype fund",perks:["cash"],edition:"15th edition = 2025",marquee:true,logo:"logos/wipro/wipro-earthian_program.png",orgLogo:"logos/wipro/wipro_corporate.svg",blurb:"Wipro Foundation's sustainability program. 'Ideas to Impact' college track partnered with IIT Madras."},
-  {id:"tas-invictas",n:"TAS InvicTAS",org:"Tata Administrative Services",tracks:["general-mgmt"],tier:"premier",schools:"~15 (IIMs A/B/C/L/K/I, ISB, XLRI, SPJIMR, MDI, FMS, IIFT, NMIMS, JBIMS, IIM Mumbai)",team:"3 (same yr, same campus)",mo:8,window:"Aug–Sep",prize:"Campus winner ₹50K; National ~₹1L + TAS PPI",perks:["ppi","cash"],edition:"Active (2nd most prestigious 2020)",marquee:true,logo:"logos/tata-group/tas-invictas_competition.png",orgLogo:"logos/tata-group/tas_program.png",blurb:"Business simulation (in collaboration with TOPSIM). Functional hats: Sales/Marketing, R&D, Production, HR. Feeds Tata Group's leadership pipeline."},
-  {id:"nestle-genesis",n:"Nestlé Leaders League · Genesis",org:"Nestlé India",tracks:["marketing","strategy"],tier:"premier",schools:"Premier B-schools (1st-yr)",team:"team",mo:9,window:"Sep–Nov",prize:"PPI + hiring funnel",perks:["ppi"],edition:"Active (2025 ran)",marquee:true,logo:"logos/nestle/nestle-leaders-league-genesis_competition.png",orgLogo:"logos/nestle/nestle-india_corporate.svg",blurb:"FMCG marketing / strategy umbrella. Sub-programs include NEST. Hiring funnel into Nestlé India."},
+  {id:"tas-invictas",n:"TAS InvicTAS",org:"Tata Administrative Services",tracks:["general-mgmt"],tier:"premier",schools:"17 TAS campuses (incoming 1st-yrs)",team:"Individual",mo:5,window:"May",prize:"Cash + TAS Summer Internship PPO",perks:["ppo","cash"],edition:"Active (2nd most prestigious 2020)",marquee:true,logo:"logos/tata-group/tas-invictas_competition.png",orgLogo:"logos/tata-group/tas_program.png",blurb:"Individual business simulation (with TOPSIM) for incoming 1st-years. Winners get a direct line into the TAS Summer Internship."},
+  {id:"nestle-genesis",n:"Nestlé Leaders League · Genesis",org:"Nestlé India",tracks:["marketing","strategy"],tier:"premier",schools:"Premier B-schools (incoming MBA cohorts)",team:"team",mo:4,window:"Apr–May",prize:"PPI + hiring funnel",perks:["ppi"],edition:"Active (2025 ran)",marquee:true,logo:"logos/nestle/nestle-leaders-league-genesis_competition.png",orgLogo:"logos/nestle/nestle-india_corporate.svg",blurb:"FMCG marketing / strategy umbrella, run pre-induction (reg deadlines mid-May). Sub-programs include NEST."},
   {id:"mondelez-maestros",n:"Mondelez Maestros",org:"Mondelez India",tracks:["marketing","ops-supply"],tier:"premier",schools:"Premier select",team:"2–3",mo:10,window:"Oct–Nov",prize:"~₹3.5L + PPI + Mondelez India MT role",perks:["ppi","cash"],edition:"since 2020+",marquee:true,logo:"logos/mondelez/mondelez-maestros_competition.png",orgLogo:"logos/mondelez/mondelez-international_corporate.svg",blurb:"Brands: Cadbury, Oreo, belVita. 4 stages culminate in 10-min presentation finale. 2024 winners Team NotJustACadbury (NMIMS Mumbai) beat 10,000+."},
   {id:"tata-steelathon",n:"Tata Steel-a-thon",org:"Tata Steel",tracks:["general-mgmt","ops-supply","marketing","strategy","hr"],tier:"premier",schools:"~27–28 premier",team:"2–4 (1st & 2nd yr)",mo:9,window:"Sep–Oct",prize:"₹2.5L / ₹1.5L / ₹1L + PPI Tata Steel MT / INSPIRE PPO",perks:["ppo","ppi","cash"],edition:"S9+",marquee:true,logo:"logos/tata-group/tata-steel-a-thon_competition.jpg",orgLogo:"logos/tata-group/tata-steel_corporate.svg",blurb:"Multi-track (HR / Mktg-Sales / Ops-Strategy / Corp Comm / Value Chain). Past winners include Steelars (XIMB) and Shillongers (IIM Shillong)."},
   {id:"tata-imagination",n:"Tata Imagination Challenge",org:"Tata Group",tracks:["entrepreneurship","general-mgmt"],tier:"all-india",schools:"All UG/PG (any stream); 2.4 lakh regs in 2025",team:"individual / team",mo:8,window:"Aug–Sep",prize:"₹26L pool; ₹2L × top 10 + TAS PPI fast-track",perks:["ppi","cash"],edition:"6th edition = 2025",marquee:true,logo:"logos/tata-group/tata-imagination-challenge_competition.png",orgLogo:"logos/tata-group/tata-group_corporate.svg",blurb:"4 rounds: Brand-Stories Quiz → Gamified Analytithon → Idea Pitch (2-min video) → Grand Finale at Bombay House with TAS 'Idea Buddy' mentor."},
-  {id:"tata-grow-beyond",n:"Tata Consumer Grow Beyond Better",org:"Tata Consumer Products",tracks:["marketing","general-mgmt"],tier:"premier",schools:"Premier-curated (S5 expanded to all India)",team:"3 (1st-yr MBA)",mo:11,window:"Nov–Dec",prize:"₹2L + PPI; R-up ₹1L; top 40 fast-track to TCPL ELP",perks:["ppi","cash"],edition:"S4 (2025) = BITSoM",marquee:true,logo:"logos/tata-group/tata-grow-beyond-better_competition.png",orgLogo:"logos/tata-group/tata-consumer-products_corporate.png",blurb:"Formerly 'The FNB Challenge'. Treasure Hunt (non-elim) → Executive Summary → Detailed → Mentorship + Grand Finale."},
-  {id:"hero-campus",n:"Hero Campus Challenge",org:"Hero MotoCorp",tracks:["general-mgmt","product-tech","entrepreneurship"],tier:"all-india",schools:"All-India (premier MBA + engg); 200,000+ students S10",team:"3",mo:10,window:"Oct–Nov",prize:"S10 pool ₹25L: winner ₹2.5L + Xtreme 125/Vida VX2 + merch + PPI",perks:["ppi","cash"],edition:"S10",marquee:true,logo:"logos/hero-motocorp/hero-campus-challenge_competition.png",orgLogo:"logos/hero-motocorp/hero-motocorp_corporate.svg",blurb:"B-Track + E-Track in parallel. 3-4 rounds: assessment → Idea Pitch video → Senior Mgmt presentation → Mentorship → Virtual Grand Finale."},
+  {id:"tata-grow-beyond",n:"Tata Consumer Grow Beyond Better",org:"Tata Consumer Products",tracks:["marketing","general-mgmt"],tier:"all-mba",schools:"All Indian B-schools (1st-yr; was premier-curated through 2023)",team:"3 (1st-yr MBA)",mo:11,window:"Nov–Dec",prize:"₹2L + PPI; R-up ₹1L; top 40 fast-track to TCPL ELP",perks:["ppi","cash"],edition:"S4 (2025) = BITSoM",marquee:true,logo:"logos/tata-group/tata-grow-beyond-better_competition.png",orgLogo:"logos/tata-group/tata-consumer-products_corporate.png",blurb:"Formerly 'The FNB Challenge'. Treasure Hunt (non-elim) → Executive Summary → Detailed → Mentorship + Grand Finale."},
+  {id:"hero-campus",n:"Hero Campus Challenge",org:"Hero MotoCorp",tracks:["general-mgmt","product-tech","entrepreneurship"],tier:"all-india",schools:"All-India (premier MBA + engg); 200,000+ students S10",team:"3",mo:12,window:"Dec–Jan",prize:"S10 pool ₹25L: winner ₹2.5L + Xtreme 125/Vida VX2 + merch + PPI",perks:["ppi","cash"],edition:"S10 (reg Dec 2025–Jan 2026)",marquee:true,logo:"logos/hero-motocorp/hero-campus-challenge_competition.png",orgLogo:"logos/hero-motocorp/hero-motocorp_corporate.svg",blurb:"B-Track + E-Track in parallel. 3-4 rounds: assessment → Idea Pitch video → Senior Mgmt presentation → Mentorship → Grand Finale (finale Mar)."},
   {id:"gsk-ecube",n:"GSK ECube (E³)",org:"GlaxoSmithKline",tracks:["strategy","pharma"],tier:"premier",schools:"Premier (~3,000 regs)",team:"team",mo:11,window:"Nov",prize:"~₹2.5L + PPI",perks:["ppi","cash"],edition:"Nov 2024 = XIM University",marquee:true,logo:"logos/pharma/gsk-ecube_competition.jpg",orgLogo:"logos/pharma/gsk_corporate.png",blurb:"GSK's pharma/FMCG strategy flagship. Top 10 present at GSK Mumbai HQ."},
   {id:"diageo-bespirited",n:"Diageo BeSpirited",org:"Diageo",tracks:["general-mgmt","marketing"],tier:"all-india",schools:"Global (India + Hungary/Europe); legal drinking age",team:"3",mo:9,window:"Sep–Oct",prize:"Latest iPad per winning team member",perks:["international"],edition:"8 editions since 2016",marquee:true,logo:"logos/diageo/diageo-bespirited_competition.png",orgLogo:"logos/diageo/diageo_corporate.svg",blurb:"'Business Adventure Game'. Virtual investigation game → FMCG simulation → Case study Live Final (Budapest / Bangalore)."},
   {id:"pidilite-bond",n:"Bond with Pidilite",org:"Pidilite Industries",tracks:["marketing"],tier:"premier",schools:"Premier (1st-yr flagship)",team:"3 (gender-mix encouraged)",mo:7,window:"Jul–Aug",prize:"Summer internship (winner); HBR subscription (R-up)",perks:["ppi"],edition:"Active",marquee:true,logo:"logos/pidilite/bond-with-pidilite_competition.png",orgLogo:"logos/pidilite/pidilite-industries_corporate.svg",blurb:"3 rounds: 3-page approach → detailed PPT → Top-5 Finale (Pidilite + InsideIIM jury). 2020 top-7 of 2,500+ was SIBM Pune's Truly Bonded."},
   {id:"rpg-blizzard",n:"RPG Blizzard",org:"RPG Group",tracks:["general-mgmt","strategy"],tier:"premier",schools:"11 premier (IIM A/B/L/K/Ranchi, XLRI, NITIE, MDI, IIFT, IMI Delhi, FMS)",team:"2–3",mo:11,window:"Nov–Dec",prize:"₹1L + PPI; R-up ₹50K; campus winner ₹50K + lunch w/ Harsh Goenka",perks:["ppi","cash"],edition:"6.0+",marquee:true,logo:"logos/rpg-group/rpg-blizzard_competition.png",orgLogo:"logos/rpg-group/rpg-group_corporate.png",blurb:"Themed finales (Game of Thrones, Marvel). Quizzer Bender → Online Treasure Hunt → Business Decision → National Finale at RPG HQ Mumbai."},
   {id:"vedanta-xstrat",n:"Vedanta XStrat",org:"Vedanta Ltd",tracks:["strategy"],tier:"premier",schools:"30 premier (ISB, top IIMs, MDI, XLRI)",team:"3–4",mo:11,window:"Nov",prize:"₹10L cash + 20 CXO mentors",perks:["cash"],edition:"since 2021",marquee:true,logo:"logos/vedanta/vedanta-xstrat_competition.jpg",orgLogo:"logos/vedanta/vedanta_corporate.png",blurb:"S1 (2021–22) winners ISB Hyderabad. Multi-round with 20 Vedanta CXO mentors. ₹10L cash prize."},
   {id:"swiss-re",n:"Swiss Re ReImagine Challenge",org:"Swiss Re",tracks:["finance","product-tech"],tier:"all-india",schools:"All-India (engg + B-schools + insurance)",team:"3",mo:8,window:"Aug",prize:"Winner ₹75K + R-up ₹50K (~₹1.25L pool) + internship interview",perks:["ppi","cash"],edition:"Active",marquee:true,logo:"logos/swiss-re/swiss-re-reimagine_competition.jpeg",orgLogo:"logos/swiss-re/swiss-re_corporate.png",blurb:"2 tracks (Finance + Technology). 3 rounds: idea pitch + exec summary → Mentorship → Finale. 2022 finance winner Team Cali (IIM Kozhikode)."},
-  {id:"gep-gameplan",n:"GEP Gameplan",org:"GEP Worldwide",tracks:["ops-supply"],tier:"premier",schools:"Curated + wildcards",team:"2–3 (any spec, same campus)",mo:7,window:"Jul–Aug",prize:"S12 Winner ₹60K; R-up ₹30K; top 10 get PPIs",perks:["ppi","cash"],edition:"S12 = 2024",marquee:true,logo:"logos/consulting-services/gep-gameplan_competition.png",orgLogo:"logos/consulting-services/gep-worldwide_corporate.svg",blurb:"Procurement/supply-chain. Campus Qualifier → Campus Finale → National Finale (top 10, mentored by GEP managers)."},
+  {id:"gep-gameplan",n:"GEP Gameplan",org:"GEP Worldwide",tracks:["ops-supply"],tier:"all-mba",schools:"All Indian B-schools (1st & 2nd yr, any spec)",team:"2–3 (any spec, same campus)",mo:7,window:"Jul–Aug",prize:"S12 Winner ₹60K; R-up ₹30K; top 10 get PPIs",perks:["ppi","cash"],edition:"S12 = 2022 (none verified since)",marquee:false,logo:"logos/consulting-services/gep-gameplan_competition.png",orgLogo:"logos/consulting-services/gep-worldwide_corporate.svg",blurb:"Procurement / supply-chain. Campus Qualifier → Campus Finale → National Finale. Last verified edition S12 (2022)."},
   {id:"sun-tzu",n:"Sun Tzu by Avalon Consulting",org:"Avalon Consulting",tracks:["strategy"],tier:"premier",schools:"Leading Indian + international",team:"3",mo:7,window:"Jul–Nov",prize:"Cash + PPI with Avalon Consulting",perks:["ppi","cash"],edition:"since 2006",marquee:true,logo:"logos/consulting-services/fstc-sun-tzu_competition.webp",orgLogo:"logos/consulting-services/avalon-consulting_corporate.webp",blurb:"'Finding Sun Tzu Challenge' (FSTC). 3 rounds: 1-2 slide PPT → 10-15 slide detailed solution → Grand Finale (top 6-8, 15-min pitch + 5-min Q&A)."},
-  {id:"pwc-contender",n:"PwC Campus Contender",org:"PwC India",tracks:["strategy"],tier:"premier",schools:"Premier",team:"3–4",mo:6,window:"Jun–Jul (Oct finale)",prize:"PPI + finalist trip to Bangalore (paid)",perks:["ppi","international"],edition:"S6 = 2025",marquee:true,logo:"logos/pwc/pwc-campus-contender_competition.png",orgLogo:"logos/pwc/pwc-india_corporate.svg",blurb:"Theme S6: 'Bold. Collaborative. Innovative.' Multi-stage culminating in Grand Finale at PwC offices (Gurugram / Mumbai / Bengaluru / Kolkata)."},
-  {id:"jnj-imagivators",n:"J&J Imagivators",org:"Johnson & Johnson India",tracks:["general-mgmt","strategy"],tier:"premier",schools:"Premier (1st-yr MBA); 4,400+ regs",team:"3",mo:9,window:"Sep onwards",prize:"Top 30 finalists: 2-day J&J HQ immersive + internship/PPI",perks:["ppi"],edition:"S3 = 2024",marquee:true,logo:"logos/johnson-and-johnson/jnj-imagivators_competition.jpg",orgLogo:"logos/johnson-and-johnson/jnj_corporate.svg",blurb:"Inaugural winner Team Healthevators. S3 (2024) included Sanika Shanbhag and Pragati Tripathi (IIM Mumbai)."},
-  {id:"jnj-quest",n:"J&J Quest",org:"Johnson & Johnson India",tracks:["ops-supply","general-mgmt"],tier:"premier",schools:"Premier",team:"3",mo:9,window:"varies",prize:"Cash + PPI",perks:["ppi","cash"],edition:"Active",marquee:true,logo:"logos/johnson-and-johnson/jnj-quest_competition.png",orgLogo:"logos/johnson-and-johnson/jnj_corporate.svg",blurb:"Older J&J track focused on supply chain & general challenges. 2022 winners Team Muggles 2.0 (NITIE Mumbai)."},
-  {id:"jnj-women",n:"J&J Women in Sales",org:"Johnson & Johnson India",tracks:["hr","marketing"],tier:"premier",schools:"Premier MBA",team:"team",mo:9,window:"varies",prize:"PPI + J&J role",perks:["ppi"],edition:"Active",marquee:true,logo:"logos/johnson-and-johnson/jnj-women-in-sales_program.png",orgLogo:"logos/johnson-and-johnson/jnj_corporate.svg",blurb:"WOMEN-ONLY sales-leadership program. PPI funnel into J&J commercial roles.",women:true},
+  {id:"pwc-contender",n:"PwC Campus Contender",org:"PwC India",tracks:["strategy"],tier:"premier",schools:"Premier",team:"3–4",mo:9,window:"Sep–Oct reg · Dec–Jan finale",prize:"Winner ₹3L / ₹2L / ₹1L (₹6L pool) + mentorship",perks:["cash"],edition:"S6 = 2025",marquee:true,logo:"logos/pwc/pwc-campus-contender_competition.png",orgLogo:"logos/pwc/pwc-india_corporate.svg",blurb:"Theme S6: 'Bold. Collaborative. Innovative.' Multi-stage culminating in a Grand Finale at PwC offices (Gurugram / Mumbai / Bengaluru / Kolkata)."},
+  {id:"jnj-imagivators",n:"J&J Imagivators",org:"Johnson & Johnson India",tracks:["general-mgmt","strategy"],tier:"premier",schools:"Premier (1st-yr MBA); 4,400+ regs",team:"Individual (quiz + assessment)",mo:6,window:"Jun–Aug",prize:"Top 30 finalists: 2-day J&J HQ immersive + internship/PPI",perks:["ppi"],edition:"S3 = 2024",marquee:true,logo:"logos/johnson-and-johnson/jnj-imagivators_competition.jpg",orgLogo:"logos/johnson-and-johnson/jnj_corporate.svg",blurb:"Inaugural winner Team Healthevators. S3 (2024) included Sanika Shanbhag and Pragati Tripathi (IIM Mumbai)."},
+  {id:"jnj-quest",n:"J&J Quest",org:"Johnson & Johnson India",tracks:["ops-supply","general-mgmt"],tier:"premier",schools:"Premier",team:"3",mo:9,window:"varies",prize:"Cash + PPI",perks:["ppi","cash"],edition:"Dormant — last S10, 2022",marquee:false,logo:"logos/johnson-and-johnson/jnj-quest_competition.png",orgLogo:"logos/johnson-and-johnson/jnj_corporate.svg",blurb:"Older J&J track (supply chain & general). 2022 winners Team Muggles 2.0 (NITIE Mumbai). No edition found since 2022."},
   {id:"gs-women",n:"GS Women's Possibilities Summit",org:"Goldman Sachs India",tracks:["finance","general-mgmt"],tier:"premier",schools:"Premier MBA + UG",team:"team/individual",mo:9,window:"Sep–Oct",prize:"PPI + GS internship",perks:["ppi"],edition:"Active",marquee:true,logo:"logos/goldman-sachs/goldman-womens-possibilities-summit_program.svg",orgLogo:"logos/goldman-sachs/goldman-sachs_corporate.svg",blurb:"WOMEN-ONLY career conference + case. Career-track pipeline into GS analyst & associate roles.",women:true},
 
   // ---------- DIRECTORY ----------
@@ -1453,14 +1469,21 @@ document.querySelectorAll('.folder-stage').forEach(stage=>{
 document.querySelectorAll('.faq-item').forEach(item=>{
   const q = item.querySelector('.faq-q');
   const a = item.querySelector('.faq-a');
+  const inner = a.firstElementChild;
+  // After opening transition completes, release to auto so dynamic/reflowed content can't clip.
+  a.addEventListener('transitionend', e=>{
+    if(e.propertyName==='height' && item.classList.contains('open')){
+      a.style.height = 'auto';
+    }
+  });
   q.addEventListener('click',()=>{
     const open = item.classList.contains('open');
     if(open){
-      a.style.height = '0px';
+      a.style.height = inner.scrollHeight + 'px';   // from auto → fixed, so it can animate closed
+      requestAnimationFrame(()=>{ a.style.height = '0px'; });
       item.classList.remove('open');
       q.setAttribute('aria-expanded','false');
     } else {
-      const inner = a.firstElementChild;
       a.style.height = inner.scrollHeight + 'px';
       item.classList.add('open');
       q.setAttribute('aria-expanded','true');
