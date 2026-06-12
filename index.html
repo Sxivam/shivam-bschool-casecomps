@@ -3,554 +3,481 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>THE CASE-COMP INDEX — Indian B-school corporate case competitions · Shivam Meet</title>
-<meta name="description" content="HUL LIME, ITC Interrobang, ABG Stratos, Reliance TUP, Amazon ACE and 80+ more — every corporate case comp for Indian B-schools, mapped by month, track and hiring intent.">
+<title>CASECOMPS. — every Indian B-school corporate case comp, one grid</title>
+<meta name="description" content="HUL LIME, ITC Interrobang, ABG Stratos, Reliance TUP, Amazon ACE and 80+ more — every corporate case comp for Indian B-schools, mapped by month, track and hiring intent. Built by Shivam Meet.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
 <style>
 /* ============================================================
-   SWISS INTERNATIONAL — case-comp index
-   #FFFFFF · #000000 · #F2F2F2 · #FF3000 · Inter · radius 0
+   CASECOMPS — brutalist-lite editorial · golden yellow
+   #171e19 charcoal · #272727 dark · #ffe17c yellow · #b7c6c2 sage
+   Anton (display) + Satoshi (body) · mobile-first
    ============================================================ */
 :root{
-  --bg:#FFFFFF;
-  --ink:#000000;
-  --muted:#F2F2F2;
-  --red:#FF3000;
-  --gray:#6B6B6B;
+  --charcoal:#171e19;
+  --dark:#272727;
+  --yellow:#ffe17c;
+  --yellow-deep:#f5c93a;
+  --sage:#b7c6c2;
+  --white:#ffffff;
+  --paper:#fafaf8;
+  --ink-70:rgba(23,30,25,.7);
+  --ink-50:rgba(23,30,25,.5);
+  --ink-10:rgba(23,30,25,.1);
+  --sage-10:rgba(183,198,194,.1);
+  --sage-20:rgba(183,198,194,.2);
+  --ease:cubic-bezier(.4,0,.2,1);
 }
-
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-html{overflow-x:hidden;overflow-x:clip;scroll-padding-top:80px}
+html{scroll-behavior:smooth;scroll-padding-top:72px;-webkit-text-size-adjust:100%}
 body{
-  font-family:'Inter',Helvetica,Arial,sans-serif;
-  background:var(--bg);
-  color:var(--ink);
-  line-height:1.5;
-  overflow-x:hidden;
-  overflow-x:clip;
-  position:relative;
+  font-family:'Satoshi',system-ui,-apple-system,sans-serif;
+  background:var(--white);color:var(--charcoal);
+  line-height:1.55;overflow-x:hidden;overflow-x:clip;position:relative;
+  -webkit-font-smoothing:antialiased;
 }
 a{color:inherit;text-decoration:none}
 button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
 img{display:block;max-width:100%}
-::selection{background:var(--red);color:#fff}
+::selection{background:var(--yellow);color:var(--charcoal)}
 
-/* ---------- textures ---------- */
-body::before{
-  content:"";position:fixed;inset:0;z-index:60;pointer-events:none;
-  opacity:.015;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size:200px 200px;
+.anton{font-family:'Anton',Impact,sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.01em;line-height:.9}
+
+/* highlight bar behind a word */
+.hl{position:relative;display:inline-block;z-index:0;white-space:nowrap}
+.hl::before{
+  content:"";position:absolute;z-index:-1;
+  left:-.12em;right:-.12em;top:14%;bottom:14%;
+  background:var(--yellow);transform:rotate(-3deg);
 }
-.swiss-grid-pattern{
+.hl.tight::before{top:20%;bottom:18%}
+
+/* layout */
+.wrap{width:100%;max-width:1240px;margin:0 auto;padding:0 20px}
+section{position:relative}
+.grid-bg{
   background-image:
-    linear-gradient(rgba(0,0,0,.04) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(0,0,0,.04) 1px,transparent 1px);
-  background-size:24px 24px;
+    linear-gradient(to right,var(--sage-20) 1px,transparent 1px),
+    linear-gradient(to bottom,var(--sage-20) 1px,transparent 1px);
+  background-size:40px 40px;
 }
-.swiss-dots{
-  background-image:radial-gradient(rgba(0,0,0,.14) 1px,transparent 1px);
-  background-size:16px 16px;
-}
-.swiss-diagonal{
-  background-image:repeating-linear-gradient(45deg,rgba(0,0,0,.05) 0,rgba(0,0,0,.05) 1px,transparent 1px,transparent 10px);
+.grid-bg-dark{
+  background-image:
+    linear-gradient(to right,var(--sage-10) 1px,transparent 1px),
+    linear-gradient(to bottom,var(--sage-10) 1px,transparent 1px);
+  background-size:40px 40px;
 }
 
-/* ---------- type utilities ---------- */
-.sec-label{
-  display:flex;align-items:center;gap:12px;
-  font-size:12px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;
-  margin-bottom:28px;
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-70);
 }
-.sec-label .no{color:var(--red)}
-.sec-label::after{content:"";flex:1;height:2px;background:var(--ink);max-width:120px}
-.sec-title{
-  font-weight:900;text-transform:uppercase;letter-spacing:-.03em;line-height:.95;
-  font-size:clamp(38px,6vw,84px);
-}
-.sec-title .red{color:var(--red)}
-.sec-sub{
-  font-size:16px;font-weight:400;color:var(--gray);
-  max-width:560px;margin-top:20px;line-height:1.6;
-}
-.wrap{width:100%;max-width:1280px;margin:0 auto;padding:0 24px}
-section{padding:96px 0;border-top:4px solid var(--ink)}
-@media (max-width:760px){section{padding:64px 0}}
+.eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--yellow-deep);box-shadow:0 0 0 4px rgba(245,201,58,.2)}
+.eyebrow.on-dark{color:var(--sage)}
 
-/* ---------- reveal ---------- */
-.reveal{opacity:0;transform:translateY(18px);transition:opacity .25s ease-out,transform .25s ease-out}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  font-weight:700;font-size:15px;padding:15px 26px;border-radius:9999px;
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease),background .2s var(--ease);
+  min-height:48px;
+}
+.btn-dark{background:var(--charcoal);color:var(--white);box-shadow:0 6px 20px -8px rgba(23,30,25,.5)}
+.btn-dark:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 12px 28px -8px rgba(23,30,25,.55)}
+.btn-yellow{background:var(--yellow);color:var(--charcoal)}
+.btn-yellow:hover{transform:translateY(-2px) scale(1.02);background:var(--yellow-deep)}
+.btn-anton{font-family:'Anton',sans-serif;text-transform:uppercase;letter-spacing:.02em;font-size:18px;font-weight:400}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
 .reveal.in{opacity:1;transform:translateY(0)}
 
-/* ---------- nav ---------- */
+/* ---------------- NAV ---------------- */
 nav.bar{
-  position:fixed;top:0;left:0;right:0;z-index:50;
-  background:var(--bg);
-  border-bottom:2px solid var(--ink);
-  height:64px;
-  display:flex;align-items:center;
+  position:fixed;top:0;left:0;right:0;z-index:60;height:64px;
+  background:rgba(255,255,255,.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--ink-10);
 }
-nav.bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
-.brand{display:flex;align-items:center;gap:12px;font-weight:900;font-size:15px;letter-spacing:-.01em;text-transform:uppercase;white-space:nowrap}
-.brand .sq{width:14px;height:14px;background:var(--red);flex:none}
-.brand small{font-weight:500;color:var(--gray);letter-spacing:.15em;font-size:10px}
-.nav-links{display:flex;align-items:center;gap:28px}
-.nav-links a{
-  font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
-  position:relative;transition:color .15s linear;
-}
-.nav-links a:hover{color:var(--red)}
-.nav-cta{
-  background:var(--ink);color:#fff !important;
-  padding:12px 22px;font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
-  transition:background .15s linear;white-space:nowrap;
-}
-@media (max-width:480px){.nav-cta{padding:10px 14px;font-size:11px;letter-spacing:.1em}}
-.nav-cta:hover{background:var(--red) !important;color:#fff !important}
-@media (max-width:860px){.nav-links a:not(.nav-cta){display:none}}
-
-/* ---------- hero ---------- */
-header.hero{
-  padding:160px 0 96px;position:relative;border-top:none;
-}
-.hero-grid{display:grid;grid-template-columns:8fr 4fr;gap:48px;align-items:start}
-@media (max-width:960px){.hero-grid{grid-template-columns:1fr}}
-.hero h1{
-  font-weight:900;text-transform:uppercase;letter-spacing:-.035em;line-height:.92;
-  font-size:clamp(52px,9vw,136px);
-}
-.hero h1 .red{color:var(--red)}
-.hero-sub{
-  font-size:17px;color:var(--gray);max-width:520px;margin-top:32px;line-height:1.6;
-}
-.hero-ctas{display:flex;gap:0;margin-top:40px;flex-wrap:wrap}
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:10px;
-  padding:18px 32px;font-size:13px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
-  transition:background .15s linear,color .15s linear;
-  min-height:44px;
-}
-.btn-primary{background:var(--ink);color:#fff}
-.btn-primary:hover{background:var(--red)}
-.btn-secondary{background:#fff;color:var(--ink);border:2px solid var(--ink)}
-.btn-secondary:hover{background:var(--ink);color:#fff}
-@media (max-width:560px){.hero-ctas{gap:2px}.hero-ctas .btn{width:100%}}
-.notice{
-  margin-top:48px;border:2px solid var(--ink);
-  display:flex;align-items:stretch;max-width:640px;
-}
-.notice .flag{
-  background:var(--red);color:#fff;display:flex;align-items:center;
-  padding:14px 16px;font-size:11px;font-weight:900;letter-spacing:.2em;text-transform:uppercase;
-  writing-mode:initial;flex:none;
-}
-.notice p{padding:14px 18px;font-size:13px;line-height:1.55;color:var(--ink)}
-.notice b{font-weight:700}
-
-/* hero composition */
-.hero-comp{
-  position:relative;min-height:420px;border:2px solid var(--ink);
-  overflow:hidden;
-}
-.hero-comp .hc-circle{
-  position:absolute;width:200px;height:200px;border-radius:50%;
-  background:var(--red);top:48px;left:48px;
-  box-shadow:0 0 0 8px rgba(255,48,0,.1);
-}
-.hero-comp .hc-square{
-  position:absolute;width:140px;height:140px;background:var(--ink);
-  bottom:64px;right:40px;
-}
-.hero-comp .hc-bar{
-  position:absolute;height:2px;background:var(--ink);left:0;right:0;
-}
-.hero-comp .hc-bar.b1{top:33%}
-.hero-comp .hc-bar.b2{top:66%}
-.hero-comp .hc-tag{
-  position:absolute;bottom:16px;left:16px;
-  font-size:10px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--gray);
-}
-@media (max-width:960px){.hero-comp{display:none}}
-
-/* ---------- stats (count-up) ---------- */
-#data .stat-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  border:4px solid var(--ink);background:var(--ink);gap:2px;
-}
-@media (max-width:860px){#data .stat-grid{grid-template-columns:repeat(2,1fr)}}
-.stat{
-  background:#fff;padding:40px 28px;position:relative;
-  transition:background .15s linear;
-}
-.stat:hover{background:var(--muted)}
-.stat .plus{
-  position:absolute;top:16px;right:16px;font-size:20px;font-weight:900;color:var(--red);
-  transition:transform .2s ease-out;line-height:1;
-}
-.stat:hover .plus{transform:rotate(90deg)}
-.stat .num{
-  font-size:clamp(48px,6vw,84px);font-weight:900;letter-spacing:-.04em;line-height:1;
-  font-variant-numeric:tabular-nums;
-  transition:transform .2s ease-out;display:inline-block;
-}
-.stat:hover .num{transform:scale(1.05)}
-.stat .lbl{
-  margin-top:12px;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gray);
+nav.bar .wrap{height:100%;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:22px;letter-spacing:.01em}
+.logo .pd{color:var(--yellow-deep)}
+.nav-mid{display:none}
+.nav-right{display:flex;align-items:center;gap:14px}
+.nav-login{display:none;font-size:14px;font-weight:500}
+.nav-cta{background:var(--charcoal);color:var(--white);padding:10px 18px;border-radius:9999px;font-size:13px;font-weight:700;transition:background .2s var(--ease)}
+.nav-cta:hover{background:var(--dark)}
+@media (min-width:900px){
+  .nav-mid{display:flex;gap:30px;font-size:14px;font-weight:500}
+  .nav-mid a{color:var(--ink-70);transition:color .2s var(--ease)}
+  .nav-mid a:hover{color:var(--charcoal)}
+  .nav-login{display:inline}
+  .logo{font-size:26px}
 }
 
-/* ---------- season journey (scroll-drawn line) ---------- */
-#season .season-grid{display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:start}
-@media (max-width:960px){#season .season-grid{grid-template-columns:1fr;gap:40px}}
-.season-head{position:sticky;top:96px}
-@media (max-width:960px){.season-head{position:static}}
-.journey{position:relative;padding-left:64px}
-.journey svg.j-line{
-  position:absolute;left:0;top:0;height:100%;width:48px;overflow:visible;
+/* ---------------- HERO ---------------- */
+header.hero{padding:104px 0 56px;text-align:center;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 80% at 50% 0%,transparent 40%,rgba(255,255,255,.85) 100%);pointer-events:none}
+.hero .wrap{position:relative;z-index:1}
+.hero h1{font-size:clamp(48px,15vw,128px);margin:22px auto 0;max-width:11ch}
+.hero-sub{font-size:clamp(16px,4.4vw,20px);color:var(--ink-70);max-width:540px;margin:22px auto 0;line-height:1.55}
+.waitlist{
+  display:flex;flex-direction:column;gap:10px;max-width:480px;margin:30px auto 0;
 }
-.journey svg.j-line .track{stroke:rgba(0,0,0,.15);stroke-width:2;fill:none}
-.journey svg.j-line .draw{stroke:var(--red);stroke-width:4;fill:none}
-.station{
-  position:relative;border-bottom:2px solid var(--ink);
-  padding:28px 0;
+.waitlist input{
+  flex:1;padding:16px 20px;border:1px solid var(--ink-10);border-radius:12px;
+  font-family:inherit;font-size:16px;color:var(--charcoal);background:var(--white);outline:none;
+  transition:border-color .2s var(--ease),box-shadow .2s var(--ease);min-width:0;
 }
-.station:first-child{border-top:4px solid var(--ink)}
-.station .node{
-  position:absolute;left:-46px;top:34px;width:14px;height:14px;
-  background:#fff;border:2px solid var(--ink);
-  transition:background .15s linear;
-}
-.station.passed .node{background:var(--red);border-color:var(--ink)}
-.station .st-row{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap}
-.station .st-mo{
-  font-size:28px;font-weight:900;letter-spacing:-.02em;text-transform:uppercase;line-height:1;
-  transition:color .15s linear;
-}
-.station.passed .st-mo{color:var(--red)}
-.station .st-count{
-  font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
-  border:2px solid var(--ink);padding:3px 10px;
-}
-.station .st-names{
-  margin-top:10px;font-size:13px;color:var(--gray);line-height:1.6;
-}
-.station .st-names b{color:var(--ink);font-weight:700}
-@media (max-width:760px){
-  .journey{padding-left:40px}
-  .journey svg.j-line{width:30px}
-  .station .node{left:-30px;width:12px;height:12px}
-  .station .st-mo{font-size:22px}
+.waitlist input:focus{border-color:var(--yellow-deep);box-shadow:0 0 0 3px rgba(245,201,58,.25)}
+.waitlist input::placeholder{color:var(--ink-50)}
+.waitlist button{flex:none}
+.waitlist-done{display:none;margin-top:14px;font-weight:700;color:var(--charcoal)}
+.waitlist-done.show{display:block}
+.waitlist-done .check{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--yellow);margin-right:6px;vertical-align:-4px;font-size:12px}
+.hero-note{margin-top:18px;font-size:13px;color:var(--ink-50)}
+@media (min-width:640px){
+  .waitlist{flex-direction:row}
+  header.hero{padding:128px 0 72px}
 }
 
-/* ---------- marquee swap ---------- */
-#marquee .swap-stage{
-  position:relative;height:560px;
-  margin:64px auto 0;
-  display:flex;align-items:center;justify-content:center;
-  perspective:1200px;
+/* ---------------- LOGO WALL ---------------- */
+#wall{padding:30px 0 44px;border-top:1px solid var(--ink-10);border-bottom:1px solid var(--ink-10);overflow:hidden}
+.wall-head{text-align:center;margin-bottom:26px}
+.wall-head .t{font-size:13px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-50)}
+.wall-head .t b{color:var(--charcoal)}
+.marquee{display:flex;gap:14px;width:max-content;will-change:transform}
+.marquee-row{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.marquee-row + .marquee-row{margin-top:14px}
+.m-left{animation:scroll-l 48s linear infinite}
+.m-right{animation:scroll-r 48s linear infinite}
+@keyframes scroll-l{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes scroll-r{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+.logo-chip{
+  flex:none;width:148px;min-width:148px;height:74px;background:var(--white);
+  border:1px solid var(--ink-10);border-radius:14px;
+  display:grid;place-items:center;padding:16px 20px;
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s var(--ease);
 }
-.swap-container{
-  position:relative;width:440px;height:340px;
-  transform-style:preserve-3d;
+.logo-chip:hover{transform:translateY(-3px);box-shadow:0 12px 24px -12px rgba(23,30,25,.35);border-color:var(--yellow-deep)}
+.logo-chip img{max-width:100%;max-height:42px;object-fit:contain}
+@media (prefers-reduced-motion:reduce){.m-left,.m-right{animation:none}}
+
+/* ---------------- EXPLODED-VIEW ASSEMBLY ---------------- */
+#assembly{background:var(--charcoal);color:var(--white)}
+.assembly-track{position:relative;height:300vh}
+.assembly-stage{
+  position:sticky;top:0;height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;overflow:hidden;
 }
-.swap-card{
-  position:absolute;top:50%;left:50%;
-  width:440px;height:340px;
-  border:2px solid var(--ink);
-  background:#fff;
-  transform-style:preserve-3d;
-  backface-visibility:hidden;
-  will-change:transform;
-  padding:24px;
+.assembly-stage .grid-bg-dark{position:absolute;inset:0;opacity:.6}
+.assembly-cap{position:relative;z-index:5;text-align:center;margin-bottom:22px;height:84px;display:flex;flex-direction:column;justify-content:flex-end}
+.assembly-cap .step{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--yellow);margin-bottom:8px}
+.assembly-cap h2{font-size:clamp(26px,7vw,54px);max-width:14ch;margin:0 auto}
+.assembly-cap h2 .y{color:var(--yellow)}
+.viewport{position:relative;width:min(92vw,520px);height:min(64vh,440px)}
+.piece{
+  position:absolute;left:50%;top:50%;
+  background:var(--dark);border:1px solid var(--sage-20);border-radius:14px;
+  padding:12px;will-change:transform;backface-visibility:hidden;
+  box-shadow:0 18px 40px -20px rgba(0,0,0,.7);
+}
+.piece .p-logo{width:36px;min-width:36px;height:36px;background:#fff;border-radius:9px;display:grid;place-items:center;overflow:hidden;flex:none}
+.piece .p-logo img{max-width:28px;max-height:28px;object-fit:contain}
+.piece-card{width:210px;display:flex;align-items:center;gap:10px}
+.piece-card .pc-name{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:15px;letter-spacing:.02em}
+.piece-card .pc-meta{font-size:11px;color:var(--sage)}
+.piece-card .pc-tag{margin-left:auto;font-size:9px;font-weight:700;background:var(--yellow);color:var(--charcoal);padding:3px 7px;border-radius:5px;letter-spacing:.05em}
+.piece-search{width:230px;display:flex;align-items:center;gap:8px;color:var(--sage);font-size:13px}
+.piece-search .mag{width:16px;height:16px;border:2px solid var(--sage);border-radius:50%;position:relative;flex:none}
+.piece-search .mag::after{content:"";position:absolute;width:6px;height:2px;background:var(--sage);bottom:-3px;right:-3px;transform:rotate(45deg)}
+.piece-chips{display:flex;gap:6px}
+.piece-chips span{font-size:10px;font-weight:700;padding:5px 10px;border-radius:7px;border:1px solid var(--sage-20);text-transform:uppercase;letter-spacing:.05em}
+.piece-chips span.on{background:var(--yellow);color:var(--charcoal);border-color:var(--yellow)}
+.piece-months{display:flex;gap:4px}
+.piece-months b{width:24px;height:24px;display:grid;place-items:center;font-size:9px;font-weight:700;border-radius:5px;background:var(--sage-10);color:var(--sage)}
+.piece-months b.hot{background:var(--yellow);color:var(--charcoal)}
+.assembly-hint{position:relative;z-index:5;margin-top:22px;font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--sage);display:flex;align-items:center;gap:8px}
+.assembly-hint .scrolldot{width:6px;height:6px;border-radius:50%;background:var(--yellow);animation:bob 1.4s var(--ease) infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+@media (prefers-reduced-motion:reduce){.assembly-track{height:auto}.assembly-stage{position:static;height:auto;padding:60px 0}.assembly-hint{display:none}}
+
+/* ---------------- STATS ---------------- */
+#stats{background:var(--charcoal);color:var(--white);padding:0 0 72px}
+.stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--sage-10);border:1px solid var(--sage-10)}
+.stat{background:var(--charcoal);padding:30px 18px;text-align:center}
+.stat .num{font-family:'Anton',sans-serif;font-size:clamp(44px,12vw,80px);color:var(--yellow);line-height:1;font-variant-numeric:tabular-nums}
+.stat .lbl{margin-top:8px;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--sage)}
+@media (min-width:760px){.stat-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.stat{padding:44px 24px}}
+
+/* ---------------- PROBLEM / SOLUTION ---------------- */
+#contrast{display:grid;grid-template-columns:1fr}
+.half{padding:56px 20px}
+.half .inner{max-width:560px;margin:0 auto}
+.half h3{font-size:clamp(28px,8vw,46px);margin-bottom:24px}
+.half ul{list-style:none;display:flex;flex-direction:column;gap:16px}
+.half li{display:flex;gap:13px;align-items:flex-start;font-size:16px;line-height:1.5}
+.half li .ic{flex:none;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:700;margin-top:1px}
+.problem{background:var(--charcoal);color:var(--white)}
+.problem h3{color:var(--white)}
+.problem li{color:var(--sage)}
+.problem li .ic{background:rgba(255,90,80,.16);color:#ff6b60}
+.problem .tag{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#ff6b60;margin-bottom:14px;display:block}
+.solution{background:var(--dark);color:var(--white);border-top:4px solid var(--yellow)}
+.solution h3{color:var(--white)}
+.solution h3 .y{color:var(--yellow)}
+.solution li{color:var(--white)}
+.solution li .ic{background:rgba(255,225,124,.18);color:var(--yellow)}
+.solution .tag{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--yellow);margin-bottom:14px;display:block}
+@media (min-width:860px){#contrast{grid-template-columns:1fr 1fr}.solution{border-top:none;border-left:4px solid var(--yellow)}.half{padding:80px 28px}}
+
+/* ---------------- SECTION HEAD ---------------- */
+.sec-head{text-align:center;max-width:680px;margin:0 auto 40px}
+.sec-head h2{font-size:clamp(32px,9vw,68px);margin:14px 0 0}
+.sec-head h2 .hl::before{background:var(--yellow)}
+.sec-head p{font-size:16px;color:var(--ink-70);margin-top:16px;line-height:1.6}
+.pad{padding:64px 0}
+@media (min-width:760px){.pad{padding:88px 0}}
+
+/* ---------------- BENTO ---------------- */
+.bento{display:grid;grid-template-columns:1fr;gap:16px}
+.cell{
+  border:1px solid var(--ink-10);border-radius:20px;padding:26px;background:var(--paper);
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease);position:relative;overflow:hidden;min-height:260px;
   display:flex;flex-direction:column;
-  overflow:hidden;
-  cursor:pointer;user-select:none;
 }
-.swap-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
-.swap-month{
-  font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
-  border:2px solid var(--ink);padding:4px 10px;
-}
-.swap-corp{height:22px;display:flex;align-items:center;opacity:.7}
-.swap-corp img{max-height:22px;max-width:90px;object-fit:contain;filter:grayscale(1)}
-.swap-body{display:flex;align-items:center;gap:20px;flex:1}
-.swap-logo-big{
-  width:104px;height:104px;flex:none;
-  background:#fff;display:grid;place-items:center;overflow:hidden;
-  border:2px solid var(--ink);
-}
-.swap-logo-big img{max-width:80px;max-height:80px;object-fit:contain;filter:grayscale(1);transition:filter .15s linear}
-.swap-card:hover .swap-logo-big img,.swap-card:hover .swap-corp img{filter:none}
-.swap-info{flex:1;text-align:left;min-width:0}
-.swap-name{font-size:24px;font-weight:900;text-transform:uppercase;letter-spacing:-.02em;line-height:1;margin-bottom:8px}
-.swap-org{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);margin-bottom:10px}
-.swap-prize{font-size:13px;color:var(--ink);line-height:1.5}
-.swap-prize b{font-weight:700;color:var(--red)}
-.swap-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:16px}
-.swap-tag{
-  font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-  padding:4px 10px;border:2px solid var(--ink);
-}
-.swap-tag.red{background:var(--red);color:#fff;border-color:var(--red)}
-.swap-hint{
-  text-align:center;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--gray);margin-top:32px;
-}
-@media (max-width:760px){
-  #marquee .swap-stage{height:420px;margin-top:40px}
-  .swap-container{width:320px;height:300px;transform:scale(.72)}
-  .swap-card{width:320px;height:300px;padding:18px}
-  .swap-logo-big{width:72px;height:72px}
-  .swap-logo-big img{max-width:56px;max-height:56px}
-  .swap-name{font-size:19px}
+.cell:hover{transform:translateY(-4px);box-shadow:0 20px 40px -24px rgba(23,30,25,.4)}
+.cell h3{font-size:26px;margin-bottom:8px}
+.cell p{font-size:14px;color:var(--ink-70);line-height:1.5}
+.cell.dark{background:var(--charcoal);color:var(--white)}
+.cell.dark p{color:var(--sage)}
+.cell.yellow{background:var(--yellow)}
+.cell .cell-tag{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-50);margin-bottom:auto}
+.cell.dark .cell-tag{color:var(--sage)}
+.cell-art{margin-top:18px}
+/* mini logo collage */
+.logo-collage{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:18px}
+.logo-collage .lc{aspect-ratio:1;min-width:0;background:#fff;border:1px solid var(--ink-10);border-radius:10px;display:grid;place-items:center;padding:8px;overflow:hidden}
+.logo-collage .lc img{max-width:100%;max-height:30px;object-fit:contain}
+/* mini heat */
+.mini-heat{display:grid;grid-template-columns:repeat(6,1fr);gap:5px;margin-top:18px}
+.mini-heat b{aspect-ratio:1;border-radius:5px;background:var(--sage-20);display:grid;place-items:center;font-size:8px;font-weight:700;color:var(--sage)}
+.cell.dark .mini-heat b{background:var(--sage-10)}
+.mini-heat b.warm{background:rgba(245,201,58,.4);color:var(--charcoal)}
+.mini-heat b.hot{background:var(--yellow);color:var(--charcoal)}
+/* pulse blocks */
+.pulse-stack{display:flex;flex-direction:column;gap:9px;margin-top:18px}
+.pulse-stack i{height:12px;border-radius:6px;background:var(--sage-20);animation:pulse 1.8s var(--ease) infinite}
+.cell.dark .pulse-stack i{background:var(--sage-10)}
+.pulse-stack i:nth-child(1){width:90%;animation-delay:0s}
+.pulse-stack i:nth-child(2){width:70%;animation-delay:.2s}
+.pulse-stack i:nth-child(3){width:80%;animation-delay:.4s}
+.pulse-stack i.acc{background:var(--yellow);animation:none}
+@keyframes pulse{0%,100%{opacity:.5}50%{opacity:1}}
+.avatar-stack{display:flex;margin-top:18px}
+.avatar-stack span{width:36px;height:36px;border-radius:50%;border:2px solid var(--paper);margin-left:-10px;display:grid;place-items:center;font-family:'Anton',sans-serif;font-size:12px;color:var(--charcoal);background:var(--sage)}
+.avatar-stack span:first-child{margin-left:0}
+.avatar-stack span.y{background:var(--yellow)}
+@media (min-width:760px){
+  .bento{grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:300px}
+  .cell.span2{grid-column:span 2}
+  .cell{min-height:0}
 }
 
-/* ---------- catalog ---------- */
-.filters{
-  border:4px solid var(--ink);padding:28px;margin-top:48px;background:#fff;
+/* ---------------- MARQUEE SWAP ---------------- */
+#marquee-comps{background:var(--paper)}
+.swap-stage{position:relative;height:480px;margin:40px auto 0;display:flex;align-items:center;justify-content:center;perspective:1200px}
+.swap-container{position:relative;width:340px;height:300px;transform-style:preserve-3d;transform:scale(.92)}
+.swap-card{
+  position:absolute;top:50%;left:50%;width:340px;height:300px;
+  border:1px solid var(--ink-10);border-radius:18px;background:var(--white);
+  transform-style:preserve-3d;backface-visibility:hidden;will-change:transform;
+  padding:22px;display:flex;flex-direction:column;overflow:hidden;cursor:pointer;user-select:none;
+  box-shadow:0 24px 50px -24px rgba(23,30,25,.4);
 }
-.filter-row{display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap;padding:14px 0;border-bottom:2px solid var(--muted)}
+.swap-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:16px}
+.swap-month{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--yellow);color:var(--charcoal);padding:5px 11px;border-radius:7px}
+.swap-corp{height:22px;display:flex;align-items:center}
+.swap-corp img{max-height:22px;max-width:84px;object-fit:contain}
+.swap-body{display:flex;align-items:center;gap:16px;flex:1}
+.swap-logo{width:88px;min-width:88px;height:88px;flex:none;background:#fff;border:1px solid var(--ink-10);border-radius:16px;display:grid;place-items:center;overflow:hidden;padding:10px}
+.swap-logo img{max-width:100%;max-height:64px;object-fit:contain}
+.swap-info{flex:1;min-width:0}
+.swap-name{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:22px;letter-spacing:.01em;line-height:.95;margin-bottom:6px}
+.swap-org{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-50);margin-bottom:9px}
+.swap-prize{font-size:13px;color:var(--charcoal);line-height:1.45}
+.swap-prize b{color:var(--charcoal);font-weight:700}
+.swap-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
+.swap-tag{font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:4px 9px;border-radius:6px;background:var(--sage-20);color:var(--charcoal)}
+.swap-tag.y{background:var(--yellow);color:var(--charcoal)}
+.swap-hint{text-align:center;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-50);margin-top:26px}
+
+/* ---------------- CATALOG ---------------- */
+.filters{border:1px solid var(--ink-10);border-radius:18px;padding:20px;background:var(--white);margin-top:36px}
+.filter-row{display:flex;flex-direction:column;gap:10px;padding:12px 0;border-bottom:1px solid var(--ink-10)}
 .filter-row:last-child{border-bottom:none}
-.filter-label{
-  font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
-  min-width:72px;padding-top:9px;color:var(--gray);
-}
-.chips{display:flex;gap:8px;flex-wrap:wrap;flex:1}
-.chip{
-  font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-  padding:8px 14px;border:2px solid var(--ink);background:#fff;color:var(--ink);
-  cursor:pointer;transition:background .15s linear,color .15s linear;
-  min-height:34px;
-}
-.chip:hover{background:var(--red);border-color:var(--red);color:#fff}
-.chip.active{background:var(--ink);color:#fff}
-@media (max-width:760px){.chip{min-height:44px;padding:11px 14px}}
-.search-input{
-  flex:1;min-width:220px;
-  padding:12px 4px;border:none;border-bottom:4px solid var(--ink);
-  font-family:inherit;font-size:15px;font-weight:500;color:var(--ink);
-  outline:none;background:transparent;
-  transition:border-color .15s linear;
-}
-.search-input:focus{border-color:var(--red)}
-.search-input::placeholder{color:var(--gray);text-transform:uppercase;font-size:12px;letter-spacing:.1em;font-weight:700}
-.count{
-  font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
-  margin-top:24px;color:var(--gray);
-}
-.count b{color:var(--red);font-weight:900}
-
-.grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:2px;
-  margin-top:24px;background:var(--ink);border:4px solid var(--ink);
-}
-@media (max-width:980px){.grid{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:640px){.grid{grid-template-columns:1fr}}
+.filter-label{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-50)}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{font-size:12px;font-weight:700;padding:9px 14px;border-radius:9999px;background:var(--paper);color:var(--charcoal);border:1px solid var(--ink-10);transition:all .2s var(--ease);min-height:38px}
+.chip:hover{border-color:var(--charcoal)}
+.chip.active{background:var(--charcoal);color:var(--white);border-color:var(--charcoal)}
+.search-input{width:100%;padding:14px 18px;border:1px solid var(--ink-10);border-radius:12px;font-family:inherit;font-size:15px;color:var(--charcoal);background:var(--paper);outline:none;transition:border-color .2s var(--ease),box-shadow .2s var(--ease)}
+.search-input:focus{border-color:var(--yellow-deep);box-shadow:0 0 0 3px rgba(245,201,58,.25);background:#fff}
+.count{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-50);margin-top:20px}
+.count b{color:var(--charcoal)}
+.grid{display:grid;grid-template-columns:minmax(0,1fr);gap:14px;margin-top:20px}
 .card{
-  background:#fff;padding:24px;display:flex;flex-direction:column;gap:14px;
-  position:relative;transition:background .15s linear;
+  border:1px solid var(--ink-10);border-radius:18px;padding:20px;background:var(--white);
+  display:flex;flex-direction:column;gap:12px;position:relative;
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s var(--ease);
 }
-.card:hover{background:var(--muted)}
-.card.marquee::after{
-  content:"";position:absolute;top:14px;right:14px;
-  width:10px;height:10px;background:var(--red);
-}
-.card-head{display:flex;align-items:center;gap:14px}
-.card-logo{
-  width:56px;height:56px;border:2px solid var(--ink);
-  background:#fff;display:grid;place-items:center;overflow:hidden;flex:none;
-}
-.card-logo img{max-width:42px;max-height:42px;object-fit:contain;filter:grayscale(1);transition:filter .15s linear}
-.card:hover .card-logo img{filter:none}
-.card-title{font-size:15px;font-weight:900;text-transform:uppercase;letter-spacing:-.01em;line-height:1.15}
-.card-org{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gray);margin-top:4px;display:flex;align-items:center;gap:6px}
-.card-org img{height:12px;max-width:32px;object-fit:contain;filter:grayscale(1)}
-.card-blurb{font-size:12.5px;color:var(--ink);line-height:1.55}
-.card-meta{display:flex;flex-direction:column;gap:7px;font-size:11px;margin-top:auto}
-.card-meta .row{display:flex;align-items:baseline;gap:10px}
-.card-meta .k{color:var(--gray);min-width:58px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:9.5px}
-.card-meta .v{color:var(--ink);font-weight:500;font-size:11.5px}
-.card-tags{display:flex;gap:5px;flex-wrap:wrap}
-.tag{
-  font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-  padding:3px 8px;border:1px solid var(--ink);color:var(--ink);
-}
-.tag.red{background:var(--red);border-color:var(--red);color:#fff}
-.tag.women{border-color:var(--red);color:var(--red)}
-.empty{
-  grid-column:1/-1;padding:80px 24px;text-align:left;background:#fff;
-}
-.empty .big{font-size:32px;font-weight:900;text-transform:uppercase;letter-spacing:-.02em;display:block;margin-bottom:8px}
-.empty p{color:var(--gray);font-size:13px}
+.card:hover{transform:translateY(-3px);box-shadow:0 18px 36px -20px rgba(23,30,25,.35);border-color:var(--yellow-deep)}
+.card.marquee{background:linear-gradient(180deg,#fffdf4,#fff)}
+.card.marquee::after{content:"★";position:absolute;top:16px;right:18px;color:var(--yellow-deep);font-size:15px}
+.card{min-width:0}
+.card-head{display:flex;align-items:center;gap:14px;min-width:0}
+.card-head>div:last-child{min-width:0;flex:1}
+.card-logo{width:58px;height:58px;min-width:58px;border:1px solid var(--ink-10);border-radius:14px;background:#fff;display:grid;place-items:center;overflow:hidden;flex:none;padding:9px}
+.card-logo img{max-width:40px;max-height:40px;object-fit:contain}
+.card-title{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:18px;letter-spacing:.01em;line-height:1.05;padding-right:18px;overflow-wrap:anywhere}
+.card-org{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-50);margin-top:5px;display:flex;align-items:center;gap:6px;min-width:0;flex-wrap:wrap}
+.card-org img{height:13px;max-width:36px;object-fit:contain;flex:none}
+.card-blurb{font-size:13px;color:var(--ink-70);line-height:1.5;overflow-wrap:anywhere;min-width:0}
+.card-meta{display:flex;flex-direction:column;gap:7px;font-size:12px;margin-top:auto;min-width:0}
+.card-meta .row{display:flex;gap:10px;min-width:0}
+.card-meta .k{color:var(--ink-50);min-width:56px;flex:none;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:9.5px;padding-top:1px}
+.card-meta .v{color:var(--charcoal);font-weight:500;font-size:12.5px;min-width:0;overflow-wrap:anywhere}
+.card-tags{display:flex;gap:5px;flex-wrap:wrap;min-width:0}
+.tag{font-size:9.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:4px 9px;border-radius:6px;background:var(--sage-20);color:var(--charcoal)}
+.tag.y{background:var(--yellow);color:var(--charcoal)}
+.tag.women{background:#fde2ef;color:#a03579}
+.empty{grid-column:1/-1;padding:60px 20px;text-align:center}
+.empty .big{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:30px;display:block;margin-bottom:8px}
+.empty p{color:var(--ink-50);font-size:14px}
+@media (min-width:680px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.filter-row{flex-direction:row;align-items:flex-start}.filter-label{min-width:64px;padding-top:10px}}
+@media (min-width:1040px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 
-/* ---------- vault (interactive folders) ---------- */
-#vault .vault-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:2px;
-  background:var(--ink);border:4px solid var(--ink);margin-top:48px;
-}
-@media (max-width:860px){
-  #vault .vault-grid{grid-template-columns:1fr}
-  .vault-cell{padding:40px 20px 32px}
-}
-.vault-cell{
-  background:var(--muted);padding:48px 28px 36px;
-  display:flex;flex-direction:column;align-items:center;gap:0;
-}
-.folder-zone{
-  height:240px;display:flex;align-items:flex-end;justify-content:center;
-  width:100%;
-}
-.folder-stage{
-  position:relative;width:170px;height:130px;cursor:pointer;
-  transform:scale(1.15);transform-origin:bottom center;
-  margin-bottom:24px;
-}
-.folder-back{
-  position:absolute;bottom:0;left:50%;transform:translateX(-50%);
-  width:160px;height:118px;background:#fff;border:2px solid var(--ink);
-}
-.folder-tab{
-  position:absolute;bottom:100%;left:-2px;width:52px;height:14px;
-  background:#fff;border:2px solid var(--ink);border-bottom:none;
-}
-.paper{
-  position:absolute;left:50%;bottom:10px;z-index:2;
-  width:108px;height:84px;background:#fff;border:2px solid var(--ink);
-  padding:10px;display:flex;flex-direction:column;gap:6px;
-  transform:translate(calc(-50% + var(--dx,0px)),calc(8% + var(--dy,0px))) rotate(0deg) scale(var(--s,1));
-  transition:transform .25s ease-out;
-}
-.paper .p-tag{
-  align-self:flex-start;font-size:7px;font-weight:900;letter-spacing:.2em;text-transform:uppercase;
-  background:var(--red);color:#fff;padding:2px 6px;
-}
-.paper b{font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.04em;line-height:1.2}
-.paper i{display:block;height:2px;background:var(--ink);opacity:.18}
-.paper i.w1{width:75%}
-.paper i.w2{width:50%}
-.folder-stage.open .paper.p1{transform:translate(calc(-122% + var(--dx,0px)),calc(-86% + var(--dy,0px))) rotate(-7deg) scale(var(--s,1))}
-.folder-stage.open .paper.p2{transform:translate(calc(18% + var(--dx,0px)),calc(-86% + var(--dy,0px))) rotate(7deg) scale(var(--s,1))}
-.folder-stage.open .paper.p3{transform:translate(calc(-50% + var(--dx,0px)),calc(-122% + var(--dy,0px))) rotate(0deg) scale(var(--s,1))}
-.flap{
-  position:absolute;bottom:0;left:50%;margin-left:-80px;
-  width:160px;height:118px;z-index:3;background:var(--ink);
-  transform-origin:bottom center;
-  transition:transform .25s ease-out,background .15s linear;
-  box-shadow:inset 0 0 0 2px var(--ink);
-}
+/* ---------------- SEASON JOURNEY ---------------- */
+#season{background:var(--paper)}
+.season-grid{display:grid;grid-template-columns:1fr;gap:34px}
+.journey{position:relative;padding-left:42px}
+.journey svg.j-line{position:absolute;left:0;top:0;width:30px;overflow:visible}
+.journey svg.j-line .track{stroke:var(--ink-10);stroke-width:2;fill:none}
+.journey svg.j-line .draw{stroke:var(--yellow-deep);stroke-width:4;fill:none}
+.station{position:relative;border-bottom:1px solid var(--ink-10);padding:22px 0}
+.station:first-child{border-top:2px solid var(--charcoal)}
+.station .node{position:absolute;left:-30px;top:28px;width:13px;height:13px;border-radius:50%;background:#fff;border:2px solid var(--charcoal);transition:background .2s var(--ease)}
+.station.passed .node{background:var(--yellow-deep)}
+.station .st-row{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.station .st-mo{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:24px;letter-spacing:.01em}
+.station.passed .st-mo{color:var(--yellow-deep)}
+.station .st-count{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--ink-10);padding:3px 9px;border-radius:6px}
+.station .st-names{margin-top:9px;font-size:13px;color:var(--ink-70);line-height:1.55}
+.station .st-names b{color:var(--charcoal);font-weight:700}
+@media (min-width:960px){.season-grid{grid-template-columns:5fr 7fr;gap:56px}.season-head{position:sticky;top:90px}}
+
+/* ---------------- HOW IT WORKS ---------------- */
+.how-grid{display:grid;grid-template-columns:1fr;gap:34px}
+.how-steps{display:flex;flex-direction:column;gap:8px}
+.step{display:flex;gap:18px;padding:24px 0;border-bottom:1px solid var(--ink-10)}
+.step:last-child{border-bottom:none}
+.step .no{font-family:'Anton',sans-serif;font-size:clamp(48px,14vw,76px);line-height:.8;color:rgba(245,201,58,.35);transition:color .3s var(--ease);flex:none}
+.step:hover .no{color:var(--yellow-deep)}
+.step h4{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:22px;letter-spacing:.01em;margin-bottom:6px}
+.step p{font-size:14px;color:var(--ink-70);line-height:1.55}
+@media (min-width:860px){.how-grid{grid-template-columns:1fr 2fr;gap:56px}.how-head{position:sticky;top:90px}.how-head h2{font-size:clamp(44px,5vw,72px)}}
+
+/* ---------------- VAULT ---------------- */
+#vault{background:var(--charcoal);color:var(--white)}
+#vault .sec-head h2{color:var(--white)}
+#vault .sec-head p{color:var(--sage)}
+.vault-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:8px}
+.vault-cell{border:1px solid var(--sage-10);border-radius:20px;padding:30px 22px 26px;background:var(--dark);text-align:center;display:flex;flex-direction:column;align-items:center}
+.folder-zone{height:170px;display:flex;align-items:flex-end;justify-content:center;width:100%}
+.folder-stage{position:relative;width:150px;height:114px;cursor:pointer}
+.folder-back{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:144px;height:106px;background:#21281f;border:1px solid var(--sage-20);border-radius:4px 10px 10px 10px}
+.folder-tab{position:absolute;bottom:100%;left:-1px;width:48px;height:12px;background:#21281f;border:1px solid var(--sage-20);border-bottom:none;border-radius:6px 6px 0 0}
+.paper{position:absolute;left:50%;bottom:9px;z-index:2;width:100px;height:78px;background:#fff;border-radius:7px;padding:9px;display:flex;flex-direction:column;gap:5px;color:var(--charcoal);transform:translate(calc(-50% + var(--dx,0px)),calc(7% + var(--dy,0px))) rotate(0deg) scale(var(--s,1));transition:transform .35s var(--ease)}
+.paper .p-tag{align-self:flex-start;font-size:7px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:var(--charcoal);color:var(--yellow);padding:2px 6px;border-radius:3px}
+.paper b{font-size:9px;font-family:'Anton',sans-serif;text-transform:uppercase;letter-spacing:.02em}
+.paper i{display:block;height:2px;border-radius:2px;background:var(--ink-10)}
+.paper i.w1{width:75%}.paper i.w2{width:50%}
+.folder-stage.open .paper.p1{transform:translate(calc(-118% + var(--dx,0px)),calc(-78% + var(--dy,0px))) rotate(-8deg) scale(var(--s,1))}
+.folder-stage.open .paper.p2{transform:translate(calc(20% + var(--dx,0px)),calc(-78% + var(--dy,0px))) rotate(8deg) scale(var(--s,1))}
+.folder-stage.open .paper.p3{transform:translate(calc(-50% + var(--dx,0px)),calc(-112% + var(--dy,0px))) rotate(3deg) scale(var(--s,1))}
+.flap{position:absolute;bottom:0;left:50%;margin-left:-72px;width:144px;height:106px;z-index:3;background:var(--yellow);transform-origin:bottom center;transition:transform .35s var(--ease)}
 .flap-l{clip-path:polygon(0 0,50% 0,50% 100%,0 100%)}
 .flap-r{clip-path:polygon(50% 0,100% 0,100% 100%,50% 100%)}
-.folder-stage:hover .flap{background:var(--red)}
-.folder-stage.open .flap-l{transform:skewX(13deg) scaleY(.62) translateY(4px)}
-.folder-stage.open .flap-r{transform:skewX(-13deg) scaleY(.62) translateY(4px)}
-.folder-label{
-  position:absolute;bottom:46px;left:50%;transform:translateX(-50%);z-index:4;
-  color:#fff;font-size:10px;font-weight:900;letter-spacing:.25em;text-transform:uppercase;
-  pointer-events:none;white-space:nowrap;
-  transition:opacity .15s linear;
-}
+.folder-stage.open .flap-l{transform:skewX(13deg) scaleY(.6) translateY(4px)}
+.folder-stage.open .flap-r{transform:skewX(-13deg) scaleY(.6) translateY(4px)}
+.folder-label{position:absolute;bottom:42px;left:50%;transform:translateX(-50%);z-index:4;color:var(--charcoal);font-family:'Anton',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;pointer-events:none;white-space:nowrap;transition:opacity .2s var(--ease)}
 .folder-stage.open .folder-label{opacity:0}
-@media (max-width:860px){
-  .folder-stage{transform:scale(1)}
-  .folder-zone{height:210px}
-}
-.vault-meta{width:100%;border-top:2px solid var(--ink);padding-top:18px}
-.vault-meta .vt-pill{
-  display:inline-block;font-size:9px;font-weight:900;letter-spacing:.2em;text-transform:uppercase;
-  background:var(--red);color:#fff;padding:4px 10px;margin-bottom:10px;
-}
-.vault-meta h3{font-size:17px;font-weight:900;text-transform:uppercase;letter-spacing:-.01em}
-.vault-meta p{font-size:12.5px;color:var(--gray);line-height:1.55;margin-top:8px}
-.vault-cta-row{margin-top:32px}
+.vault-meta{width:100%;border-top:1px solid var(--sage-10);padding-top:18px;margin-top:14px}
+.vault-meta .vt-pill{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;background:var(--yellow);color:var(--charcoal);padding:4px 10px;border-radius:6px;margin-bottom:10px}
+.vault-meta h3{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:18px;letter-spacing:.01em}
+.vault-meta p{font-size:13px;color:var(--sage);line-height:1.5;margin-top:8px}
+.vault-cta{margin-top:30px;text-align:center}
+@media (min-width:860px){.vault-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 
-/* ---------- record (testimonials) ---------- */
-#record .diary-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:32px;margin-top:48px}
-@media (max-width:760px){#record .diary-grid{grid-template-columns:1fr}}
-.diary{
-  border-left:4px solid var(--ink);padding:8px 0 8px 28px;
-  transition:border-color .15s linear;
-}
-.diary:hover{border-color:var(--red)}
-.diary p.quote{font-size:17px;line-height:1.55;font-weight:500;margin-bottom:20px}
-.diary .sig{font-size:12px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--red)}
-.diary .sig-meta{font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--gray);margin-top:4px}
+/* ---------------- TESTIMONIALS ---------------- */
+.t-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:10px}
+.t-card{border:1px solid var(--ink-10);border-radius:20px;padding:28px;background:var(--white);display:flex;flex-direction:column}
+.t-card.dark{background:var(--charcoal);color:var(--white)}
+.t-stars{display:flex;gap:3px;margin-bottom:16px;color:var(--yellow-deep);font-size:18px}
+.t-card.dark .t-stars{color:var(--yellow)}
+.t-card p{font-size:16px;line-height:1.55;font-weight:500;flex:1}
+.t-card.dark p{color:var(--white)}
+.t-foot{display:flex;align-items:center;gap:12px;margin-top:22px}
+.t-foot .ava{width:46px;height:46px;border-radius:50%;background:var(--sage);display:grid;place-items:center;font-family:'Anton',sans-serif;font-size:15px;color:var(--charcoal);flex:none}
+.t-card.dark .t-foot .ava{background:var(--yellow)}
+.t-foot .tn{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:14px;letter-spacing:.02em}
+.t-foot .tm{font-size:11px;color:var(--ink-50);font-weight:500}
+.t-card.dark .t-foot .tm{color:var(--sage)}
+@media (min-width:880px){.t-grid{grid-template-columns:repeat(3,minmax(0,1fr));align-items:start}.t-card.dark{transform:translateY(16px)}}
 
-/* ---------- faq ---------- */
-.faq-list{margin-top:48px;display:flex;flex-direction:column}
-.faq-item{border:2px solid var(--ink);margin-bottom:-2px;background:#fff;transition:background .15s linear}
-.faq-q{
-  width:100%;text-align:left;padding:22px 24px;
-  font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;
-  display:flex;align-items:center;justify-content:space-between;gap:16px;
-  min-height:44px;
-}
-.faq-q .plus{
-  flex:none;font-size:22px;font-weight:900;color:var(--red);line-height:1;
-  transition:transform .2s ease-out;
-}
+/* ---------------- FAQ ---------------- */
+.faq-list{max-width:760px;margin:36px auto 0;display:flex;flex-direction:column;gap:10px}
+.faq-item{border:1px solid var(--ink-10);border-radius:14px;background:var(--white);overflow:hidden;transition:background .2s var(--ease)}
+.faq-item.open{background:var(--paper)}
+.faq-q{width:100%;text-align:left;padding:20px 22px;font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:44px}
+.faq-q .plus{flex:none;width:22px;height:22px;display:grid;place-items:center;color:var(--yellow-deep);font-size:22px;line-height:1;transition:transform .3s var(--ease)}
 .faq-item.open .plus{transform:rotate(45deg)}
-.faq-item:hover{background:var(--muted)}
-.faq-a{height:0;overflow:hidden;transition:height .2s ease-out}
-.faq-a-inner{padding:0 24px 24px;color:var(--ink);font-size:14px;line-height:1.65;border-top:2px solid var(--muted);padding-top:18px;margin:0 0}
-.faq-a-inner b{font-weight:700}
+.faq-a{height:0;overflow:hidden;transition:height .3s var(--ease)}
+.faq-a-inner{padding:0 22px 22px;color:var(--ink-70);font-size:14px;line-height:1.65}
+.faq-a-inner b{color:var(--charcoal);font-weight:700}
 
-/* ---------- waitlist ---------- */
-#signal{position:relative}
-#signal .signal-grid{display:grid;grid-template-columns:7fr 5fr;gap:64px;align-items:start}
-@media (max-width:960px){#signal .signal-grid{grid-template-columns:1fr}}
-.waitlist-form{
-  display:flex;gap:0;max-width:520px;margin-top:40px;border:4px solid var(--ink);
-}
-.waitlist-form input{
-  flex:1;padding:18px 20px;background:#fff;border:none;
-  font-family:inherit;font-size:14px;font-weight:500;color:var(--ink);outline:none;min-width:0;
-}
-.waitlist-form input:focus{box-shadow:inset 0 -4px 0 var(--red)}
-.waitlist-form input::placeholder{color:var(--gray);text-transform:uppercase;font-size:11px;letter-spacing:.15em;font-weight:700}
-.waitlist-form button{
-  padding:18px 28px;background:var(--ink);color:#fff;
-  font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
-  transition:background .15s linear;white-space:nowrap;
-}
-.waitlist-form button:hover{background:var(--red)}
-.waitlist-done{
-  display:none;margin-top:20px;
-  font-size:13px;font-weight:900;letter-spacing:.15em;text-transform:uppercase;color:var(--red);
-}
-.waitlist-done.show{display:block}
-.signal-box{
-  border:2px solid var(--ink);padding:32px;
-}
-.signal-box h4{font-size:12px;font-weight:900;letter-spacing:.2em;text-transform:uppercase;margin-bottom:16px;color:var(--red)}
-.signal-box ul{list-style:none}
-.signal-box li{
-  font-size:13px;padding:10px 0;border-bottom:2px solid var(--muted);
-  display:flex;gap:12px;align-items:baseline;line-height:1.5;
-}
-.signal-box li:last-child{border-bottom:none}
-.signal-box li::before{content:"";width:8px;height:8px;background:var(--red);flex:none;align-self:center}
+/* ---------------- FINAL CTA ---------------- */
+#cta{background:var(--yellow);position:relative;overflow:hidden;text-align:center}
+#cta .ghost{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
+#cta .ghost span{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:26vw;color:rgba(23,30,25,.06);line-height:.8;white-space:nowrap}
+#cta .wrap{position:relative;z-index:1}
+#cta h2{font-size:clamp(36px,11vw,84px);max-width:13ch;margin:0 auto}
+#cta p{font-size:clamp(16px,4vw,20px);color:var(--ink-70);max-width:520px;margin:20px auto 0}
+#cta .waitlist{max-width:480px}
+#cta .waitlist input{border-color:rgba(23,30,25,.2);box-shadow:0 10px 30px -12px rgba(23,30,25,.4)}
+#cta .waitlist button{background:var(--charcoal);color:var(--white)}
+#cta .waitlist button:hover{background:var(--dark)}
 
-/* ---------- footer ---------- */
-footer{border-top:4px solid var(--ink);padding:64px 0 48px}
-.foot-grid{display:grid;grid-template-columns:6fr 3fr 3fr;gap:48px}
-@media (max-width:860px){.foot-grid{grid-template-columns:1fr;gap:32px}}
-.foot-brand{font-size:clamp(32px,4vw,52px);font-weight:900;text-transform:uppercase;letter-spacing:-.03em;line-height:.95}
-.foot-brand .red{color:var(--red)}
-.foot-col h5{font-size:11px;font-weight:900;letter-spacing:.2em;text-transform:uppercase;color:var(--gray);margin-bottom:16px}
-.foot-col a{display:block;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:6px 0;transition:color .15s linear}
-.foot-col a:hover{color:var(--red)}
-.foot-legal{
-  margin-top:48px;padding-top:24px;border-top:2px solid var(--muted);
-  font-size:11px;color:var(--gray);line-height:1.7;max-width:760px;
-}
+/* ---------------- FOOTER ---------------- */
+footer{background:var(--charcoal);color:var(--white);padding:56px 0 40px}
+.foot-grid{display:grid;grid-template-columns:1fr;gap:30px}
+.foot-brand{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:clamp(40px,12vw,72px);line-height:.9}
+.foot-brand .pd{color:var(--yellow)}
+.foot-col h5{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--sage);margin-bottom:14px}
+.foot-col a{display:block;font-size:14px;font-weight:500;padding:6px 0;color:var(--white);transition:color .2s var(--ease)}
+.foot-col a:hover{color:var(--yellow)}
+.foot-cols{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.foot-legal{margin-top:42px;padding-top:24px;border-top:1px solid var(--sage-10);font-size:12px;color:var(--sage);line-height:1.7;max-width:780px}
+.foot-legal a{color:var(--white);font-weight:700;border-bottom:1px solid var(--yellow)}
+@media (min-width:760px){.foot-grid{grid-template-columns:2fr 1fr 1fr}.foot-cols{display:contents}}
 
-/* ---------- a11y / motion ---------- */
-:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+/* a11y */
+:focus-visible{outline:2px solid var(--yellow-deep);outline-offset:2px}
 @media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation:none !important;transition:none !important}
+  *,*::before,*::after{animation-duration:.001ms !important;transition-duration:.001ms !important}
   html{scroll-behavior:auto}
   .reveal{opacity:1;transform:none}
 }
@@ -559,70 +486,265 @@ footer{border-top:4px solid var(--ink);padding:64px 0 48px}
 
 <body>
 
-<!-- nav -->
+<!-- NAV -->
 <nav class="bar">
   <div class="wrap">
-    <a href="#top" class="brand"><span class="sq"></span>CASE—COMPS <small>INDIA</small></a>
-    <div class="nav-links">
-      <a href="#season">Season</a>
+    <a href="#top" class="logo">CASECOMPS<span class="pd">.</span></a>
+    <div class="nav-mid">
+      <a href="#assembly">How it works</a>
       <a href="#catalog">Catalog</a>
-      <a href="#vault">Vault</a>
-      <a href="#faq">FAQ</a>
-      <a href="#signal" class="nav-cta">Get the drop</a>
+      <a href="#season">Season</a>
+      <a href="#vault">Deck vault</a>
+    </div>
+    <div class="nav-right">
+      <a href="#catalog" class="nav-login">Browse</a>
+      <a href="#cta" class="nav-cta">Get the drop</a>
     </div>
   </div>
 </nav>
 
-<!-- 01 · hero -->
-<header class="hero" id="top">
+<!-- HERO -->
+<header class="hero grid-bg" id="top">
   <div class="wrap">
-    <div class="sec-label"><span class="no">01</span> The index — <span id="hero-count">86</span> competitions, Jun→May</div>
-    <div class="hero-grid">
-      <div>
-        <h1>Every corporate case comp. <span class="red">One grid.</span></h1>
-        <p class="hero-sub">HUL LIME, ITC Interrobang, ABG Stratos, Reliance TUP, Amazon ACE, Marico OTW — mapped by launch month, functional track, and whether they actually pipe into a PPI or PPO.</p>
-        <div class="hero-ctas">
-          <a href="#catalog" class="btn btn-primary">Explore the catalog</a>
-          <a href="#season" class="btn btn-secondary">Season journey</a>
-        </div>
-        <div class="notice">
-          <span class="flag">Notice</span>
-          <p><b>This is a tracker, not a links repository.</b> Windows shown are historical patterns; registration links go live as &amp; when each firm launches its season on Unstop or its careers microsite.</p>
-        </div>
-      </div>
-      <div class="hero-comp swiss-grid-pattern" aria-hidden="true">
-        <div class="hc-bar b1"></div>
-        <div class="hc-bar b2"></div>
-        <div class="hc-circle"></div>
-        <div class="hc-square"></div>
-        <div class="hc-tag">FIG. 01 — THE SEASON</div>
-      </div>
-    </div>
+    <span class="eyebrow"><span class="dot"></span> <span id="hero-count">85</span> competitions · Jun → May</span>
+    <h1 class="anton">Every corporate case&nbsp;comp. <span class="hl">One grid.</span></h1>
+    <p class="hero-sub">HUL LIME, ITC Interrobang, ABG Stratos, Reliance TUP, Amazon ACE — mapped by launch month, functional track, and whether they actually pipe into a PPI or PPO.</p>
+    <form class="waitlist" onsubmit="event.preventDefault();this.querySelector('button').textContent='✓ ON THE LIST';this.parentNode.querySelector('.waitlist-done').classList.add('show')">
+      <input type="email" required placeholder="your.email@example.com" aria-label="Email address">
+      <button type="submit" class="btn btn-yellow btn-anton">Get the drop</button>
+    </form>
+    <div class="waitlist-done"><span class="check">✓</span> Noted — see you in August.</div>
+    <p class="hero-note">A tracker, not a links repo · windows are historical patterns, links go live when each firm launches</p>
   </div>
 </header>
 
-<!-- 02 · data -->
-<section id="data">
-  <div class="wrap">
-    <div class="sec-label"><span class="no">02</span> Data</div>
-    <h2 class="sec-title">The season,<br>counted.</h2>
-    <div class="stat-grid" style="margin-top:48px">
-      <div class="stat"><span class="plus">+</span><span class="num" data-stat="total">0</span><div class="lbl">Competitions indexed</div></div>
-      <div class="stat"><span class="plus">+</span><span class="num" data-stat="marquee">0</span><div class="lbl">Marquee tier</div></div>
-      <div class="stat"><span class="plus">+</span><span class="num" data-stat="pipeline">0</span><div class="lbl">PPI / PPO pipelines</div></div>
-      <div class="stat"><span class="plus">+</span><span class="num" data-stat="intl">0</span><div class="lbl">International finales</div></div>
+<!-- LOGO WALL -->
+<section id="wall">
+  <div class="wall-head">
+    <span class="t">Indexed across <b>India's biggest recruiters</b></span>
+  </div>
+  <div class="marquee-row"><div class="marquee m-left" id="wall-row-1"></div></div>
+  <div class="marquee-row"><div class="marquee m-right" id="wall-row-2"></div></div>
+</section>
+
+<!-- EXPLODED-VIEW ASSEMBLY -->
+<section id="assembly">
+  <div class="assembly-track">
+    <div class="assembly-stage">
+      <div class="grid-bg-dark"></div>
+      <div class="assembly-cap">
+        <span class="step" id="asm-step">Step 01</span>
+        <h2 class="anton" id="asm-title">Scattered across <span class="y">five tabs</span></h2>
+      </div>
+      <div class="viewport" id="viewport">
+        <div class="piece piece-search" data-piece="search">
+          <span class="mag"></span> Search a comp, firm or theme…
+        </div>
+        <div class="piece piece-chips" data-piece="chips">
+          <span class="on">Marketing</span><span>Finance</span><span>PPI</span>
+        </div>
+        <div class="piece piece-card" data-piece="card1">
+          <span class="p-logo"><img src="logos/hindustan-unilever/hul-lime_competition.png" alt="HUL LIME"></span>
+          <div><div class="pc-name">HUL LIME</div><div class="pc-meta">Aug · ₹10L</div></div>
+          <span class="pc-tag">PPI</span>
+        </div>
+        <div class="piece piece-card" data-piece="card2">
+          <span class="p-logo"><img src="logos/amazon/amazon-ace_competition.png" alt="Amazon ACE"></span>
+          <div><div class="pc-name">Amazon ACE</div><div class="pc-meta">Aug · ₹2L</div></div>
+          <span class="pc-tag">PPI</span>
+        </div>
+        <div class="piece piece-card" data-piece="card3">
+          <span class="p-logo"><img src="logos/reliance/reliance-tup_competition.jpg" alt="Reliance TUP"></span>
+          <div><div class="pc-name">Reliance TUP</div><div class="pc-meta">Oct · ₹25L</div></div>
+          <span class="pc-tag">PPI</span>
+        </div>
+        <div class="piece piece-months" data-piece="months">
+          <b>J</b><b>J</b><b class="hot">A</b><b class="hot">S</b><b class="hot">O</b><b class="hot">N</b><b>D</b>
+        </div>
+      </div>
+      <div class="assembly-hint"><span class="scrolldot"></span> Keep scrolling</div>
     </div>
   </div>
 </section>
 
-<!-- 03 · season journey -->
-<section id="season">
+<!-- STATS -->
+<section id="stats">
+  <div class="wrap">
+    <div class="stat-grid">
+      <div class="stat"><span class="num" data-stat="total">0</span><div class="lbl">Competitions indexed</div></div>
+      <div class="stat"><span class="num" data-stat="marquee">0</span><div class="lbl">Marquee tier</div></div>
+      <div class="stat"><span class="num" data-stat="pipeline">0</span><div class="lbl">PPI / PPO pipelines</div></div>
+      <div class="stat"><span class="num" data-stat="intl">0</span><div class="lbl">International finales</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM / SOLUTION -->
+<section id="contrast">
+  <div class="half problem">
+    <div class="inner">
+      <span class="tag">The old way</span>
+      <h3 class="anton">Hunting blind, every season.</h3>
+      <ul>
+        <li><span class="ic">✕</span> Refreshing Unstop, Instagram and random PDFs hoping you didn't miss a window</li>
+        <li><span class="ic">✕</span> Finding out HUL LIME closed <i>after</i> registration shut</li>
+        <li><span class="ic">✕</span> No idea which comps actually lead to a PPI vs just a certificate</li>
+        <li><span class="ic">✕</span> Dates that quietly shift month-to-month with nothing tracking them</li>
+      </ul>
+    </div>
+  </div>
+  <div class="half solution">
+    <div class="inner">
+      <span class="tag">The CaseComps way</span>
+      <h3 class="anton">One grid. <span class="y">Every window.</span></h3>
+      <ul>
+        <li><span class="ic">✓</span> All 85 marquee + directory comps in a single filterable index</li>
+        <li><span class="ic">✓</span> Mapped by launch month so the August cluster never sneaks up on you</li>
+        <li><span class="ic">✓</span> Filter by PPI / PPO so you chase the ones that hire</li>
+        <li><span class="ic">✓</span> Re-verified each season against Unstop &amp; official sources</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- BENTO -->
+<section class="pad">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="dot"></span> The toolkit</span>
+      <h2 class="anton">Built to <span class="hl tight">plan a season.</span></h2>
+    </div>
+    <div class="bento">
+      <div class="cell span2 dark reveal">
+        <span class="cell-tag">The index</span>
+        <h3 class="anton">85 comps, one source of truth</h3>
+        <p>From HUL LIME to boAt Wavemaker's — every corporate case comp worth your time, each with launch window, prize, eligibility tier and hiring intent.</p>
+        <div class="logo-collage">
+          <div class="lc"><img src="logos/itc/itc-limited_corporate.svg" alt="ITC"></div>
+          <div class="lc"><img src="logos/mahindra-group/mahindra-and-mahindra_corporate.svg" alt="Mahindra"></div>
+          <div class="lc"><img src="logos/bajaj-group/bajaj-finserv_corporate.svg" alt="Bajaj"></div>
+          <div class="lc"><img src="logos/tata-group/tata-group_corporate.svg" alt="Tata"></div>
+          <div class="lc"><img src="logos/accenture/accenture_corporate.svg" alt="Accenture"></div>
+          <div class="lc"><img src="logos/marico/marico-limited_corporate.svg" alt="Marico"></div>
+          <div class="lc"><img src="logos/asian-paints/asian-paints_corporate.svg" alt="Asian Paints"></div>
+          <div class="lc"><img src="logos/flipkart/flipkart_corporate.svg" alt="Flipkart"></div>
+        </div>
+      </div>
+      <div class="cell yellow reveal">
+        <span class="cell-tag">The season</span>
+        <h3 class="anton">Aug–Nov is the peak</h3>
+        <p>One window carries most of the year's PPI pipelines. Know it cold.</p>
+        <div class="mini-heat">
+          <b>J</b><b>J</b><b>F</b><b>M</b><b>A</b><b class="warm">M</b>
+          <b>J</b><b class="warm">J</b><b class="hot">A</b><b class="hot">S</b><b class="hot">O</b><b class="hot">N</b>
+        </div>
+      </div>
+      <div class="cell reveal">
+        <span class="cell-tag">Hiring intent</span>
+        <h3 class="anton">Filter to PPI &amp; PPO</h3>
+        <p>Chase the comps that actually open a pre-placement door — not just cash.</p>
+        <div class="pulse-stack"><i class="acc"></i><i></i><i></i></div>
+      </div>
+      <div class="cell dark reveal">
+        <span class="cell-tag">Tracks</span>
+        <h3 class="anton">Marketing → analytics</h3>
+        <p>Eleven functional tracks. Surface only the ones that fit your spec.</p>
+        <div class="avatar-stack"><span class="y">MK</span><span>ST</span><span>FN</span><span>PD</span></div>
+      </div>
+      <div class="cell span2 reveal">
+        <span class="cell-tag">The deck vault</span>
+        <h3 class="anton">Winning decks, annotated</h3>
+        <p>High-quality finalist decks — sourced with author permission and full credit — with judge-lens notes on why each slide lands. Ships with the paid pass.</p>
+        <div class="pulse-stack"><i></i><i class="acc"></i><i></i></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE COMPS (swap) -->
+<section id="marquee-comps" class="pad">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="dot"></span> The marquee five</span>
+      <h2 class="anton">The comps that <span class="hl tight">shift a CV.</span></h2>
+      <p>On rotation. Hover to pause, tap a card to pull it up in the catalog.</p>
+    </div>
+    <div class="swap-stage">
+      <div class="swap-container" id="swap">
+        <div class="swap-card" data-id="hul-lime">
+          <div class="swap-top"><span class="swap-month">Aug–Sep</span><span class="swap-corp"><img src="logos/hindustan-unilever/hul_corporate.svg" alt="HUL"></span></div>
+          <div class="swap-body">
+            <div class="swap-logo"><img src="logos/hindustan-unilever/hul-lime_competition.png" alt="HUL LIME"></div>
+            <div class="swap-info"><div class="swap-name">HUL LIME</div><div class="swap-org">Hindustan Unilever</div><div class="swap-prize"><b>₹10L</b> + Unilever Future Leaders' League, London</div></div>
+          </div>
+          <div class="swap-tags"><span class="swap-tag y">Marketing</span><span class="swap-tag">PPI</span><span class="swap-tag">International</span></div>
+        </div>
+        <div class="swap-card" data-id="abg-stratos">
+          <div class="swap-top"><span class="swap-month">Aug</span><span class="swap-corp"><img src="logos/aditya-birla-group/aditya-birla-group_corporate.svg" alt="Aditya Birla Group"></span></div>
+          <div class="swap-body">
+            <div class="swap-logo"><img src="logos/aditya-birla-group/abg-stratos_competition.png" alt="ABG Stratos"></div>
+            <div class="swap-info"><div class="swap-name">ABG Stratos</div><div class="swap-org">Aditya Birla Group</div><div class="swap-prize"><b>72-hour</b> simulation → ABG GMT pipeline</div></div>
+          </div>
+          <div class="swap-tags"><span class="swap-tag y">General mgmt</span><span class="swap-tag">PPI</span><span class="swap-tag">Top 15</span></div>
+        </div>
+        <div class="swap-card" data-id="reliance-tup">
+          <div class="swap-top"><span class="swap-month">Oct–Nov</span><span class="swap-corp"><img src="logos/reliance/reliance-industries_corporate.png" alt="Reliance"></span></div>
+          <div class="swap-body">
+            <div class="swap-logo"><img src="logos/reliance/reliance-tup_competition.jpg" alt="Reliance TUP"></div>
+            <div class="swap-info"><div class="swap-name">Reliance TUP</div><div class="swap-org">Reliance Industries</div><div class="swap-prize"><b>₹25L pool</b> · Winner ₹6L + PPI · all-MBA</div></div>
+          </div>
+          <div class="swap-tags"><span class="swap-tag y">Entrepreneurship</span><span class="swap-tag">PPI</span><span class="swap-tag">All-MBA</span></div>
+        </div>
+        <div class="swap-card" data-id="amazon-ace">
+          <div class="swap-top"><span class="swap-month">Aug</span><span class="swap-corp"><img src="logos/amazon/amazon-india_corporate.svg" alt="Amazon"></span></div>
+          <div class="swap-body">
+            <div class="swap-logo"><img src="logos/amazon/amazon-ace_competition.png" alt="Amazon ACE"></div>
+            <div class="swap-info"><div class="swap-name">Amazon ACE</div><div class="swap-org">Amazon India</div><div class="swap-prize"><b>₹2L</b> + PPI + Alexa · Unstop's #1 ranked</div></div>
+          </div>
+          <div class="swap-tags"><span class="swap-tag y">Product</span><span class="swap-tag">PPI</span><span class="swap-tag">12+ editions</span></div>
+        </div>
+        <div class="swap-card" data-id="loreal-brandstorm">
+          <div class="swap-top"><span class="swap-month">Jan–Apr</span><span class="swap-corp"><img src="logos/loreal/loreal_corporate.svg" alt="L'Oréal"></span></div>
+          <div class="swap-body">
+            <div class="swap-logo"><img src="logos/loreal/loreal-brandstorm_competition.png" alt="L'Oréal Brandstorm"></div>
+            <div class="swap-info"><div class="swap-name">L'Oréal Brandstorm</div><div class="swap-org">L'Oréal · global</div><div class="swap-prize"><b>Paris HQ</b> mission + MT contract · 64 countries</div></div>
+          </div>
+          <div class="swap-tags"><span class="swap-tag y">Marketing</span><span class="swap-tag">International</span><span class="swap-tag">240K+ entrants</span></div>
+        </div>
+      </div>
+    </div>
+    <p class="swap-hint">Hover to pause · auto-cycles every 3.5s</p>
+  </div>
+</section>
+
+<!-- CATALOG -->
+<section id="catalog" class="pad grid-bg">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="dot"></span> The catalog</span>
+      <h2 class="anton"><span id="cat-count">85</span> comps. <span class="hl tight">Filterable.</span></h2>
+      <p>Marquee tier carries the highest prestige and the clearest PPI/PPO funnels. Gold star = marquee.</p>
+    </div>
+    <div class="filters">
+      <div class="filter-row"><span class="filter-label">Search</span><input id="search" class="search-input" placeholder="Competition, firm, or theme — e.g. HUL, marketing"></div>
+      <div class="filter-row"><span class="filter-label">Track</span><div class="chips" id="track-chips"></div></div>
+      <div class="filter-row"><span class="filter-label">Tier</span><div class="chips" id="tier-chips"></div></div>
+      <div class="filter-row"><span class="filter-label">Perks</span><div class="chips" id="perk-chips"></div></div>
+      <div class="filter-row"><span class="filter-label">Month</span><div class="chips" id="month-chips"></div></div>
+    </div>
+    <div class="count" id="count">Showing all competitions</div>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<!-- SEASON JOURNEY -->
+<section id="season" class="pad">
   <div class="wrap">
     <div class="season-grid">
       <div class="season-head">
-        <div class="sec-label"><span class="no">03</span> The season</div>
-        <h2 class="sec-title">Jun→May. The whole loop.</h2>
-        <p class="sec-sub">The corporate calendar wakes up in August and peaks through November — that single window carries most of the year's PPI pipelines. Scroll the line. Marquee names in bold.</p>
+        <span class="eyebrow"><span class="dot"></span> The season</span>
+        <h2 class="anton" style="font-size:clamp(34px,9vw,64px);margin:14px 0 0">Jun → May.<br>The whole loop.</h2>
+        <p style="font-size:16px;color:var(--ink-70);margin-top:16px;line-height:1.6">The corporate calendar wakes up in August and peaks through November — that single window carries most of the year's PPI pipelines. Scroll the line; marquee names in bold.</p>
       </div>
       <div class="journey" id="journey">
         <svg class="j-line" aria-hidden="true"><path class="track" d=""/><path class="draw" d=""/></svg>
@@ -632,357 +754,154 @@ footer{border-top:4px solid var(--ink);padding:64px 0 48px}
   </div>
 </section>
 
-<!-- 04 · marquee swap -->
-<section id="marquee">
+<!-- HOW IT WORKS -->
+<section class="pad grid-bg">
   <div class="wrap">
-    <div class="sec-label"><span class="no">04</span> Marquee</div>
-    <h2 class="sec-title">The five that <span class="red">shift</span> a CV.</h2>
-    <p class="sec-sub">Five marquee programs on rotation. Hover the stack to pause. Click a card to pull it up in the catalog.</p>
-
-    <div class="swap-stage">
-      <div class="swap-container" id="swap">
-        <div class="swap-card" data-id="hul-lime">
-          <div class="swap-top">
-            <span class="swap-month">Aug–Sep</span>
-            <span class="swap-corp"><img src="logos/hindustan-unilever/hul_corporate.svg" alt=""></span>
-          </div>
-          <div class="swap-body">
-            <div class="swap-logo-big"><img src="logos/hindustan-unilever/hul-lime_competition.png" alt=""></div>
-            <div class="swap-info">
-              <div class="swap-name">HUL LIME</div>
-              <div class="swap-org">Hindustan Unilever · marketing</div>
-              <div class="swap-prize"><b>₹10L</b> + Unilever Future Leaders' League (London)</div>
-            </div>
-          </div>
-          <div class="swap-tags">
-            <span class="swap-tag red">Marketing</span>
-            <span class="swap-tag">PPI</span>
-            <span class="swap-tag">International</span>
-          </div>
-        </div>
-
-        <div class="swap-card" data-id="abg-stratos">
-          <div class="swap-top">
-            <span class="swap-month">Aug</span>
-            <span class="swap-corp"><img src="logos/aditya-birla-group/aditya-birla-group_corporate.svg" alt=""></span>
-          </div>
-          <div class="swap-body">
-            <div class="swap-logo-big"><img src="logos/aditya-birla-group/abg-stratos_competition.png" alt=""></div>
-            <div class="swap-info">
-              <div class="swap-name">ABG Stratos</div>
-              <div class="swap-org">Aditya Birla Group · gen-mgmt</div>
-              <div class="swap-prize"><b>72-hour</b> 6-round simulation → ABG GMT pipeline</div>
-            </div>
-          </div>
-          <div class="swap-tags">
-            <span class="swap-tag red">General mgmt</span>
-            <span class="swap-tag">PPI</span>
-            <span class="swap-tag">Top 15 schools</span>
-          </div>
-        </div>
-
-        <div class="swap-card" data-id="reliance-tup">
-          <div class="swap-top">
-            <span class="swap-month">Oct–Nov</span>
-            <span class="swap-corp"><img src="logos/reliance/reliance-industries_corporate.png" alt=""></span>
-          </div>
-          <div class="swap-body">
-            <div class="swap-logo-big"><img src="logos/reliance/reliance-tup_competition.jpg" alt=""></div>
-            <div class="swap-info">
-              <div class="swap-name">Reliance TUP</div>
-              <div class="swap-org">Reliance Industries · the ultimate pitch</div>
-              <div class="swap-prize"><b>₹25L pool</b> · Winner ₹6L + PPI · open to all MBA programs</div>
-            </div>
-          </div>
-          <div class="swap-tags">
-            <span class="swap-tag red">Entrepreneurship</span>
-            <span class="swap-tag">PPI</span>
-            <span class="swap-tag">All-MBA</span>
-          </div>
-        </div>
-
-        <div class="swap-card" data-id="amazon-ace">
-          <div class="swap-top">
-            <span class="swap-month">Aug</span>
-            <span class="swap-corp"><img src="logos/amazon/amazon-india_corporate.svg" alt=""></span>
-          </div>
-          <div class="swap-body">
-            <div class="swap-logo-big"><img src="logos/amazon/amazon-ace_competition.png" alt=""></div>
-            <div class="swap-info">
-              <div class="swap-name">Amazon ACE</div>
-              <div class="swap-org">Amazon India · product</div>
-              <div class="swap-prize"><b>₹2L</b> + PPI + Alexa devices · Unstop's #1 ranked</div>
-            </div>
-          </div>
-          <div class="swap-tags">
-            <span class="swap-tag red">Product</span>
-            <span class="swap-tag">PPI</span>
-            <span class="swap-tag">12+ editions</span>
-          </div>
-        </div>
-
-        <div class="swap-card" data-id="loreal-brandstorm">
-          <div class="swap-top">
-            <span class="swap-month">Jan–Apr</span>
-            <span class="swap-corp"><img src="logos/loreal/loreal_corporate.svg" alt=""></span>
-          </div>
-          <div class="swap-body">
-            <div class="swap-logo-big"><img src="logos/loreal/loreal-brandstorm_competition.png" alt=""></div>
-            <div class="swap-info">
-              <div class="swap-name">L'Oréal Brandstorm</div>
-              <div class="swap-org">L'Oréal · global marketing</div>
-              <div class="swap-prize"><b>Paris HQ</b> 3-mo mission + MT contract · 64 countries</div>
-            </div>
-          </div>
-          <div class="swap-tags">
-            <span class="swap-tag red">Marketing</span>
-            <span class="swap-tag">International</span>
-            <span class="swap-tag">240K+ entrants</span>
-          </div>
-        </div>
+    <div class="how-grid">
+      <div class="how-head">
+        <span class="eyebrow"><span class="dot"></span> How it works</span>
+        <h2 class="anton" style="margin:14px 0 0;font-size:clamp(40px,11vw,64px)">Three<br>moves.</h2>
+      </div>
+      <div class="how-steps">
+        <div class="step"><div class="no">1</div><div><h4>Track the window</h4><p>Open the season view and see exactly which comps launch each month — the August cluster, the December tail, the quiet prep months.</p></div></div>
+        <div class="step"><div class="no">2</div><div><h4>Filter to fit</h4><p>Narrow 85 comps by track, eligibility tier, hiring intent and month until you're looking only at the ones worth your team's time.</p></div></div>
+        <div class="step"><div class="no">3</div><div><h4>Apply on time</h4><p>Start two months out, watch Unstop &amp; the firm's microsite for the live link, and walk in already knowing the prize, format and pipeline.</p></div></div>
       </div>
     </div>
-    <p class="swap-hint">Hover to pause — auto-cycles every 3.5s</p>
   </div>
 </section>
 
-<!-- 05 · catalog -->
-<section id="catalog">
+<!-- VAULT -->
+<section id="vault" class="pad">
   <div class="wrap">
-    <div class="sec-label"><span class="no">05</span> Catalog</div>
-    <h2 class="sec-title"><span id="cat-count">86</span> comps. <span class="red">Filterable.</span></h2>
-    <p class="sec-sub">Marquee tier carries the highest prestige and the clearest PPI/PPO funnels. Red square = marquee.</p>
-
-    <div class="filters">
-      <div class="filter-row">
-        <span class="filter-label">Search</span>
-        <input id="search" class="search-input" placeholder="Competition, firm, or theme — e.g. HUL, marketing">
-      </div>
-      <div class="filter-row">
-        <span class="filter-label">Track</span>
-        <div class="chips" id="track-chips"></div>
-      </div>
-      <div class="filter-row">
-        <span class="filter-label">Tier</span>
-        <div class="chips" id="tier-chips"></div>
-      </div>
-      <div class="filter-row">
-        <span class="filter-label">Perks</span>
-        <div class="chips" id="perk-chips"></div>
-      </div>
-      <div class="filter-row">
-        <span class="filter-label">Month</span>
-        <div class="chips" id="month-chips"></div>
-      </div>
+    <div class="sec-head reveal">
+      <span class="eyebrow on-dark"><span class="dot"></span> The deck vault — in the works</span>
+      <h2 class="anton">Winning decks, <span class="hl tight">annotated.</span></h2>
+      <p>Finalist decks from the comps above — sourced with author permission and full credit — with judge-lens notes on why each slide works. Ships with the paid pass.</p>
     </div>
-
-    <div class="count" id="count">Showing all competitions</div>
-    <div class="grid" id="grid"></div>
-  </div>
-</section>
-
-<!-- 06 · vault (interactive folders) -->
-<section id="vault">
-  <div class="wrap">
-    <div class="sec-label"><span class="no">06</span> The deck vault — in the works</div>
-    <h2 class="sec-title">Winning decks, <span class="red">annotated.</span></h2>
-    <p class="sec-sub">High-quality decks from the comps above — sourced with author permission and full credit, plus judge-lens notes on why each slide works. Ships with the paid pass. Click a folder.</p>
-
     <div class="vault-grid">
-      <div class="vault-cell swiss-diagonal">
-        <div class="folder-zone">
-          <div class="folder-stage" role="button" tabindex="0" aria-label="Marketing flagships folder — click to open">
-            <div class="folder-back">
-              <div class="folder-tab"></div>
-              <div class="paper p1"><span class="p-tag">Locked</span><b>LIME-calibre GTM</b><i class="w1"></i><i class="w2"></i></div>
-              <div class="paper p2"><span class="p-tag">Locked</span><b>Brand P&amp;L builds</b><i class="w1"></i><i class="w2"></i></div>
-              <div class="paper p3"><span class="p-tag">Locked</span><b>Insight → idea</b><i class="w1"></i><i class="w2"></i></div>
-              <div class="flap flap-l"></div>
-              <div class="flap flap-r"></div>
-              <div class="folder-label">Marketing</div>
-            </div>
+      <div class="vault-cell">
+        <div class="folder-zone"><div class="folder-stage" role="button" tabindex="0" aria-label="Marketing flagships folder — open">
+          <div class="folder-back"><div class="folder-tab"></div>
+            <div class="paper p1"><span class="p-tag">Locked</span><b>LIME GTM</b><i class="w1"></i><i class="w2"></i></div>
+            <div class="paper p2"><span class="p-tag">Locked</span><b>Brand P&amp;L</b><i class="w1"></i><i class="w2"></i></div>
+            <div class="paper p3"><span class="p-tag">Locked</span><b>Insight→idea</b><i class="w1"></i><i class="w2"></i></div>
+            <div class="flap flap-l"></div><div class="flap flap-r"></div><div class="folder-label">Marketing</div>
           </div>
-        </div>
-        <div class="vault-meta">
-          <span class="vt-pill">Paid drop</span>
-          <h3>Marketing flagships</h3>
-          <p>How national finalists structure a brand answer: insight → idea → GTM → P&amp;L.</p>
-        </div>
+        </div></div>
+        <div class="vault-meta"><span class="vt-pill">Paid drop</span><h3>Marketing flagships</h3><p>How national finalists structure a brand answer: insight → idea → GTM → P&amp;L.</p></div>
       </div>
-
-      <div class="vault-cell swiss-diagonal">
-        <div class="folder-zone">
-          <div class="folder-stage" role="button" tabindex="0" aria-label="Strategy and simulations folder — click to open">
-            <div class="folder-back">
-              <div class="folder-tab"></div>
-              <div class="paper p1"><span class="p-tag">Locked</span><b>Market entry</b><i class="w1"></i><i class="w2"></i></div>
-              <div class="paper p2"><span class="p-tag">Locked</span><b>Turnaround decks</b><i class="w1"></i><i class="w2"></i></div>
-              <div class="paper p3"><span class="p-tag">Locked</span><b>Judge-lens notes</b><i class="w1"></i><i class="w2"></i></div>
-              <div class="flap flap-l"></div>
-              <div class="flap flap-r"></div>
-              <div class="folder-label">Strategy</div>
-            </div>
+      <div class="vault-cell">
+        <div class="folder-zone"><div class="folder-stage" role="button" tabindex="0" aria-label="Strategy folder — open">
+          <div class="folder-back"><div class="folder-tab"></div>
+            <div class="paper p1"><span class="p-tag">Locked</span><b>Market entry</b><i class="w1"></i><i class="w2"></i></div>
+            <div class="paper p2"><span class="p-tag">Locked</span><b>Turnaround</b><i class="w1"></i><i class="w2"></i></div>
+            <div class="paper p3"><span class="p-tag">Locked</span><b>Judge notes</b><i class="w1"></i><i class="w2"></i></div>
+            <div class="flap flap-l"></div><div class="flap flap-r"></div><div class="folder-label">Strategy</div>
           </div>
-        </div>
-        <div class="vault-meta">
-          <span class="vt-pill">Paid drop</span>
-          <h3>Strategy &amp; simulations</h3>
-          <p>War-Room-style market-entry and turnaround decks, annotated through the judges' lens.</p>
-        </div>
+        </div></div>
+        <div class="vault-meta"><span class="vt-pill">Paid drop</span><h3>Strategy &amp; simulations</h3><p>Market-entry and turnaround decks, annotated through the judges' lens.</p></div>
       </div>
-
-      <div class="vault-cell swiss-diagonal">
-        <div class="folder-zone">
-          <div class="folder-stage" role="button" tabindex="0" aria-label="Product and e-commerce folder — click to open">
-            <div class="folder-back">
-              <div class="folder-tab"></div>
-              <div class="paper p1"><span class="p-tag">Locked</span><b>Metrics trees</b><i class="w1"></i><i class="w2"></i></div>
-              <div class="paper p2"><span class="p-tag">Locked</span><b>PRD templates</b><i class="w1"></i><i class="w2"></i></div>
-              <div class="paper p3"><span class="p-tag">Locked</span><b>Case structures</b><i class="w1"></i><i class="w2"></i></div>
-              <div class="flap flap-l"></div>
-              <div class="flap flap-r"></div>
-              <div class="folder-label">Product</div>
-            </div>
+      <div class="vault-cell">
+        <div class="folder-zone"><div class="folder-stage" role="button" tabindex="0" aria-label="Product folder — open">
+          <div class="folder-back"><div class="folder-tab"></div>
+            <div class="paper p1"><span class="p-tag">Locked</span><b>Metrics tree</b><i class="w1"></i><i class="w2"></i></div>
+            <div class="paper p2"><span class="p-tag">Locked</span><b>PRD template</b><i class="w1"></i><i class="w2"></i></div>
+            <div class="paper p3"><span class="p-tag">Locked</span><b>Case struct</b><i class="w1"></i><i class="w2"></i></div>
+            <div class="flap flap-l"></div><div class="flap flap-r"></div><div class="folder-label">Product</div>
           </div>
-        </div>
-        <div class="vault-meta">
-          <span class="vt-pill">Paid drop</span>
-          <h3>Product &amp; e-commerce</h3>
-          <p>ACE / WiRED-style problem structuring and metrics trees, rebuilt as reusable templates.</p>
-        </div>
+        </div></div>
+        <div class="vault-meta"><span class="vt-pill">Paid drop</span><h3>Product &amp; e-commerce</h3><p>ACE / WiRED-style problem structuring and metrics trees as reusable templates.</p></div>
       </div>
     </div>
-
-    <div class="vault-cta-row">
-      <a href="#signal" class="btn btn-primary">Get the drop first</a>
-    </div>
+    <div class="vault-cta"><a href="#cta" class="btn btn-yellow btn-anton">Get the drop first</a></div>
   </div>
 </section>
 
-<!-- 07 · record -->
-<section id="record">
+<!-- TESTIMONIALS -->
+<section class="pad grid-bg">
   <div class="wrap">
-    <div class="sec-label"><span class="no">07</span> The record</div>
-    <h2 class="sec-title">Past finalists, on record.</h2>
-    <div class="diary-grid">
-      <div class="diary">
-        <p class="quote">"We competed against 10,000+ participants. Navigating mentorship rounds, consumer research, and a CXO panel — it was the closest thing to actually working at the firm before we'd even interviewed."</p>
-        <div class="sig">Team NotJustACadbury</div>
-        <div class="sig-meta">Mondelez Maestros 2024 · Commercial Track Winners · NMIMS Mumbai</div>
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="dot"></span> The record</span>
+      <h2 class="anton">Past finalists, <span class="hl tight">on record.</span></h2>
+    </div>
+    <div class="t-grid">
+      <div class="t-card reveal">
+        <div class="t-stars">★★★★★</div>
+        <p>"Four tracks, three rounds, four months. By Grand Finale you don't just pitch — you defend an e-commerce thesis to Flipkart's leadership in Bengaluru."</p>
+        <div class="t-foot"><span class="ava">SK</span><div><div class="tn">Team Sikarios</div><div class="tm">Flipkart WiRED · Winners · IIM Calcutta</div></div></div>
       </div>
-      <div class="diary">
-        <p class="quote">"From 195 teams down to a national finale at ABG HQ. The HR case round changed how I think about employee experience — and gave us the GIP internship that became a PPO."</p>
-        <div class="sig">Team Bombay Ducks</div>
-        <div class="sig-meta">ABG HeadstaRt 2022 · National Winners · TISS Mumbai</div>
+      <div class="t-card dark reveal">
+        <div class="t-stars">★★★★★</div>
+        <p>"We competed against 10,000+ participants — mentorship rounds, consumer research, a CXO panel. The closest thing to working at the firm before we'd even interviewed."</p>
+        <div class="t-foot"><span class="ava">NC</span><div><div class="tn">Team NotJustACadbury</div><div class="tm">Mondelez Maestros · Winners · NMIMS Mumbai</div></div></div>
       </div>
-      <div class="diary">
-        <p class="quote">"Four tracks, three rounds, four months. By Grand Finale you don't just pitch — you defend an e-commerce thesis to Flipkart's leadership in Bengaluru."</p>
-        <div class="sig">Team Sikarios</div>
-        <div class="sig-meta">Flipkart WiRED 2018 · National Winners · IIM Calcutta</div>
-      </div>
-      <div class="diary">
-        <p class="quote">"The 'Write Like an Amazonian' workshop alone was worth it. Then you build a 50× scale plan in 72 hours. Hardest, sharpest competition we'd been in."</p>
-        <div class="sig">Team Pulsars</div>
-        <div class="sig-meta">Amazon ACE 2022 · National Winners · ISB Hyderabad</div>
+      <div class="t-card reveal">
+        <div class="t-stars">★★★★★</div>
+        <p>"The 'Write Like an Amazonian' workshop alone was worth it. Then you build a 50× scale plan in 72 hours. Hardest, sharpest competition we'd been in."</p>
+        <div class="t-foot"><span class="ava">PL</span><div><div class="tn">Team Pulsars</div><div class="tm">Amazon ACE · Winners · ISB Hyderabad</div></div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 08 · faq -->
-<section id="faq">
+<!-- FAQ -->
+<section class="pad">
   <div class="wrap">
-    <div class="sec-label"><span class="no">08</span> FAQ</div>
-    <h2 class="sec-title">The honest answers.</h2>
-
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="dot"></span> FAQ</span>
+      <h2 class="anton">The honest answers.</h2>
+    </div>
     <div class="faq-list">
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">Are these only for premier B-school students?<span class="plus">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner">Mostly the <b>marquee tier</b> is curated to ~15–25 premier institutes — typically IIM A/B/C/L/K/I, XLRI, FMS, SPJIMR, MDI, JBIMS, NITIE/IIM Mumbai, IIFT, NMIMS, MICA, SIBM Pune, ISB, IMT Ghaziabad, XIMB. <b>But</b> several are open to all MBA programs in India — Flipkart WiRED, ICICI Beat the Curve, Reliance TUP, EY Techathon, Hero Campus Challenge, L'Oréal Brandstorm. Each card tells you which tier it sits in.</div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">Do all of these actually lead to job offers?<span class="plus">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner">Most marquee comps offer a <b>PPI</b> (Pre-Placement Interview) to national finalists at minimum. A smaller set runs direct hiring funnels — <b>Bajaj Finserv ATOM, TAS InvicTAS, Tata Steel-a-thon, ITC Interrobang, IDFC FIRST FAME</b> carry explicit PPO routes; <b>ABG Stratos, HUL LIME, Marico Over The Wall, J&amp;J Imagivators</b> feed PPI pipelines into the host firm. Filter by "PPI" or "PPO" to see only those.</div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">When should I start preparing for the August–November cluster?<span class="plus">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner">The golden rule: <b>two months before launch</b>. So early-June for Bajaj Finserv ATOM / Pidilite Bond / ABG HeadstaRt; mid-July for ABG Stratos / ITC Interrobang / Amazon ACE / Flipkart WiRED / HUL LIME; late August for Asian Paints CANVAS / Tata Steel-a-thon. Most are 1st-year MBA flagships, so right after induction is the right time to assemble teams.</div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">Are these only for first-year MBA students?<span class="plus">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner">Roughly 60% of marquee comps prefer 1st-years (since the hiring funnel feeds summer internships). Examples: HUL LIME, ABG HeadstaRt, ITC Interrobang, Pidilite Bond, Dabur Verve, Amazon ACE, Tata Consumer Grow Beyond Better. The rest are <b>1st &amp; 2nd year open</b> — Marico Over The Wall, Reliance TUP, Flipkart WiRED, Bajaj Finserv ATOM, EY Techathon.</div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">How accurate are the registration windows shown?<span class="plus">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner">They're <b>historical patterns</b> — accurate to within ±3–4 weeks year-to-year. Don't anchor on them; use them to plan, then watch Unstop &amp; the firm's careers microsite (LinkedIn careers pages also leak early). A competition like Reliance TUP has scaled its prize pool across seasons — treat figures as approximate ranges.</div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">What about quizzes, hackathons, and women-only comps?<span class="plus">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner">Quizzes (TATA Crucible, Reliance Quiz-a-thon) and pure hackathons are mostly excluded — they behave differently from case comps. Women-only flagships <b>are</b> included and tagged: <b>Goldman Sachs Women's Possibilities Summit</b> and <b>J&amp;J Women in Sales</b>.</div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">Who maintains this list?<span class="plus">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner">Built by <b>Shivam Meet</b>. The dataset is consolidated from official competition pages, Unstop listings, press releases, and verified winner reports — and re-verified each season. Cross-check live windows against Unstop &amp; the firm's microsite before applying.</div></div>
-      </div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false">Are these only for premier B-school students?<span class="plus">+</span></button><div class="faq-a"><div class="faq-a-inner">The <b>marquee tier</b> is mostly curated to ~15–25 premier institutes (IIM A/B/C/L/K/I, XLRI, FMS, SPJIMR, MDI, JBIMS, NITIE/IIM Mumbai, IIFT, NMIMS, MICA, SIBM Pune, ISB, IMT, XIMB). <b>But</b> several are open to all MBA programs — Flipkart WiRED, Reliance TUP, EY Techathon, Hero Campus Challenge, L'Oréal Brandstorm. Each card shows its tier.</div></div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false">Do these actually lead to job offers?<span class="plus">+</span></button><div class="faq-a"><div class="faq-a-inner">Most marquee comps offer a <b>PPI</b> to national finalists. A smaller set runs direct PPO routes — <b>Bajaj Finserv ATOM, TAS InvicTAS, Tata Steel-a-thon, ITC Interrobang, IDFC FIRST FAME</b>. Filter by "PPI" or "PPO" to see only those.</div></div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false">How accurate are the windows shown?<span class="plus">+</span></button><div class="faq-a"><div class="faq-a-inner">They're <b>historical patterns</b>, accurate to ±3–4 weeks. Use them to plan, then watch Unstop &amp; the firm's careers microsite for the live link. Every one of the 85 entries was re-verified against live sources this season — but figures shift, so treat prizes as ranges.</div></div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false">When should I start preparing?<span class="plus">+</span></button><div class="faq-a"><div class="faq-a-inner"><b>Two months before launch.</b> Early-June for Bajaj ATOM / Pidilite Bond / ABG HeadstaRt; mid-July for ABG Stratos / ITC / Amazon ACE / Flipkart WiRED / HUL LIME; late-August for Asian Paints CANVAS / Tata Steel-a-thon. Most are 1st-year flagships, so assemble teams right after induction.</div></div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false">Who maintains this list?<span class="plus">+</span></button><div class="faq-a"><div class="faq-a-inner">Built by <b>Shivam Meet</b>, consolidated from official competition pages, Unstop, press releases and verified winner reports — and re-verified each season. Cross-check live windows before applying.</div></div></div>
     </div>
   </div>
 </section>
 
-<!-- 09 · signal -->
-<section id="signal">
+<!-- FINAL CTA -->
+<section id="cta" class="pad">
+  <div class="ghost"><span>AUGUST</span></div>
   <div class="wrap">
-    <div class="sec-label"><span class="no">09</span> The signal</div>
-    <div class="signal-grid">
-      <div>
-        <h2 class="sec-title">Get the season opener. <span class="red">First.</span></h2>
-        <p class="sec-sub">When the big August window opens — HUL LIME, ABG, ITC, Mahindra — one short note with this season's actual links, dates &amp; briefs.</p>
-        <form class="waitlist-form" onsubmit="event.preventDefault();this.querySelector('button').textContent='✓ ON THE LIST';this.parentNode.querySelector('.waitlist-done').classList.add('show')">
-          <input type="email" required placeholder="your.email@example.com" aria-label="Email address">
-          <button type="submit">Notify me</button>
-        </form>
-        <div class="waitlist-done">Noted. — Shivam</div>
-      </div>
-      <div class="signal-box swiss-dots">
-        <h4>What you get</h4>
-        <ul>
-          <li>Season-open alerts for the marquee tier</li>
-          <li>Actual registration links, not month guesses</li>
-          <li>Deck-vault drops as they're cleared &amp; credited</li>
-          <li>Zero spam — one note per window</li>
-        </ul>
-      </div>
-    </div>
+    <h2 class="anton">Get the season opener first.</h2>
+    <p>When the big August window opens — HUL LIME, ABG, ITC, Mahindra — one short note with this season's actual links, dates &amp; briefs.</p>
+    <form class="waitlist" onsubmit="event.preventDefault();this.querySelector('button').textContent='✓ ON THE LIST';this.parentNode.querySelector('.waitlist-done').classList.add('show')">
+      <input type="email" required placeholder="your.email@example.com" aria-label="Email address">
+      <button type="submit" class="btn btn-anton">Notify me</button>
+    </form>
+    <div class="waitlist-done"><span class="check">✓</span> Noted — see you in August.</div>
   </div>
 </section>
 
-<!-- footer -->
+<!-- FOOTER -->
 <footer>
   <div class="wrap">
     <div class="foot-grid">
-      <div>
-        <div class="foot-brand">Case—Comps<br><span class="red">India.</span></div>
-      </div>
-      <div class="foot-col">
-        <h5>Index</h5>
-        <a href="#season">Season journey</a>
-        <a href="#catalog">Catalog</a>
-        <a href="#vault">Deck vault</a>
-        <a href="#faq">FAQ</a>
-      </div>
-      <div class="foot-col">
-        <h5>Shivam Meet</h5>
-        <a href="https://instagram.com/meet_.shivam" target="_blank" rel="noopener">Instagram — 86K+</a>
-        <a href="https://www.linkedin.com/in/meetshivam" target="_blank" rel="noopener">LinkedIn</a>
+      <div class="foot-brand">Case<br>Comps<span class="pd">.</span></div>
+      <div class="foot-cols" style="display:contents">
+        <div class="foot-col">
+          <h5>Index</h5>
+          <a href="#assembly">How it works</a>
+          <a href="#catalog">Catalog</a>
+          <a href="#season">Season</a>
+          <a href="#vault">Deck vault</a>
+        </div>
+        <div class="foot-col">
+          <h5>Shivam Meet</h5>
+          <a href="https://instagram.com/meet_.shivam" target="_blank" rel="noopener">Instagram — 86K+</a>
+          <a href="https://www.linkedin.com/in/meetshivam" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
       </div>
     </div>
-    <p class="foot-legal">Career navigation for college students. This list rotates each season; cross-verify on Unstop &amp; the firm's microsite. Spotted an error or missing comp? DM <a href="https://instagram.com/meet_.shivam" target="_blank" rel="noopener" style="font-weight:700;border-bottom:2px solid var(--red)">@meet_.shivam</a>.<br><br>All competition names &amp; logos belong to their respective organisers — used here for identification only. No affiliation or endorsement implied.</p>
+    <p class="foot-legal">Career navigation for college students. This list rotates each season; cross-verify on Unstop &amp; the firm's microsite. All competition names &amp; logos belong to their respective organisers — used here for identification only, no affiliation or endorsement implied. Spotted an error? DM <a href="https://instagram.com/meet_.shivam" target="_blank" rel="noopener">@meet_.shivam</a>.</p>
   </div>
 </footer>
 
 <script>
-/* ============================================================
-   DATA
-   ============================================================ */
+/* ============================================================ DATA ============================================================ */
 const COMPS = [
   // ---------- MARQUEE ----------
   {id:"hul-lime",n:"HUL LIME",full:"Lessons in Marketing Excellence",org:"Hindustan Unilever",tracks:["marketing"],tier:"all-mba",schools:"1st-yr full-time MBA, open across all Indian B-schools",team:"3",mo:8,window:"Aug–Sep",prize:"₹10L winner + Unilever Future Leaders' League (London/global)",perks:["ppi","international","cash"],edition:"S17 = 2025",marquee:true,logo:"logos/hindustan-unilever/hul-lime_competition.png",orgLogo:"logos/hindustan-unilever/hul_corporate.svg",blurb:"HUL's flagship marketing case, televised by CNBC-TV18. Recent seasons opened to 1st-years across all B-schools."},
@@ -1078,419 +997,237 @@ const COMPS = [
   {id:"cbs-case-comp",n:"CBS Case Competition",org:"Copenhagen Business School",tracks:["strategy","general-mgmt"],tier:"global",schools:"12 invited global universities + Open Track (any team worldwide can apply)",team:"4",mo:11,window:"Open Track apps ~Oct–Nov · case week Feb–Mar (Copenhagen)",prize:"Cash podium + fully-hosted case week in Copenhagen",perks:["international","cash"],edition:"20+ editions",marquee:false,logo:"logos/global/cbs-case-competition_competition.svg",blurb:"One of the world's most prestigious case competitions — a week-long live case for a major corporate, solved on-site in Copenhagen. Indian teams enter via the Open Track application."},
 ];
 
-/* ============================================================
-   FILTERS
-   ============================================================ */
-const TRACKS = [
-  {k:"marketing",l:"Marketing"},
-  {k:"strategy",l:"Strategy"},
-  {k:"general-mgmt",l:"General Mgmt"},
-  {k:"finance",l:"Finance / BFSI"},
-  {k:"product-tech",l:"Product / Tech"},
-  {k:"ops-supply",l:"Ops / Supply"},
-  {k:"hr",l:"HR / People"},
-  {k:"analytics",l:"Analytics"},
-  {k:"entrepreneurship",l:"Entrepreneurship"},
-  {k:"sustainability",l:"Sustainability"},
-  {k:"pharma",l:"Pharma"},
-];
-const TIERS = [
-  {k:"premier",l:"Premier-curated"},
-  {k:"all-mba",l:"All-MBA"},
-  {k:"all-india",l:"All-India open"},
-  {k:"global",l:"Global open"},
-];
-const PERKS = [
-  {k:"ppi",l:"PPI"},
-  {k:"ppo",l:"PPO"},
-  {k:"international",l:"International"},
-  {k:"cash",l:"Cash prize"},
-];
-const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-const MONTH_FULL = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-
-let state = {track:"all",tier:"all",perk:"all",mo:0,q:""};
+/* ============================================================ FILTERS ============================================================ */
+const TRACKS=[{k:"marketing",l:"Marketing"},{k:"strategy",l:"Strategy"},{k:"general-mgmt",l:"General Mgmt"},{k:"finance",l:"Finance / BFSI"},{k:"product-tech",l:"Product / Tech"},{k:"ops-supply",l:"Ops / Supply"},{k:"hr",l:"HR / People"},{k:"analytics",l:"Analytics"},{k:"entrepreneurship",l:"Entrepreneurship"},{k:"sustainability",l:"Sustainability"},{k:"pharma",l:"Pharma"}];
+const TIERS=[{k:"premier",l:"Premier-curated"},{k:"all-mba",l:"All-MBA"},{k:"all-india",l:"All-India open"},{k:"global",l:"Global open"}];
+const PERKS=[{k:"ppi",l:"PPI"},{k:"ppo",l:"PPO"},{k:"international",l:"International"},{k:"cash",l:"Cash prize"}];
+const MONTHS=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const MONTH_FULL=["January","February","March","April","May","June","July","August","September","October","November","December"];
+let state={track:"all",tier:"all",perk:"all",mo:0,q:""};
 
 function makeChips(id,items,key){
-  const el = document.getElementById(id);
-  let html = `<button type="button" class="chip active" data-v="all">All</button>`;
-  items.forEach(it=>{html += `<button type="button" class="chip" data-v="${it.k}">${it.l}</button>`;});
-  el.innerHTML = html;
-  el.querySelectorAll('.chip').forEach(c=>{
-    c.addEventListener('click',()=>{
-      el.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));
-      c.classList.add('active');
-      state[key] = c.dataset.v === 'all' ? 'all' : c.dataset.v;
-      render();
-    });
-  });
+  const el=document.getElementById(id);
+  let h=`<button type="button" class="chip active" data-v="all">All</button>`;
+  items.forEach(it=>{h+=`<button type="button" class="chip" data-v="${it.k}">${it.l}</button>`;});
+  el.innerHTML=h;
+  el.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>{el.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));c.classList.add('active');state[key]=c.dataset.v==='all'?'all':c.dataset.v;render();}));
 }
 function makeMonthChips(){
-  const el = document.getElementById('month-chips');
-  let html = `<button type="button" class="chip active" data-v="0">Any</button>`;
-  MONTHS.forEach((m,i)=>{html += `<button type="button" class="chip" data-v="${i+1}">${m}</button>`;});
-  el.innerHTML = html;
-  el.querySelectorAll('.chip').forEach(c=>{
-    c.addEventListener('click',()=>{
-      el.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));
-      c.classList.add('active');
-      state.mo = parseInt(c.dataset.v,10);
-      render();
-    });
-  });
+  const el=document.getElementById('month-chips');
+  let h=`<button type="button" class="chip active" data-v="0">Any</button>`;
+  MONTHS.forEach((m,i)=>{h+=`<button type="button" class="chip" data-v="${i+1}">${m}</button>`;});
+  el.innerHTML=h;
+  el.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>{el.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));c.classList.add('active');state.mo=parseInt(c.dataset.v,10);render();}));
 }
-
-makeChips('track-chips',TRACKS,'track');
-makeChips('tier-chips',TIERS,'tier');
-makeChips('perk-chips',PERKS,'perk');
-makeMonthChips();
+makeChips('track-chips',TRACKS,'track');makeChips('tier-chips',TIERS,'tier');makeChips('perk-chips',PERKS,'perk');makeMonthChips();
 document.getElementById('search').addEventListener('input',e=>{state.q=e.target.value.toLowerCase().trim();render();});
 
 function renderCard(c){
-  const tracksHtml = c.tracks.map(t=>{
-    const meta = TRACKS.find(x=>x.k===t);
-    if(!meta) return '';
-    return `<span class="tag red">${meta.l}</span>`;
-  }).join('');
-  const perksHtml = (c.perks||[]).map(p=>{
-    const meta = PERKS.find(x=>x.k===p);
-    return meta ? `<span class="tag">${meta.l}</span>` : '';
-  }).join('');
-  const womenTag = c.women ? `<span class="tag women">Women-only</span>` : '';
-  const tierLabel = (TIERS.find(t=>t.k===c.tier)||{}).l || c.tier;
-  return `
-    <article class="card ${c.marquee?'marquee':''}">
-      <div class="card-head">
-        <div class="card-logo"><img src="${c.logo}" alt="${c.n} logo" loading="lazy"></div>
-        <div>
-          <div class="card-title">${c.n}</div>
-          <div class="card-org">${c.org}${c.orgLogo?` <img src="${c.orgLogo}" alt="">`:''}</div>
-        </div>
-      </div>
-      <div class="card-tags">${tracksHtml}${womenTag}</div>
-      <p class="card-blurb">${c.blurb||''}</p>
-      <div class="card-meta">
-        <div class="row"><span class="k">Launch</span><span class="v">${c.window}</span></div>
-        <div class="row"><span class="k">Eligible</span><span class="v">${tierLabel}</span></div>
-        <div class="row"><span class="k">Team</span><span class="v">${c.team}</span></div>
-        <div class="row"><span class="k">Prize</span><span class="v">${c.prize}</span></div>
-        ${perksHtml ? `<div class="card-tags" style="margin-top:6px">${perksHtml}</div>` : ''}
-      </div>
-    </article>
-  `;
+  const tracks=c.tracks.map(t=>{const m=TRACKS.find(x=>x.k===t);return m?`<span class="tag y">${m.l}</span>`:'';}).join('');
+  const perks=(c.perks||[]).map(p=>{const m=PERKS.find(x=>x.k===p);return m?`<span class="tag">${m.l}</span>`:'';}).join('');
+  const women=c.women?`<span class="tag women">Women-only</span>`:'';
+  const tier=(TIERS.find(t=>t.k===c.tier)||{}).l||c.tier;
+  return `<article class="card ${c.marquee?'marquee':''}">
+    <div class="card-head">
+      <div class="card-logo"><img src="${c.logo}" alt="${c.n} logo" loading="lazy"></div>
+      <div><div class="card-title">${c.n}</div><div class="card-org">${c.org}${c.orgLogo?` <img src="${c.orgLogo}" alt="">`:''}</div></div>
+    </div>
+    <div class="card-tags">${tracks}${women}</div>
+    <p class="card-blurb">${c.blurb||''}</p>
+    <div class="card-meta">
+      <div class="row"><span class="k">Launch</span><span class="v">${c.window}</span></div>
+      <div class="row"><span class="k">Eligible</span><span class="v">${tier}</span></div>
+      <div class="row"><span class="k">Team</span><span class="v">${c.team}</span></div>
+      <div class="row"><span class="k">Prize</span><span class="v">${c.prize}</span></div>
+      ${perks?`<div class="card-tags" style="margin-top:6px">${perks}</div>`:''}
+    </div>
+  </article>`;
 }
-
 function render(){
-  const filtered = COMPS.filter(c=>{
-    if(state.track!=='all' && !c.tracks.includes(state.track)) return false;
-    if(state.tier!=='all' && c.tier!==state.tier) return false;
-    if(state.perk!=='all' && !(c.perks||[]).includes(state.perk)) return false;
-    if(state.mo>0 && c.mo!==state.mo) return false;
-    if(state.q){
-      const hay = `${c.n} ${c.org} ${(c.tracks||[]).join(' ')} ${c.blurb||''} ${c.prize||''} ${c.full||''}`.toLowerCase();
-      if(!hay.includes(state.q)) return false;
-    }
+  const f=COMPS.filter(c=>{
+    if(state.track!=='all'&&!c.tracks.includes(state.track))return false;
+    if(state.tier!=='all'&&c.tier!==state.tier)return false;
+    if(state.perk!=='all'&&!(c.perks||[]).includes(state.perk))return false;
+    if(state.mo>0&&c.mo!==state.mo)return false;
+    if(state.q){const hay=`${c.n} ${c.org} ${(c.tracks||[]).join(' ')} ${c.blurb||''} ${c.prize||''} ${c.full||''}`.toLowerCase();if(!hay.includes(state.q))return false;}
     return true;
   });
-  filtered.sort((a,b)=>{
-    if(a.marquee!==b.marquee) return a.marquee?-1:1;
-    return a.mo-b.mo;
-  });
-  const grid = document.getElementById('grid');
-  if(filtered.length===0){
-    grid.innerHTML = `<div class="empty"><span class="big">Nothing here.</span><p>Try clearing a filter or two.</p></div>`;
-  } else {
-    grid.innerHTML = filtered.map(renderCard).join('');
-  }
-  const cnt = document.getElementById('count');
-  if(filtered.length===COMPS.length){
-    cnt.innerHTML = `Showing <b>all ${COMPS.length}</b> competitions`;
-  } else {
-    cnt.innerHTML = `Showing <b>${filtered.length}</b> of ${COMPS.length} competitions`;
-  }
+  f.sort((a,b)=>a.marquee!==b.marquee?(a.marquee?-1:1):a.mo-b.mo);
+  const g=document.getElementById('grid');
+  g.innerHTML=f.length?f.map(renderCard).join(''):`<div class="empty"><span class="big">Nothing here.</span><p>Try clearing a filter or two.</p></div>`;
+  const cnt=document.getElementById('count');
+  cnt.innerHTML=f.length===COMPS.length?`Showing <b>all ${COMPS.length}</b> competitions`:`Showing <b>${f.length}</b> of ${COMPS.length} competitions`;
 }
 render();
 
-/* ============================================================
-   STATS — count-up on viewport entry
-   ============================================================ */
-const STATS = {
-  total: COMPS.length,
-  marquee: COMPS.filter(c=>c.marquee).length,
-  pipeline: COMPS.filter(c=>(c.perks||[]).includes('ppi')||(c.perks||[]).includes('ppo')).length,
-  intl: COMPS.filter(c=>(c.perks||[]).includes('international')).length,
-};
-document.getElementById('hero-count').textContent = STATS.total;
-document.getElementById('cat-count').textContent = STATS.total;
-
-const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const counted = new Set();
-function animateCount(el,target){
-  if(REDUCED){ el.textContent = target; return; }
-  const dur = 900;
-  let start = null;
-  function step(t){
-    if(!start) start = t;
-    const p = Math.min((t-start)/dur,1);
-    const eased = 1-Math.pow(1-p,2);
-    el.textContent = Math.round(target*eased);
-    if(p<1) requestAnimationFrame(step);
-  }
-  requestAnimationFrame(step);
+/* ============================================================ LOGO WALL ============================================================ */
+const WALL=[
+  "tata-group/tata-group_corporate.svg","hindustan-unilever/hul_corporate.svg","itc/itc-limited_corporate.svg","amazon/amazon-india_corporate.svg","flipkart/flipkart_corporate.svg","mahindra-group/mahindra-and-mahindra_corporate.svg","accenture/accenture_corporate.svg","bajaj-group/bajaj-finserv_corporate.svg","asian-paints/asian-paints_corporate.svg","microsoft/microsoft-india_corporate.svg","infosys/infosys_corporate.svg","ey/ey_corporate.svg","kpmg/kpmg-india_corporate.svg","pwc/pwc-india_corporate.svg","reliance/reliance-industries_corporate.png","marico/marico-limited_corporate.svg",
+  "mondelez/mondelez-international_corporate.svg","diageo/diageo_corporate.svg","loreal/loreal_corporate.svg","hero-motocorp/hero-motocorp_corporate.svg","samsung-india","goldman-sachs/goldman-sachs_corporate.svg","nestle/nestle-india_corporate.svg","dabur/dabur-india_corporate.svg","icici/icici-bank_corporate.svg","bcg/bcg_corporate.svg","other-conglomerates/american-express_corporate.png","wipro/wipro_corporate.svg","aditya-birla-group/aditya-birla-group_corporate.svg","coca-cola/coca-cola-india_corporate.svg","pharma/gsk_corporate.png","titan"
+];
+function chip(path){
+  if(path==='samsung-india')path='other-conglomerates/samsung-india_corporate.png';
+  if(path==='titan')path='other-conglomerates/titan-company_corporate.png';
+  return `<div class="logo-chip"><img src="logos/${path}" alt="" loading="lazy"></div>`;
 }
-function checkCounts(){
-  document.querySelectorAll('.num[data-stat]').forEach(el=>{
-    if(counted.has(el)) return;
-    const r = el.getBoundingClientRect();
-    if(r.top < window.innerHeight - 60 && r.bottom > 0){
-      counted.add(el);
-      animateCount(el, STATS[el.dataset.stat] || 0);
-    }
-  });
-}
-
-/* ============================================================
-   SEASON JOURNEY — scroll-drawn SVG line
-   ============================================================ */
-const SEASON_ORDER = [6,7,8,9,10,11,12,1,2,3,4,5];
-(function buildStations(){
-  const byMo = {};
-  COMPS.forEach(c=>{ (byMo[c.mo] = byMo[c.mo] || []).push(c); });
-  const host = document.getElementById('stations');
-  host.innerHTML = SEASON_ORDER.map(mo=>{
-    const list = (byMo[mo]||[]).slice().sort((a,b)=>(a.marquee===b.marquee)?0:(a.marquee?-1:1));
-    const top = list.slice(0,3).map(c=>c.marquee?`<b>${c.n}</b>`:c.n).join(' · ');
-    const extra = list.length>3 ? ` · +${list.length-3} more` : '';
-    return `
-      <div class="station" data-mo="${mo}">
-        <span class="node"></span>
-        <div class="st-row">
-          <span class="st-mo">${MONTH_FULL[mo-1]}</span>
-          <span class="st-count">${list.length} comp${list.length===1?'':'s'}</span>
-        </div>
-        <div class="st-names">${top || '<i>Quiet — prep window.</i>'}${extra}</div>
-      </div>
-    `;
-  }).join('');
+(function buildWall(){
+  const r1=WALL.slice(0,16),r2=WALL.slice(16);
+  document.getElementById('wall-row-1').innerHTML=(r1.map(chip).join(''))+(r1.map(chip).join(''));
+  document.getElementById('wall-row-2').innerHTML=(r2.map(chip).join(''))+(r2.map(chip).join(''));
 })();
 
-const journeyEl = document.getElementById('journey');
-const jSvg = journeyEl.querySelector('svg.j-line');
-const jTrack = jSvg.querySelector('.track');
-const jDraw = jSvg.querySelector('.draw');
-let jLen = 0;
-
-function layoutJourney(){
-  const h = journeyEl.offsetHeight;
-  jSvg.setAttribute('viewBox', `0 0 48 ${h}`);
-  jSvg.style.height = h + 'px';
-  const d = `M 24 0 L 24 ${h}`;
-  jTrack.setAttribute('d', d);
-  jDraw.setAttribute('d', d);
-  jLen = h;
-  jDraw.style.strokeDasharray = jLen;
-  jDraw.style.strokeDashoffset = jLen;
+/* ============================================================ STATS (count-up) ============================================================ */
+const REDUCED=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const STATS={total:COMPS.length,marquee:COMPS.filter(c=>c.marquee).length,pipeline:COMPS.filter(c=>(c.perks||[]).includes('ppi')||(c.perks||[]).includes('ppo')).length,intl:COMPS.filter(c=>(c.perks||[]).includes('international')).length};
+document.getElementById('hero-count').textContent=STATS.total;
+document.getElementById('cat-count').textContent=STATS.total;
+const counted=new Set();
+function animateCount(el,target){
+  if(REDUCED){el.textContent=target;return;}
+  const dur=1000;let start=null;
+  function step(t){if(!start)start=t;const p=Math.min((t-start)/dur,1);el.textContent=Math.round(target*(1-Math.pow(1-p,2)));if(p<1)requestAnimationFrame(step);}
+  requestAnimationFrame(step);
 }
+function checkCounts(){document.querySelectorAll('.num[data-stat]').forEach(el=>{if(counted.has(el))return;const r=el.getBoundingClientRect();if(r.top<window.innerHeight-50&&r.bottom>0){counted.add(el);animateCount(el,STATS[el.dataset.stat]||0);}});}
+
+/* ============================================================ SEASON JOURNEY ============================================================ */
+const SEASON_ORDER=[6,7,8,9,10,11,12,1,2,3,4,5];
+(function(){
+  const byMo={};COMPS.forEach(c=>{(byMo[c.mo]=byMo[c.mo]||[]).push(c);});
+  document.getElementById('stations').innerHTML=SEASON_ORDER.map(mo=>{
+    const list=(byMo[mo]||[]).slice().sort((a,b)=>(a.marquee===b.marquee)?0:(a.marquee?-1:1));
+    const top=list.slice(0,3).map(c=>c.marquee?`<b>${c.n}</b>`:c.n).join(' · ');
+    const extra=list.length>3?` · +${list.length-3} more`:'';
+    return `<div class="station" data-mo="${mo}"><span class="node"></span><div class="st-row"><span class="st-mo">${MONTH_FULL[mo-1]}</span><span class="st-count">${list.length} comp${list.length===1?'':'s'}</span></div><div class="st-names">${top||'<i>Quiet — prep window.</i>'}${extra}</div></div>`;
+  }).join('');
+})();
+const journeyEl=document.getElementById('journey'),jSvg=journeyEl.querySelector('svg.j-line'),jTrack=jSvg.querySelector('.track'),jDraw=jSvg.querySelector('.draw');
+let jLen=0;
+function layoutJourney(){const h=journeyEl.offsetHeight;jSvg.setAttribute('viewBox',`0 0 30 ${h}`);jSvg.style.height=h+'px';const d=`M 15 0 L 15 ${h}`;jTrack.setAttribute('d',d);jDraw.setAttribute('d',d);jLen=h;jDraw.style.strokeDasharray=jLen;jDraw.style.strokeDashoffset=jLen;}
 function updateJourney(){
-  if(!jLen) return;
-  const r = journeyEl.getBoundingClientRect();
-  const vh = window.innerHeight;
-  // progress: 0 when section top hits 75% viewport, 1 when bottom passes 40% viewport
-  const total = r.height + vh*0.35;
-  const passed = (vh*0.75 - r.top);
-  const progress = Math.max(0, Math.min(1, passed/total));
-  const drawn = REDUCED ? jLen : jLen * progress;
-  jDraw.style.strokeDashoffset = jLen - drawn;
-  journeyEl.querySelectorAll('.station').forEach(st=>{
-    const sr = st.getBoundingClientRect();
-    const nodeY = (sr.top - r.top) + 40;
-    st.classList.toggle('passed', drawn >= nodeY);
-  });
+  if(!jLen)return;
+  const r=journeyEl.getBoundingClientRect(),vh=window.innerHeight;
+  const total=r.height+vh*0.35,passed=(vh*0.75-r.top);
+  const progress=Math.max(0,Math.min(1,passed/total)),drawn=REDUCED?jLen:jLen*progress;
+  jDraw.style.strokeDashoffset=jLen-drawn;
+  journeyEl.querySelectorAll('.station').forEach(st=>{const sr=st.getBoundingClientRect();const nodeY=(sr.top-r.top)+28;st.classList.toggle('passed',drawn>=nodeY);});
 }
 
-/* ============================================================
-   REVEALS (scroll-listener based)
-   ============================================================ */
-const revealEls = document.querySelectorAll('section, header.hero');
-revealEls.forEach(s=>s.classList.add('reveal'));
-function checkReveals(){
-  const vh = window.innerHeight;
-  revealEls.forEach(s=>{
-    if(s.classList.contains('in')) return;
-    const r = s.getBoundingClientRect();
-    if(r.top < vh - 40 && r.bottom > 40) s.classList.add('in');
-  });
-}
-function onScroll(){
-  checkReveals();
-  checkCounts();
-  updateJourney();
-}
-layoutJourney();
-onScroll();
+/* ============================================================ EXPLODED-VIEW ASSEMBLY ============================================================ */
+(function(){
+  const track=document.querySelector('.assembly-track'),stage=document.querySelector('.assembly-stage');
+  if(!track)return;
+  const vpW=()=>document.getElementById('viewport').offsetWidth;
+  // poses per piece: assembled-pile (start), exploded (mid), final-grid (end). values are {x,y,r} as fractions of viewport / px.
+  const isM=()=>window.matchMedia('(max-width:640px)').matches;
+  function poses(){
+    const W=vpW(),s=isM()?0.62:1;
+    // helper to scale offsets
+    const e=v=>v*s;
+    return {
+      search:{start:{x:0,y:e(-14),r:-2},explode:{x:e(-150),y:e(-150),r:-12},final:{x:0,y:e(-150),r:0}},
+      chips:{start:{x:e(8),y:e(20),r:3},explode:{x:e(170),y:e(-120),r:14},final:{x:0,y:e(-96),r:0}},
+      card1:{start:{x:e(-10),y:e(-40),r:-3},explode:{x:e(-180),y:e(20),r:-16},final:{x:0,y:e(-44),r:0}},
+      card2:{start:{x:e(6),y:e(0),r:2},explode:{x:e(180),y:e(40),r:14},final:{x:0,y:e(8),r:0}},
+      card3:{start:{x:e(-4),y:e(40),r:-1},explode:{x:e(-60),y:e(170),r:-8},final:{x:0,y:e(60),r:0}},
+      months:{start:{x:e(10),y:e(64),r:4},explode:{x:e(120),y:e(180),r:12},final:{x:0,y:e(150),r:0}}
+    };
+  }
+  const pieces=[...document.querySelectorAll('.piece')];
+  const lerp=(a,b,t)=>a+(b-a)*t;
+  function place(p){
+    const map=poses();
+    pieces.forEach(el=>{
+      const k=el.dataset.piece,P=map[k];if(!P)return;
+      let from,to,t;
+      if(p<0.5){from=P.start;to=P.explode;t=p/0.5;}
+      else{from=P.explode;to=P.final;t=(p-0.5)/0.5;}
+      t=t<0?0:t>1?1:t;
+      // ease
+      const te=t*t*(3-2*t);
+      const x=lerp(from.x,to.x,te),y=lerp(from.y,to.y,te),r=lerp(from.r,to.r,te);
+      el.style.transform=`translate(-50%,-50%) translate(${x.toFixed(1)}px,${y.toFixed(1)}px) rotate(${r.toFixed(1)}deg)`;
+    });
+    const step=document.getElementById('asm-step'),title=document.getElementById('asm-title');
+    if(p<0.4){step.textContent='Step 01';title.innerHTML='Scattered across <span class="y">five tabs</span>';}
+    else if(p<0.72){step.textContent='Step 02';title.innerHTML='Pulled apart, <span class="y">every source</span>';}
+    else{step.textContent='Step 03';title.innerHTML='Locked into <span class="y">one grid</span>';}
+  }
+  function onScrollAsm(){
+    const r=track.getBoundingClientRect(),vh=window.innerHeight;
+    const total=r.height-vh,passed=-r.top;
+    const p=Math.max(0,Math.min(1,passed/total));
+    place(p);
+  }
+  if(REDUCED){
+    // static fallback: show the final assembled layout, no scroll-pinning
+    place(1);
+    document.getElementById('asm-step').textContent='The fix';
+    document.getElementById('asm-title').innerHTML='Locked into <span class="y">one grid</span>';
+    window.addEventListener('resize',()=>place(1),{passive:true});
+    return;
+  }
+  place(0);
+  window.addEventListener('scroll',onScrollAsm,{passive:true});
+  window.addEventListener('resize',()=>{place(0);onScrollAsm();},{passive:true});
+})();
+
+/* ============================================================ REVEALS + scroll hub ============================================================ */
+const revealEls=document.querySelectorAll('.reveal');
+function checkReveals(){const vh=window.innerHeight;revealEls.forEach(s=>{if(s.classList.contains('in'))return;const r=s.getBoundingClientRect();if(r.top<vh-30&&r.bottom>20)s.classList.add('in');});}
+function onScroll(){checkReveals();checkCounts();updateJourney();}
+layoutJourney();onScroll();
 window.addEventListener('scroll',onScroll,{passive:true});
 window.addEventListener('resize',()=>{layoutJourney();onScroll();},{passive:true});
 window.addEventListener('load',()=>{layoutJourney();onScroll();});
 
-/* ============================================================
-   CARD SWAP — vanilla GSAP port (Swiss: linear/mechanical)
-   ============================================================ */
+/* ============================================================ CARD SWAP ============================================================ */
 (function(){
-  const container = document.getElementById('swap');
-  if(!container || typeof gsap === 'undefined') return;
-
-  const SWAP = {
-    cards: [...container.querySelectorAll('.swap-card')],
-    cardDistance: 60,
-    verticalDistance: 60,
-    delay: 3500,
-    skewAmount: 6,
-    intervalId: 0,
-    tl: null,
-    order: []
-  };
-  const cfg = {
-    ease: 'power1.inOut',
-    durDrop: .7, durMove: .7, durReturn: .7,
-    promoteOverlap: .45, returnDelay: .2
-  };
-
-  function makeSlot(i, dx, dy, total){
-    return { x: i*dx, y: -i*dy, z: -i*dx*1.5, zIndex: total-i };
-  }
-  function placeNow(el, slot, skew){
-    gsap.set(el, {
-      x: slot.x, y: slot.y, z: slot.z,
-      xPercent: -50, yPercent: -50,
-      skewY: skew,
-      transformOrigin: 'center center',
-      zIndex: slot.zIndex,
-      force3D: true
-    });
-  }
-  function placeAll(){
-    const total = SWAP.cards.length;
-    SWAP.cards.forEach((el,i) => placeNow(el, makeSlot(i, SWAP.cardDistance, SWAP.verticalDistance, total), SWAP.skewAmount));
-    SWAP.order = SWAP.cards.map((_,i)=>i);
-  }
+  const container=document.getElementById('swap');if(!container||typeof gsap==='undefined')return;
+  const SWAP={cards:[...container.querySelectorAll('.swap-card')],cardDistance:48,verticalDistance:48,delay:3500,skewAmount:5,intervalId:0,tl:null,order:[]};
+  const cfg={ease:'power1.inOut',durDrop:.7,durMove:.7,durReturn:.7,promoteOverlap:.45,returnDelay:.2};
+  const makeSlot=(i,dx,dy,total)=>({x:i*dx,y:-i*dy,z:-i*dx*1.5,zIndex:total-i});
+  function placeNow(el,slot,skew){gsap.set(el,{x:slot.x,y:slot.y,z:slot.z,xPercent:-50,yPercent:-50,skewY:skew,transformOrigin:'center center',zIndex:slot.zIndex,force3D:true});}
+  function placeAll(){const total=SWAP.cards.length;SWAP.cards.forEach((el,i)=>placeNow(el,makeSlot(i,SWAP.cardDistance,SWAP.verticalDistance,total),SWAP.skewAmount));SWAP.order=SWAP.cards.map((_,i)=>i);}
   function swap(){
-    if(SWAP.order.length < 2) return;
-    const total = SWAP.cards.length;
-    const front = SWAP.order[0];
-    const rest = SWAP.order.slice(1);
-    const elFront = SWAP.cards[front];
-    if(!elFront) return;
-
-    const tl = gsap.timeline();
-    SWAP.tl = tl;
-    tl.to(elFront, { y: '+=520', duration: cfg.durDrop, ease: cfg.ease });
-    tl.addLabel('promote', `-=${cfg.durDrop * cfg.promoteOverlap}`);
-    rest.forEach((idx, i) => {
-      const el = SWAP.cards[idx];
-      if(!el) return;
-      const slot = makeSlot(i, SWAP.cardDistance, SWAP.verticalDistance, total);
-      tl.set(el, { zIndex: slot.zIndex }, 'promote');
-      tl.to(el, { x: slot.x, y: slot.y, z: slot.z, duration: cfg.durMove, ease: cfg.ease }, `promote+=${i * 0.1}`);
-    });
-    const backSlot = makeSlot(total - 1, SWAP.cardDistance, SWAP.verticalDistance, total);
-    tl.addLabel('return', `promote+=${cfg.durMove * cfg.returnDelay}`);
-    tl.call(() => gsap.set(elFront, { zIndex: backSlot.zIndex }), null, 'return');
-    tl.to(elFront, { x: backSlot.x, y: backSlot.y, z: backSlot.z, duration: cfg.durReturn, ease: cfg.ease }, 'return');
-    tl.call(() => { SWAP.order = [...rest, front]; });
+    if(SWAP.order.length<2)return;const total=SWAP.cards.length,front=SWAP.order[0],rest=SWAP.order.slice(1),elFront=SWAP.cards[front];if(!elFront)return;
+    const tl=gsap.timeline();SWAP.tl=tl;
+    tl.to(elFront,{y:'+=500',duration:cfg.durDrop,ease:cfg.ease});
+    tl.addLabel('promote',`-=${cfg.durDrop*cfg.promoteOverlap}`);
+    rest.forEach((idx,i)=>{const el=SWAP.cards[idx];if(!el)return;const slot=makeSlot(i,SWAP.cardDistance,SWAP.verticalDistance,total);tl.set(el,{zIndex:slot.zIndex},'promote');tl.to(el,{x:slot.x,y:slot.y,z:slot.z,duration:cfg.durMove,ease:cfg.ease},`promote+=${i*0.1}`);});
+    const back=makeSlot(total-1,SWAP.cardDistance,SWAP.verticalDistance,total);
+    tl.addLabel('return',`promote+=${cfg.durMove*cfg.returnDelay}`);
+    tl.call(()=>gsap.set(elFront,{zIndex:back.zIndex}),null,'return');
+    tl.to(elFront,{x:back.x,y:back.y,z:back.z,duration:cfg.durReturn,ease:cfg.ease},'return');
+    tl.call(()=>{SWAP.order=[...rest,front];});
   }
-  function startInterval(){
-    clearInterval(SWAP.intervalId);
-    if(REDUCED) return;
-    SWAP.intervalId = window.setInterval(swap, SWAP.delay);
-  }
-
-  placeAll();
-  startInterval();
-
-  container.addEventListener('mouseenter', () => { SWAP.tl?.pause(); clearInterval(SWAP.intervalId); });
-  container.addEventListener('mouseleave', () => { SWAP.tl?.play(); startInterval(); });
-
-  SWAP.cards.forEach((el) => {
-    el.addEventListener('click', () => {
-      const search = document.getElementById('search');
-      if(search){
-        const name = el.querySelector('.swap-name')?.textContent || '';
-        search.value = name;
-        search.dispatchEvent(new Event('input',{bubbles:true}));
-      }
-      document.getElementById('catalog')?.scrollIntoView({behavior:'smooth',block:'start'});
-    });
-  });
-
-  let lastIsMobile = window.matchMedia('(max-width:760px)').matches;
-  function fitSwap(){
-    const isMobile = window.matchMedia('(max-width:760px)').matches;
-    if(isMobile !== lastIsMobile){
-      lastIsMobile = isMobile;
-      SWAP.cardDistance = isMobile ? 40 : 60;
-      SWAP.verticalDistance = isMobile ? 40 : 60;
-      placeAll();
-    }
-  }
-  window.addEventListener('resize', fitSwap);
-  if(lastIsMobile){ SWAP.cardDistance = 40; SWAP.verticalDistance = 40; placeAll(); }
+  function startInterval(){clearInterval(SWAP.intervalId);if(REDUCED)return;SWAP.intervalId=window.setInterval(swap,SWAP.delay);}
+  placeAll();startInterval();
+  container.addEventListener('mouseenter',()=>{SWAP.tl?.pause();clearInterval(SWAP.intervalId);});
+  container.addEventListener('mouseleave',()=>{SWAP.tl?.play();startInterval();});
+  SWAP.cards.forEach(el=>el.addEventListener('click',()=>{const s=document.getElementById('search');if(s){s.value=el.querySelector('.swap-name')?.textContent||'';s.dispatchEvent(new Event('input',{bubbles:true}));}document.getElementById('catalog')?.scrollIntoView({behavior:'smooth',block:'start'});}));
 })();
 
-/* ============================================================
-   VAULT FOLDERS — vanilla port of InteractiveFolder
-   ============================================================ */
+/* ============================================================ VAULT FOLDERS ============================================================ */
 document.querySelectorAll('.folder-stage').forEach(stage=>{
-  const toggle = ()=>stage.classList.toggle('open');
-  stage.addEventListener('click', toggle);
-  stage.addEventListener('keydown', e=>{
-    if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggle(); }
-  });
+  const toggle=()=>stage.classList.toggle('open');
+  stage.addEventListener('click',toggle);
+  stage.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle();}});
   stage.querySelectorAll('.paper').forEach(p=>{
-    p.addEventListener('mousemove', e=>{
-      if(!stage.classList.contains('open')) return;
-      const r = p.getBoundingClientRect();
-      const dx = (e.clientX - (r.left + r.width/2)) * .18;
-      const dy = (e.clientY - (r.top + r.height/2)) * .18;
-      p.style.setProperty('--dx', dx.toFixed(1)+'px');
-      p.style.setProperty('--dy', dy.toFixed(1)+'px');
-      p.style.setProperty('--s', '1.06');
-    });
-    p.addEventListener('mouseleave', ()=>{
-      p.style.setProperty('--dx','0px');
-      p.style.setProperty('--dy','0px');
-      p.style.setProperty('--s','1');
-    });
+    p.addEventListener('mousemove',e=>{if(!stage.classList.contains('open'))return;const r=p.getBoundingClientRect();p.style.setProperty('--dx',((e.clientX-(r.left+r.width/2))*.16).toFixed(1)+'px');p.style.setProperty('--dy',((e.clientY-(r.top+r.height/2))*.16).toFixed(1)+'px');p.style.setProperty('--s','1.06');});
+    p.addEventListener('mouseleave',()=>{p.style.setProperty('--dx','0px');p.style.setProperty('--dy','0px');p.style.setProperty('--s','1');});
   });
 });
 
-/* ============================================================
-   FAQ
-   ============================================================ */
+/* ============================================================ FAQ ============================================================ */
 document.querySelectorAll('.faq-item').forEach(item=>{
-  const q = item.querySelector('.faq-q');
-  const a = item.querySelector('.faq-a');
-  const inner = a.firstElementChild;
-  // After opening transition completes, release to auto so dynamic/reflowed content can't clip.
-  a.addEventListener('transitionend', e=>{
-    if(e.propertyName==='height' && item.classList.contains('open')){
-      a.style.height = 'auto';
-    }
-  });
+  const q=item.querySelector('.faq-q'),a=item.querySelector('.faq-a'),inner=a.firstElementChild;
+  a.addEventListener('transitionend',e=>{if(e.propertyName==='height'&&item.classList.contains('open'))a.style.height='auto';});
   q.addEventListener('click',()=>{
-    const open = item.classList.contains('open');
-    if(open){
-      a.style.height = inner.scrollHeight + 'px';   // from auto → fixed, so it can animate closed
-      requestAnimationFrame(()=>{ a.style.height = '0px'; });
-      item.classList.remove('open');
-      q.setAttribute('aria-expanded','false');
-    } else {
-      a.style.height = inner.scrollHeight + 'px';
-      item.classList.add('open');
-      q.setAttribute('aria-expanded','true');
-    }
+    if(item.classList.contains('open')){a.style.height=inner.scrollHeight+'px';requestAnimationFrame(()=>{a.style.height='0px';});item.classList.remove('open');q.setAttribute('aria-expanded','false');}
+    else{a.style.height=inner.scrollHeight+'px';item.classList.add('open');q.setAttribute('aria-expanded','true');}
   });
 });
 </script>
-
 </body>
 </html>
