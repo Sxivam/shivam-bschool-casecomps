@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Calendar — Indian B-school case comps, month by month</title>
+<meta name="description" content="A dead-simple month-by-month calendar of Indian B-school corporate case competitions. Pick a month, see what's launching. Built by Shivam Meet.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --charcoal:#171e19;--dark:#272727;--yellow:#ffe17c;--yellow-deep:#f5c93a;
+  --sage:#b7c6c2;--white:#ffffff;--paper:#fafaf8;
+  --ink-70:rgba(23,30,25,.7);--ink-50:#5e6360;--ink-10:rgba(23,30,25,.1);
+  --amber-3:#8a6d00;--ease:cubic-bezier(.4,0,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Satoshi',system-ui,-apple-system,sans-serif;background:var(--white);color:var(--charcoal);line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden;min-height:100vh;display:flex;flex-direction:column}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+img{display:block;max-width:100%}
+::selection{background:var(--yellow);color:var(--charcoal)}
+.anton{font-family:'Anton',Impact,sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.01em;line-height:.9}
+.wrap{width:100%;max-width:760px;margin:0 auto;padding:0 20px}
+
+/* nav */
+nav.bar{height:58px;border-bottom:1px solid var(--ink-10);display:flex;align-items:center;position:sticky;top:0;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);z-index:20}
+nav.bar .wrap{display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:20px}
+.logo .pd{color:var(--yellow-deep)}
+.nav-link{font-size:13px;font-weight:700;color:var(--ink-50);display:flex;align-items:center;gap:5px}
+.nav-link:hover{color:var(--charcoal)}
+
+/* intro */
+.intro{text-align:center;padding:26px 0 6px}
+.intro .kicker{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-50)}
+.intro .kicker .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--yellow-deep);margin-right:6px;vertical-align:1px}
+
+/* month strip */
+.strip{display:flex;gap:6px;justify-content:flex-start;overflow-x:auto;padding:16px 20px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.strip::-webkit-scrollbar{display:none}
+.strip-inner{display:flex;gap:6px;margin:0 auto}
+.pill{flex:none;min-width:46px;height:44px;border-radius:11px;border:1px solid var(--ink-10);background:var(--white);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;transition:all .2s var(--ease)}
+.pill .pm{font-size:12px;font-weight:700;letter-spacing:.04em}
+.pill .pc{font-size:9px;font-weight:700;color:var(--ink-50)}
+.pill.has{border-color:rgba(245,201,58,.5)}
+.pill.peak{background:var(--yellow);border-color:var(--yellow)}
+.pill.active{background:var(--charcoal);border-color:var(--charcoal);color:var(--white)}
+.pill.active .pc{color:var(--sage)}
+.pill.quiet{opacity:.5}
+
+/* month stage */
+.stage{flex:1;padding:14px 0 40px}
+.month-head{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:10px 0 18px}
+.arrow{flex:none;width:56px;height:56px;border-radius:50%;border:2px solid var(--charcoal);display:grid;place-items:center;font-size:22px;transition:all .2s var(--ease)}
+.arrow:hover{background:var(--charcoal);color:var(--white)}
+.arrow:disabled{opacity:.25;cursor:default}
+.arrow:disabled:hover{background:none;color:var(--charcoal)}
+.month-title{text-align:center;flex:1;min-width:0}
+.month-title .mt{font-size:clamp(40px,13vw,68px);line-height:.85}
+.month-title .ms{margin-top:8px;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-50);display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap}
+.month-title .peak-flag{background:var(--yellow);color:var(--charcoal);padding:3px 10px;border-radius:6px;font-size:10px;letter-spacing:.12em}
+
+/* fade animation for month switch */
+.cards{display:flex;flex-direction:column;gap:12px;transition:opacity .18s var(--ease),transform .18s var(--ease)}
+.cards.swapping{opacity:0;transform:translateY(8px)}
+
+/* comp card */
+.c-card{border:1px solid var(--ink-10);border-radius:18px;background:var(--white);overflow:hidden;transition:border-color .2s var(--ease),box-shadow .2s var(--ease)}
+.c-card.open{border-color:var(--yellow-deep);box-shadow:0 14px 30px -18px rgba(23,30,25,.4)}
+.c-btn{width:100%;text-align:left;display:flex;align-items:center;gap:16px;padding:18px;min-height:64px}
+.c-logo{width:60px;height:60px;flex:none;min-width:60px;border:1px solid var(--ink-10);border-radius:14px;background:#fff;display:grid;place-items:center;overflow:hidden;padding:9px}
+.c-logo img{max-width:42px;max-height:42px;object-fit:contain}
+.c-main{flex:1;min-width:0}
+.c-name{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:21px;letter-spacing:.01em;line-height:1;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.c-name .star{color:var(--yellow-deep);font-size:15px}
+.c-sub{font-size:13px;color:var(--ink-50);margin-top:6px;font-weight:500}
+.c-sub b{color:var(--charcoal);font-weight:700}
+.c-chev{flex:none;width:28px;height:28px;display:grid;place-items:center;color:var(--amber-3);font-size:24px;line-height:1;transition:transform .25s var(--ease)}
+.c-card.open .c-chev{transform:rotate(45deg)}
+.c-detail{height:0;overflow:hidden;transition:height .25s var(--ease)}
+.c-detail-in{padding:0 18px 20px 18px;border-top:1px solid var(--ink-10);margin-top:0;padding-top:16px}
+.c-blurb{font-size:14px;line-height:1.55;color:var(--ink-70);margin-bottom:14px}
+.c-rows{display:flex;flex-direction:column;gap:9px}
+.c-row{display:flex;gap:12px;font-size:13px}
+.c-row .k{flex:none;width:78px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-50);padding-top:2px}
+.c-row .v{flex:1;min-width:0;font-weight:500;overflow-wrap:anywhere}
+.c-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
+.c-tag{font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:5px 10px;border-radius:7px;background:rgba(183,198,194,.25);color:var(--charcoal)}
+.c-tag.y{background:var(--yellow);color:var(--charcoal)}
+
+/* quiet month */
+.quiet-state{text-align:center;padding:48px 20px;border:2px dashed var(--ink-10);border-radius:20px}
+.quiet-state .qbig{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:26px;margin-bottom:8px}
+.quiet-state p{font-size:14px;color:var(--ink-50);max-width:340px;margin:0 auto 18px}
+.quiet-jump{display:inline-flex;align-items:center;gap:8px;background:var(--charcoal);color:var(--white);padding:13px 22px;border-radius:9999px;font-weight:700;font-size:14px}
+.quiet-jump:hover{background:var(--dark)}
+
+.swipe-hint{text-align:center;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-50);margin-top:26px}
+.swipe-hint .k{display:inline-grid;place-items:center;min-width:20px;height:20px;padding:0 5px;border:1px solid var(--ink-10);border-radius:5px;font-size:11px;margin:0 2px;vertical-align:-4px}
+
+footer{border-top:1px solid var(--ink-10);padding:22px 0;text-align:center;font-size:12px;color:var(--ink-50)}
+footer a{font-weight:700;color:var(--charcoal);border-bottom:1px solid var(--yellow-deep)}
+
+:focus-visible{outline:2px solid var(--yellow-deep);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media (min-width:620px){
+  .strip-inner{gap:8px}
+  .pill{min-width:54px}
+}
+</style>
+</head>
+<body>
+
+<nav class="bar">
+  <div class="wrap">
+    <a href="index.html" class="logo">CASECOMPS<span class="pd">.</span></a>
+    <a href="index.html#catalog" class="nav-link">Full index →</a>
+  </div>
+</nav>
+
+<div class="intro">
+  <div class="wrap"><span class="kicker"><span class="dot"></span>Your season, month by month · Jun → May</span></div>
+</div>
+
+<div class="strip"><div class="strip-inner" id="strip"></div></div>
+
+<main class="stage">
+  <div class="wrap">
+    <div class="month-head">
+      <button class="arrow" id="prev" aria-label="Previous month">‹</button>
+      <div class="month-title">
+        <h1 class="anton mt" id="mt">August</h1>
+        <div class="ms" id="ms"></div>
+      </div>
+      <button class="arrow" id="next" aria-label="Next month">›</button>
+    </div>
+    <div class="cards" id="cards" aria-live="polite"></div>
+    <p class="swipe-hint">Swipe, or use <span class="k">‹</span><span class="k">›</span> to change month</p>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">85 comps · verified each season · windows are historical patterns — confirm on Unstop before applying. <a href="index.html">Full index &amp; filters →</a></div>
+</footer>
+
+<script>
+const COMPS = [
+  // ---------- MARQUEE ----------
+  {id:"hul-lime",n:"HUL LIME",full:"Lessons in Marketing Excellence",org:"Hindustan Unilever",tracks:["marketing"],tier:"all-mba",schools:"1st-yr full-time MBA, open across all Indian B-schools",team:"3",mo:8,window:"Aug–Sep",prize:"₹10L winner + Unilever Future Leaders' League (London/global)",perks:["ppi","international","cash"],edition:"S17 = 2025",marquee:true,logo:"logos/hindustan-unilever/hul-lime_competition.png",orgLogo:"logos/hindustan-unilever/hul_corporate.svg",blurb:"HUL's flagship marketing case, televised by CNBC-TV18. Recent seasons opened to 1st-years across all B-schools."},
+  {id:"itc-interrobang",n:"ITC Interrobang?!",org:"ITC",tracks:["marketing","hr","ops-supply"],tier:"premier",schools:"18 premier institutes (4,600+ students, 2024)",team:"3–4",mo:8,window:"Aug–Sep",prize:"Cash + PPI → ITC AUT (Assistant Under Training) pipeline",perks:["ppi","cash"],edition:"S15 = 2025",marquee:true,logo:"logos/itc/itc-interrobang_competition.webp",orgLogo:"logos/itc/itc-limited_corporate.svg",blurb:"3 tracks (Marketing, HR, Supply Chain). Past brands: Dark Fantasy, Mangaldeep, Nimyle, Aashirvad Spices. Grand Finale in Kolkata."},
+  {id:"abg-stratos",n:"ABG Stratos",org:"Aditya Birla Group",tracks:["general-mgmt","strategy"],tier:"premier",schools:"Top 15 (IIMs A/B/C/L/K/I, ISB, XLRI, SPJIMR, FMS, JBIMS, MDI, IIFT...)",team:"3",mo:8,window:"Aug–Sep",prize:"Cash + PPI + ABG Group Management Trainee (GMT) pipeline",perks:["ppi","cash"],edition:"since 2015",marquee:true,logo:"logos/aditya-birla-group/abg-stratos_competition.png",orgLogo:"logos/aditya-birla-group/aditya-birla-group_corporate.svg",blurb:"6 back-to-back simulation micro-rounds in 72 hours. Hiring funnel for ABG's future-CEO GMT pipeline. Consistently top-3 in prestige rankings."},
+  {id:"abg-headstart",n:"ABG HeadstaRt",org:"Aditya Birla Group",tracks:["hr"],tier:"premier",schools:"Curated 6 (MDI, SCMHRD, SIBM Pune, TISS Mumbai, XIMB, XLRI-HRM)",team:"3 (1st-yr HR)",mo:7,window:"Late Jul",prize:"₹5L / ₹3L / ₹1L cash + internship PPIs (ABG GIP / leadership pipeline)",perks:["ppi","cash"],edition:"Active",marquee:true,logo:"logos/aditya-birla-group/abg-headstart_competition.png",orgLogo:"logos/aditya-birla-group/aditya-birla-group_corporate.svg",blurb:"4 rounds: iLead Business Simulation → HR Case → Mumbai National Finale. Winners get cash + internship PPIs into the ABG GIP."},
+  {id:"mahindra-war-room",n:"Mahindra War Room",org:"Mahindra & Mahindra",tracks:["strategy","general-mgmt"],tier:"premier",schools:"22 Indian + 4 international (Fudan, Yonsei, AIM Manila, NTU SG)",team:"4 (2-yr PGP)",mo:8,window:"Dormant (last run 2019)",prize:"₹5L + Club Mahindra stay (last awarded 2019)",perks:["ppi","international","cash"],edition:"Dormant — last S12, 2019",marquee:false,logo:"logos/mahindra-group/mahindra-war-room_competition.jpg",orgLogo:"logos/mahindra-group/mahindra-and-mahindra_corporate.svg",blurb:"Dormant under this name since Season 12 (2019). Mahindra's active campus successor is the Rise Challenge — see its entry."},
+  {id:"loreal-brandstorm",n:"L'Oréal Brandstorm",org:"L'Oréal",tracks:["marketing","entrepreneurship"],tier:"all-india",schools:"All under-30s (240,000+ globally in 2025)",team:"3",mo:1,window:"Jan–Apr (India national: Apr)",prize:"3-mo Paris HQ mission + permanent Management Trainee contract",perks:["international"],edition:"64 countries · 2025",marquee:true,logo:"logos/loreal/loreal-brandstorm_competition.png",orgLogo:"logos/loreal/loreal_corporate.svg",blurb:"The only truly global youth innovation competition on the list. Submission → Country Final → Paris Global Finale. 2026 partnered with L'Oréal Luxe."},
+  {id:"reliance-tup",n:"Reliance TUP",full:"The Ultimate Pitch",org:"Reliance Industries",tracks:["entrepreneurship","general-mgmt"],tier:"all-mba",schools:"All full-time MBA/PGDM in India (1st & 2nd yr)",team:"1–4 (same institute)",mo:10,window:"Oct–Nov",prize:"₹25L+ pool; Winner ₹6L + PPI; 2-day Grand Finale at Reliance Corporate Park, Navi Mumbai",perks:["ppi","cash"],edition:"XI = 2025",marquee:true,logo:"logos/reliance/reliance-tup_competition.jpg",orgLogo:"logos/reliance/reliance-industries_corporate.png",blurb:"11 seasons. Idea Submission → Elimination → Semi-Finale → Grand Finale at RIL Corporate Park, Navi Mumbai (2-day Idea Fair)."},
+  {id:"accenture-strategy",n:"Accenture B-School Strategy Challenge",org:"Accenture India",tracks:["strategy"],tier:"premier",schools:"16 premier (IIMs A/B/C/L/K/I/U, ISB, FMS, JBIMS, SPJIMR, XLRI, IIFT, MDI, NITIE, TISS)",team:"4",mo:7,window:"Jun–Jul reg · Aug–Sep rounds",prize:"~₹10L cumulative for top 3 + PPIs",perks:["ppi","cash"],edition:"S9 = 2025 (won by SPJIMR)",marquee:true,logo:"logos/accenture/accenture-bschool-strategy_competition.png",orgLogo:"logos/accenture/accenture_corporate.svg",blurb:"4 rounds: rapid-fire quiz → CEO/COO simulation → industry case → top-8 mentored finale. Themes: Total Enterprise Reinvention, Gen AI."},
+  {id:"marico-otw",n:"Marico Over The Wall",org:"Marico",tracks:["marketing","strategy"],tier:"premier",schools:"20 curated + 30 wildcard",team:"3 (1st & 2nd yr)",mo:9,window:"Sep",prize:"₹4L winner / ₹2L / ₹1L / ₹1L People's Choice + PPI + Marico Innovation Foundation seed",perks:["ppi","cash"],edition:"S13 = 2025",marquee:true,logo:"logos/marico/marico-over-the-wall_competition.png",orgLogo:"logos/marico/marico-limited_corporate.svg",blurb:"3 pivots: Marketing / Sales / Strategy. Past winners include Team Game Changers (SPJIMR S10). 2019 winner pipeline → Marico Area Sales Manager."},
+  {id:"hul-finace",n:"HUL FinAce",org:"Hindustan Unilever",tracks:["finance"],tier:"premier",schools:"Premier MBA finance",team:"3",mo:8,window:"Aug reg · Sep–Oct rounds",prize:"Cash + PPI; Unilever ULIP internship pipeline",perks:["ppi","cash"],edition:"S9 = 2025",marquee:true,logo:"logos/hindustan-unilever/hul-finace_competition.png",orgLogo:"logos/hindustan-unilever/hul_corporate.svg",blurb:"HUL's finance track (less televised than LIME, equally pipeline-relevant). Semi-finalists get Unilever ULIP internship PPIs."},
+  {id:"hul-techtonic",n:"HUL TechTonic",org:"Hindustan Unilever",tracks:["product-tech"],tier:"premier",schools:"IIM K/L/I, SPJIMR, XLRI, NITIE/IIM Mumbai, NMIMS, XIMB",team:"3",mo:8,window:"Aug",prize:"~₹4L + PPI",perks:["ppi","cash"],edition:"S7 = 2025 (won by IIM Calcutta)",marquee:true,logo:"logos/hindustan-unilever/hul-techtonic_competition.png",orgLogo:"logos/hindustan-unilever/hul_corporate.svg",blurb:"HUL's tech/product-mgmt track (formerly 'IT Reboot'). S7 registration ran Aug 2025; finale later in the year."},
+  {id:"hul-nutcracker",n:"HUL Nutcracker",org:"Hindustan Unilever",tracks:["strategy","analytics"],tier:"premier",schools:"Premier B-schools",team:"3",mo:8,window:"Aug onwards",prize:"PPI into HUL Future Leadership Programme",perks:["ppi"],edition:"Dormant — last 2021",marquee:false,logo:"logos/hindustan-unilever/hul-nutcracker_competition.jpg",orgLogo:"logos/hindustan-unilever/hul_corporate.svg",blurb:"Strategy/analytics track that pipelined into HUL's leadership programme. No edition found since 2021 — likely dormant."},
+  {id:"icici-btc",n:"ICICI Beat the Curve",org:"ICICI Bank",tracks:["finance"],tier:"all-mba",schools:"76 campuses (MBA + BA + LLB)",team:"3–4",mo:9,window:"Sep",prize:"Cash + PPI/PPO; top 12 to Mumbai finale",perks:["ppi","ppo","cash"],edition:"Dormant — last verified 2022",marquee:false,logo:"logos/icici/icici-beat-the-curve_competition.jpg",orgLogo:"logos/icici/icici-bank_corporate.svg",blurb:"BFSI flagship. Campus → Village Immersion → Top 12 Mumbai Grand Finale. No 2023–25 edition found — verify before relying on it."},
+  {id:"bajaj-atom",n:"Bajaj Finserv ATOM",full:"CEO's Challenge",org:"Bajaj Finserv",tracks:["finance","strategy"],tier:"premier",schools:"17 premier (IIMs A/B/C/I/K/L, FMS, ISB, IMT, JBIMS, NMIMS, TAPMI, SPJIMR, XLRI, IIFT, SIBM, SP Jain)",team:"4 (same campus)",mo:7,window:"Jul",prize:"Winner ₹5L + PPO/PPI; R-up ₹3L + GYLP",perks:["ppi","ppo","cash"],edition:"S8 = 2025",marquee:true,logo:"logos/bajaj-group/bajaj-atom-ceos-challenge_competition.gif",orgLogo:"logos/bajaj-group/bajaj-finserv_corporate.svg",blurb:"'Un-case-study' using scenario planning + design thinking for futuristic fintech problems. 4 rounds: Seed → Series A → Series B → Grand Finale (Pune HQ)."},
+  {id:"amex-bowl",n:"American Express Campus Challenge",org:"American Express",tracks:["analytics","finance"],tier:"premier",schools:"~28 (IIMs, IITs, ISB, MDI, NITIE, NMIMS, SPJIMR, XLRI, FMS, MSE, DSE, IGIDR, ISI)",team:"team + individual",mo:5,window:"Apr–Jun deadline",prize:"Apple products + PPI",perks:["ppi"],edition:"Active (formerly Campus Super Bowl)",marquee:true,logo:"logos/other-conglomerates/amex-campus-super-bowl_competition.png",orgLogo:"logos/other-conglomerates/american-express_corporate.png",blurb:"Analytics / decision-science (Kaggle-style ML prediction). Rebranded from 'Campus Super Bowl' (2022–24)."},
+  {id:"asian-paints-canvas",n:"Asian Paints CANVAS",org:"Asian Paints",tracks:["marketing"],tier:"premier",schools:"~25 premier",team:"3 (2nd/final-yr flagship)",mo:8,window:"Aug reg · Oct finale",prize:"Cash + PPI + Asian Paints MT pipeline",perks:["ppi","cash"],edition:"since 2017+",marquee:true,logo:"logos/asian-paints/asian-paints-canvas_competition.png",orgLogo:"logos/asian-paints/asian-paints_corporate.svg",blurb:"Marketing / consumer insights. 2021 winners Team Slice of Art (IIM Bangalore) beat 972 teams."},
+  {id:"dabur-verve",n:"Dabur Verve",org:"Dabur India",tracks:["marketing"],tier:"premier",schools:"Premier-curated (XLRI, SPJIMR, NMIMS, TAPMI, KJ Somaiya…)",team:"2–3 (1st-yr)",mo:8,window:"Aug",prize:"Up to ₹10L pool + Dabur summer internship ('Campus Star')",perks:["ppi","cash"],edition:"since 2022",marquee:true,logo:"logos/dabur/dabur-verve_competition.png",orgLogo:"logos/dabur/dabur-india_corporate.svg",blurb:"Quiz → Case Submission → Finale with Dabur Leadership. 6,000+ MBA participants in 2023."},
+  {id:"flipkart-wired",n:"Flipkart WiRED",org:"Flipkart",tracks:["product-tech","ops-supply","hr","general-mgmt"],tier:"all-mba",schools:"All B-schools in India (started 7 institutes, now open)",team:"1–3 (cross-campus / year / spec)",mo:8,window:"Aug–Sep",prize:"₹1–1.25L EGV per track winner + R-up ₹75K EGV + PPIs",perks:["ppi","cash"],edition:"S9 = 2025",marquee:true,logo:"logos/flipkart/flipkart-wired_competition.png",orgLogo:"logos/flipkart/flipkart_corporate.svg",blurb:"4 tracks: Business, Product, Supply Chain, HR. 4 stages culminating in Grand Finale at Flipkart Bengaluru."},
+  {id:"amazon-ace",n:"Amazon ACE",full:"Customer Excellence Challenge",org:"Amazon India",tracks:["product-tech","general-mgmt"],tier:"premier",schools:"12+ premier + wildcards",team:"4 (1st-yr full-time MBA)",mo:8,window:"Aug",prize:"₹2L / ₹1.5L / ₹50K + PPI + Alexa devices",perks:["ppi","cash"],edition:"12+ editions (since 2011)",marquee:true,logo:"logos/amazon/amazon-ace_competition.png",orgLogo:"logos/amazon/amazon-india_corporate.svg",blurb:"Ranked #1 most-prestigious MBA case comp 2021/22 by Unstop. Preliminary quiz → Case Breakers (Amazon-style writing) → Grand Finale (scale a business 50×)."},
+  {id:"msft-pmengage",n:"Microsoft PM Engage",org:"Microsoft India",tracks:["product-tech"],tier:"premier",schools:"Premier MBA",team:"2 (separate PGP1 / PGP2-PGPX / 1-yr tracks)",mo:8,window:"Post-induction",prize:"Cash + Microsoft internship",perks:["ppi"],edition:"Active (formerly PM Challenge)",marquee:true,logo:"logos/microsoft/microsoft-pm-engage_competition.png",orgLogo:"logos/microsoft/microsoft-india_corporate.svg",blurb:"Product-management case. 3 phases: Campus (functional spec + PPT) → Top picks per campus → Final with Microsoft leadership + PM mentors."},
+  {id:"ey-techathon",n:"EY Techathon",org:"EY India",tracks:["product-tech","analytics","entrepreneurship"],tier:"all-india",schools:"All-India open (eng + mgmt). 1.5L+ regs · 6,500 team submissions (S5)",team:"team",mo:10,window:"Oct",prize:"Winner ₹3L / R-up ₹2L + EY internship + leadership mentorship",perks:["ppi","cash"],edition:"6.0 = 2026",marquee:true,logo:"logos/ey/ey-techathon_competition.jpg",orgLogo:"logos/ey/ey_corporate.svg",blurb:"Tech/AI hackathon-cum-case. S5 winners: Team CaseWizz (IIT Kharagpur) for V.A.R.U.N. AI financial assistant."},
+  {id:"infosys-ingenious",n:"Infosys Ingenious",org:"Infosys",tracks:["strategy","product-tech"],tier:"premier",schools:"80 select B-schools (2-yr full-time + 1-yr Exec MBA)",team:"3 (same college)",mo:8,window:"Aug–Sep (Oct finale)",prize:"₹4L / ₹3L / ₹2L + Infosys Consulting PPI (top-15 finalists)",perks:["ppi","cash"],edition:"12+ editions (since 2008)",marquee:true,logo:"logos/infosys/infosys-ingenious_competition.png",orgLogo:"logos/infosys/infosys_corporate.svg",blurb:"3 rounds: online quiz/sim → 5–7 page case → 8–10 slide B-plan at Infosys Bangalore HQ."},
+  {id:"wipro-earthian",n:"Wipro Earthian (i2I)",org:"Wipro Foundation",tracks:["sustainability","entrepreneurship"],tier:"all-india",schools:"School (6-12) + college track (IIT-M partnered since 2023)",team:"2–5",mo:9,window:"Sep deadline",prize:"₹1L top 5 + ₹50K prototype fund",perks:["cash"],edition:"15th edition = 2025",marquee:true,logo:"logos/wipro/wipro-earthian_program.png",orgLogo:"logos/wipro/wipro_corporate.svg",blurb:"Wipro Foundation's sustainability program. 'Ideas to Impact' college track partnered with IIT Madras."},
+  {id:"tas-invictas",n:"TAS InvicTAS",org:"Tata Administrative Services",tracks:["general-mgmt"],tier:"premier",schools:"17 TAS campuses (incoming 1st-yrs)",team:"Individual",mo:5,window:"May",prize:"Cash + TAS Summer Internship PPO",perks:["ppo","cash"],edition:"Active (2nd most prestigious 2020)",marquee:true,logo:"logos/tata-group/tas-invictas_competition.png",orgLogo:"logos/tata-group/tas_program.png",blurb:"Individual business simulation (with TOPSIM) for incoming 1st-years. Winners get a direct line into the TAS Summer Internship."},
+  {id:"nestle-genesis",n:"Nestlé Leaders League · Genesis",org:"Nestlé India",tracks:["marketing","strategy"],tier:"premier",schools:"Premier B-schools (incoming MBA cohorts)",team:"team",mo:4,window:"Apr–May",prize:"PPI + hiring funnel",perks:["ppi"],edition:"Active (2025 ran)",marquee:true,logo:"logos/nestle/nestle-leaders-league-genesis_competition.png",orgLogo:"logos/nestle/nestle-india_corporate.svg",blurb:"FMCG marketing / strategy umbrella, run pre-induction (reg deadlines mid-May). Sub-programs include NEST."},
+  {id:"mondelez-maestros",n:"Mondelez Maestros",org:"Mondelez India",tracks:["marketing","ops-supply"],tier:"premier",schools:"Premier select",team:"2–3",mo:10,window:"Oct–Nov",prize:"~₹3.5L + PPI + Mondelez India MT role",perks:["ppi","cash"],edition:"since 2020+",marquee:true,logo:"logos/mondelez/mondelez-maestros_competition.png",orgLogo:"logos/mondelez/mondelez-international_corporate.svg",blurb:"Brands: Cadbury, Oreo, belVita. 4 stages culminate in 10-min presentation finale. 2024 winners Team NotJustACadbury (NMIMS Mumbai) beat 10,000+."},
+  {id:"tata-steelathon",n:"Tata Steel-a-thon",org:"Tata Steel",tracks:["general-mgmt","ops-supply","marketing","strategy","hr"],tier:"premier",schools:"~27–28 premier",team:"2–4 (1st & 2nd yr)",mo:9,window:"Sep–Oct",prize:"₹2.5L / ₹1.5L / ₹1L + PPI Tata Steel MT / INSPIRE PPO",perks:["ppo","ppi","cash"],edition:"S9+",marquee:true,logo:"logos/tata-group/tata-steel-a-thon_competition.jpg",orgLogo:"logos/tata-group/tata-steel_corporate.svg",blurb:"Multi-track (HR / Mktg-Sales / Ops-Strategy / Corp Comm / Value Chain). Past winners include Steelars (XIMB) and Shillongers (IIM Shillong)."},
+  {id:"tata-imagination",n:"Tata Imagination Challenge",org:"Tata Group",tracks:["entrepreneurship","general-mgmt"],tier:"all-india",schools:"All UG/PG (any stream); 2.4 lakh regs in 2025",team:"individual / team",mo:8,window:"Aug–Sep",prize:"₹26L pool; ₹2L × top 10 + TAS PPI fast-track",perks:["ppi","cash"],edition:"6th edition = 2025",marquee:true,logo:"logos/tata-group/tata-imagination-challenge_competition.png",orgLogo:"logos/tata-group/tata-group_corporate.svg",blurb:"4 rounds: Brand-Stories Quiz → Gamified Analytithon → Idea Pitch (2-min video) → Grand Finale at Bombay House with TAS 'Idea Buddy' mentor."},
+  {id:"tata-grow-beyond",n:"Tata Consumer Grow Beyond Better",org:"Tata Consumer Products",tracks:["marketing","general-mgmt"],tier:"all-mba",schools:"All Indian B-schools (1st-yr; was premier-curated through 2023)",team:"3 (1st-yr MBA)",mo:11,window:"Nov–Dec",prize:"₹2L + PPI; R-up ₹1L; top 40 fast-track to TCPL ELP",perks:["ppi","cash"],edition:"S4 (2025) = BITSoM",marquee:true,logo:"logos/tata-group/tata-grow-beyond-better_competition.png",orgLogo:"logos/tata-group/tata-consumer-products_corporate.png",blurb:"Formerly 'The FNB Challenge'. Treasure Hunt (non-elim) → Executive Summary → Detailed → Mentorship + Grand Finale."},
+  {id:"hero-campus",n:"Hero Campus Challenge",org:"Hero MotoCorp",tracks:["general-mgmt","product-tech","entrepreneurship"],tier:"all-india",schools:"All-India (premier MBA + engg); 200,000+ students S10",team:"3",mo:12,window:"Dec–Jan",prize:"S10 pool ₹25L: winner ₹2.5L + Xtreme 125/Vida VX2 + merch + PPI",perks:["ppi","cash"],edition:"S10 (reg Dec 2025–Jan 2026)",marquee:true,logo:"logos/hero-motocorp/hero-campus-challenge_competition.png",orgLogo:"logos/hero-motocorp/hero-motocorp_corporate.svg",blurb:"B-Track + E-Track in parallel. 3-4 rounds: assessment → Idea Pitch video → Senior Mgmt presentation → Mentorship → Grand Finale (finale Mar)."},
+  {id:"gsk-ecube",n:"GSK ECube (E³)",org:"GlaxoSmithKline",tracks:["strategy","pharma"],tier:"premier",schools:"Premier (~3,000 regs)",team:"team",mo:11,window:"Nov",prize:"~₹2.5L + PPI",perks:["ppi","cash"],edition:"Nov 2024 = XIM University",marquee:true,logo:"logos/pharma/gsk-ecube_competition.jpg",orgLogo:"logos/pharma/gsk_corporate.png",blurb:"GSK's pharma/FMCG strategy flagship. Top 10 present at GSK Mumbai HQ."},
+  {id:"diageo-bespirited",n:"Diageo BeSpirited",org:"Diageo",tracks:["general-mgmt","marketing"],tier:"all-india",schools:"Global (India + Hungary/Europe); legal drinking age",team:"3",mo:9,window:"Sep–Oct",prize:"Latest iPad per winning team member",perks:["international"],edition:"8 editions since 2016",marquee:true,logo:"logos/diageo/diageo-bespirited_competition.png",orgLogo:"logos/diageo/diageo_corporate.svg",blurb:"'Business Adventure Game'. Virtual investigation game → FMCG simulation → Case study Live Final (Budapest / Bangalore)."},
+  {id:"pidilite-bond",n:"Bond with Pidilite",org:"Pidilite Industries",tracks:["marketing"],tier:"premier",schools:"Premier (1st-yr flagship)",team:"3 (gender-mix encouraged)",mo:7,window:"Jul–Aug",prize:"Summer internship (winner); HBR subscription (R-up)",perks:["ppi"],edition:"Active",marquee:true,logo:"logos/pidilite/bond-with-pidilite_competition.png",orgLogo:"logos/pidilite/pidilite-industries_corporate.svg",blurb:"3 rounds: 3-page approach → detailed PPT → Top-5 Finale (Pidilite + InsideIIM jury). 2020 top-7 of 2,500+ was SIBM Pune's Truly Bonded."},
+  {id:"rpg-blizzard",n:"RPG Blizzard",org:"RPG Group",tracks:["general-mgmt","strategy"],tier:"premier",schools:"11 premier (IIM A/B/L/K/Ranchi, XLRI, NITIE, MDI, IIFT, IMI Delhi, FMS)",team:"2–3",mo:11,window:"Nov–Dec",prize:"₹1L + PPI; R-up ₹50K; campus winner ₹50K + lunch w/ Harsh Goenka",perks:["ppi","cash"],edition:"6.0+",marquee:true,logo:"logos/rpg-group/rpg-blizzard_competition.png",orgLogo:"logos/rpg-group/rpg-group_corporate.png",blurb:"Themed finales (Game of Thrones, Marvel). Quizzer Bender → Online Treasure Hunt → Business Decision → National Finale at RPG HQ Mumbai."},
+  {id:"vedanta-xstrat",n:"Vedanta XStrat",org:"Vedanta Ltd",tracks:["strategy"],tier:"premier",schools:"30 premier (ISB, top IIMs, MDI, XLRI)",team:"3–4",mo:11,window:"Nov",prize:"₹10L cash + 20 CXO mentors",perks:["cash"],edition:"since 2021",marquee:true,logo:"logos/vedanta/vedanta-xstrat_competition.jpg",orgLogo:"logos/vedanta/vedanta_corporate.png",blurb:"S1 (2021–22) winners ISB Hyderabad. Multi-round with 20 Vedanta CXO mentors. ₹10L cash prize."},
+  {id:"swiss-re",n:"Swiss Re ReImagine Challenge",org:"Swiss Re",tracks:["finance","product-tech"],tier:"all-india",schools:"All-India (engg + B-schools + insurance)",team:"3",mo:8,window:"Aug",prize:"Winner ₹75K + R-up ₹50K (~₹1.25L pool) + internship interview",perks:["ppi","cash"],edition:"Active",marquee:true,logo:"logos/swiss-re/swiss-re-reimagine_competition.jpeg",orgLogo:"logos/swiss-re/swiss-re_corporate.png",blurb:"2 tracks (Finance + Technology). 3 rounds: idea pitch + exec summary → Mentorship → Finale. 2022 finance winner Team Cali (IIM Kozhikode)."},
+  {id:"gep-gameplan",n:"GEP Gameplan",org:"GEP Worldwide",tracks:["ops-supply"],tier:"all-mba",schools:"All Indian B-schools (1st & 2nd yr, any spec)",team:"2–3 (any spec, same campus)",mo:7,window:"Jul–Aug",prize:"S12 Winner ₹60K; R-up ₹30K; top 10 get PPIs",perks:["ppi","cash"],edition:"S12 = 2022 (none verified since)",marquee:false,logo:"logos/consulting-services/gep-gameplan_competition.png",orgLogo:"logos/consulting-services/gep-worldwide_corporate.svg",blurb:"Procurement / supply-chain. Campus Qualifier → Campus Finale → National Finale. Last verified edition S12 (2022)."},
+  {id:"sun-tzu",n:"Sun Tzu by Avalon Consulting",org:"Avalon Consulting",tracks:["strategy"],tier:"premier",schools:"Leading Indian + international",team:"3",mo:7,window:"Jul–Nov",prize:"Cash + PPI with Avalon Consulting",perks:["ppi","cash"],edition:"since 2006",marquee:true,logo:"logos/consulting-services/fstc-sun-tzu_competition.webp",orgLogo:"logos/consulting-services/avalon-consulting_corporate.webp",blurb:"'Finding Sun Tzu Challenge' (FSTC). 3 rounds: 1-2 slide PPT → 10-15 slide detailed solution → Grand Finale (top 6-8, 15-min pitch + 5-min Q&A)."},
+  {id:"pwc-contender",n:"PwC Campus Contender",org:"PwC India",tracks:["strategy"],tier:"premier",schools:"Premier",team:"3–4",mo:9,window:"Sep–Oct reg · Dec–Jan finale",prize:"Winner ₹3L / ₹2L / ₹1L (₹6L pool) + mentorship",perks:["cash"],edition:"S6 = 2025",marquee:true,logo:"logos/pwc/pwc-campus-contender_competition.png",orgLogo:"logos/pwc/pwc-india_corporate.svg",blurb:"Theme S6: 'Bold. Collaborative. Innovative.' Multi-stage culminating in a Grand Finale at PwC offices (Gurugram / Mumbai / Bengaluru / Kolkata)."},
+  {id:"jnj-imagivators",n:"J&J Imagivators",org:"Johnson & Johnson India",tracks:["general-mgmt","strategy"],tier:"premier",schools:"Premier (1st-yr MBA); 4,400+ regs",team:"Individual (quiz + assessment)",mo:6,window:"Jun–Aug",prize:"Top 30 finalists: 2-day J&J HQ immersive + internship/PPI",perks:["ppi"],edition:"S3 = 2024",marquee:true,logo:"logos/johnson-and-johnson/jnj-imagivators_competition.jpg",orgLogo:"logos/johnson-and-johnson/jnj_corporate.svg",blurb:"Inaugural winner Team Healthevators. S3 (2024) included Sanika Shanbhag and Pragati Tripathi (IIM Mumbai)."},
+  {id:"jnj-quest",n:"J&J Quest",org:"Johnson & Johnson India",tracks:["ops-supply","general-mgmt"],tier:"premier",schools:"Premier",team:"3",mo:9,window:"varies",prize:"Cash + PPI",perks:["ppi","cash"],edition:"Dormant — last S10, 2022",marquee:false,logo:"logos/johnson-and-johnson/jnj-quest_competition.png",orgLogo:"logos/johnson-and-johnson/jnj_corporate.svg",blurb:"Older J&J track (supply chain & general). 2022 winners Team Muggles 2.0 (NITIE Mumbai). No edition found since 2022."},
+  {id:"gs-women",n:"GS Women's Possibilities Summit",org:"Goldman Sachs India",tracks:["finance","general-mgmt"],tier:"premier",schools:"Premier MBA + UG",team:"team/individual",mo:9,window:"Sep–Oct",prize:"PPI + GS internship",perks:["ppi"],edition:"Active",marquee:true,logo:"logos/goldman-sachs/goldman-womens-possibilities-summit_program.svg",orgLogo:"logos/goldman-sachs/goldman-sachs_corporate.svg",blurb:"WOMEN-ONLY career conference + case. Career-track pipeline into GS analyst & associate roles.",women:true},
+
+  // ---------- DIRECTORY ----------
+  {id:"kpmg-ideation",n:"KPMG Ideation Challenge",org:"KPMG India",tracks:["strategy"],tier:"premier",schools:"Premier",team:"team",mo:8,window:"Aug–Sep",prize:"~₹5L winner / ₹3L R-up (~₹8L pool) + PPI",perks:["ppi","cash"],edition:"Active (KIC)",marquee:false,logo:"logos/kpmg/kpmg-ideation-challenge_competition.jpg",orgLogo:"logos/kpmg/kpmg-india_corporate.svg",blurb:"KPMG's consulting / strategy / ESG ideation (KIC). KIC 2022 paid ₹5L winner + ₹3L R-up + internships."},
+  {id:"abfrl-showstopper",n:"ABFRL ShowStopper",org:"Aditya Birla Fashion & Retail",tracks:["marketing"],tier:"premier",schools:"Premier",team:"team",mo:9,window:"Sep",prize:"Cash + PPI",perks:["ppi","cash"],edition:"Active",marquee:false,logo:"logos/aditya-birla-group/abfrl-showstopper_competition.png",orgLogo:"logos/aditya-birla-group/abfrl_corporate.png",blurb:"ABFRL's retail / marketing case for premier B-schools."},
+  {id:"ap-chain-reaction",n:"Asian Paints Chain Reaction",org:"Asian Paints",tracks:["ops-supply"],tier:"premier",schools:"Premier",team:"team",mo:10,window:"Oct–Nov",prize:"Cash + PPI",perks:["ppi","cash"],edition:"Active",marquee:false,logo:"logos/asian-paints/asian-paints-chain-reaction_competition.png",orgLogo:"logos/asian-paints/asian-paints_corporate.svg",blurb:"Asian Paints' supply chain / operations track."},
+  {id:"cocacola-mantra",n:"Coca-Cola Mantra Challenge",org:"Coca-Cola India",tracks:["marketing","general-mgmt"],tier:"premier",schools:"Premier MBA",team:"team",mo:8,window:"Aug–Sep",prize:"₹2.5L/mo summer internship stipend",perks:["ppi"],edition:"Active (2025/26)",marquee:false,logo:"logos/coca-cola/coca-cola-mantra_competition.png",orgLogo:"logos/coca-cola/coca-cola-india_corporate.svg",blurb:"Coca-Cola India & SW Asia campus recruitment program. Distinct from HCCB Disrupt."},
+  {id:"mondelez-supply",n:"Mondelez Supply Spark",org:"Mondelez India",tracks:["ops-supply"],tier:"premier",schools:"Premier",team:"team",mo:10,window:"Oct",prize:"Cash + PPI",perks:["ppi","cash"],edition:"Active",marquee:false,logo:"logos/mondelez/mondelez-supply-spark_competition.png",orgLogo:"logos/mondelez/mondelez-international_corporate.svg",blurb:"Mondelez's supply-chain track (sibling to Maestros)."},
+  {id:"cipla-unravel",n:"Cipla Unravel",org:"Cipla",tracks:["strategy","pharma"],tier:"premier",schools:"Premier",team:"team",mo:10,window:"varies",prize:"Cash + Cipla PPI",perks:["ppi","cash"],edition:"Active",marquee:false,logo:"logos/pharma/cipla-unravel_competition.jpg",orgLogo:"logos/pharma/cipla_corporate.png",blurb:"Cipla's pharma strategy case."},
+  {id:"drreddys-destination",n:"Destination Dr. Reddy's",org:"Dr. Reddy's",tracks:["strategy","pharma","marketing"],tier:"premier",schools:"Premier",team:"team",mo:9,window:"Sep–Oct",prize:"Cash + PPI",perks:["ppi","cash"],edition:"Active",marquee:false,logo:"logos/pharma/destination-dr-reddys_competition.jpg",orgLogo:"logos/pharma/dr-reddys_corporate.png",blurb:"Dr. Reddy's pharma strategy / mktg case."},
+  {id:"maruti-xcelerate",n:"Maruti Suzuki XCELerate",org:"Maruti Suzuki",tracks:["strategy","marketing"],tier:"premier",schools:"Premier MBA",team:"team",mo:9,window:"Sep",prize:"Cash + Maruti PPI",perks:["ppi","cash"],edition:"Active",marquee:false,logo:"logos/other-conglomerates/maruti-suzuki-xcelerate_competition.jpeg",orgLogo:"logos/other-conglomerates/maruti-suzuki_corporate.png",blurb:"Maruti Suzuki's automotive strategy / marketing case."},
+  {id:"reckitt-global",n:"Reckitt Global Challenge",org:"Reckitt",tracks:["sustainability","marketing"],tier:"all-india",schools:"All-India (national finalists → London Global Finale)",team:"3",mo:9,window:"Sep",prize:"~₹10L for national winner; London finale",perks:["international","cash"],edition:"Active",marquee:false,logo:"logos/other-conglomerates/reckitt-global-challenge_competition.png",orgLogo:"logos/other-conglomerates/reckitt_corporate.png",blurb:"Reckitt's global FMCG sustainability case. National winner travels to London Global Finale."},
+  {id:"abinbev-100plus",n:"AB InBev 100+ Challenge",org:"AB InBev",tracks:["sustainability","ops-supply"],tier:"all-india",schools:"All-India",team:"3",mo:8,window:"Aug",prize:"Cash + AB InBev internship",perks:["ppi","cash"],edition:"Active",marquee:false,logo:"logos/other-conglomerates/ab-inbev-100plus_competition.svg",orgLogo:"logos/other-conglomerates/ab-inbev_corporate.png",blurb:"AB InBev's sustainability + supply chain challenge."},
+  {id:"optum-stratethon",n:"Optum Stratethon",org:"Optum / UnitedHealth Group",tracks:["analytics","strategy"],tier:"premier",schools:"Premier B-schools",team:"team",mo:9,window:"Sep–Oct",prize:"Cash + Optum PPI",perks:["ppi","cash"],edition:"Active",marquee:false,logo:"logos/consulting-services/optum-stratethon_competition.jpg",orgLogo:"logos/consulting-services/optum-unitedhealth_corporate.png",blurb:"Healthcare analytics / strategy case."},
+  {id:"samsung-edge",n:"Samsung E.D.G.E.",org:"Samsung India",tracks:["product-tech","marketing"],tier:"premier",schools:"Premier",team:"team",mo:8,window:"Aug–Sep",prize:"Cash + Samsung PPI",perks:["ppi","cash"],edition:"Active",marquee:false,logo:"logos/other-conglomerates/samsung-edge_competition.png",orgLogo:"logos/other-conglomerates/samsung-india_corporate.png",blurb:"Samsung India's tech / innovation case for premier MBA."},
+  {id:"tvs-credit",n:"TVS Credit E.P.I.C.",org:"TVS Credit",tracks:["finance"],tier:"all-mba",schools:"All-MBA",team:"3",mo:8,window:"Aug–Sep",prize:"Cash + TVS Credit PPI",perks:["ppi","cash"],edition:"Active",marquee:false,logo:"logos/tvs/tvs-credit-epic_competition.jpg",orgLogo:"logos/tvs/tvs-credit_corporate.svg",blurb:"TVS Credit's finance case (open to all MBA programs)."},
+  {id:"idfc-fame",n:"IDFC FIRST FAME",org:"IDFC FIRST Bank",tracks:["finance","product-tech"],tier:"all-mba",schools:"All-MBA + tech",team:"team",mo:9,window:"varies",prize:"Up to ₹1.75L + job offer",perks:["ppo","cash"],edition:"6.0 = 'DATA RANGER'",marquee:false,logo:"logos/idfc-first-bank/idfc-first-fame_competition.jpg",orgLogo:"logos/idfc-first-bank/idfc-first-bank_corporate.png",blurb:"IDFC FIRST Bank's BFSI / open innovation. Direct PPO pipeline."},
+
+  // ---------- DIRECTORY · added to match the PDF calendar ----------
+  {id:"hccb-cocacola",n:"HCCB Coca-Cola Challenge",org:"Hindustan Coca-Cola Beverages",tracks:["marketing","ops-supply"],tier:"all-mba",schools:"Premier MBA + engineering",team:"team",mo:8,window:"Jul–Aug",prize:"Cash + HCCB job offer",perks:["ppo","cash"],edition:"S3+",marquee:false,logo:"logos/coca-cola/hccb-coca-cola-challenge_competition.png",orgLogo:"logos/coca-cola/hccb_corporate.png",blurb:"HCCB's FMCG sales / supply-chain innovation challenge. Distinct from Coca-Cola India's Mantra recruitment program."},
+  {id:"wipro-bpro",n:"Wipro B-PRO",org:"Wipro",tracks:["strategy","product-tech"],tier:"premier",schools:"Premier B-schools",team:"team",mo:8,window:"Aug",prize:"Cash + Wipro PPI",perks:["ppi"],edition:"3.0 = 2024 (2.0 was 2022)",marquee:false,logo:"logos/wipro/wipro-bpro_competition.jpg",orgLogo:"logos/wipro/wipro_corporate.svg",blurb:"Wipro's business-innovation challenge — separate from the Earthian sustainability program."},
+  {id:"vois-vantage",n:"VOIS Vantage",org:"Vodafone Intelligent Solutions",tracks:["analytics","strategy"],tier:"premier",schools:"Premier B-schools",team:"team",mo:8,window:"Aug",prize:"Cash + PPI",perks:["ppi","cash"],edition:"Active",marquee:false,logo:"logos/other-conglomerates/vois-vantage_competition.jpg",orgLogo:"logos/other-conglomerates/vois_corporate.png",blurb:"VOIS (Vodafone's global capability arm) analytics / strategy case."},
+  {id:"accenture-innovation",n:"Accenture Innovation Challenge",org:"Accenture India",tracks:["product-tech","strategy"],tier:"all-india",schools:"Campus ideathon (MBA + engg)",team:"team",mo:8,window:"Aug–Sep",prize:"Cash + Accenture PPI",perks:["ppi","cash"],edition:"Active",marquee:false,logo:"logos/accenture/accenture-innovation-challenge_competition.png",orgLogo:"logos/accenture/accenture_corporate.svg",blurb:"Accenture's tech + business innovation ideathon — sibling to the premier Strategy Challenge."},
+  {id:"mahindra-rise",n:"Mahindra Rise Challenge",org:"Mahindra Group",tracks:["general-mgmt","entrepreneurship"],tier:"all-india",schools:"All-India campus engagement",team:"team",mo:8,window:"Aug",prize:"Cash + Mahindra exposure",perks:["cash"],edition:"Active (2022, 2025)",marquee:false,logo:"logos/mahindra-group/mahindra-rise-challenge_competition.webp",orgLogo:"logos/mahindra-group/mahindra-and-mahindra_corporate.svg",blurb:"Mahindra's campus-engagement / idea program at risechallenge.mahindra.com — distinct from the strategy flagship War Room."},
+  {id:"trilytics",n:"Trilytics",org:"IIM Calcutta PGDBA",tracks:["analytics"],tier:"premier",schools:"Open (analytics); flagship of the IIM-C / IIT-KGP / ISI PGDBA program",team:"team",mo:8,window:"Aug",prize:"Cash + sponsor PPI",perks:["ppi","cash"],edition:"Active",marquee:false,logo:"logos/other-conglomerates/trilytics_competition.png",orgLogo:"logos/other-conglomerates/trinity-group_corporate.svg",blurb:"Analytics competition run by the PGDBA program (IIM Calcutta + IIT Kharagpur + ISI Kolkata). Trinity Life Sciences was the 2022 title sponsor; recent sponsors include L&T Finance."},
+  {id:"welspun-disruptor",n:"Welspun Disruptor",org:"Welspun Group",tracks:["ops-supply","sustainability","entrepreneurship"],tier:"premier",schools:"Premier B-schools",team:"team",mo:8,window:"Aug",prize:"Seed funding (~₹10L) for winning ESG ventures",perks:["cash"],edition:"Dormant — last 2022",marquee:false,logo:"logos/other-conglomerates/welspun-disruptor_competition.jpg",orgLogo:"logos/other-conglomerates/welspun-group_corporate.png",blurb:"Welspun's ESG startup-pitch challenge (seed funding for winning ventures). Launched 2021; no edition found since 2022 — likely dormant."},
+  {id:"pvm-confy",n:"PVM Confy Challenge",org:"Perfetti Van Melle India",tracks:["marketing","ops-supply"],tier:"premier",schools:"Curated (TAPMI, XIMB, XLRI, IMT, SCMHRD, NMIMS, SPJIMR, IIM Mumbai)",team:"3",mo:9,window:"Sep",prize:"Cash + PVM PPI",perks:["ppi","cash"],edition:"3.0 = 2025",marquee:false,logo:"logos/other-conglomerates/pvm-confy_competition.png",orgLogo:"logos/other-conglomerates/perfetti-van-melle_corporate.png",blurb:"Perfetti Van Melle's FMCG commercial case (also seen as 'Perfetti Confy')."},
+  {id:"tally-bizwiz",n:"Tally BizWiz",org:"Tally Solutions",tracks:["marketing","general-mgmt"],tier:"all-mba",schools:"All-MBA",team:"team",mo:8,window:"Aug",prize:"Cash + Tally PPI",perks:["ppi","cash"],edition:"Active",marquee:false,logo:"logos/other-conglomerates/tally-bizwiz_competition.png",orgLogo:"logos/other-conglomerates/tally-solutions_corporate.png",blurb:"Tally's business / marketing case focused on SME problem statements."},
+  {id:"kenvue-catalyzers",n:"Kenvue Catalyzers",org:"Kenvue",tracks:["marketing"],tier:"premier",schools:"Premier B-schools (1st-yr MBA)",team:"team",mo:9,window:"Sep–Oct",prize:"PPI + hiring pipeline",perks:["ppi"],edition:"Active (verify name)",marquee:false,logo:"logos/johnson-and-johnson/kenvue-catalyzers_program.png",orgLogo:"logos/johnson-and-johnson/kenvue_corporate.svg",blurb:"Kenvue (J&J's consumer-health spin-off) FMCG marketing future-leader program — also runs as the Kenvue Future Leader Identification Programme; confirm the current name before applying."},
+  {id:"amazon-ads-smart",n:"Amazon Ads SMART Challenge",org:"Amazon Ads India",tracks:["marketing","analytics"],tier:"premier",schools:"Premier B-schools (1st & 2nd yr)",team:"3–4",mo:9,window:"Aug–Sep",prize:"Cash + Amazon Ads PPI",perks:["ppi","cash"],edition:"Active",marquee:false,logo:"logos/amazon/amazon-ads-smart_competition.png",orgLogo:"logos/amazon/amazon-india_corporate.svg",blurb:"Amazon Ads' digital-advertising / analytics case (separate from ACE)."},
+  {id:"loreal-sustainability",n:"L'Oréal Sustainability Challenge",org:"L'Oréal India",tracks:["sustainability"],tier:"all-india",schools:"All-India open",team:"team",mo:9,window:"Sep",prize:"Cash + exposure",perks:["cash"],edition:"Active",marquee:false,logo:"logos/loreal/loreal-sustainability-challenge_competition.png",orgLogo:"logos/loreal/loreal_corporate.svg",blurb:"L'Oréal India's sustainability case (distinct from the global Brandstorm)."},
+  {id:"cummins-redefine",n:"Cummins Redefine",org:"Cummins India",tracks:["ops-supply","strategy"],tier:"premier",schools:"Premier B-schools",team:"team",mo:10,window:"Sep–Oct",prize:"Cash + PPI",perks:["ppi","cash"],edition:"Active",marquee:false,logo:"logos/other-conglomerates/cummins-redefine_competition.jpg",orgLogo:"logos/other-conglomerates/cummins_corporate.png",blurb:"Cummins' engineering / operations-strategy challenge."},
+  {id:"samagra-governance",n:"The Governance Challenge",org:"Samagra",tracks:["strategy"],tier:"premier",schools:"Premier B-schools + policy schools",team:"team",mo:10,window:"Oct",prize:"Policy exposure + mentorship",perks:["mentorship"],edition:"Active",marquee:false,logo:"logos/other-conglomerates/samagra-governance-challenge_competition.png",orgLogo:"logos/other-conglomerates/samagra_corporate.svg",blurb:"Samagra's public-policy / governance case — for the public-sector-curious MBA."},
+  {id:"myntra-stylbiz",n:"Myntra StylBiz",org:"Myntra",tracks:["marketing","product-tech"],tier:"premier",schools:"Premier B-schools",team:"3",mo:9,window:"Aug–Sep",prize:"Cash + Myntra PPI",perks:["ppi","cash"],edition:"Dormant — last 2021",marquee:false,logo:"logos/other-conglomerates/myntra-stylbiz_competition.png",orgLogo:"logos/other-conglomerates/myntra_corporate.png",blurb:"Myntra's fashion / e-commerce marketing case. Last confirmed edition 2021 — likely dormant; verify before relying on it."},
+  {id:"navi-crack",n:"Crack the Case by Navi",org:"Navi",tracks:["finance"],tier:"all-mba",schools:"All-India open MBA",team:"team",mo:10,window:"Oct (varies)",prize:"Cash + Navi opportunity",perks:["cash"],edition:"Active",marquee:false,logo:"logos/other-conglomerates/navi-crack-the-case_competition.png",orgLogo:"logos/other-conglomerates/navi_corporate.png",blurb:"Navi's (Sachin Bansal) fintech case, open to all MBA programs."},
+  {id:"bharti-finpro",n:"Bharti FinPro",org:"Bharti / Airtel",tracks:["finance"],tier:"premier",schools:"Premier B-schools",team:"team",mo:10,window:"Oct (varies)",prize:"Cash + PPI",perks:["ppi"],edition:"Low public footprint",marquee:false,logo:"logos/other-conglomerates/bharti-finpro_competition.jpg",orgLogo:"logos/other-conglomerates/bharti-airtel_corporate.png",blurb:"Bharti's finance challenge — limited public info; verify the live edition before relying on dates."},
+  {id:"airtel-icreate",n:"Airtel iCreate",org:"Bharti Airtel",tracks:["product-tech","marketing"],tier:"premier",schools:"Premier B-schools",team:"team",mo:11,window:"Oct–Nov",prize:"Cash + Airtel PPI",perks:["ppi","cash"],edition:"Active",marquee:false,logo:"logos/other-conglomerates/airtel-icreate_competition.png",orgLogo:"logos/other-conglomerates/bharti-airtel_corporate.png",blurb:"Airtel's product / digital-innovation case."},
+  {id:"titan-elevate",n:"TITAN Elevate",org:"Titan Company",tracks:["marketing","strategy"],tier:"premier",schools:"Premier B-schools",team:"team",mo:11,window:"Sep–Nov",prize:"Cash + Titan PPI",perks:["ppi","cash"],edition:"Active",marquee:false,logo:"logos/other-conglomerates/titan-elevate_competition.jpg",orgLogo:"logos/other-conglomerates/titan-company_corporate.png",blurb:"Titan's retail / marketing / strategy case."},
+  {id:"philips-thinkup",n:"Philips ThinkUp",org:"Philips India",tracks:["product-tech","strategy"],tier:"premier",schools:"Premier B-schools",team:"team",mo:11,window:"Sep–Nov",prize:"Cash + Philips PPI",perks:["ppi","cash"],edition:"Active",marquee:false,logo:"logos/consulting-services/philips-thinkup_competition.jpg",orgLogo:"logos/consulting-services/philips_corporate.png",blurb:"Philips' healthcare / tech-strategy challenge."},
+  {id:"tesco-ascend",n:"Tesco ASCEND",org:"Tesco Bengaluru",tracks:["analytics","ops-supply"],tier:"premier",schools:"Premier B-schools",team:"team",mo:11,window:"Nov (varies)",prize:"Cash + Tesco PPI",perks:["ppi"],edition:"Active",marquee:false,logo:"logos/consulting-services/tesco-ascend_competition.jpg",orgLogo:"logos/consulting-services/tesco_corporate.png",blurb:"Tesco's technology-arm case challenge (limited public info)."},
+  {id:"kirit",n:"Kirloskar (KIRIT)",org:"Kirloskar Institute of Management",tracks:["general-mgmt"],tier:"all-india",schools:"B-Tech + MBA + UG (24,699 regs S4)",team:"3",mo:12,window:"Nov–Dec",prize:"₹1L winner / ₹75K R-up",perks:["cash"],edition:"5.0 = 2024–25",marquee:false,logo:"logos/other-conglomerates/kirit_competition.webp",orgLogo:"logos/other-conglomerates/kirloskar_corporate.png",blurb:"KIRIT — Kirloskar Institute's flagship tournament, open across UG + PG."},
+  {id:"kotak-explore",n:"Kotak Explore",org:"Kotak Mahindra Bank",tracks:["finance"],tier:"premier",schools:"Premier B-schools",team:"team",mo:12,window:"Dec (varies)",prize:"Cash + PPI",perks:["ppi"],edition:"Active",marquee:false,logo:"logos/kotak/kotak-explore_competition.jpeg",orgLogo:"logos/kotak/kotak-mahindra-bank_corporate.png",blurb:"Kotak Mahindra Bank's BFSI exploratory case (distinct from Kotak Life's hiring challenge)."},
+  {id:"pwc-us-whitepaper",n:"PwC Whitepaper Challenge",org:"PwC Acceleration Centers India",tracks:["strategy"],tier:"all-india",schools:"Open (incl. India)",team:"team",mo:12,window:"Dec (varies)",prize:"Recognition + PwC visibility / PPI",perks:["ppi"],edition:"Active",marquee:false,logo:"logos/pwc/pwc-us-advisory-whitepaper_competition.png",orgLogo:"logos/pwc/pwc-india_corporate.svg",blurb:"PwC AC India's whitepaper / written-thesis competition. Globally open."},
+  {id:"mmt-young-turks",n:"MMT Young Turks",org:"MakeMyTrip",tracks:["product-tech","marketing"],tier:"premier",schools:"Premier B-schools",team:"team",mo:1,window:"Dec–Jan",prize:"Cash + MMT PPI",perks:["ppi","cash"],edition:"Active",marquee:false,logo:"logos/other-conglomerates/mmt-young-turks_competition.jpg",orgLogo:"logos/other-conglomerates/makemytrip_corporate.png",blurb:"MakeMyTrip's travel / e-commerce business challenge."},
+  {id:"nation-with-namo",n:"Nation with NaMo: Nation Building",org:"Nation with NaMo",tracks:["strategy"],tier:"all-india",schools:"All-India open",team:"team",mo:2,window:"Feb (varies)",prize:"Recognition + platform",perks:[],edition:"Civic / policy",marquee:false,logo:"logos/other-conglomerates/nationbuilding-case-study_competition.png",orgLogo:"logos/other-conglomerates/nation-with-namo_logo.jpg",blurb:"Civic / nation-building case (advocacy-oriented rather than corporate) — included for completeness."},
+  {id:"boat-wavemakers",n:"boAt Wavemaker's Challenge",org:"boAt Lifestyle",tracks:["marketing","product-tech"],tier:"premier",schools:"Premier MBA",team:"team",mo:2,window:"Feb (varies)",prize:"Cash + boAt PPI",perks:["ppi","cash"],edition:"Active",marquee:false,logo:"logos/other-conglomerates/boat-wavemakers_competition.jpg",orgLogo:"logos/other-conglomerates/boat-lifestyle_corporate.webp",blurb:"boAt's consumer-electronics marketing case."},
+
+  // ---------- GLOBAL · stretch-goal comps ----------
+  {id:"harvard-gcc",n:"Global Case Competition at Harvard",org:"Student-run · Harvard University",tracks:["finance","strategy"],tier:"global",schools:"Open worldwide — UG + grad teams (Indian teams enter every year)",team:"4–6",mo:1,window:"Reg Nov–Feb · online (2026)",prize:"$17K pool ($10K / $5K / $2K)",perks:["cash"],edition:"Active (2026 online)",marquee:false,logo:"logos/global/harvard-gcc_competition.svg",blurb:"Student-organised global comp at Harvard — a live M&A / corporate-strategy case on a real company. The 2026 edition is fully online (the in-person Boston finale was discontinued for 2026). Verify each season on the official site."},
+  {id:"cbs-case-comp",n:"CBS Case Competition",org:"Copenhagen Business School",tracks:["strategy","general-mgmt"],tier:"global",schools:"12 invited global universities + Open Track (any team worldwide can apply)",team:"4",mo:11,window:"Open Track apps ~Oct–Nov · case week Feb–Mar (Copenhagen)",prize:"Cash podium + fully-hosted case week in Copenhagen",perks:["international","cash"],edition:"20+ editions",marquee:false,logo:"logos/global/cbs-case-competition_competition.svg",blurb:"One of the world's most prestigious case competitions — a week-long live case for a major corporate, solved on-site in Copenhagen. Indian teams enter via the Open Track application."},
+];
+
+const MONTHS=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const MONTH_FULL=["January","February","March","April","May","June","July","August","September","October","November","December"];
+const TRACKS={marketing:"Marketing",strategy:"Strategy","general-mgmt":"General Mgmt",finance:"Finance",
+  "product-tech":"Product / Tech","ops-supply":"Ops / Supply",hr:"HR",analytics:"Analytics",
+  entrepreneurship:"Entrepreneurship",sustainability:"Sustainability",pharma:"Pharma"};
+const PERKS={ppi:"PPI",ppo:"PPO",international:"International",cash:"Cash prize"};
+const TIERS={premier:"Premier-curated","all-mba":"All-MBA","all-india":"All-India open",global:"Global open"};
+const SEASON=[6,7,8,9,10,11,12,1,2,3,4,5];           // Jun → May display order
+const PEAK=new Set([8,9,10,11]);                      // Aug–Nov peak window
+
+// group comps by launch month
+const byMo={};
+COMPS.forEach(c=>{(byMo[c.mo]=byMo[c.mo]||[]).push(c);});
+Object.values(byMo).forEach(list=>list.sort((a,b)=>(a.marquee===b.marquee)?0:(a.marquee?-1:1)));
+
+// start at current month (fall back to August if current is undefined)
+let idx=(function(){
+  const now=new Date().getMonth()+1;
+  const p=SEASON.indexOf(now);
+  return p>=0?p:SEASON.indexOf(8);
+})();
+
+/* ---- month strip ---- */
+const stripEl=document.getElementById('strip');
+stripEl.innerHTML=SEASON.map((mo,i)=>{
+  const n=(byMo[mo]||[]).length;
+  const cls=['pill',n?(PEAK.has(mo)?'peak':'has'):'quiet'].join(' ');
+  return `<button class="${cls}" data-i="${i}" aria-label="${MONTH_FULL[mo-1]}, ${n} competitions">
+    <span class="pm">${MONTHS[mo-1]}</span><span class="pc">${n||'·'}</span></button>`;
+}).join('');
+const pills=[...stripEl.querySelectorAll('.pill')];
+pills.forEach(p=>p.addEventListener('click',()=>go(parseInt(p.dataset.i,10))));
+
+/* ---- render a month ---- */
+const cardsEl=document.getElementById('cards'),mtEl=document.getElementById('mt'),msEl=document.getElementById('ms');
+const prevBtn=document.getElementById('prev'),nextBtn=document.getElementById('next');
+
+function cardHTML(c){
+  const tier=TIERS[c.tier]||c.tier;
+  const tags=(c.tracks||[]).map(t=>`<span class="c-tag y">${TRACKS[t]||t}</span>`).join('')
+    +(c.women?`<span class="c-tag" style="background:#fde2ef;color:#a03579">Women-only</span>`:'')
+    +(c.perks||[]).map(p=>`<span class="c-tag">${PERKS[p]||p}</span>`).join('');
+  const prizeShort=(c.prize||'').length>46?(c.prize.slice(0,44)+'…'):c.prize;
+  return `<div class="c-card" data-id="${c.id}">
+    <button class="c-btn" aria-expanded="false">
+      <span class="c-logo"><img src="${c.logo}" alt="" loading="lazy"></span>
+      <span class="c-main">
+        <span class="c-name">${c.n}${c.marquee?' <span class="star">★</span>':''}</span>
+        <span class="c-sub"><b>${c.org}</b> · ${prizeShort}</span>
+      </span>
+      <span class="c-chev">+</span>
+    </button>
+    <div class="c-detail"><div class="c-detail-in">
+      <p class="c-blurb">${c.blurb||''}</p>
+      <div class="c-rows">
+        <div class="c-row"><span class="k">Launch</span><span class="v">${c.window}</span></div>
+        <div class="c-row"><span class="k">Eligible</span><span class="v">${tier}${c.schools?' — '+c.schools:''}</span></div>
+        <div class="c-row"><span class="k">Team</span><span class="v">${c.team}</span></div>
+        <div class="c-row"><span class="k">Prize</span><span class="v">${c.prize}</span></div>
+      </div>
+      <div class="c-tags">${tags}</div>
+    </div></div>
+  </div>`;
+}
+
+function paint(){
+  const mo=SEASON[idx], list=byMo[mo]||[];
+  mtEl.textContent=MONTH_FULL[mo-1];
+  msEl.innerHTML=`<span>${list.length} competition${list.length===1?'':'s'}</span>`
+    +(PEAK.has(mo)?'<span class="peak-flag">Peak season</span>':'');
+  if(list.length){
+    cardsEl.innerHTML=list.map(cardHTML).join('');
+    wireCards();
+  } else {
+    // find next active month for the jump button
+    let jump=idx;for(let k=1;k<=12;k++){const j=(idx+k)%12;if((byMo[SEASON[j]]||[]).length){jump=j;break;}}
+    cardsEl.innerHTML=`<div class="quiet-state">
+      <div class="qbig">Quiet month</div>
+      <p>No major corporate comps launch in ${MONTH_FULL[mo-1]} — a good window to prep submissions and build your team.</p>
+      <button class="quiet-jump" data-jump="${jump}">Next up: ${MONTH_FULL[SEASON[jump]-1]} →</button>
+    </div>`;
+    const jb=cardsEl.querySelector('[data-jump]');
+    if(jb)jb.addEventListener('click',()=>go(parseInt(jb.dataset.jump,10)));
+  }
+  pills.forEach((p,i)=>p.classList.toggle('active',i===idx));
+  // keep active pill in view
+  const ap=pills[idx];if(ap&&ap.scrollIntoView)ap.scrollIntoView({inline:'center',block:'nearest'});
+  prevBtn.disabled=(idx===0);
+  nextBtn.disabled=(idx===SEASON.length-1);
+}
+
+function wireCards(){
+  cardsEl.querySelectorAll('.c-card').forEach(card=>{
+    const btn=card.querySelector('.c-btn'),det=card.querySelector('.c-detail'),inn=det.firstElementChild;
+    det.addEventListener('transitionend',e=>{if(e.propertyName==='height'&&card.classList.contains('open'))det.style.height='auto';});
+    btn.addEventListener('click',()=>{
+      const open=card.classList.contains('open');
+      if(open){det.style.height=inn.scrollHeight+'px';requestAnimationFrame(()=>det.style.height='0px');card.classList.remove('open');btn.setAttribute('aria-expanded','false');}
+      else{det.style.height=inn.scrollHeight+'px';card.classList.add('open');btn.setAttribute('aria-expanded','true');}
+    });
+  });
+}
+
+function go(to){
+  to=Math.max(0,Math.min(SEASON.length-1,to));
+  if(to===idx)return;
+  idx=to;
+  cardsEl.classList.add('swapping');
+  setTimeout(()=>{paint();cardsEl.classList.remove('swapping');},150);
+}
+
+prevBtn.addEventListener('click',()=>go(idx-1));
+nextBtn.addEventListener('click',()=>go(idx+1));
+document.addEventListener('keydown',e=>{if(e.key==='ArrowLeft')go(idx-1);if(e.key==='ArrowRight')go(idx+1);});
+
+// touch swipe on the stage
+let tx=0,ty=0;
+const stage=document.querySelector('.stage');
+stage.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY;},{passive:true});
+stage.addEventListener('touchend',e=>{
+  const dx=e.changedTouches[0].clientX-tx, dy=e.changedTouches[0].clientY-ty;
+  if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)*1.6){ go(dx<0?idx+1:idx-1); }
+},{passive:true});
+
+paint();
+</script>
+</body>
+</html>
