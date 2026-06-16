@@ -2,9 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Calendar — Indian B-school case comps, month by month</title>
-<meta name="description" content="A dead-simple month-by-month calendar of Indian B-school corporate case competitions. Pick a month, see what's launching. Built by Shivam Meet.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="CaseComps">
+<title>The Calendar — when each Indian B-school case comp probably happens</title>
+<meta name="description" content="A simple planning calendar of when Indian B-school corporate case competitions probably open — month by month. Estimates from past seasons, not live links.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
@@ -15,138 +20,152 @@
 :root{
   --charcoal:#171e19;--dark:#272727;--yellow:#ffe17c;--yellow-deep:#f5c93a;
   --sage:#b7c6c2;--white:#ffffff;--paper:#fafaf8;
-  --ink-70:rgba(23,30,25,.7);--ink-50:#5e6360;--ink-10:rgba(23,30,25,.1);
+  --ink-70:rgba(23,30,25,.72);--ink-50:#5e6360;--ink-10:rgba(23,30,25,.1);
   --amber-3:#8a6d00;--ease:cubic-bezier(.4,0,.2,1);
+  --safe-t:env(safe-area-inset-top,0px);--safe-b:env(safe-area-inset-bottom,0px);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%}
-body{font-family:'Satoshi',system-ui,-apple-system,sans-serif;background:var(--white);color:var(--charcoal);line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden;min-height:100vh;display:flex;flex-direction:column}
+body{
+  font-family:'Satoshi',system-ui,-apple-system,sans-serif;background:var(--white);color:var(--charcoal);
+  line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden;min-height:100vh;
+  -webkit-tap-highlight-color:transparent;overscroll-behavior-y:none;
+}
 a{color:inherit;text-decoration:none}
-button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;-webkit-tap-highlight-color:transparent}
 img{display:block;max-width:100%}
 ::selection{background:var(--yellow);color:var(--charcoal)}
 .anton{font-family:'Anton',Impact,sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.01em;line-height:.9}
-.wrap{width:100%;max-width:760px;margin:0 auto;padding:0 20px}
+.wrap{width:100%;max-width:620px;margin:0 auto;padding:0 18px}
 
-/* nav */
-nav.bar{height:58px;border-bottom:1px solid var(--ink-10);display:flex;align-items:center;position:sticky;top:0;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);z-index:20}
-nav.bar .wrap{display:flex;align-items:center;justify-content:space-between}
+/* ---------- sticky app bar ---------- */
+.appbar{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--ink-10);padding-top:var(--safe-t)}
+.appbar .row{height:54px;display:flex;align-items:center;justify-content:space-between}
 .logo{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:20px}
 .logo .pd{color:var(--yellow-deep)}
-.nav-link{font-size:13px;font-weight:700;color:var(--ink-50);display:flex;align-items:center;gap:5px}
-.nav-link:hover{color:var(--charcoal)}
+.appbar .back{font-size:13px;font-weight:700;color:var(--ink-50);padding:8px 4px}
+.appbar .back:active{color:var(--charcoal)}
 
-/* intro */
-.intro{text-align:center;padding:26px 0 6px}
-.intro .kicker{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-50)}
-.intro .kicker .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--yellow-deep);margin-right:6px;vertical-align:1px}
+/* ---------- disclaimer ---------- */
+.disclaimer{background:#fff8e6;border-bottom:1px solid rgba(245,201,58,.4)}
+.disclaimer .row{display:flex;gap:10px;align-items:flex-start;padding:11px 0}
+.disclaimer .ic{flex:none;font-size:15px;line-height:1.3}
+.disclaimer p{font-size:12.5px;line-height:1.45;color:#6b5a14}
+.disclaimer b{font-weight:700;color:#5a4b10}
 
-/* month strip */
-.strip{display:flex;gap:6px;justify-content:flex-start;overflow-x:auto;padding:16px 20px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+/* ---------- sticky month strip ---------- */
+.monthbar{position:sticky;top:calc(54px + var(--safe-t));z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--ink-10)}
+.strip{display:flex;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:none;-webkit-overflow-scrolling:touch;gap:7px;padding:11px 18px}
 .strip::-webkit-scrollbar{display:none}
-.strip-inner{display:flex;gap:6px;margin:0 auto}
-.pill{flex:none;min-width:46px;height:44px;border-radius:11px;border:1px solid var(--ink-10);background:var(--white);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;transition:all .2s var(--ease)}
-.pill .pm{font-size:12px;font-weight:700;letter-spacing:.04em}
+.pill{scroll-snap-align:center;flex:none;min-width:50px;height:46px;border-radius:13px;border:1.5px solid var(--ink-10);background:var(--white);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;transition:transform .12s var(--ease)}
+.pill:active{transform:scale(.94)}
+.pill .pm{font-size:12px;font-weight:700;letter-spacing:.03em}
 .pill .pc{font-size:9px;font-weight:700;color:var(--ink-50)}
-.pill.has{border-color:rgba(245,201,58,.5)}
+.pill.has{border-color:rgba(245,201,58,.55)}
 .pill.peak{background:var(--yellow);border-color:var(--yellow)}
-.pill.active{background:var(--charcoal);border-color:var(--charcoal);color:var(--white)}
+.pill.peak .pc{color:var(--amber-3)}
+.pill.quiet{opacity:.45}
+.pill.active{background:var(--charcoal);border-color:var(--charcoal);color:var(--white);transform:scale(1.04)}
 .pill.active .pc{color:var(--sage)}
-.pill.quiet{opacity:.5}
 
-/* month stage */
-.stage{flex:1;padding:14px 0 40px}
-.month-head{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:10px 0 18px}
-.arrow{flex:none;width:56px;height:56px;border-radius:50%;border:2px solid var(--charcoal);display:grid;place-items:center;font-size:22px;transition:all .2s var(--ease)}
-.arrow:hover{background:var(--charcoal);color:var(--white)}
-.arrow:disabled{opacity:.25;cursor:default}
-.arrow:disabled:hover{background:none;color:var(--charcoal)}
-.month-title{text-align:center;flex:1;min-width:0}
-.month-title .mt{font-size:clamp(40px,13vw,68px);line-height:.85}
-.month-title .ms{margin-top:8px;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-50);display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap}
-.month-title .peak-flag{background:var(--yellow);color:var(--charcoal);padding:3px 10px;border-radius:6px;font-size:10px;letter-spacing:.12em}
+/* ---------- month screen ---------- */
+.screen{padding-bottom:calc(40px + var(--safe-b));min-height:60vh}
+.mhead{display:flex;align-items:center;gap:10px;padding:22px 0 8px}
+.arrow{flex:none;width:52px;height:52px;border-radius:50%;border:2px solid var(--charcoal);display:grid;place-items:center;font-size:21px;transition:transform .12s var(--ease),background .15s var(--ease),color .15s var(--ease)}
+.arrow:active{transform:scale(.9);background:var(--charcoal);color:#fff}
+.arrow:disabled{opacity:.22;cursor:default}
+.arrow:disabled:active{transform:none;background:none;color:var(--charcoal)}
+.mtitle{flex:1;min-width:0;text-align:center}
+.mtitle .mt{font-size:clamp(44px,15vw,64px);line-height:.82}
+.mtitle .when{margin-top:9px;font-size:13px;font-weight:700;letter-spacing:.02em;color:var(--charcoal)}
+.mtitle .when .soon{color:var(--amber-3)}
+.mtitle .meta{margin-top:6px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-50);display:flex;align-items:center;justify-content:center;gap:7px;flex-wrap:wrap}
+.mtitle .peak-flag{background:var(--yellow);color:var(--charcoal);padding:3px 9px;border-radius:6px;font-size:10px}
 
-/* fade animation for month switch */
-.cards{display:flex;flex-direction:column;gap:12px;transition:opacity .18s var(--ease),transform .18s var(--ease)}
-.cards.swapping{opacity:0;transform:translateY(8px)}
-
-/* comp card */
-.c-card{border:1px solid var(--ink-10);border-radius:18px;background:var(--white);overflow:hidden;transition:border-color .2s var(--ease),box-shadow .2s var(--ease)}
+/* cards */
+.cards{display:flex;flex-direction:column;gap:11px;padding-top:14px;transition:opacity .16s var(--ease),transform .16s var(--ease)}
+.cards.swapping{opacity:0;transform:translateY(10px)}
+.c-card{border:1.5px solid var(--ink-10);border-radius:18px;background:var(--white);overflow:hidden;transition:border-color .2s var(--ease),box-shadow .2s var(--ease)}
 .c-card.open{border-color:var(--yellow-deep);box-shadow:0 14px 30px -18px rgba(23,30,25,.4)}
-.c-btn{width:100%;text-align:left;display:flex;align-items:center;gap:16px;padding:18px;min-height:64px}
-.c-logo{width:60px;height:60px;flex:none;min-width:60px;border:1px solid var(--ink-10);border-radius:14px;background:#fff;display:grid;place-items:center;overflow:hidden;padding:9px}
-.c-logo img{max-width:42px;max-height:42px;object-fit:contain}
+.c-card.dormant{background:var(--paper)}
+.c-btn{width:100%;text-align:left;display:flex;align-items:center;gap:14px;padding:16px;min-height:72px}
+.c-logo{width:58px;height:58px;flex:none;min-width:58px;border:1px solid var(--ink-10);border-radius:14px;background:#fff;display:grid;place-items:center;overflow:hidden;padding:9px}
+.c-logo img{max-width:40px;max-height:40px;object-fit:contain}
+.c-card.dormant .c-logo img{filter:grayscale(1);opacity:.6}
 .c-main{flex:1;min-width:0}
-.c-name{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:21px;letter-spacing:.01em;line-height:1;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.c-name .star{color:var(--yellow-deep);font-size:15px}
-.c-sub{font-size:13px;color:var(--ink-50);margin-top:6px;font-weight:500}
-.c-sub b{color:var(--charcoal);font-weight:700}
-.c-chev{flex:none;width:28px;height:28px;display:grid;place-items:center;color:var(--amber-3);font-size:24px;line-height:1;transition:transform .25s var(--ease)}
+.c-name{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:19px;letter-spacing:.01em;line-height:1.02;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.c-name .star{color:var(--yellow-deep);font-size:14px}
+.c-when{margin-top:7px;font-size:13.5px;font-weight:700;color:var(--charcoal);display:flex;align-items:center;gap:6px}
+.c-when .cal{font-size:13px}
+.c-when.dorm{color:var(--ink-50);font-weight:700}
+.c-org{font-size:12px;color:var(--ink-50);margin-top:3px;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.c-chev{flex:none;width:30px;height:30px;display:grid;place-items:center;color:var(--amber-3);font-size:25px;line-height:1;transition:transform .25s var(--ease)}
 .c-card.open .c-chev{transform:rotate(45deg)}
 .c-detail{height:0;overflow:hidden;transition:height .25s var(--ease)}
-.c-detail-in{padding:0 18px 20px 18px;border-top:1px solid var(--ink-10);margin-top:0;padding-top:16px}
+.c-detail-in{padding:4px 16px 18px;border-top:1px solid var(--ink-10);padding-top:15px}
 .c-blurb{font-size:14px;line-height:1.55;color:var(--ink-70);margin-bottom:14px}
 .c-rows{display:flex;flex-direction:column;gap:9px}
-.c-row{display:flex;gap:12px;font-size:13px}
-.c-row .k{flex:none;width:78px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-50);padding-top:2px}
+.c-row{display:flex;gap:12px;font-size:13.5px}
+.c-row .k{flex:none;width:74px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-50);padding-top:2px}
 .c-row .v{flex:1;min-width:0;font-weight:500;overflow-wrap:anywhere}
-.c-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
+.c-est{margin-top:13px;font-size:11.5px;color:var(--ink-50);background:var(--paper);border:1px dashed var(--ink-10);border-radius:10px;padding:9px 12px;line-height:1.4}
+.c-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:13px}
 .c-tag{font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:5px 10px;border-radius:7px;background:rgba(183,198,194,.25);color:var(--charcoal)}
 .c-tag.y{background:var(--yellow);color:var(--charcoal)}
 
 /* quiet month */
-.quiet-state{text-align:center;padding:48px 20px;border:2px dashed var(--ink-10);border-radius:20px}
-.quiet-state .qbig{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:26px;margin-bottom:8px}
-.quiet-state p{font-size:14px;color:var(--ink-50);max-width:340px;margin:0 auto 18px}
-.quiet-jump{display:inline-flex;align-items:center;gap:8px;background:var(--charcoal);color:var(--white);padding:13px 22px;border-radius:9999px;font-weight:700;font-size:14px}
-.quiet-jump:hover{background:var(--dark)}
+.quiet-state{text-align:center;padding:44px 22px;border:2px dashed var(--ink-10);border-radius:20px;margin-top:14px}
+.quiet-state .qem{font-size:34px;margin-bottom:10px}
+.quiet-state .qbig{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:24px;margin-bottom:8px}
+.quiet-state p{font-size:14px;color:var(--ink-50);max-width:330px;margin:0 auto 20px}
+.quiet-jump{display:inline-flex;align-items:center;gap:8px;background:var(--charcoal);color:var(--white);padding:14px 24px;border-radius:9999px;font-weight:700;font-size:14px}
+.quiet-jump:active{transform:scale(.97)}
 
-.swipe-hint{text-align:center;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-50);margin-top:26px}
-.swipe-hint .k{display:inline-grid;place-items:center;min-width:20px;height:20px;padding:0 5px;border:1px solid var(--ink-10);border-radius:5px;font-size:11px;margin:0 2px;vertical-align:-4px}
+.swipe-hint{text-align:center;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-50);margin-top:24px}
 
-footer{border-top:1px solid var(--ink-10);padding:22px 0;text-align:center;font-size:12px;color:var(--ink-50)}
+footer{border-top:1px solid var(--ink-10);padding:20px 0 calc(24px + var(--safe-b));text-align:center;font-size:12px;color:var(--ink-50);line-height:1.6;margin-top:20px}
 footer a{font-weight:700;color:var(--charcoal);border-bottom:1px solid var(--yellow-deep)}
 
 :focus-visible{outline:2px solid var(--yellow-deep);outline-offset:2px}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-@media (min-width:620px){
-  .strip-inner{gap:8px}
-  .pill{min-width:54px}
-}
 </style>
 </head>
 <body>
 
-<nav class="bar">
-  <div class="wrap">
+<header class="appbar">
+  <div class="wrap row">
     <a href="index.html" class="logo">CASECOMPS<span class="pd">.</span></a>
-    <a href="index.html#catalog" class="nav-link">Full index →</a>
+    <a href="index.html#catalog" class="back">Full index →</a>
   </div>
-</nav>
+</header>
 
-<div class="intro">
-  <div class="wrap"><span class="kicker"><span class="dot"></span>Your season, month by month · Jun → May</span></div>
+<div class="disclaimer">
+  <div class="wrap row">
+    <span class="ic">📅</span>
+    <p><b>This is a planning calendar — not live registration links.</b> Dates are best estimates from past seasons; the real link goes up only when each organiser opens that season. Use it to plan, then watch Unstop near the date.</p>
+  </div>
 </div>
 
-<div class="strip"><div class="strip-inner" id="strip"></div></div>
+<nav class="monthbar"><div class="strip" id="strip"></div></nav>
 
-<main class="stage">
+<main class="screen">
   <div class="wrap">
-    <div class="month-head">
+    <div class="mhead">
       <button class="arrow" id="prev" aria-label="Previous month">‹</button>
-      <div class="month-title">
+      <div class="mtitle">
         <h1 class="anton mt" id="mt">August</h1>
-        <div class="ms" id="ms"></div>
+        <div class="when" id="when"></div>
+        <div class="meta" id="meta"></div>
       </div>
       <button class="arrow" id="next" aria-label="Next month">›</button>
     </div>
     <div class="cards" id="cards" aria-live="polite"></div>
-    <p class="swipe-hint">Swipe, or use <span class="k">‹</span><span class="k">›</span> to change month</p>
+    <p class="swipe-hint">Swipe ← → or tap a month above</p>
   </div>
 </main>
 
 <footer>
-  <div class="wrap">85 comps · verified each season · windows are historical patterns — confirm on Unstop before applying. <a href="index.html">Full index &amp; filters →</a></div>
+  <div class="wrap">85 comps · re-checked each season · estimated windows, <b style="color:var(--charcoal)">not live links</b> — confirm on Unstop before applying.<br><a href="index.html">Full index &amp; filters →</a></div>
 </footer>
 
 <script>
@@ -252,25 +271,38 @@ const TRACKS={marketing:"Marketing",strategy:"Strategy","general-mgmt":"General 
   entrepreneurship:"Entrepreneurship",sustainability:"Sustainability",pharma:"Pharma"};
 const PERKS={ppi:"PPI",ppo:"PPO",international:"International",cash:"Cash prize"};
 const TIERS={premier:"Premier-curated","all-mba":"All-MBA","all-india":"All-India open",global:"Global open"};
-const SEASON=[6,7,8,9,10,11,12,1,2,3,4,5];           // Jun → May display order
-const PEAK=new Set([8,9,10,11]);                      // Aug–Nov peak window
+const SEASON=[6,7,8,9,10,11,12,1,2,3,4,5];
+const PEAK=new Set([8,9,10,11]);
 
-// group comps by launch month
+const isDormant=c=>/dormant/i.test(c.edition||'')||/dormant/i.test(c.window||'');
+
+// group by launch month; active comps first, dormant sink to bottom
 const byMo={};
 COMPS.forEach(c=>{(byMo[c.mo]=byMo[c.mo]||[]).push(c);});
-Object.values(byMo).forEach(list=>list.sort((a,b)=>(a.marquee===b.marquee)?0:(a.marquee?-1:1)));
+Object.values(byMo).forEach(list=>list.sort((a,b)=>{
+  const da=isDormant(a),db=isDormant(b);
+  if(da!==db)return da?1:-1;
+  if(a.marquee!==b.marquee)return a.marquee?-1:1;
+  return 0;
+}));
+const activeCount=mo=>(byMo[mo]||[]).filter(c=>!isDormant(c)).length;
 
-// start at current month (fall back to August if current is undefined)
-let idx=(function(){
-  const now=new Date().getMonth()+1;
-  const p=SEASON.indexOf(now);
-  return p>=0?p:SEASON.indexOf(8);
-})();
+const nowMo=new Date().getMonth()+1;
+const monthsAhead=mo=>(mo-nowMo+12)%12;
+function whenText(mo){
+  const d=monthsAhead(mo);
+  if(d===0)return ['Happening this month',true];
+  if(d===1)return ['Coming up next month',true];
+  if(d<=3)return ['In about '+d+' months',true];
+  return ['In about '+d+' months',false];
+}
+
+let idx=(function(){const p=SEASON.indexOf(nowMo);return p>=0?p:SEASON.indexOf(8);})();
 
 /* ---- month strip ---- */
 const stripEl=document.getElementById('strip');
 stripEl.innerHTML=SEASON.map((mo,i)=>{
-  const n=(byMo[mo]||[]).length;
+  const n=activeCount(mo);
   const cls=['pill',n?(PEAK.has(mo)?'peak':'has'):'quiet'].join(' ');
   return `<button class="${cls}" data-i="${i}" aria-label="${MONTH_FULL[mo-1]}, ${n} competitions">
     <span class="pm">${MONTHS[mo-1]}</span><span class="pc">${n||'·'}</span></button>`;
@@ -278,59 +310,64 @@ stripEl.innerHTML=SEASON.map((mo,i)=>{
 const pills=[...stripEl.querySelectorAll('.pill')];
 pills.forEach(p=>p.addEventListener('click',()=>go(parseInt(p.dataset.i,10))));
 
-/* ---- render a month ---- */
-const cardsEl=document.getElementById('cards'),mtEl=document.getElementById('mt'),msEl=document.getElementById('ms');
-const prevBtn=document.getElementById('prev'),nextBtn=document.getElementById('next');
+const cardsEl=document.getElementById('cards'),mtEl=document.getElementById('mt'),
+  whenEl=document.getElementById('when'),metaEl=document.getElementById('meta'),
+  prevBtn=document.getElementById('prev'),nextBtn=document.getElementById('next');
 
 function cardHTML(c){
+  const dorm=isDormant(c);
   const tier=TIERS[c.tier]||c.tier;
   const tags=(c.tracks||[]).map(t=>`<span class="c-tag y">${TRACKS[t]||t}</span>`).join('')
     +(c.women?`<span class="c-tag" style="background:#fde2ef;color:#a03579">Women-only</span>`:'')
     +(c.perks||[]).map(p=>`<span class="c-tag">${PERKS[p]||p}</span>`).join('');
-  const prizeShort=(c.prize||'').length>46?(c.prize.slice(0,44)+'…'):c.prize;
-  return `<div class="c-card" data-id="${c.id}">
+  const whenLine=dorm
+    ? `<div class="c-when dorm">⏸ ${c.edition||'Likely inactive'}</div>`
+    : `<div class="c-when"><span class="cal">📅</span> Usually ${c.window}</div>`;
+  return `<div class="c-card${dorm?' dormant':''}" data-id="${c.id}">
     <button class="c-btn" aria-expanded="false">
       <span class="c-logo"><img src="${c.logo}" alt="" loading="lazy"></span>
       <span class="c-main">
         <span class="c-name">${c.n}${c.marquee?' <span class="star">★</span>':''}</span>
-        <span class="c-sub"><b>${c.org}</b> · ${prizeShort}</span>
+        ${whenLine}
+        <span class="c-org">${c.org}</span>
       </span>
       <span class="c-chev">+</span>
     </button>
     <div class="c-detail"><div class="c-detail-in">
       <p class="c-blurb">${c.blurb||''}</p>
       <div class="c-rows">
-        <div class="c-row"><span class="k">Launch</span><span class="v">${c.window}</span></div>
+        <div class="c-row"><span class="k">Probably</span><span class="v">${c.window}</span></div>
         <div class="c-row"><span class="k">Eligible</span><span class="v">${tier}${c.schools?' — '+c.schools:''}</span></div>
         <div class="c-row"><span class="k">Team</span><span class="v">${c.team}</span></div>
         <div class="c-row"><span class="k">Prize</span><span class="v">${c.prize}</span></div>
       </div>
+      <div class="c-est">📅 Estimated from past seasons — there's no live link yet. When the season opens, search "${c.n}" on Unstop or the ${c.org} careers page.</div>
       <div class="c-tags">${tags}</div>
     </div></div>
   </div>`;
 }
 
 function paint(){
-  const mo=SEASON[idx], list=byMo[mo]||[];
+  const mo=SEASON[idx], list=byMo[mo]||[], n=activeCount(mo);
   mtEl.textContent=MONTH_FULL[mo-1];
-  msEl.innerHTML=`<span>${list.length} competition${list.length===1?'':'s'}</span>`
-    +(PEAK.has(mo)?'<span class="peak-flag">Peak season</span>':'');
+  const [wt,soon]=whenText(mo);
+  whenEl.innerHTML=`<span class="${soon?'soon':''}">${wt}</span>`;
+  metaEl.innerHTML=`<span>${n} comp${n===1?'':'s'} likely</span>`+(PEAK.has(mo)?'<span class="peak-flag">Peak season</span>':'');
   if(list.length){
     cardsEl.innerHTML=list.map(cardHTML).join('');
     wireCards();
   } else {
-    // find next active month for the jump button
     let jump=idx;for(let k=1;k<=12;k++){const j=(idx+k)%12;if((byMo[SEASON[j]]||[]).length){jump=j;break;}}
     cardsEl.innerHTML=`<div class="quiet-state">
-      <div class="qbig">Quiet month</div>
-      <p>No major corporate comps launch in ${MONTH_FULL[mo-1]} — a good window to prep submissions and build your team.</p>
-      <button class="quiet-jump" data-jump="${jump}">Next up: ${MONTH_FULL[SEASON[jump]-1]} →</button>
+      <div class="qem">🌤️</div>
+      <div class="qbig">A quiet month</div>
+      <p>No major corporate comps usually open in ${MONTH_FULL[mo-1]} — a good window to prep submissions and lock in your team.</p>
+      <button class="quiet-jump" data-jump="${jump}">See ${MONTH_FULL[SEASON[jump]-1]} →</button>
     </div>`;
     const jb=cardsEl.querySelector('[data-jump]');
     if(jb)jb.addEventListener('click',()=>go(parseInt(jb.dataset.jump,10)));
   }
   pills.forEach((p,i)=>p.classList.toggle('active',i===idx));
-  // keep active pill in view
   const ap=pills[idx];if(ap&&ap.scrollIntoView)ap.scrollIntoView({inline:'center',block:'nearest'});
   prevBtn.disabled=(idx===0);
   nextBtn.disabled=(idx===SEASON.length-1);
@@ -353,20 +390,19 @@ function go(to){
   if(to===idx)return;
   idx=to;
   cardsEl.classList.add('swapping');
-  setTimeout(()=>{paint();cardsEl.classList.remove('swapping');},150);
+  setTimeout(()=>{paint();cardsEl.classList.remove('swapping');window.scrollTo({top:0,behavior:'smooth'});},150);
 }
 
 prevBtn.addEventListener('click',()=>go(idx-1));
 nextBtn.addEventListener('click',()=>go(idx+1));
 document.addEventListener('keydown',e=>{if(e.key==='ArrowLeft')go(idx-1);if(e.key==='ArrowRight')go(idx+1);});
 
-// touch swipe on the stage
-let tx=0,ty=0;
-const stage=document.querySelector('.stage');
-stage.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY;},{passive:true});
-stage.addEventListener('touchend',e=>{
+let tx=0,ty=0,tracking=false;
+document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY;tracking=true;},{passive:true});
+document.addEventListener('touchend',e=>{
+  if(!tracking)return;tracking=false;
   const dx=e.changedTouches[0].clientX-tx, dy=e.changedTouches[0].clientY-ty;
-  if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)*1.6){ go(dx<0?idx+1:idx-1); }
+  if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)*1.5){ go(dx<0?idx+1:idx-1); }
 },{passive:true});
 
 paint();
