@@ -507,7 +507,7 @@ footer{background:var(--charcoal);color:var(--white);padding:56px 0 40px}
 <!-- HERO -->
 <header class="hero grid-bg" id="top">
   <div class="wrap">
-    <span class="eyebrow"><span class="dot"></span> <span id="hero-count">85</span> competitions · Jun → May</span>
+    <span class="eyebrow"><span class="dot"></span> <span id="hero-count">91</span> competitions · Jun → May</span>
     <h1 class="anton">Every corporate case&nbsp;comp. <span class="hl">One grid.</span></h1>
     <p class="hero-sub">HUL LIME, ITC Interrobang, ABG Stratos, Reliance TUP, Amazon ACE — mapped by launch month, functional track, and whether they actually pipe into a PPI or PPO.</p>
     <form class="waitlist" onsubmit="event.preventDefault();this.querySelector('button').textContent='✓ ON THE LIST';this.parentNode.querySelector('.waitlist-done').classList.add('show')">
@@ -618,7 +618,7 @@ footer{background:var(--charcoal);color:var(--white);padding:56px 0 40px}
     <div class="bento">
       <div class="cell span2 dark reveal">
         <span class="cell-tag">The index</span>
-        <h3 class="anton">85 comps, one source of truth</h3>
+        <h3 class="anton">91 comps, one source of truth</h3>
         <p>From HUL LIME to boAt Wavemaker's — every corporate case comp worth your time, each with launch window, prize, eligibility tier and hiring intent.</p>
         <div class="logo-collage">
           <div class="lc"><img src="logos/itc/itc-limited_corporate.svg" alt="ITC"></div>
@@ -723,7 +723,7 @@ footer{background:var(--charcoal);color:var(--white);padding:56px 0 40px}
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow"><span class="dot"></span> The catalog</span>
-      <h2 class="anton"><span id="cat-count">85</span> comps. <span class="hl tight">Filterable.</span></h2>
+      <h2 class="anton"><span id="cat-count">91</span> comps. <span class="hl tight">Filterable.</span></h2>
       <p>Marquee tier carries the highest prestige and the clearest PPI/PPO funnels. Gold star = marquee.</p>
     </div>
     <div class="filters">
@@ -765,7 +765,7 @@ footer{background:var(--charcoal);color:var(--white);padding:56px 0 40px}
       </div>
       <div class="how-steps">
         <div class="step"><div class="no">1</div><div><h4>Track the window</h4><p>Open the season view and see exactly which comps launch each month — the August cluster, the December tail, the quiet prep months.</p></div></div>
-        <div class="step"><div class="no">2</div><div><h4>Filter to fit</h4><p>Narrow 85 comps by track, eligibility tier, hiring intent and month until you're looking only at the ones worth your team's time.</p></div></div>
+        <div class="step"><div class="no">2</div><div><h4>Filter to fit</h4><p>Narrow 91 comps by track, eligibility tier, hiring intent and month until you're looking only at the ones worth your team's time.</p></div></div>
         <div class="step"><div class="no">3</div><div><h4>Apply on time</h4><p>Start two months out, watch Unstop &amp; the firm's microsite for the live link, and walk in already knowing the prize, format and pipeline.</p></div></div>
       </div>
     </div>
@@ -996,6 +996,13 @@ const COMPS = [
   // ---------- GLOBAL · stretch-goal comps ----------
   {id:"harvard-gcc",n:"Global Case Competition at Harvard",org:"Student-run · Harvard University",tracks:["finance","strategy"],tier:"global",schools:"Open worldwide — UG + grad teams (Indian teams enter every year)",team:"4–6",mo:1,window:"Reg Nov–Feb · online (2026)",prize:"$17K pool ($10K / $5K / $2K)",perks:["cash"],edition:"Active (2026 online)",marquee:false,logo:"logos/global/harvard-gcc_competition.svg",blurb:"Student-organised global comp at Harvard — a live M&A / corporate-strategy case on a real company. The 2026 edition is fully online (the in-person Boston finale was discontinued for 2026). Verify each season on the official site."},
   {id:"cbs-case-comp",n:"CBS Case Competition",org:"Copenhagen Business School",tracks:["strategy","general-mgmt"],tier:"global",schools:"12 invited global universities + Open Track (any team worldwide can apply)",team:"4",mo:11,window:"Open Track apps ~Oct–Nov · case week Feb–Mar (Copenhagen)",prize:"Cash podium + fully-hosted case week in Copenhagen",perks:["international","cash"],edition:"20+ editions",marquee:false,logo:"logos/global/cbs-case-competition_competition.svg",blurb:"One of the world's most prestigious case competitions — a week-long live case for a major corporate, solved on-site in Copenhagen. Indian teams enter via the Open Track application."},
+  // ---------- added from the 40-list research (2026-06-22): real, in-scope, were missing ----------
+  {id:"pg-ceo-challenge",n:"P&G CEO Challenge",org:"Procter & Gamble",tracks:["general-mgmt","marketing"],tier:"premier",schools:"Select premier B-schools, 1st-yr MBA, teams of 4",team:"4 (1st-yr)",mo:10,window:"Oct–Nov reg · regional rounds to Feb",prize:"PPO/PPI + P&G Signal Conference + meet the global P&G CEO",perks:["ppo","ppi"],edition:"India / IMEA edition — recent years unconfirmed",marquee:false,logo:"logos/services/pg_corporate.svg",orgLogo:"logos/services/pg_corporate.svg",blurb:"Build a launch & GTM plan for a P&G global brand: national → IMEA regional → global virtual final. Pipelines to P&G offers. Recent India editions unconfirmed (P&G PEAKathon may be the current campus program) — verify before relying on dates."},
+  {id:"ey-cafta",n:"EY CAFTA Case Championship",org:"EY India",tracks:["finance"],tier:"all-india",schools:"Open to UG + PG students, all disciplines",team:"team",mo:3,window:"Mar launch · Jun finals",prize:"2-month EY India internship (winner) + CAFTA course scholarship",perks:["ppi"],edition:"11th edition = 2026",marquee:false,logo:"logos/ey/ey_corporate.svg",orgLogo:"logos/ey/ey_corporate.svg",blurb:"EY's finance / treasury / financial-risk case championship — distinct from EY Techathon. Theme 2026: 'Market Masters: Winning with Commodities'. Open to all UG + PG students (not MBA-only); also a funnel for EY's CAFTA finance certificate."},
+  {id:"abinbev-bud",n:"AB InBev BUD Challenge",org:"AB InBev India",tracks:["marketing","strategy","sustainability"],tier:"premier",schools:"MBA 1st/2nd-yr (≤3 yrs work-ex), teams of 2–3",team:"2–3",mo:4,window:"Apr–Jun reg · Aug national finals",prize:"Winner ₹1.5L + PPI; R-up ₹75K + PPI; top 5 on CNBC-TV18",perks:["ppi","cash"],edition:"Active (recency medium)",marquee:false,logo:"logos/other-conglomerates/ab-inbev_corporate.png",orgLogo:"logos/other-conglomerates/ab-inbev_corporate.png",blurb:"AB InBev's inter-B-school business competition — a separate program from its 100+ Challenge. Four rounds; top teams featured on CNBC-TV18. Verify the live edition before relying on dates."},
+  {id:"deloitte-maverick",n:"Deloitte Maverick",org:"Deloitte India",tracks:["strategy","general-mgmt"],tier:"premier",schools:"Campus case challenge across 130+ B-schools",team:"team",mo:8,window:"Aug–Sep (typical)",prize:"Cash + Deloitte PPI",perks:["ppi","cash"],edition:"Multi-season (you listed 'DCL Challenge' — real name is Maverick)",marquee:false,logo:"logos/services/deloitte_corporate.svg",orgLogo:"logos/services/deloitte_corporate.svg",blurb:"Deloitte's India MBA campus flagship across 130+ B-schools — there is no 'Deloitte DCL Challenge'; Maverick is the real program. Confirm the current season's window on Unstop."},
+  {id:"capgemini-linnovateur",n:"Capgemini L'Innovateur",org:"Capgemini India",tracks:["strategy","general-mgmt"],tier:"premier",schools:"Top ~9 B-schools, teams of 3 (E.L.I.T.E. GM Program)",team:"3",mo:9,window:"Aug–Oct (typical)",prize:"~₹3L winner + Capgemini E.L.I.T.E. GM track",perks:["ppi","cash"],edition:"Active",marquee:false,logo:"logos/services/capgemini_corporate.svg",orgLogo:"logos/services/capgemini_corporate.svg",blurb:"Capgemini's MBA case competition under the E.L.I.T.E. General Management Program. The 'Capgemini Tech Challenge' you may have seen is a separate coding hackathon — this is the in-scope B-school comp."},
+  {id:"cognizant-cxo",n:"Cognizant CXO Challenge",org:"Cognizant",tracks:["strategy","general-mgmt"],tier:"premier",schools:"Invitation-only, top B-schools",team:"team",mo:9,window:"Dormant — last verified ~2018",prize:"Mentorship from senior Cognizant CXOs",perks:["ppi"],edition:"Dormant — last verified ~2018",marquee:false,logo:"logos/services/cognizant_corporate.svg",orgLogo:"logos/services/cognizant_corporate.svg",blurb:"Cognizant's invitation-only premier B-school comp — the correct name is CXO Challenge, not 'CIO Challenge'. Four phases ending in a real CXO problem statement. No edition found since ~2018; likely dormant — verify."},
 ];
 
 /* ============================================================ FILTERS ============================================================ */
