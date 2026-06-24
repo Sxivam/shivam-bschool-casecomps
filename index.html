@@ -53,7 +53,16 @@ img{display:block;max-width:100%}
   padding:28px 0 28px;
   padding-top:calc(24px + var(--safe-t));
 }
-.cred-tickers{background:var(--charcoal);padding:0 0 36px}
+.cred-tickers{background:#f0ede8;padding:0 0 36px}
+.cred-tickers .wins-strip{border-top-color:rgba(0,0,0,.1)}
+.cred-tickers .wins-label{color:var(--charcoal);text-transform:none;font-size:11px;letter-spacing:.02em;font-family:'Anton',Impact,sans-serif}
+.cred-tickers .wins-track::before{background:linear-gradient(to right,#f0ede8,transparent)}
+.cred-tickers .wins-track::after{background:linear-gradient(to left,#f0ede8,transparent)}
+.cred-tickers .wins-inner .wi-name{color:var(--charcoal)}
+.cred-tickers .wins-inner .wi-rank{color:rgba(23,30,25,.55)}
+.cred-tickers .wins-inner .ws{color:rgba(0,0,0,.15)}
+.cred-tickers .wins-inner .wl-img{border:1px solid rgba(0,0,0,.07)}
+.cred-tickers .exp-strip{border-top-color:rgba(0,0,0,.06)}
 .hero-badge{
   display:inline-flex;align-items:center;gap:6px;
   background:var(--yellow);color:var(--charcoal);
@@ -256,7 +265,6 @@ footer a{font-weight:700;color:var(--charcoal);border-bottom:1px solid var(--yel
   <div class="wrap">
     <div class="hero-badge">📌 2026 MBA Season · 93 Comps Tracked</div>
     <h1 class="anton hero-hl">India's MBA<br><span class="hero-accent">Corporate Case Comp</span><br>Calendar</h1>
-    <p class="hero-sub">Shivam Meet: sharing tools, systems &amp; opportunities for the ambitious</p>
     <div class="brandblock">
       <img class="brand-dp" src="creator.jpeg" alt="Shivam Meet" width="86" height="86">
       <div class="brand-text">
@@ -304,15 +312,17 @@ footer a{font-weight:700;color:var(--charcoal);border-bottom:1px solid var(--yel
 <div class="cred-tickers">
   <div class="wrap">
     <div class="wins-strip">
-      <span class="wins-label">🏆 National Wins</span>
+      <span class="wins-label">Shivam's Wins :</span>
       <div class="wins-track">
         <div class="wins-inner" aria-hidden="true">
+          <span class="wi"><span class="wl wl-img"><img src="logos/unstop-logo.jpeg" alt="Unstop"></span><span class="wi-text"><span class="wi-name">Unstop</span><span class="wi-rank">Rank 1 Nationally · 2024</span></span></span><span class="ws">·</span>
           <span class="wi"><span class="wl wl-img"><img src="logos/iima-logo.png" alt="IIMA"></span><span class="wi-text"><span class="wi-name">Red Bricks Summit</span><span class="wi-rank">IIM Ahmedabad · Rank 1 · 1,000+ teams</span></span></span><span class="ws">·</span>
           <span class="wi"><span class="wl wl-img"><img src="logos/isb-logo.png" alt="ISB"></span><span class="wi-text"><span class="wi-name">Advaita</span><span class="wi-rank">ISB Hyderabad · Rank 1 · 1,000+ teams</span></span></span><span class="ws">·</span>
           <span class="wi"><span class="wl wl-img"><img src="logos/payzapp-logo.png" alt="PayZapp"></span><span class="wi-text"><span class="wi-name">PayZapp Challenge</span><span class="wi-rank">HDFC Bank · Rank 2 · 1,000+ teams</span></span></span><span class="ws">·</span>
           <span class="wi"><span class="wl wl-img"><img src="logos/bain-logo.png" alt="Bain"></span><span class="wi-text"><span class="wi-name">BrainWars</span><span class="wi-rank">Bain &amp; Company · Top 10 · 2,800+ teams</span></span></span><span class="ws">·</span>
           <span class="wi"><span class="wl wl-img"><img src="logos/loreal-logo.webp" alt="L'Oréal"></span><span class="wi-text"><span class="wi-name">Sustainability Challenge</span><span class="wi-rank">L'Oréal · Rank 3 · 73,000+ teams</span></span></span><span class="ws">·</span>
           <span class="wi"><span class="wl wl-img"><img src="logos/srcc-logo.png" alt="SRCC"></span><span class="wi-text"><span class="wi-name">Business Conclave</span><span class="wi-rank">SRCC · Rank 1 · 1,750+ teams</span></span></span><span class="ws">·</span>
+          <span class="wi"><span class="wl wl-img"><img src="logos/unstop-logo.jpeg" alt="Unstop"></span><span class="wi-text"><span class="wi-name">Unstop</span><span class="wi-rank">Rank 1 Nationally · 2024</span></span></span><span class="ws">·</span>
           <span class="wi"><span class="wl wl-img"><img src="logos/iima-logo.png" alt="IIMA"></span><span class="wi-text"><span class="wi-name">Red Bricks Summit</span><span class="wi-rank">IIM Ahmedabad · Rank 1 · 1,000+ teams</span></span></span><span class="ws">·</span>
           <span class="wi"><span class="wl wl-img"><img src="logos/isb-logo.png" alt="ISB"></span><span class="wi-text"><span class="wi-name">Advaita</span><span class="wi-rank">ISB Hyderabad · Rank 1 · 1,000+ teams</span></span></span><span class="ws">·</span>
           <span class="wi"><span class="wl wl-img"><img src="logos/payzapp-logo.png" alt="PayZapp"></span><span class="wi-text"><span class="wi-name">PayZapp Challenge</span><span class="wi-rank">HDFC Bank · Rank 2 · 1,000+ teams</span></span></span><span class="ws">·</span>
@@ -323,7 +333,7 @@ footer a{font-weight:700;color:var(--charcoal);border-bottom:1px solid var(--yel
       </div>
     </div>
     <div class="wins-strip exp-strip">
-      <span class="wins-label">💼 Experience</span>
+      <span class="wins-label">Shivam's Experience :</span>
       <div class="wins-track">
         <div class="wins-inner">
           <span class="wi"><span class="wl wl-img"><img src="logos/nxtwave.png" alt="NxtWave"></span><span class="wi-text"><span class="wi-name">NxtWave</span><span class="wi-rank">B2B Growth | Current</span></span></span><span class="ws">·</span>
@@ -355,7 +365,7 @@ footer a{font-weight:700;color:var(--charcoal);border-bottom:1px solid var(--yel
     <div class="creator">
       <div class="dp-frame"><img src="creator.jpeg" alt="Shivam Meet"></div>
       <div class="c-name-big">Shivam Meet</div>
-      <div class="c-role">Career navigation for college students</div>
+      <div class="c-role">Sharing tools, systems &amp; opportunities for the ambitious</div>
       <span class="c-foll">✦ 105K+ Instagram · 10K+ LinkedIn</span>
       <div class="c-socials">
         <a href="https://instagram.com/meet_.shivam" target="_blank" rel="noopener" aria-label="Instagram">
