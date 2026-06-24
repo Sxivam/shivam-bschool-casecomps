@@ -50,9 +50,12 @@ img{display:block;max-width:100%}
 .topbar{
   background:var(--charcoal);
   border-bottom:3px solid var(--yellow);
-  padding:28px 0 28px;
+  padding:28px 0 0;
   padding-top:calc(24px + var(--safe-t));
+  min-height:100svh;display:flex;flex-direction:column;
 }
+.topbar > .wrap{flex:1}
+.topbar-tickers{padding:0 0 28px}
 .hero-badge{
   display:inline-flex;align-items:center;gap:6px;
   background:var(--yellow);color:var(--charcoal);
@@ -211,7 +214,7 @@ footer a{font-weight:700;color:var(--charcoal);border-bottom:1px solid var(--yel
 /* ---- desktop ---- */
 @media (min-width:768px){
   .wrap{max-width:1040px;padding:0 48px}
-  .topbar{padding:44px 0 36px}
+  .topbar{padding-top:44px;padding-bottom:0}
   .hero-badge{font-size:12px;margin-bottom:26px}
   .hero-hl{font-size:clamp(56px,7.5vw,96px);margin-bottom:20px}
   .hero-sub{font-size:16px;max-width:660px;margin-bottom:28px}
@@ -255,7 +258,7 @@ footer a{font-weight:700;color:var(--charcoal);border-bottom:1px solid var(--yel
   <div class="wrap">
     <div class="hero-badge">📌 2026 MBA Season · 93 Comps Tracked</div>
     <h1 class="anton hero-hl">India's MBA<br><span class="hero-accent">Corporate Case Comp</span><br>Calendar</h1>
-    <p class="hero-sub">93 comps · prize pools · who gets in · when to apply — mapped month by month, so you never miss a window.</p>
+    <p class="hero-sub">Shivam Meet: sharing tools, systems &amp; opportunities for the ambitious</p>
     <div class="brandblock">
       <img class="brand-dp" src="creator.jpeg" alt="Shivam Meet" width="86" height="86">
       <div class="brand-text">
@@ -270,6 +273,9 @@ footer a{font-weight:700;color:var(--charcoal);border-bottom:1px solid var(--yel
         </div>
       </div>
     </div>
+  </div>
+  <div class="topbar-tickers">
+    <div class="wrap">
     <div class="wins-strip">
       <span class="wins-label">🏆 National Wins</span>
       <div class="wins-track">
@@ -299,20 +305,21 @@ footer a{font-weight:700;color:var(--charcoal);border-bottom:1px solid var(--yel
           <span class="wi"><span class="wl wl-img"><img src="logos/juspay.webp" alt="Juspay"></span><span class="wi-text"><span class="wi-name">Juspay</span><span class="wi-rank">Intern | PPO</span></span></span><span class="ws">·</span>
           <span class="wi"><span class="wl wl-img"><img src="logos/frost and sullivan .jpeg" alt="Frost &amp; Sullivan"></span><span class="wi-text"><span class="wi-name">Frost &amp; Sullivan</span><span class="wi-rank">Intern | PPO</span></span></span><span class="ws">·</span>
           <span class="wi"><span class="wl wl-img"><img src="logos/publicis sapient logo.jpg" alt="Publicis Sapient"></span><span class="wi-text"><span class="wi-name">Publicis Sapient</span><span class="wi-rank">Intern | PPO</span></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/wispr-logo.png" alt="Wispr"></span><span class="wi-text"><span class="wi-name">Wispr</span><span class="wi-rank">Brand Collab</span></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/emergent.png" alt="Emergent"></span><span class="wi-text"><span class="wi-name">Emergent</span><span class="wi-rank">Brand Collab</span></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/matiks-logo.png" alt="Matiks"></span><span class="wi-text"><span class="wi-name">Matiks</span><span class="wi-rank">Brand Collab</span></span></span><span class="ws">·</span>
+          <span class="wi"><span class="wl wl-img"><img src="logos/wispr-logo.png" alt="Wispr"></span><span class="wi-text"><span class="wi-name">Wispr</span><span class="wi-rank">Brand Partner</span></span></span><span class="ws">·</span>
+          <span class="wi"><span class="wl wl-img"><img src="logos/emergent.png" alt="Emergent"></span><span class="wi-text"><span class="wi-name">Emergent</span><span class="wi-rank">Brand Partner</span></span></span><span class="ws">·</span>
+          <span class="wi"><span class="wl wl-img"><img src="logos/matiks-logo.png" alt="Matiks"></span><span class="wi-text"><span class="wi-name">Matiks</span><span class="wi-rank">Brand Partner</span></span></span><span class="ws">·</span>
           <span class="wi"><span class="wl wl-img"><img src="logos/nxtwave.png" alt="NxtWave"></span><span class="wi-text"><span class="wi-name">NxtWave</span><span class="wi-rank">B2B Growth | Current</span></span></span><span class="ws">·</span>
           <span class="wi"><span class="wl wl-img"><img src="logos/whetstone.jpeg" alt="Whetstone"></span><span class="wi-text"><span class="wi-name">Whetstone</span><span class="wi-rank">Founder | $30K ARR</span></span></span><span class="ws">·</span>
           <span class="wi"><span class="wl wl-img"><img src="logos/kpmg/kpmg-india_corporate.svg" alt="KPMG"></span><span class="wi-text"><span class="wi-name">KPMG</span><span class="wi-rank">Intern | PPO</span></span></span><span class="ws">·</span>
           <span class="wi"><span class="wl wl-img"><img src="logos/juspay.webp" alt="Juspay"></span><span class="wi-text"><span class="wi-name">Juspay</span><span class="wi-rank">Intern | PPO</span></span></span><span class="ws">·</span>
           <span class="wi"><span class="wl wl-img"><img src="logos/frost and sullivan .jpeg" alt="Frost &amp; Sullivan"></span><span class="wi-text"><span class="wi-name">Frost &amp; Sullivan</span><span class="wi-rank">Intern | PPO</span></span></span><span class="ws">·</span>
           <span class="wi"><span class="wl wl-img"><img src="logos/publicis sapient logo.jpg" alt="Publicis Sapient"></span><span class="wi-text"><span class="wi-name">Publicis Sapient</span><span class="wi-rank">Intern | PPO</span></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/wispr-logo.png" alt="Wispr"></span><span class="wi-text"><span class="wi-name">Wispr</span><span class="wi-rank">Brand Collab</span></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/emergent.png" alt="Emergent"></span><span class="wi-text"><span class="wi-name">Emergent</span><span class="wi-rank">Brand Collab</span></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/matiks-logo.png" alt="Matiks"></span><span class="wi-text"><span class="wi-name">Matiks</span><span class="wi-rank">Brand Collab</span></span></span><span class="ws">·</span>
+          <span class="wi"><span class="wl wl-img"><img src="logos/wispr-logo.png" alt="Wispr"></span><span class="wi-text"><span class="wi-name">Wispr</span><span class="wi-rank">Brand Partner</span></span></span><span class="ws">·</span>
+          <span class="wi"><span class="wl wl-img"><img src="logos/emergent.png" alt="Emergent"></span><span class="wi-text"><span class="wi-name">Emergent</span><span class="wi-rank">Brand Partner</span></span></span><span class="ws">·</span>
+          <span class="wi"><span class="wl wl-img"><img src="logos/matiks-logo.png" alt="Matiks"></span><span class="wi-text"><span class="wi-name">Matiks</span><span class="wi-rank">Brand Partner</span></span></span><span class="ws">·</span>
         </div>
       </div>
+    </div>
     </div>
   </div>
 </header>
