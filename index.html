@@ -82,11 +82,11 @@ img{display:block;max-width:100%}
 .wins-track::before,.wins-track::after{content:'';position:absolute;top:0;bottom:0;width:40px;z-index:1;pointer-events:none}
 .wins-track::before{left:0;background:linear-gradient(to right,#171e19,transparent)}
 .wins-track::after{right:0;background:linear-gradient(to left,#171e19,transparent)}
-.wins-inner{display:flex;align-items:center;gap:28px;animation:wins-scroll 42s linear infinite;width:max-content}
-.wins-inner .wi{white-space:nowrap;display:inline-flex;align-items:center;gap:12px}
-.wins-inner .wl{display:inline-flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:10px;font-size:9px;font-weight:900;color:#fff;flex:none;letter-spacing:.04em;font-family:'Anton',Impact,sans-serif}
-.wins-inner .wl-img{background:#fff;width:88px;height:52px;padding:6px 10px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center}
-.wins-inner .wl-img img{width:68px;height:40px;object-fit:contain;display:block}
+.wins-inner{display:flex;align-items:center;gap:32px;animation:wins-scroll 42s linear infinite;width:max-content}
+.wins-inner .wi{white-space:nowrap;display:inline-flex;align-items:center;gap:14px}
+.wins-inner .wl{display:inline-flex;align-items:center;justify-content:center;width:60px;height:60px;border-radius:12px;font-size:9px;font-weight:900;color:#fff;flex:none;letter-spacing:.04em;font-family:'Anton',Impact,sans-serif}
+.wins-inner .wl-img{background:#fff;width:104px;height:60px;padding:7px 12px;border-radius:12px;display:inline-flex;align-items:center;justify-content:center}
+.wins-inner .wl-img img{width:80px;height:46px;object-fit:contain;display:block}
 .wins-inner .wi-text{display:flex;flex-direction:column;gap:2px}
 .wins-inner .wi-name{font-size:12.5px;font-weight:700;color:#fff;line-height:1.15;letter-spacing:.01em}
 .wins-inner .wi-rank{font-size:10px;font-weight:600;color:rgba(255,225,124,.7);line-height:1.15}
@@ -293,24 +293,24 @@ footer a{font-weight:700;color:var(--charcoal);border-bottom:1px solid var(--yel
       <span class="wins-label">💼 Experience</span>
       <div class="wins-track">
         <div class="wins-inner">
-          <span class="wi"><span class="wl wl-img"><img src="logos/nxtwave.png" alt="NxtWave"></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/whetstone.jpeg" alt="Whetstone"></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/kpmg/kpmg-india_corporate.svg" alt="KPMG"></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/juspay.webp" alt="Juspay"></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/frost and sullivan .jpeg" alt="Frost &amp; Sullivan"></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/publicis sapient logo.jpg" alt="Publicis Sapient"></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/wispr-logo.png" alt="Wispr"></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/emergent.png" alt="Emergent"></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/matiks-logo.png" alt="Matiks"></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/nxtwave.png" alt="NxtWave"></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/whetstone.jpeg" alt="Whetstone"></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/kpmg/kpmg-india_corporate.svg" alt="KPMG"></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/juspay.webp" alt="Juspay"></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/frost and sullivan .jpeg" alt="Frost &amp; Sullivan"></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/publicis sapient logo.jpg" alt="Publicis Sapient"></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/wispr-logo.png" alt="Wispr"></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/emergent.png" alt="Emergent"></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/matiks-logo.png" alt="Matiks"></span></span><span class="ws">·</span>
+          <span class="wi"><span class="wl wl-img"><img src="logos/nxtwave.png" alt="NxtWave"></span><span class="wi-text"><span class="wi-name">NxtWave</span><span class="wi-rank">B2B Growth | Current</span></span></span><span class="ws">·</span>
+          <span class="wi"><span class="wl wl-img"><img src="logos/whetstone.jpeg" alt="Whetstone"></span><span class="wi-text"><span class="wi-name">Whetstone</span><span class="wi-rank">Founder | $30K ARR</span></span></span><span class="ws">·</span>
+          <span class="wi"><span class="wl wl-img"><img src="logos/kpmg/kpmg-india_corporate.svg" alt="KPMG"></span><span class="wi-text"><span class="wi-name">KPMG</span><span class="wi-rank">Intern | PPO</span></span></span><span class="ws">·</span>
+          <span class="wi"><span class="wl wl-img"><img src="logos/juspay.webp" alt="Juspay"></span><span class="wi-text"><span class="wi-name">Juspay</span><span class="wi-rank">Intern | PPO</span></span></span><span class="ws">·</span>
+          <span class="wi"><span class="wl wl-img"><img src="logos/frost and sullivan .jpeg" alt="Frost &amp; Sullivan"></span><span class="wi-text"><span class="wi-name">Frost &amp; Sullivan</span><span class="wi-rank">Intern | PPO</span></span></span><span class="ws">·</span>
+          <span class="wi"><span class="wl wl-img"><img src="logos/publicis sapient logo.jpg" alt="Publicis Sapient"></span><span class="wi-text"><span class="wi-name">Publicis Sapient</span><span class="wi-rank">Intern | PPO</span></span></span><span class="ws">·</span>
+          <span class="wi"><span class="wl wl-img"><img src="logos/wispr-logo.png" alt="Wispr"></span><span class="wi-text"><span class="wi-name">Wispr</span><span class="wi-rank">Brand Collab</span></span></span><span class="ws">·</span>
+          <span class="wi"><span class="wl wl-img"><img src="logos/emergent.png" alt="Emergent"></span><span class="wi-text"><span class="wi-name">Emergent</span><span class="wi-rank">Brand Collab</span></span></span><span class="ws">·</span>
+          <span class="wi"><span class="wl wl-img"><img src="logos/matiks-logo.png" alt="Matiks"></span><span class="wi-text"><span class="wi-name">Matiks</span><span class="wi-rank">Brand Collab</span></span></span><span class="ws">·</span>
+          <span class="wi"><span class="wl wl-img"><img src="logos/nxtwave.png" alt="NxtWave"></span><span class="wi-text"><span class="wi-name">NxtWave</span><span class="wi-rank">B2B Growth | Current</span></span></span><span class="ws">·</span>
+          <span class="wi"><span class="wl wl-img"><img src="logos/whetstone.jpeg" alt="Whetstone"></span><span class="wi-text"><span class="wi-name">Whetstone</span><span class="wi-rank">Founder | $30K ARR</span></span></span><span class="ws">·</span>
+          <span class="wi"><span class="wl wl-img"><img src="logos/kpmg/kpmg-india_corporate.svg" alt="KPMG"></span><span class="wi-text"><span class="wi-name">KPMG</span><span class="wi-rank">Intern | PPO</span></span></span><span class="ws">·</span>
+          <span class="wi"><span class="wl wl-img"><img src="logos/juspay.webp" alt="Juspay"></span><span class="wi-text"><span class="wi-name">Juspay</span><span class="wi-rank">Intern | PPO</span></span></span><span class="ws">·</span>
+          <span class="wi"><span class="wl wl-img"><img src="logos/frost and sullivan .jpeg" alt="Frost &amp; Sullivan"></span><span class="wi-text"><span class="wi-name">Frost &amp; Sullivan</span><span class="wi-rank">Intern | PPO</span></span></span><span class="ws">·</span>
+          <span class="wi"><span class="wl wl-img"><img src="logos/publicis sapient logo.jpg" alt="Publicis Sapient"></span><span class="wi-text"><span class="wi-name">Publicis Sapient</span><span class="wi-rank">Intern | PPO</span></span></span><span class="ws">·</span>
+          <span class="wi"><span class="wl wl-img"><img src="logos/wispr-logo.png" alt="Wispr"></span><span class="wi-text"><span class="wi-name">Wispr</span><span class="wi-rank">Brand Collab</span></span></span><span class="ws">·</span>
+          <span class="wi"><span class="wl wl-img"><img src="logos/emergent.png" alt="Emergent"></span><span class="wi-text"><span class="wi-name">Emergent</span><span class="wi-rank">Brand Collab</span></span></span><span class="ws">·</span>
+          <span class="wi"><span class="wl wl-img"><img src="logos/matiks-logo.png" alt="Matiks"></span><span class="wi-text"><span class="wi-name">Matiks</span><span class="wi-rank">Brand Collab</span></span></span><span class="ws">·</span>
         </div>
       </div>
     </div>
@@ -612,6 +612,15 @@ document.addEventListener('touchend',e=>{
 },{passive:true});
 
 paint();
+</script>
+<script>
+(function(){
+  var tickers=[
+    {el:document.querySelectorAll('.wins-strip:not(.exp-strip) .wins-inner')[0],anim:'wins-scroll 42s linear infinite'},
+    {el:document.querySelectorAll('.exp-strip .wins-inner')[0],anim:'exp-scroll 48s linear infinite'}
+  ];
+  tickers.forEach(function(t){if(t.el)t.el.style.setProperty('animation',t.anim,'important');});
+})();
 </script>
 </body>
 </html>
