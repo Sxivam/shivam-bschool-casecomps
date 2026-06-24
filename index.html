@@ -50,12 +50,10 @@ img{display:block;max-width:100%}
 .topbar{
   background:var(--charcoal);
   border-bottom:3px solid var(--yellow);
-  padding:28px 0 0;
+  padding:28px 0 28px;
   padding-top:calc(24px + var(--safe-t));
-  min-height:100svh;display:flex;flex-direction:column;
 }
-.topbar > .wrap{flex:1}
-.topbar-tickers{padding:0 0 28px}
+.cred-tickers{background:var(--charcoal);padding:0 0 36px}
 .hero-badge{
   display:inline-flex;align-items:center;gap:6px;
   background:var(--yellow);color:var(--charcoal);
@@ -214,7 +212,7 @@ footer a{font-weight:700;color:var(--charcoal);border-bottom:1px solid var(--yel
 /* ---- desktop ---- */
 @media (min-width:768px){
   .wrap{max-width:1040px;padding:0 48px}
-  .topbar{padding-top:44px;padding-bottom:0}
+  .topbar{padding:44px 0 36px}
   .hero-badge{font-size:12px;margin-bottom:26px}
   .hero-hl{font-size:clamp(56px,7.5vw,96px);margin-bottom:20px}
   .hero-sub{font-size:16px;max-width:660px;margin-bottom:28px}
@@ -274,8 +272,37 @@ footer a{font-weight:700;color:var(--charcoal);border-bottom:1px solid var(--yel
       </div>
     </div>
   </div>
-  <div class="topbar-tickers">
-    <div class="wrap">
+</header>
+
+<div class="disclaimer">
+  <div class="wrap">
+    <div class="note">
+      <span class="ic">📅</span>
+      <p><b>A planning calendar — not live links.</b> Windows are estimates from past seasons; each comp's registration opens on Unstop near the date.</p>
+    </div>
+  </div>
+</div>
+
+<nav class="monthbar"><div class="strip" id="strip"></div></nav>
+
+<main class="screen">
+  <div class="wrap">
+    <div class="mhead">
+      <button class="arrow" id="prev" aria-label="Previous month">‹</button>
+      <div class="mtitle">
+        <h1 class="anton mt" id="mt">August</h1>
+        <div class="when" id="when"></div>
+        <div class="meta" id="meta"></div>
+      </div>
+      <button class="arrow" id="next" aria-label="Next month">›</button>
+    </div>
+    <div class="cards" id="cards" aria-live="polite"></div>
+    <p class="swipe-hint">Swipe ← → or tap a month above</p>
+  </div>
+</main>
+
+<div class="cred-tickers">
+  <div class="wrap">
     <div class="wins-strip">
       <span class="wins-label">🏆 National Wins</span>
       <div class="wins-track">
@@ -320,36 +347,8 @@ footer a{font-weight:700;color:var(--charcoal);border-bottom:1px solid var(--yel
         </div>
       </div>
     </div>
-    </div>
-  </div>
-</header>
-
-<div class="disclaimer">
-  <div class="wrap">
-    <div class="note">
-      <span class="ic">📅</span>
-      <p><b>A planning calendar — not live links.</b> Windows are estimates from past seasons; each comp's registration opens on Unstop near the date.</p>
-    </div>
   </div>
 </div>
-
-<nav class="monthbar"><div class="strip" id="strip"></div></nav>
-
-<main class="screen">
-  <div class="wrap">
-    <div class="mhead">
-      <button class="arrow" id="prev" aria-label="Previous month">‹</button>
-      <div class="mtitle">
-        <h1 class="anton mt" id="mt">August</h1>
-        <div class="when" id="when"></div>
-        <div class="meta" id="meta"></div>
-      </div>
-      <button class="arrow" id="next" aria-label="Next month">›</button>
-    </div>
-    <div class="cards" id="cards" aria-live="polite"></div>
-    <p class="swipe-hint">Swipe ← → or tap a month above</p>
-  </div>
-</main>
 
 <footer>
   <div class="wrap">
