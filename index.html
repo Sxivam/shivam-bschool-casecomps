@@ -47,28 +47,34 @@ img{display:block;max-width:100%}
 .wrap{width:100%;max-width:620px;margin:0 auto;padding:0 20px}
 
 /* ---------- hero header ---------- */
-.topbar{border-bottom:1px solid var(--ink-10);padding:28px 0 24px;padding-top:calc(22px + var(--safe-t))}
+.topbar{
+  background:var(--charcoal);
+  border-bottom:3px solid var(--yellow);
+  padding:28px 0 28px;
+  padding-top:calc(24px + var(--safe-t));
+}
 .hero-badge{
   display:inline-flex;align-items:center;gap:6px;
   background:var(--yellow);color:var(--charcoal);
   font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-  padding:5px 13px;border-radius:9999px;margin-bottom:18px;
+  padding:5px 14px;border-radius:9999px;margin-bottom:20px;
 }
 .hero-hl{
-  font-size:clamp(38px,10.5vw,56px);line-height:.88;
-  margin-bottom:15px;letter-spacing:.01em;
+  font-size:clamp(36px,10vw,54px);line-height:.88;
+  color:var(--white);
+  margin-bottom:16px;letter-spacing:.01em;
 }
-.hero-mark{
-  background:var(--yellow);
-  padding:1px 5px;
-  -webkit-box-decoration-break:clone;
-  box-decoration-break:clone;
-  display:inline;
-}
+.hero-accent{color:var(--yellow)}
 .hero-sub{
-  font-size:13.5px;color:var(--ink-70);line-height:1.6;
-  margin-bottom:22px;max-width:520px;
+  font-size:13.5px;color:var(--sage);line-height:1.65;
+  margin-bottom:24px;max-width:480px;
 }
+.topbar .brandblock{border-top:1px solid rgba(255,255,255,.1);padding-top:20px}
+.topbar .brand-dp{border-color:rgba(255,255,255,.15);box-shadow:0 0 0 4px rgba(255,225,124,.35)}
+.topbar .brand-by{color:rgba(255,255,255,.5)}
+.topbar .brand-by b{color:var(--white)}
+.topbar .brand-foll a{color:rgba(255,255,255,.75)}
+.topbar .brand-foll a:hover,.topbar .brand-foll a:active{color:var(--yellow)}
 
 /* ---------- sticky app bar ---------- */
 .brandblock{display:flex;align-items:center;gap:16px}
@@ -228,7 +234,7 @@ footer a{font-weight:700;color:var(--charcoal);border-bottom:1px solid var(--yel
 <header class="topbar">
   <div class="wrap">
     <div class="hero-badge">📌 2026 MBA Season · 93 Comps Tracked</div>
-    <h1 class="anton hero-hl">India's MBA<br><span class="hero-mark">Corporate Case Comp</span><br>Calendar</h1>
+    <h1 class="anton hero-hl">India's MBA<br><span class="hero-accent">Corporate Case Comp</span><br>Calendar</h1>
     <p class="hero-sub">93 comps · prize pools · who gets in · when to apply — mapped month by month, so you never miss a window.</p>
     <div class="brandblock">
       <img class="brand-dp" src="creator.jpeg" alt="Shivam Meet" width="86" height="86">
