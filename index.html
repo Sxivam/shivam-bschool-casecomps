@@ -76,18 +76,21 @@ img{display:block;max-width:100%}
 .topbar .brand-foll a{color:rgba(255,255,255,.75)}
 .topbar .brand-foll a:hover,.topbar .brand-foll a:active{color:var(--yellow)}
 /* ---- wins ticker ---- */
-.wins-strip{display:flex;align-items:center;gap:0;margin-top:20px;border-top:1px solid rgba(255,255,255,.1);padding-top:14px;overflow:hidden}
+.wins-strip{display:flex;align-items:center;gap:0;margin-top:20px;border-top:1px solid rgba(255,255,255,.1);padding-top:14px;padding-bottom:2px;overflow:hidden}
 .wins-label{flex:none;font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--yellow);white-space:nowrap;padding-right:14px;border-right:1px solid rgba(255,255,255,.12);margin-right:14px}
 .wins-track{flex:1;min-width:0;overflow:hidden;position:relative}
 .wins-track::before,.wins-track::after{content:'';position:absolute;top:0;bottom:0;width:32px;z-index:1;pointer-events:none}
 .wins-track::before{left:0;background:linear-gradient(to right,#171e19,transparent)}
 .wins-track::after{right:0;background:linear-gradient(to left,#171e19,transparent)}
-.wins-inner{display:flex;align-items:center;gap:16px;animation:wins-scroll 24s linear infinite;width:max-content}
-.wins-inner .wi{font-size:12px;font-weight:700;color:rgba(255,255,255,.75);white-space:nowrap;letter-spacing:.01em;display:inline-flex;align-items:center;gap:8px}
-.wins-inner .wl{display:inline-flex;align-items:center;justify-content:center;width:28px;height:20px;border-radius:5px;font-size:6.5px;font-weight:900;color:#fff;flex:none;letter-spacing:.04em;font-family:'Anton',Impact,sans-serif}
-.wins-inner .wl-img{background:#fff;width:48px;height:22px;padding:3px 7px;border-radius:5px}
-.wins-inner .wl-img img{width:34px;height:16px;object-fit:contain;display:block}
-.wins-inner .ws{color:rgba(255,225,124,.25);font-size:14px}
+.wins-inner{display:flex;align-items:center;gap:24px;animation:wins-scroll 48s linear infinite;width:max-content}
+.wins-inner .wi{white-space:nowrap;display:inline-flex;align-items:center;gap:11px}
+.wins-inner .wl{display:inline-flex;align-items:center;justify-content:center;width:32px;height:26px;border-radius:6px;font-size:7px;font-weight:900;color:#fff;flex:none;letter-spacing:.04em;font-family:'Anton',Impact,sans-serif}
+.wins-inner .wl-img{background:#fff;width:62px;height:32px;padding:4px 8px;border-radius:7px;display:inline-flex;align-items:center;justify-content:center}
+.wins-inner .wl-img img{width:46px;height:24px;object-fit:contain;display:block}
+.wins-inner .wi-text{display:flex;flex-direction:column;gap:2px}
+.wins-inner .wi-name{font-size:12.5px;font-weight:700;color:#fff;line-height:1.15;letter-spacing:.01em}
+.wins-inner .wi-rank{font-size:10px;font-weight:600;color:rgba(255,225,124,.7);line-height:1.15}
+.wins-inner .ws{color:rgba(255,225,124,.2);font-size:18px;line-height:1}
 @keyframes wins-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 /* ---------- sticky app bar ---------- */
@@ -268,18 +271,18 @@ footer a{font-weight:700;color:var(--charcoal);border-bottom:1px solid var(--yel
       <span class="wins-label">🏆 National Wins</span>
       <div class="wins-track">
         <div class="wins-inner" aria-hidden="true">
-          <span class="wi"><span class="wl wl-img"><img src="logos/iima-logo.png" alt="IIMA"></span>IIMA</span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/isb-logo.png" alt="ISB"></span>ISB Hyderabad</span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/srcc-logo.png" alt="SRCC"></span>SRCC</span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/loreal-logo.webp" alt="L'Oréal"></span>L'Oréal Brandstorm</span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/payzapp-logo.png" alt="PayZapp"></span>HDFC PayZapp</span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/ey-logo.png" alt="EY"></span>EY Techathon</span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/iima-logo.png" alt="IIMA"></span>IIMA</span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/isb-logo.png" alt="ISB"></span>ISB Hyderabad</span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/srcc-logo.png" alt="SRCC"></span>SRCC</span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/loreal-logo.webp" alt="L'Oréal"></span>L'Oréal Brandstorm</span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/payzapp-logo.png" alt="PayZapp"></span>HDFC PayZapp</span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/ey-logo.png" alt="EY"></span>EY Techathon</span><span class="ws">·</span>
+          <span class="wi"><span class="wl wl-img"><img src="logos/iima-logo.png" alt="IIMA"></span><span class="wi-text"><span class="wi-name">Red Bricks Summit</span><span class="wi-rank">IIM Ahmedabad · Rank 1 · 1,000+ teams</span></span></span><span class="ws">·</span>
+          <span class="wi"><span class="wl wl-img"><img src="logos/isb-logo.png" alt="ISB"></span><span class="wi-text"><span class="wi-name">Advaita</span><span class="wi-rank">ISB Hyderabad · Rank 1 · 1,000+ teams</span></span></span><span class="ws">·</span>
+          <span class="wi"><span class="wl wl-img"><img src="logos/payzapp-logo.png" alt="PayZapp"></span><span class="wi-text"><span class="wi-name">PayZapp Challenge</span><span class="wi-rank">HDFC Bank · Rank 2 · 1,000+ teams</span></span></span><span class="ws">·</span>
+          <span class="wi"><span class="wl" style="background:#C01F26">B&amp;C</span><span class="wi-text"><span class="wi-name">BrainWars</span><span class="wi-rank">Bain &amp; Company · Top 10 · 2,800+ teams</span></span></span><span class="ws">·</span>
+          <span class="wi"><span class="wl wl-img"><img src="logos/loreal-logo.webp" alt="L'Oréal"></span><span class="wi-text"><span class="wi-name">Sustainability Challenge</span><span class="wi-rank">L'Oréal · Rank 3 · 73,000+ teams</span></span></span><span class="ws">·</span>
+          <span class="wi"><span class="wl wl-img"><img src="logos/srcc-logo.png" alt="SRCC"></span><span class="wi-text"><span class="wi-name">Business Conclave</span><span class="wi-rank">SRCC · Rank 1 · 1,750+ teams</span></span></span><span class="ws">·</span>
+          <span class="wi"><span class="wl wl-img"><img src="logos/iima-logo.png" alt="IIMA"></span><span class="wi-text"><span class="wi-name">Red Bricks Summit</span><span class="wi-rank">IIM Ahmedabad · Rank 1 · 1,000+ teams</span></span></span><span class="ws">·</span>
+          <span class="wi"><span class="wl wl-img"><img src="logos/isb-logo.png" alt="ISB"></span><span class="wi-text"><span class="wi-name">Advaita</span><span class="wi-rank">ISB Hyderabad · Rank 1 · 1,000+ teams</span></span></span><span class="ws">·</span>
+          <span class="wi"><span class="wl wl-img"><img src="logos/payzapp-logo.png" alt="PayZapp"></span><span class="wi-text"><span class="wi-name">PayZapp Challenge</span><span class="wi-rank">HDFC Bank · Rank 2 · 1,000+ teams</span></span></span><span class="ws">·</span>
+          <span class="wi"><span class="wl" style="background:#C01F26">B&amp;C</span><span class="wi-text"><span class="wi-name">BrainWars</span><span class="wi-rank">Bain &amp; Company · Top 10 · 2,800+ teams</span></span></span><span class="ws">·</span>
+          <span class="wi"><span class="wl wl-img"><img src="logos/loreal-logo.webp" alt="L'Oréal"></span><span class="wi-text"><span class="wi-name">Sustainability Challenge</span><span class="wi-rank">L'Oréal · Rank 3 · 73,000+ teams</span></span></span><span class="ws">·</span>
+          <span class="wi"><span class="wl wl-img"><img src="logos/srcc-logo.png" alt="SRCC"></span><span class="wi-text"><span class="wi-name">Business Conclave</span><span class="wi-rank">SRCC · Rank 1 · 1,750+ teams</span></span></span><span class="ws">·</span>
         </div>
       </div>
     </div>
