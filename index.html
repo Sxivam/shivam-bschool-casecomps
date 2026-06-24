@@ -46,8 +46,31 @@ img{display:block;max-width:100%}
 .anton{font-family:'Anton',Impact,sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.01em;line-height:.9}
 .wrap{width:100%;max-width:620px;margin:0 auto;padding:0 20px}
 
+/* ---------- hero header ---------- */
+.topbar{border-bottom:1px solid var(--ink-10);padding:28px 0 24px;padding-top:calc(22px + var(--safe-t))}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--yellow);color:var(--charcoal);
+  font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  padding:5px 13px;border-radius:9999px;margin-bottom:18px;
+}
+.hero-hl{
+  font-size:clamp(38px,10.5vw,56px);line-height:.88;
+  margin-bottom:15px;letter-spacing:.01em;
+}
+.hero-mark{
+  background:var(--yellow);
+  padding:1px 5px;
+  -webkit-box-decoration-break:clone;
+  box-decoration-break:clone;
+  display:inline;
+}
+.hero-sub{
+  font-size:13.5px;color:var(--ink-70);line-height:1.6;
+  margin-bottom:22px;max-width:520px;
+}
+
 /* ---------- sticky app bar ---------- */
-.topbar{border-bottom:1px solid var(--ink-10);padding:20px 0;padding-top:calc(18px + var(--safe-t))}
 .brandblock{display:flex;align-items:center;gap:16px}
 .brand-dp{width:72px;height:72px;flex:none;border-radius:50%;object-fit:cover;border:3px solid var(--charcoal);box-shadow:0 0 0 4px var(--yellow)}
 .brand-text{min-width:0}
@@ -162,7 +185,10 @@ footer a{font-weight:700;color:var(--charcoal);border-bottom:1px solid var(--yel
 /* ---- desktop ---- */
 @media (min-width:768px){
   .wrap{max-width:1040px;padding:0 48px}
-  .topbar{padding:28px 0}
+  .topbar{padding:44px 0 36px}
+  .hero-badge{font-size:12px;margin-bottom:26px}
+  .hero-hl{font-size:clamp(56px,7.5vw,96px);margin-bottom:20px}
+  .hero-sub{font-size:16px;max-width:660px;margin-bottom:28px}
   .brandblock{gap:22px}
   .brand-dp{width:88px;height:88px}
   .brand-title{font-size:clamp(26px,3vw,42px)}
@@ -201,10 +227,12 @@ footer a{font-weight:700;color:var(--charcoal);border-bottom:1px solid var(--yel
 
 <header class="topbar">
   <div class="wrap">
+    <div class="hero-badge">📌 2026 MBA Season · 93 Comps Tracked</div>
+    <h1 class="anton hero-hl">India's MBA<br><span class="hero-mark">Corporate Case Comp</span><br>Calendar</h1>
+    <p class="hero-sub">93 comps · prize pools · who gets in · when to apply — mapped month by month, so you never miss a window.</p>
     <div class="brandblock">
       <img class="brand-dp" src="creator.jpeg" alt="Shivam Meet" width="86" height="86">
       <div class="brand-text">
-        <h1 class="anton brand-title">B-School Case Comps Calendar</h1>
         <div class="brand-by">Curated by <b>Shivam Meet</b></div>
         <div class="brand-foll">
           <a href="https://instagram.com/meet_.shivam" target="_blank" rel="noopener" aria-label="Shivam Meet on Instagram — 105K+ followers">
