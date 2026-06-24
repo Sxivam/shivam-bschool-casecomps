@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#ffffff">
+<meta name="theme-color" content="#ffffeb">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -26,10 +26,10 @@
 
 <style>
 :root{
-  --charcoal:#171e19;--dark:#272727;--yellow:#ffe17c;--yellow-deep:#f5c93a;
-  --sage:#b7c6c2;--white:#ffffff;--paper:#fafaf8;
-  --ink-70:rgba(23,30,25,.72);--ink-50:#5e6360;--ink-10:rgba(23,30,25,.1);
-  --amber-3:#8a6d00;--ease:cubic-bezier(.4,0,.2,1);
+  --charcoal:#1a1a1a;--dark:#1a1a1a;--yellow:#f0d7ff;--yellow-deep:#6d28d9;
+  --sage:#ddddc8;--white:#ffffeb;--paper:#f5f0ff;
+  --ink-70:rgba(26,26,26,.72);--ink-50:#6b6b6b;--ink-10:rgba(26,26,26,.1);
+  --amber-3:#6d28d9;--ease:cubic-bezier(.4,0,.2,1);
   --safe-t:env(safe-area-inset-top,0px);--safe-b:env(safe-area-inset-bottom,0px);
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -53,13 +53,13 @@ img{display:block;max-width:100%}
   padding:28px 0 28px;
   padding-top:calc(24px + var(--safe-t));
 }
-.cred-tickers{background:#f0ede8;padding:0 0 36px}
+.cred-tickers{background:#ffffeb;padding:0 0 36px}
 .cred-tickers .wins-strip{border-top-color:rgba(0,0,0,.1)}
 .cred-tickers .wins-label{color:var(--charcoal);text-transform:none;font-size:11px;letter-spacing:.02em;font-family:'Anton',Impact,sans-serif}
-.cred-tickers .wins-track::before{background:linear-gradient(to right,#f0ede8,transparent)}
-.cred-tickers .wins-track::after{background:linear-gradient(to left,#f0ede8,transparent)}
+.cred-tickers .wins-track::before{background:linear-gradient(to right,#ffffeb,transparent)}
+.cred-tickers .wins-track::after{background:linear-gradient(to left,#ffffeb,transparent)}
 .cred-tickers .wins-inner .wi-name{color:var(--charcoal)}
-.cred-tickers .wins-inner .wi-rank{color:rgba(23,30,25,.55)}
+.cred-tickers .wins-inner .wi-rank{color:rgba(26,26,26,.55)}
 .cred-tickers .wins-inner .ws{color:rgba(0,0,0,.15)}
 .cred-tickers .wins-inner .wl-img{border:1px solid rgba(0,0,0,.07)}
 .cred-tickers .exp-strip{border-top-color:rgba(0,0,0,.06)}
@@ -90,8 +90,8 @@ img{display:block;max-width:100%}
 .wins-label{flex:none;font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--yellow);white-space:nowrap;padding-right:14px;border-right:1px solid rgba(255,255,255,.12);margin-right:14px}
 .wins-track{flex:1;min-width:0;overflow:hidden;position:relative}
 .wins-track::before,.wins-track::after{content:'';position:absolute;top:0;bottom:0;width:40px;z-index:1;pointer-events:none}
-.wins-track::before{left:0;background:linear-gradient(to right,#171e19,transparent)}
-.wins-track::after{right:0;background:linear-gradient(to left,#171e19,transparent)}
+.wins-track::before{left:0;background:linear-gradient(to right,#1a1a1a,transparent)}
+.wins-track::after{right:0;background:linear-gradient(to left,#1a1a1a,transparent)}
 .wins-inner{display:flex;align-items:center;gap:32px;animation:wins-scroll 42s linear infinite;width:max-content}
 .wins-inner .wi{white-space:nowrap;display:inline-flex;align-items:center;gap:14px}
 .wins-inner .wl{display:inline-flex;align-items:center;justify-content:center;width:60px;height:60px;border-radius:12px;font-size:9px;font-weight:900;color:#fff;flex:none;letter-spacing:.04em;font-family:'Anton',Impact,sans-serif}
@@ -127,7 +127,7 @@ img{display:block;max-width:100%}
 .disclaimer b{font-weight:700;color:#5a4b10}
 
 /* ---------- sticky month strip ---------- */
-.monthbar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--ink-10)}
+.monthbar{position:sticky;top:0;z-index:20;background:rgba(255,255,235,.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--ink-10)}
 .strip{display:flex;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:none;-webkit-overflow-scrolling:touch;gap:8px;padding:12px 20px}
 .strip::-webkit-scrollbar{display:none}
 .pill{scroll-snap-align:center;flex:none;min-width:50px;height:46px;border-radius:13px;border:1.5px solid var(--ink-10);background:var(--white);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;transition:transform .12s var(--ease)}
