@@ -202,6 +202,14 @@ footer a{font-weight:700;color:var(--charcoal);border-bottom:1px solid var(--yel
 :focus-visible{outline:2px solid var(--yellow-deep);outline-offset:2px}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 
+/* ---------- filter bar ---------- */
+.filter-bar{background:var(--white);border-bottom:1px solid var(--ink-10);padding:10px 0}
+.filter-bar .wrap{display:flex;gap:10px}
+.fb-select{flex:1;min-width:0;appearance:none;-webkit-appearance:none;background:var(--white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b6b6b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 12px center;background-size:12px 8px;border:1.5px solid var(--ink-10);border-radius:10px;padding:9px 32px 9px 12px;font-size:12.5px;font-family:inherit;font-weight:600;color:var(--charcoal);cursor:pointer;transition:border-color .15s}
+.fb-select:focus{outline:none;border-color:var(--yellow-deep)}
+.fb-select.active{border-color:var(--yellow-deep);background-color:var(--paper)}
+.clr-link{background:none;border:none;color:var(--yellow-deep);font-weight:700;font-size:inherit;cursor:pointer;text-decoration:underline;padding:0}
+
 /* ---------- branding ---------- */
 .dp-link{display:block;width:38px;height:38px;border-radius:50%;overflow:hidden;border:2px solid var(--charcoal);flex:none}
 .dp-mini{width:100%;height:100%;object-fit:cover}
@@ -288,6 +296,48 @@ footer a{font-weight:700;color:var(--charcoal);border-bottom:1px solid var(--yel
       <span class="ic">📅</span>
       <p><b>A planning calendar — not live links.</b> Windows are estimates from past seasons; each comp's registration opens on Unstop near the date.</p>
     </div>
+  </div>
+</div>
+
+<div class="filter-bar">
+  <div class="wrap">
+    <select class="fb-select" id="sel-year" aria-label="Filter by year">
+      <option value="all">All Years</option>
+      <option value="1">1st Year MBA</option>
+      <option value="2">2nd Year MBA</option>
+    </select>
+    <select class="fb-select" id="sel-school" aria-label="Filter by school">
+      <option value="all">My School</option>
+      <optgroup label="Premier Institutes">
+        <option value="iima">IIM Ahmedabad</option>
+        <option value="iimb">IIM Bangalore</option>
+        <option value="iimc">IIM Calcutta</option>
+        <option value="iiml">IIM Lucknow</option>
+        <option value="iimk">IIM Kozhikode</option>
+        <option value="iimi">IIM Indore</option>
+        <option value="iims">IIM Shillong</option>
+        <option value="iimudaipur">IIM Udaipur</option>
+        <option value="iimranchi">IIM Ranchi</option>
+        <option value="isb">ISB Hyderabad</option>
+        <option value="xlri">XLRI Jamshedpur</option>
+        <option value="fms">FMS Delhi</option>
+        <option value="mdi">MDI Gurgaon</option>
+        <option value="iift">IIFT Delhi</option>
+        <option value="tiss">TISS Mumbai</option>
+      </optgroup>
+      <optgroup label="All MBA Colleges">
+        <option value="nmims">NMIMS Mumbai</option>
+        <option value="sibm">SIBM Pune</option>
+        <option value="greatlakes">Great Lakes Chennai</option>
+        <option value="spjimr">SPJIMR Mumbai</option>
+        <option value="symbiosis">Symbiosis Pune</option>
+        <option value="imt">IMT Ghaziabad</option>
+        <option value="mica">MICA Ahmedabad</option>
+        <option value="kjsomaiya">KJ Somaiya Mumbai</option>
+        <option value="welingkar">Welingkar Mumbai</option>
+        <option value="other">Other MBA College</option>
+      </optgroup>
+    </select>
   </div>
 </div>
 
@@ -518,6 +568,30 @@ function whenText(mo){
   return ['In about '+d+' months',false];
 }
 
+const PREMIER_SCHOOLS=new Set(['iima','iimb','iimc','iiml','iimk','iimi','iims','iimudaipur','iimranchi','isb','xlri','fms','mdi','iift','tiss']);
+let fYear='all',fSchool='all';
+function yearOf(c){
+  const s=(c.schools||'')+' '+(c.team||'');
+  if(/1st.yr|first.year/i.test(s)&&!/2nd|final/i.test(s))return '1';
+  if(/(2nd|final.yr|final-yr)/i.test(s)&&!/1st.yr|first.year/i.test(s))return '2';
+  return 'both';
+}
+function applyFilters(list){
+  return list.filter(c=>{
+    if(fYear!=='all'){const y=yearOf(c);if(y!=='both'&&y!==fYear)return false;}
+    if(fSchool==='nonpremier'&&c.tier==='premier')return false;
+    return true;
+  });
+}
+function clearFilters(){
+  fYear='all';fSchool='all';
+  document.getElementById('sel-year').value='all';
+  document.getElementById('sel-year').classList.remove('active');
+  document.getElementById('sel-school').value='all';
+  document.getElementById('sel-school').classList.remove('active');
+  paint();
+}
+
 let idx=(function(){const p=SEASON.indexOf(nowMo);return p>=0?p:SEASON.indexOf(8);})();
 
 /* ---- month strip ---- */
@@ -569,7 +643,7 @@ function cardHTML(c){
 }
 
 function paint(){
-  const mo=SEASON[idx], list=byMo[mo]||[], n=activeCount(mo);
+  const mo=SEASON[idx],rawList=byMo[mo]||[],list=applyFilters(rawList),n=list.filter(c=>!isDormant(c)).length;
   mtEl.textContent=MONTH_FULL[mo-1];
   const [wt,soon]=whenText(mo);
   whenEl.innerHTML=`<span class="${soon?'soon':''}">${wt}</span>`;
@@ -577,8 +651,15 @@ function paint(){
   if(list.length){
     cardsEl.innerHTML=list.map(cardHTML).join('');
     wireCards();
+  } else if((fYear!=='all'||fSchool!=='all')&&rawList.length){
+    cardsEl.innerHTML=`<div class="quiet-state">
+      <div class="qem">🔍</div>
+      <div class="qbig">No matches</div>
+      <p>No comps match your filters in ${MONTH_FULL[mo-1]}. Try another month or <button class="clr-link" id="clr-f">clear filters</button>.</p>
+    </div>`;
+    document.getElementById('clr-f')?.addEventListener('click',clearFilters);
   } else {
-    let jump=idx;for(let k=1;k<=12;k++){const j=(idx+k)%12;if((byMo[SEASON[j]]||[]).length){jump=j;break;}}
+    let jump=idx;for(let k=1;k<=12;k++){const j=(idx+k)%12;if(applyFilters(byMo[SEASON[j]]||[]).length){jump=j;break;}}
     cardsEl.innerHTML=`<div class="quiet-state">
       <div class="qem">🌤️</div>
       <div class="qbig">A quiet month</div>
@@ -588,10 +669,14 @@ function paint(){
     const jb=cardsEl.querySelector('[data-jump]');
     if(jb)jb.addEventListener('click',()=>go(parseInt(jb.dataset.jump,10)));
   }
-  pills.forEach((p,i)=>p.classList.toggle('active',i===idx));
+  pills.forEach((p,i)=>{
+    const pmo=SEASON[i],fn=applyFilters(byMo[pmo]||[]).filter(c=>!isDormant(c)).length;
+    const pc=p.querySelector('.pc');if(pc)pc.textContent=fn||'·';
+    p.className=['pill',i===idx?'active':fn?PEAK.has(pmo)?'peak':'has':'quiet'].join(' ');
+    p.setAttribute('aria-label',`${MONTH_FULL[pmo-1]}, ${fn} competitions`);
+  });
   const ap=pills[idx];if(ap&&ap.scrollIntoView)ap.scrollIntoView({inline:'center',block:'nearest'});
-  prevBtn.disabled=(idx===0);
-  nextBtn.disabled=(idx===SEASON.length-1);
+  prevBtn.disabled=(idx===0);nextBtn.disabled=(idx===SEASON.length-1);
 }
 
 function wireCards(){
@@ -625,6 +710,18 @@ document.addEventListener('touchend',e=>{
   const dx=e.changedTouches[0].clientX-tx, dy=e.changedTouches[0].clientY-ty;
   if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)*1.5){ go(dx<0?idx+1:idx-1); }
 },{passive:true});
+
+document.getElementById('sel-year').addEventListener('change',e=>{
+  fYear=e.target.value;
+  e.target.classList.toggle('active',fYear!=='all');
+  paint();
+});
+document.getElementById('sel-school').addEventListener('change',e=>{
+  const val=e.target.value;
+  fSchool=val==='all'?'all':PREMIER_SCHOOLS.has(val)?'premier':'nonpremier';
+  e.target.classList.toggle('active',val!=='all');
+  paint();
+});
 
 paint();
 </script>
