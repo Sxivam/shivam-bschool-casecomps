@@ -226,6 +226,16 @@ footer a{font-weight:700;color:var(--charcoal);border-bottom:1px solid var(--yel
 .legal{margin-top:22px;padding-top:18px;border-top:1px solid var(--ink-10);font-size:11.5px;color:var(--ink-50);line-height:1.6}
 .legal b{color:var(--charcoal);font-weight:700}
 
+/* ---------- wispr promo ---------- */
+.wispr-promo{padding:6px 0 28px}
+.wispr-card{display:block;background:var(--yellow);border-radius:22px;padding:26px 22px;transition:transform .15s var(--ease)}
+.wispr-card:active{transform:scale(.985)}
+.wp-logo{height:19px;width:auto;margin-bottom:18px;display:block}
+.wp-h{font-size:clamp(25px,7.2vw,32px);line-height:.96;margin-bottom:12px;color:var(--charcoal)}
+.wp-sub{font-size:13px;line-height:1.55;color:rgba(26,26,26,.72);max-width:480px;margin-bottom:20px}
+.wp-cta{display:inline-flex;align-items:center;gap:8px;background:var(--yellow-deep);color:var(--white);font-weight:700;font-size:13.5px;padding:13px 22px;border-radius:9999px}
+.wp-meta{display:block;margin-top:11px;font-size:11px;color:rgba(26,26,26,.5);font-weight:700;letter-spacing:.02em}
+
 /* ---- desktop ---- */
 @media (min-width:768px){
   .wrap{max-width:1040px;padding:0 48px}
@@ -260,6 +270,11 @@ footer a{font-weight:700;color:var(--charcoal);border-bottom:1px solid var(--yel
   .c-foll{margin-top:10px}
   .legal{margin-top:18px}
   footer{padding:28px 0 calc(28px + var(--safe-b))}
+  .wispr-card{display:flex;align-items:center;justify-content:space-between;gap:40px;padding:38px 46px}
+  .wp-logo{margin-bottom:20px}
+  .wp-h{font-size:clamp(30px,3.4vw,42px)}
+  .wp-sub{font-size:14.5px;margin-bottom:0}
+  .wp-right{flex:none;display:flex;flex-direction:column;align-items:flex-start}
 }
 @media (min-width:1120px){
   .wrap{max-width:1260px;padding:0 64px}
@@ -403,6 +418,22 @@ footer a{font-weight:700;color:var(--charcoal);border-bottom:1px solid var(--yel
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="wispr-promo">
+  <div class="wrap">
+    <a class="wispr-card" href="https://ref.wisprflow.ai/ShivamM" target="_blank" rel="sponsored noopener noreferrer" aria-label="Get Wispr Flow — voice to text for every app">
+      <div class="wp-left">
+        <img class="wp-logo" src="logos/wispr-logo.png" alt="Wispr Flow" width="146" height="24">
+        <h2 class="anton wp-h">Don't type your case.<br>Speak it.</h2>
+        <p class="wp-sub">Wispr Flow turns your voice into clean text in Docs, Notion, Slack or WhatsApp. Talk through your MECE tree or exec summary out loud, then let it clean up the words. Built for speed under a comp deadline.</p>
+      </div>
+      <div class="wp-right">
+        <span class="wp-cta">Get Wispr Flow →</span>
+        <span class="wp-meta">Mac · Windows · iPhone</span>
+      </div>
+    </a>
   </div>
 </div>
 
