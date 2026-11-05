@@ -371,7 +371,7 @@ dialog.log::backdrop{background:rgba(10,10,10,.55)}
   <div class="wrap">
     <div class="note">
       <span class="ic">📅</span>
-      <div><p><b>A planning calendar, checked every Monday.</b> Windows are estimates from past seasons. The board above is live from Unstop.</p><div class="fresh" id="fresh"></div></div>
+      <div><p><b>A planning calendar, checked every 10 days.</b> Windows are estimates from past seasons. The board above is live from Unstop.</p><div class="fresh" id="fresh"></div></div>
     </div>
   </div>
 </div>
@@ -765,7 +765,7 @@ paint();
   const last=U&&U.runs&&U.runs[0];
   fresh.innerHTML=last
     ? `<span class="stamp">✓ Checked ${fmtDay(last.date)}</span><span>${last.changes.length} ${last.changes.length===1?'change':'changes'} this week</span><button id="logBtn">What changed</button>`
-    : `<span class="stamp">Auto-checks every Monday</span>`;
+    : `<span class="stamp">Auto-checks every 10 days</span>`;
   const dlg=document.getElementById('logDlg');
   const lbl={'(new entry)':'Added to the calendar',mo:'Month',window:'Window',prize:'Prize',edition:'Latest edition',blurb:'Description',schools:'Who can enter',team:'Team size',unstop:'Unstop link',site:'Official site'};
   document.addEventListener('click',e=>{

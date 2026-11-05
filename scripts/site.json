@@ -11,8 +11,8 @@
   "checkedKey": null,
   "liveFile": "live.js",
   "logFile": "updates.js",
-  "batchSize": 12,
-  "searchesPerBatch": 10,
+  "batchSize": 16,
+  "searchesPerBatch": 3,
   "contextKeys": [
     "org",
     "mo",
