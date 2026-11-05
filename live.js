@@ -4,6 +4,17 @@ window.LIVE = {
  "source": "unstop.com",
  "items": [
   {
+   "id": 1796683,
+   "title": "Maple Bridge AI Governance Case Competition 2026",
+   "org": "Public Policy India",
+   "festival": "",
+   "ends": "2026-11-19T00:00:00+05:30",
+   "url": "https://unstop.com/competitions/maple-bridge-ai-governance-case-competition-2026-public-policy-india-1796683",
+   "region": "online",
+   "match": null,
+   "track": ""
+  },
+  {
    "id": 1791166,
    "title": "Building Brands - The Streetwear Business Challenge",
    "org": "The Tough Ones Private Limited",
@@ -21,17 +32,6 @@ window.LIVE = {
    "festival": "",
    "ends": "2026-11-16T23:59:00+05:30",
    "url": "https://unstop.com/competitions/crp-asian-paints-smart-idea-challenge-2026-asian-paints-1764902",
-   "region": "online",
-   "match": null,
-   "track": ""
-  },
-  {
-   "id": 1796683,
-   "title": "Maple Bridge AI Governance Case Competition 2026",
-   "org": "Public Policy India",
-   "festival": "",
-   "ends": "2026-11-19T00:00:00+05:30",
-   "url": "https://unstop.com/competitions/maple-bridge-ai-governance-case-competition-2026-public-policy-india-1796683",
    "region": "online",
    "match": null,
    "track": ""
