@@ -1,0 +1,90 @@
+{
+  "siteName": "B-School Case Comps Calendar",
+  "siteAbout": "a free planning calendar of corporate case competitions for Indian MBA students (run by companies like HUL, ITC, L'Oreal, Tata, Mahindra, Deloitte), organised by the month they usually open.",
+  "season": "2026-27",
+  "dataFile": "comps.js",
+  "dataVar": "COMPS",
+  "dataHeader": "The B-school case-comp data. Edited by hand and by the weekly updater (scripts/update.mjs).",
+  "listKey": null,
+  "idKey": "id",
+  "nameKey": "n",
+  "checkedKey": null,
+  "liveFile": "live.js",
+  "logFile": "updates.js",
+  "batchSize": 12,
+  "searchesPerBatch": 10,
+  "contextKeys": [
+    "org",
+    "mo",
+    "window",
+    "prize",
+    "edition",
+    "schools",
+    "team",
+    "unstop",
+    "site"
+  ],
+  "fields": {
+    "mo": "month",
+    "window": "text",
+    "prize": "text",
+    "edition": "text",
+    "blurb": "text",
+    "schools": "text",
+    "team": "text",
+    "unstop": "url",
+    "site": "url"
+  },
+  "fieldDocs": {
+    "mo": "number 1-12, the month registrations usually open",
+    "window": "short text, when it usually runs, e.g. 'Aug–Sep'. Use 'Dormant (last run 2022)' if it has stopped",
+    "prize": "short text, latest confirmed prize",
+    "edition": "short text, latest edition and year, e.g. 'S18 = 2026'. Start with 'Dormant' if no edition in the last two seasons",
+    "blurb": "one or two plain sentences on what it is; only change if facts are now wrong",
+    "schools": "who can enter",
+    "team": "team size",
+    "unstop": "the Unstop page URL for the current or latest edition",
+    "site": "the official competition page URL"
+  },
+  "unstopTerms": [
+    "case competition",
+    "case study competition",
+    "case challenge",
+    "business challenge",
+    "b-plan",
+    "marketing challenge",
+    "strategy challenge",
+    "campus challenge"
+  ],
+  "liveMax": 24,
+  "livePrompt": "This site lists CORPORATE case competitions for MBA students: competitions run or sponsored by a company (HUL, ITC, Tata, L'Oreal, Deloitte, a bank, an FMCG or tech firm), usually with PPIs or PPOs. Pick the open Unstop listings that are corporate competitions an MBA student would want. Leave out college-fest events run by a student club unless a company is the named sponsor of that specific competition.",
+  "addPrompt": "Find corporate case competitions for Indian MBA students that are missing from our list: run by a company (not a college fest), held in India or open to Indian B-schools, with a 2025 or 2026 edition.",
+  "addMax": 5,
+  "addTemplate": {
+    "id": "",
+    "n": "",
+    "org": "",
+    "tracks": [
+      "general-mgmt"
+    ],
+    "tier": "all-mba",
+    "schools": "",
+    "team": "3",
+    "mo": 8,
+    "window": "",
+    "prize": "",
+    "perks": [],
+    "edition": "",
+    "marquee": false,
+    "logo": "",
+    "orgLogo": "",
+    "blurb": "",
+    "unstop": "",
+    "site": ""
+  },
+  "liveFallback": {
+    "include": "",
+    "exclude": "institute|college|university|school of|iim|iit|xlri|nmims|symbiosis|management|academy|skilled sapiens|languify|rising scholars|foundation|association|nit|predict|stock|swing|nifty|intelligence|streak|bug|quiz|hirehelp|ambassador|e-cell",
+    "titleMust": "case|b-plan|campus|marketing challenge|business challenge|strategy challenge|idea challenge"
+  }
+}
