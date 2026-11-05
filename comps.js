@@ -19,11 +19,12 @@ window.COMPS = [
    "international",
    "cash"
   ],
-  "edition": "S17 = 2025",
+  "edition": "S18 = 2026",
   "marquee": true,
   "logo": "logos/hindustan-unilever/hul-lime_competition.png",
   "orgLogo": "logos/hindustan-unilever/hul_corporate.svg",
-  "blurb": "HUL's flagship marketing case, televised by CNBC-TV18. Recent seasons opened to 1st-years across all B-schools."
+  "blurb": "HUL's flagship marketing case, televised by CNBC-TV18. Recent seasons opened to 1st-years across all B-schools.",
+  "unstop": "https://unstop.com/p/hul-lime-season-18-hindustan-unilever-limited-hul-1741647"
  },
  {
   "id": "itc-interrobang",
@@ -68,7 +69,7 @@ window.COMPS = [
    "ppi",
    "cash"
   ],
-  "edition": "since 2015",
+  "edition": "2026 (run since 2015)",
   "marquee": true,
   "logo": "logos/aditya-birla-group/abg-stratos_competition.png",
   "orgLogo": "logos/aditya-birla-group/aditya-birla-group_corporate.svg",
@@ -85,17 +86,18 @@ window.COMPS = [
   "schools": "Curated 6 (MDI, SCMHRD, SIBM Pune, TISS Mumbai, XIMB, XLRI-HRM)",
   "team": "3 (1st-yr HR)",
   "mo": 7,
-  "window": "Late Jul",
+  "window": "Jul–Aug",
   "prize": "₹5L / ₹3L / ₹1L cash + internship PPIs (ABG GIP / leadership pipeline)",
   "perks": [
    "ppi",
    "cash"
   ],
-  "edition": "Active",
+  "edition": "2026",
   "marquee": true,
   "logo": "logos/aditya-birla-group/abg-headstart_competition.png",
   "orgLogo": "logos/aditya-birla-group/aditya-birla-group_corporate.svg",
-  "blurb": "4 rounds: iLead Business Simulation → HR Case → Mumbai National Finale. Winners get cash + internship PPIs into the ABG GIP."
+  "blurb": "4 rounds: iLead Business Simulation → HR Case → Mumbai National Finale. Winners get cash + internship PPIs into the ABG GIP.",
+  "unstop": "https://unstop.com/competitions/crp-aditya-birla-group-headstart-2026-aditya-birla-group-1703040"
  },
  {
   "id": "mahindra-war-room",
@@ -131,7 +133,7 @@ window.COMPS = [
    "entrepreneurship"
   ],
   "tier": "all-india",
-  "schools": "All under-30s (240,000+ globally in 2025)",
+  "schools": "All under-30s (380,000+ registrations globally in 2026)",
   "team": "3",
   "mo": 1,
   "window": "Jan–Apr (India national: Apr)",
@@ -139,7 +141,7 @@ window.COMPS = [
   "perks": [
    "international"
   ],
-  "edition": "64 countries · 2025",
+  "edition": "64 countries · 2026",
   "marquee": true,
   "logo": "logos/loreal/loreal-brandstorm_competition.png",
   "orgLogo": "logos/loreal/loreal_corporate.svg",
@@ -157,18 +159,19 @@ window.COMPS = [
   "tier": "all-mba",
   "schools": "All full-time MBA/PGDM in India (1st & 2nd yr)",
   "team": "1–4 (same institute)",
-  "mo": 10,
-  "window": "Oct–Nov",
+  "mo": 9,
+  "window": "Sep reg · Oct rounds",
   "prize": "₹25L+ pool; Winner ₹6L + PPI; 2-day Grand Finale at Reliance Corporate Park, Navi Mumbai",
   "perks": [
    "ppi",
    "cash"
   ],
-  "edition": "XI = 2025",
+  "edition": "XII = 2026",
   "marquee": true,
   "logo": "logos/reliance/reliance-tup_competition.jpg",
   "orgLogo": "logos/reliance/reliance-industries_corporate.png",
-  "blurb": "11 seasons. Idea Submission → Elimination → Semi-Finale → Grand Finale at RIL Corporate Park, Navi Mumbai (2-day Idea Fair)."
+  "blurb": "11 seasons. Idea Submission → Elimination → Semi-Finale → Grand Finale at RIL Corporate Park, Navi Mumbai (2-day Idea Fair).",
+  "site": "https://reliancetup.in/"
  },
  {
   "id": "accenture-strategy",
@@ -425,7 +428,7 @@ window.COMPS = [
    "ppi",
    "cash"
   ],
-  "edition": "S9 = 2025",
+  "edition": "WiRED X (10th) = 2026",
   "marquee": true,
   "logo": "logos/flipkart/flipkart-wired_competition.png",
   "orgLogo": "logos/flipkart/flipkart_corporate.svg",
@@ -450,11 +453,12 @@ window.COMPS = [
    "ppi",
    "cash"
   ],
-  "edition": "12+ editions (since 2011)",
+  "edition": "16th edition = 2026",
   "marquee": true,
   "logo": "logos/amazon/amazon-ace_competition.png",
   "orgLogo": "logos/amazon/amazon-india_corporate.svg",
-  "blurb": "Ranked #1 most-prestigious MBA case comp 2021/22 by Unstop. Preliminary quiz → Case Breakers (Amazon-style writing) → Grand Finale (scale a business 50×)."
+  "blurb": "Ranked #1 most-prestigious MBA case comp 2021/22 by Unstop. Preliminary quiz → Case Breakers (Amazon-style writing) → Grand Finale (scale a business 50×).",
+  "unstop": "https://unstop.com/competitions/crp-amazon-customer-excellence-ace-challenge-2026-amazon-1709385"
  },
  {
   "id": "msft-pmengage",
@@ -583,7 +587,7 @@ window.COMPS = [
   ],
   "tier": "premier",
   "schools": "Premier B-schools (incoming MBA cohorts)",
-  "team": "team",
+  "team": "Individual",
   "mo": 4,
   "window": "Apr–May",
   "prize": "PPI + hiring funnel",
@@ -614,11 +618,12 @@ window.COMPS = [
    "ppi",
    "cash"
   ],
-  "edition": "since 2020+",
+  "edition": "2026: Finance + Supply Chain tracks run; Commercial track launching soon",
   "marquee": true,
   "logo": "logos/mondelez/mondelez-maestros_competition.png",
   "orgLogo": "logos/mondelez/mondelez-international_corporate.svg",
-  "blurb": "Brands: Cadbury, Oreo, belVita. 4 stages culminate in 10-min presentation finale. 2024 winners Team NotJustACadbury (NMIMS Mumbai) beat 10,000+."
+  "blurb": "Brands: Cadbury, Oreo, belVita. 4 stages culminate in 10-min presentation finale. 2024 winners Team NotJustACadbury (NMIMS Mumbai) beat 10,000+.",
+  "unstop": "https://unstop.com/college-fests/mondelez-maestros-2026-mondelez-international-488279"
  },
  {
   "id": "tata-steelathon",
@@ -632,17 +637,17 @@ window.COMPS = [
    "hr"
   ],
   "tier": "premier",
-  "schools": "~27–28 premier",
-  "team": "2–4 (1st & 2nd yr)",
+  "schools": "34 premier B-schools (11,400+ students in 2025)",
+  "team": "3 (same institute; 1st & 2nd yr can mix)",
   "mo": 9,
   "window": "Sep–Oct",
-  "prize": "₹2.5L / ₹1.5L / ₹1L + PPI Tata Steel MT / INSPIRE PPO",
+  "prize": "Per track: ₹2.5L winner / ₹1.5L R-up + PPO; PPI for all finalists",
   "perks": [
    "ppo",
    "ppi",
    "cash"
   ],
-  "edition": "S9+",
+  "edition": "S12 = 2025",
   "marquee": true,
   "logo": "logos/tata-group/tata-steel-a-thon_competition.jpg",
   "orgLogo": "logos/tata-group/tata-steel_corporate.svg",
@@ -661,16 +666,18 @@ window.COMPS = [
   "team": "individual / team",
   "mo": 8,
   "window": "Aug–Sep",
-  "prize": "₹26L pool; ₹2L × top 10 + TAS PPI fast-track",
+  "prize": "₹2L × top 10 + Tata Trails trip; up to 30 finalists get a paid Mumbai visit",
   "perks": [
    "ppi",
    "cash"
   ],
-  "edition": "6th edition = 2025",
+  "edition": "2026 edition (Aug–Nov 2026)",
   "marquee": true,
   "logo": "logos/tata-group/tata-imagination-challenge_competition.png",
   "orgLogo": "logos/tata-group/tata-group_corporate.svg",
-  "blurb": "4 rounds: Brand-Stories Quiz → Gamified Analytithon → Idea Pitch (2-min video) → Grand Finale at Bombay House with TAS 'Idea Buddy' mentor."
+  "blurb": "4 rounds: Brand-Stories Quiz → Gamified Analytithon → Idea Pitch (2-min video) → Grand Finale at Bombay House with TAS 'Idea Buddy' mentor.",
+  "unstop": "https://unstop.com/p/tata-imagination-challenge-2026-tata-group-1740413",
+  "site": "https://www.tata.com/careers/programs/tata-imagination-challenge"
  },
  {
   "id": "tata-grow-beyond",
@@ -684,17 +691,18 @@ window.COMPS = [
   "schools": "All Indian B-schools (1st-yr; was premier-curated through 2023)",
   "team": "3 (1st-yr MBA)",
   "mo": 11,
-  "window": "Nov–Dec",
+  "window": "Feb–Mar",
   "prize": "₹2L + PPI; R-up ₹1L; top 40 fast-track to TCPL ELP",
   "perks": [
    "ppi",
    "cash"
   ],
-  "edition": "S4 (2025) = BITSoM",
+  "edition": "S5 = 2026 (finale 27 Mar 2026)",
   "marquee": true,
   "logo": "logos/tata-group/tata-grow-beyond-better_competition.png",
   "orgLogo": "logos/tata-group/tata-consumer-products_corporate.png",
-  "blurb": "Formerly 'The FNB Challenge'. Treasure Hunt (non-elim) → Executive Summary → Detailed → Mentorship + Grand Finale."
+  "blurb": "Formerly 'The FNB Challenge'. Treasure Hunt (non-elim) → Executive Summary → Detailed → Mentorship + Grand Finale.",
+  "unstop": "https://unstop.com/competitions/crp-grow-beyond-better-2026-tata-consumer-products-1635704"
  },
  {
   "id": "hero-campus",
@@ -877,7 +885,7 @@ window.COMPS = [
    "ppi",
    "cash"
   ],
-  "edition": "S12 = 2022 (none verified since)",
+  "edition": "Dormant (last S12, 2022)",
   "marquee": false,
   "logo": "logos/consulting-services/gep-gameplan_competition.png",
   "orgLogo": "logos/consulting-services/gep-worldwide_corporate.svg",
@@ -937,19 +945,20 @@ window.COMPS = [
    "strategy"
   ],
   "tier": "premier",
-  "schools": "Premier (1st-yr MBA); 4,400+ regs",
+  "schools": "First-year MBA at 8 eligible B-schools, plus 3rd-yr B.Tech (Chem, Mech, Elec) at 3 E-schools",
   "team": "Individual (quiz + assessment)",
   "mo": 6,
   "window": "Jun–Aug",
-  "prize": "Top 30 finalists: 2-day J&J HQ immersive + internship/PPI",
+  "prize": "Selected Imagivators get PPOs for J&J summer internship, J&J certificate and goodie bags",
   "perks": [
    "ppi"
   ],
-  "edition": "S3 = 2024",
+  "edition": "S4 = 2025",
   "marquee": true,
   "logo": "logos/johnson-and-johnson/jnj-imagivators_competition.jpg",
   "orgLogo": "logos/johnson-and-johnson/jnj_corporate.svg",
-  "blurb": "Inaugural winner Team Healthevators. S3 (2024) included Sanika Shanbhag and Pragati Tripathi (IIM Mumbai)."
+  "blurb": "Inaugural winner Team Healthevators. S3 (2024) included Sanika Shanbhag and Pragati Tripathi (IIM Mumbai).",
+  "unstop": "https://unstop.com/competitions/crp-johnson-johnson-imagivators-season-4-johnson-johnson-india-1508721"
  },
  {
   "id": "jnj-quest",
@@ -1148,16 +1157,16 @@ window.COMPS = [
    "marketing"
   ],
   "tier": "premier",
-  "schools": "Premier",
-  "team": "team",
-  "mo": 9,
-  "window": "Sep–Oct",
+  "schools": "MBA first-year (Management Track)",
+  "team": "Individual",
+  "mo": 7,
+  "window": "Jul–Sep",
   "prize": "Cash + PPI",
   "perks": [
    "ppi",
    "cash"
   ],
-  "edition": "Active",
+  "edition": "3.0 = 2026",
   "marquee": false,
   "logo": "logos/pharma/destination-dr-reddys_competition.jpg",
   "orgLogo": "logos/pharma/dr-reddys_corporate.png",
@@ -1173,19 +1182,20 @@ window.COMPS = [
   ],
   "tier": "premier",
   "schools": "Premier MBA",
-  "team": "team",
+  "team": "2–3",
   "mo": 9,
-  "window": "Sep",
-  "prize": "Cash + Maruti PPI",
+  "window": "Sep–Oct",
+  "prize": "Prizes worth ₹2L + PPIs",
   "perks": [
    "ppi",
    "cash"
   ],
-  "edition": "Active",
+  "edition": "2026 (B-Track + Digital Track)",
   "marquee": false,
   "logo": "logos/other-conglomerates/maruti-suzuki-xcelerate_competition.jpeg",
   "orgLogo": "logos/other-conglomerates/maruti-suzuki_corporate.png",
-  "blurb": "Maruti Suzuki's automotive strategy / marketing case."
+  "blurb": "Maruti Suzuki's automotive strategy / marketing case.",
+  "unstop": "https://unstop.com/competitions/crp-b-track-maruti-suzuki-xcelerate-2026-maruti-suzuki-xcelerate-2026-maruti-suzuki-india-limited-1751668"
  },
  {
   "id": "reckitt-global",
@@ -1224,12 +1234,12 @@ window.COMPS = [
   "team": "3",
   "mo": 8,
   "window": "Aug",
-  "prize": "Cash + AB InBev internship",
+  "prize": "₹5L + PPI (2023)",
   "perks": [
    "ppi",
    "cash"
   ],
-  "edition": "Active",
+  "edition": "2023 (latest found)",
   "marquee": false,
   "logo": "logos/other-conglomerates/ab-inbev-100plus_competition.svg",
   "orgLogo": "logos/other-conglomerates/ab-inbev_corporate.png",
@@ -1457,19 +1467,20 @@ window.COMPS = [
   ],
   "tier": "premier",
   "schools": "Open (analytics); flagship of the IIM-C / IIT-KGP / ISI PGDBA program",
-  "team": "team",
-  "mo": 8,
-  "window": "Aug",
-  "prize": "Cash + sponsor PPI",
+  "team": "3–4",
+  "mo": 6,
+  "window": "Jun–Jul",
+  "prize": "Prizes worth ₹2.5L",
   "perks": [
    "ppi",
    "cash"
   ],
-  "edition": "Active",
+  "edition": "Trilytics'26 = 2026",
   "marquee": false,
   "logo": "logos/other-conglomerates/trilytics_competition.png",
   "orgLogo": "logos/other-conglomerates/trinity-group_corporate.svg",
-  "blurb": "Analytics competition run by the PGDBA program (IIM Calcutta + IIT Kharagpur + ISI Kolkata). Trinity Life Sciences was the 2022 title sponsor; recent sponsors include L&T Finance."
+  "blurb": "Analytics competition run by the PGDBA program (IIM Calcutta + IIT Kharagpur + ISI Kolkata). Trinity Life Sciences was the 2022 title sponsor; recent sponsors include L&T Finance.",
+  "unstop": "https://unstop.com/competitions/trilytics26-analytics-case-competition-iim-calcutta-1700384"
  },
  {
   "id": "welspun-disruptor",
@@ -1505,19 +1516,20 @@ window.COMPS = [
   ],
   "tier": "premier",
   "schools": "Curated (TAPMI, XIMB, XLRI, IMT, SCMHRD, NMIMS, SPJIMR, IIM Mumbai)",
-  "team": "3",
-  "mo": 9,
-  "window": "Sep",
+  "team": "Individual",
+  "mo": 7,
+  "window": "Jul–Aug",
   "prize": "Cash + PVM PPI",
   "perks": [
    "ppi",
    "cash"
   ],
-  "edition": "3.0 = 2025",
+  "edition": "4.0 = 2026",
   "marquee": false,
   "logo": "logos/other-conglomerates/pvm-confy_competition.png",
   "orgLogo": "logos/other-conglomerates/perfetti-van-melle_corporate.png",
-  "blurb": "Perfetti Van Melle's FMCG commercial case (also seen as 'Perfetti Confy')."
+  "blurb": "Perfetti Van Melle's FMCG commercial case (also seen as 'Perfetti Confy').",
+  "unstop": "https://unstop.com/competitions/crp-pvm-confy-challenge-40-perfetti-van-melle-1712269"
  },
  {
   "id": "tally-bizwiz",
@@ -1735,19 +1747,20 @@ window.COMPS = [
   ],
   "tier": "premier",
   "schools": "Premier B-schools",
-  "team": "team",
-  "mo": 11,
-  "window": "Oct–Nov",
-  "prize": "Cash + Airtel PPI",
+  "team": "3",
+  "mo": 7,
+  "window": "Jul–Aug",
+  "prize": "PPOs + prizes worth ₹8L (2025)",
   "perks": [
    "ppi",
    "cash"
   ],
-  "edition": "Active",
+  "edition": "2025 (latest confirmed)",
   "marquee": false,
   "logo": "logos/other-conglomerates/airtel-icreate_competition.png",
   "orgLogo": "logos/other-conglomerates/bharti-airtel_corporate.png",
-  "blurb": "Airtel's product / digital-innovation case."
+  "blurb": "Airtel's product / digital-innovation case.",
+  "unstop": "https://unstop.com/competitions/crp-airtel-icreate-2025-2nd-year-b-school-track-airtel-icreate-2025-airtel-1509017"
  },
  {
   "id": "titan-elevate",
@@ -1985,7 +1998,7 @@ window.COMPS = [
    "general-mgmt"
   ],
   "tier": "global",
-  "schools": "12 invited global universities + Open Track (any team worldwide can apply)",
+  "schools": "Invitational: 12 invited undergrad teams with a faculty advisor + Open Track (any team worldwide can apply)",
   "team": "4",
   "mo": 11,
   "window": "Open Track apps ~Oct–Nov · case week Feb–Mar (Copenhagen)",
@@ -1994,7 +2007,7 @@ window.COMPS = [
    "international",
    "cash"
   ],
-  "edition": "20+ editions",
+  "edition": "25+ years; 2027 Invitational in week 9 of 2027",
   "marquee": false,
   "logo": "logos/global/cbs-case-competition_competition.svg",
   "blurb": "One of the world's most prestigious case competitions — a week-long live case for a major corporate, solved on-site in Copenhagen. Indian teams enter via the Open Track application."
@@ -2031,19 +2044,20 @@ window.COMPS = [
    "finance"
   ],
   "tier": "all-india",
-  "schools": "Open to UG + PG students, all disciplines",
-  "team": "team",
+  "schools": "UG + PG students, all disciplines (not open to 2025 or earlier graduates)",
+  "team": "Individual or team of 2–3",
   "mo": 3,
-  "window": "Mar launch · Jun finals",
-  "prize": "2-month EY India internship (winner) + CAFTA course scholarship",
+  "window": "Two runs in 2026: Mar–Jun and Aug–Nov",
+  "prize": "Winner: 2-month EY India internship + 100% CAFTA course scholarship + trophy",
   "perks": [
    "ppi"
   ],
-  "edition": "11th edition = 2026",
+  "edition": "12th edition = 2026 (Aug to Nov)",
   "marquee": false,
   "logo": "logos/ey/ey_corporate.svg",
   "orgLogo": "logos/ey/ey_corporate.svg",
-  "blurb": "EY's finance / treasury / financial-risk case championship — distinct from EY Techathon. Theme 2026: 'Market Masters: Winning with Commodities'. Open to all UG + PG students (not MBA-only); also a funnel for EY's CAFTA finance certificate."
+  "blurb": "EY's finance / treasury / financial-risk case championship — distinct from EY Techathon. Theme 2026: 'Market Masters: Winning with Commodities'. Open to all UG + PG students (not MBA-only); also a funnel for EY's CAFTA finance certificate.",
+  "site": "https://www.ey.com/en_in/services/consulting/cafta-case-championship-2026-12th-edition"
  },
  {
   "id": "abinbev-bud",
@@ -2103,20 +2117,21 @@ window.COMPS = [
    "general-mgmt"
   ],
   "tier": "premier",
-  "schools": "Top ~9 B-schools, teams of 3 (E.L.I.T.E. GM Program)",
+  "schools": "2nd-yr students at 9 premier B-schools, teams of 3 from the same institute",
   "team": "3",
   "mo": 9,
   "window": "Aug–Oct (typical)",
-  "prize": "~₹3L winner + Capgemini E.L.I.T.E. GM track",
+  "prize": "Winner ₹3L, 1st R-up ₹2.25L, 2nd R-up ₹1.75L + PPIs",
   "perks": [
    "ppi",
    "cash"
   ],
-  "edition": "Active",
+  "edition": "Season 9 = 2026",
   "marquee": false,
   "logo": "logos/services/capgemini_corporate.svg",
   "orgLogo": "logos/services/capgemini_corporate.svg",
-  "blurb": "Capgemini's MBA case competition under the E.L.I.T.E. General Management Program. The 'Capgemini Tech Challenge' you may have seen is a separate coding hackathon — this is the in-scope B-school comp."
+  "blurb": "Capgemini's MBA case competition under the E.L.I.T.E. General Management Program. The 'Capgemini Tech Challenge' you may have seen is a separate coding hackathon — this is the in-scope B-school comp.",
+  "site": "https://www.capgemini.com/in-en/careers/career-paths/students-and-graduates/management-graduates/elite-general-management-program/linnovateur-9-0/"
  },
  {
   "id": "cognizant-cxo",
@@ -2154,16 +2169,17 @@ window.COMPS = [
   "team": "team",
   "mo": 8,
   "window": "Aug–Sep (typical)",
-  "prize": "Guaranteed internship + PPI; finale with P&G India leaders",
+  "prize": "PPI for Round 1 winners; rewards for top 3; finale with P&G India leaders in Mumbai",
   "perks": [
    "ppo",
    "ppi"
   ],
-  "edition": "Active (2023, 2025)",
+  "edition": "Active (2023, 2024, 2025)",
   "marquee": false,
   "logo": "logos/services/pg_corporate.svg",
   "orgLogo": "logos/services/pg_corporate.svg",
-  "blurb": "P&G's India campus program: PEAK Quest (virtual quiz — winners get a PPI) → Case Study Challenge on iconic P&G brands (Ariel, Pampers, Gillette, Oral-B, H&S) → finale with P&G India leaders; winners get internships into FT roles at the Mumbai office. The likely-current P&G campus comp (vs the older CEO Challenge)."
+  "blurb": "P&G's India campus program: PEAK Quest (virtual quiz — winners get a PPI) → Case Study Challenge on iconic P&G brands (Ariel, Pampers, Gillette, Oral-B, H&S) → finale with P&G India leaders; winners get internships into FT roles at the Mumbai office. The likely-current P&G campus comp (vs the older CEO Challenge).",
+  "site": "https://www.pgcareers.com/in/en/p-g-peakathon"
  },
  {
   "id": "abg-engenuity",
@@ -2174,18 +2190,45 @@ window.COMPS = [
    "strategy"
   ],
   "tier": "all-india",
-  "schools": "B-school + engineering students (e.g. NITs)",
-  "team": "team",
-  "mo": 9,
-  "window": "Sep–Oct",
-  "prize": "Cash + ABG Leadership Programs recognition",
+  "schools": "B.E./B.Tech students in 3rd and 4th year at listed institutes",
+  "team": "2",
+  "mo": 8,
+  "window": "Aug–Sep",
+  "prize": "Prizes worth ₹2.25L + PPIs",
   "perks": [
    "cash"
   ],
-  "edition": "Inaugural = 2025",
+  "edition": "2026 (also ran 2025)",
   "marquee": false,
   "logo": "logos/aditya-birla-group/aditya-birla-group_corporate.svg",
   "orgLogo": "logos/aditya-birla-group/aditya-birla-group_corporate.svg",
-  "blurb": "ABG Leadership Programs' newest campus competition (inaugural 2025) — quiz rounds plus case-study battles, open to management AND engineering students; grand finale around October."
+  "blurb": "Aditya Birla Group's quiz competition for engineering students. Online campus quiz round first, then further rounds.",
+  "unstop": "https://unstop.com/competitions/crp-aditya-birla-group-engenuity-2026-aditya-birla-group-1712136"
+ },
+ {
+  "id": "axis-moves",
+  "n": "Axis Bank Moves",
+  "org": "Axis Bank",
+  "tracks": [
+   "general-mgmt"
+  ],
+  "tier": "",
+  "schools": "50 MBA and engineering institutes incl. IIMs, IITs, ISB, XLRI, FMS",
+  "team": "",
+  "mo": null,
+  "window": "",
+  "prize": "",
+  "perks": [
+   "mentorship"
+  ],
+  "edition": "2025 (first edition)",
+  "marquee": false,
+  "logo": "",
+  "orgLogo": "",
+  "blurb": "Axis Bank's campus challenge. Pitch the next big strategic bet for the bank across tech, AI, sustainability, rural banking or marketing. Assessments, campus rounds, semi-finals with mentorship, then a finale before senior leaders.",
+  "unstop": "",
+  "site": "",
+  "added": "2026-11-05",
+  "isNew": true
  }
 ];
