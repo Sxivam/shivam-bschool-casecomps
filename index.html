@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<script>/* moved to Vercel (the email gate needs its backend); send old GitHub Pages visitors along */
+if(/github\.io$/.test(location.hostname))location.replace('https://shivam-bschool-casecomps.vercel.app/'+location.search+location.hash);</script>
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#ffffeb">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -416,7 +419,7 @@ dialog.log::backdrop{background:rgba(10,10,10,.55)}
 
 <nav class="monthbar"><div class="strip" id="strip"></div></nav>
 
-<main class="screen">
+<main class="screen" id="calendar">
   <div class="wrap">
     <div class="mhead">
       <button class="arrow" id="prev" aria-label="Previous month">‹</button>
@@ -774,5 +777,32 @@ paint();
   });
 })();
 </script>
+
+<!-- Wispr Gate (email gate + Wispr Flow Pro claim), from ~/Downloads/wispr-gate-kit. The board stays free; the calendar fades after the first cards. -->
+<link rel="stylesheet" href="wispr/wispr-gate.css?v=5">
+<style>
+  :root{--wg-bg:#fff;--wg-ink:var(--charcoal);--wg-sub:var(--ink-50);--wg-accent:var(--charcoal);--wg-accent-ink:#ffd84d;--wg-border:var(--ink-10);
+    --wg-field-bg:var(--white);--wg-field-ink:var(--charcoal);--wg-head:'Anton',Impact,sans-serif;--wg-font:'Satoshi',system-ui,sans-serif;--wg-radius:18px;--wg-shadow:0 24px 60px -24px rgba(0,0,0,.45)}
+  .wg-card h2{font-weight:400;text-transform:uppercase;font-size:48px;line-height:.95;letter-spacing:.01em}
+  .wg-card h2+p{font-size:17px}
+  .wg-btn{font-family:'Anton',Impact,sans-serif!important;text-transform:uppercase;font-size:24px!important;letter-spacing:.03em;min-height:58px}
+  #calendar.wg-locked{-webkit-mask-image:linear-gradient(#000 50%,transparent 95%);mask-image:linear-gradient(#000 50%,transparent 95%)}
+  @media(max-width:600px){.wg-card h2{font-size:40px}}
+</style>
+<script>
+window.WISPR_GATE = {
+  lock: "#calendar",
+  peek: "#cards",
+  peekExtra: 260,
+  title: "Unlock it all. FREE.",
+  lede: "Just your name and email. No payment, ever.",
+  perks: [`All ${(window.COMPS && window.COMPS.length) || 93} corporate case comps, month by month`],
+  button: "Unlock for FREE",
+  welcome: ["Every corporate case comp, unlocked"],
+  note: "Talk your case notes into Wispr Flow. It works in every app.",
+  skip: "Open the calendar",
+};
+</script>
+<script src="wispr/wispr-gate.js?v=5" defer></script>
 </body>
 </html>

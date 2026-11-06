@@ -3,7 +3,8 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "@anthropic-ai/sdk": "^1.5.0"
+    "@anthropic-ai/sdk": "^1.5.0",
+    "@vercel/blob": "^2.8.2"
   },
   "scripts": {
     "update": "node scripts/update.mjs"
