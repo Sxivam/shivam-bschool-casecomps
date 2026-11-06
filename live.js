@@ -1,19 +1,8 @@
 /* Open competitions on Unstop, refreshed by scripts/update.mjs. Titles, dates and links come straight from Unstop. */
 window.LIVE = {
- "updated": "2026-11-05",
+ "updated": "2026-11-06",
  "source": "unstop.com",
  "items": [
-  {
-   "id": 1777791,
-   "title": "True Fan AI - The Synthetic Scale-Up",
-   "org": "Masters' Union School of Business",
-   "festival": "",
-   "ends": "2026-11-09T00:00:00+05:30",
-   "url": "https://unstop.com/competitions/true-fan-ai-the-synthetic-scale-up-caseunion-40-masters-union-school-of-business-1777791",
-   "region": "online",
-   "match": null,
-   "track": "Strategy"
-  },
   {
    "id": 1787004,
    "title": "PetKids Paws and Grow Business Case Competition",
@@ -24,50 +13,6 @@ window.LIVE = {
    "region": "online",
    "match": null,
    "track": "Strategy"
-  },
-  {
-   "id": 1773522,
-   "title": "Follow The Money: Innovation Challenge Powered by PayU",
-   "org": "Indian Institute of Management (IIM), Bangalore",
-   "festival": "",
-   "ends": "2026-11-12T23:59:00+05:30",
-   "url": "https://unstop.com/competitions/follow-the-money-innovation-challenge-iim-bangalore-1773522",
-   "region": "hybrid",
-   "match": null,
-   "track": "Finance"
-  },
-  {
-   "id": 1791166,
-   "title": "Building Brands - The Streetwear Business Challenge",
-   "org": "The Tough Ones Private Limited",
-   "festival": "",
-   "ends": "2026-11-16T00:00:00+05:30",
-   "url": "https://unstop.com/competitions/building-brands-the-streetwear-business-challenge-the-tough-ones-private-limited-1791166",
-   "region": "online",
-   "match": null,
-   "track": "Marketing"
-  },
-  {
-   "id": 1764902,
-   "title": "Asian Paints Smart Idea Challenge 2026",
-   "org": "Asian Paints",
-   "festival": "",
-   "ends": "2026-11-16T23:59:00+05:30",
-   "url": "https://unstop.com/competitions/crp-asian-paints-smart-idea-challenge-2026-asian-paints-1764902",
-   "region": "online",
-   "match": null,
-   "track": "General"
-  },
-  {
-   "id": 1746672,
-   "title": "Eurogrip TORQ Challenge 4.0",
-   "org": "TVS Srichakra Ltd. (Eurogrip Tyres)",
-   "festival": "",
-   "ends": "2026-11-22T23:59:02+05:30",
-   "url": "https://unstop.com/competitions/crp-eurogrip-torq-challenge-40-eurogrip-torq-40-and-creator-challenge-tvs-srichakra-ltd-eurogrip-tyres-1746672",
-   "region": "online",
-   "match": null,
-   "track": "General"
   },
   {
    "id": 1778715,
@@ -101,6 +46,61 @@ window.LIVE = {
    "region": "online",
    "match": null,
    "track": "Marketing"
+  },
+  {
+   "id": 1791166,
+   "title": "Building Brands - The Streetwear Business Challenge",
+   "org": "The Tough Ones Private Limited",
+   "festival": "",
+   "ends": "2026-11-16T00:00:00+05:30",
+   "url": "https://unstop.com/competitions/building-brands-the-streetwear-business-challenge-the-tough-ones-private-limited-1791166",
+   "region": "online",
+   "match": null,
+   "track": "Marketing"
+  },
+  {
+   "id": 1746672,
+   "title": "Eurogrip TORQ Challenge 4.0",
+   "org": "TVS Srichakra Ltd. (Eurogrip Tyres)",
+   "festival": "",
+   "ends": "2026-11-22T23:59:02+05:30",
+   "url": "https://unstop.com/competitions/crp-eurogrip-torq-challenge-40-eurogrip-torq-40-and-creator-challenge-tvs-srichakra-ltd-eurogrip-tyres-1746672",
+   "region": "online",
+   "match": null,
+   "track": "General"
+  },
+  {
+   "id": 1764902,
+   "title": "Asian Paints Smart Idea Challenge 2026",
+   "org": "Asian Paints",
+   "festival": "",
+   "ends": "2026-11-16T23:59:00+05:30",
+   "url": "https://unstop.com/competitions/crp-asian-paints-smart-idea-challenge-2026-asian-paints-1764902",
+   "region": "online",
+   "match": null,
+   "track": "General"
+  },
+  {
+   "id": 1773522,
+   "title": "Follow The Money: Innovation Challenge Powered by PayU",
+   "org": "Indian Institute of Management (IIM), Bangalore",
+   "festival": "",
+   "ends": "2026-11-12T23:59:00+05:30",
+   "url": "https://unstop.com/competitions/follow-the-money-innovation-challenge-iim-bangalore-1773522",
+   "region": "hybrid",
+   "match": null,
+   "track": "Finance"
+  },
+  {
+   "id": 1777791,
+   "title": "True Fan AI - The Synthetic Scale-Up",
+   "org": "Masters' Union School of Business",
+   "festival": "",
+   "ends": "2026-11-09T00:00:00+05:30",
+   "url": "https://unstop.com/competitions/true-fan-ai-the-synthetic-scale-up-caseunion-40-masters-union-school-of-business-1777791",
+   "region": "online",
+   "match": null,
+   "track": "Strategy"
   }
  ]
 };
