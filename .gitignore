@@ -5,3 +5,4 @@ node_modules
 .admin-key.local
 .env.local
 .env*
+_backup/
