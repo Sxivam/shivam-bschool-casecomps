@@ -691,7 +691,7 @@ window.COMPS = [
   "schools": "All Indian B-schools (1st-yr; was premier-curated through 2023)",
   "team": "3 (1st-yr MBA)",
   "mo": 11,
-  "window": "Feb–Mar",
+  "window": "Nov–Dec reg · finale Mar",
   "prize": "₹2L + PPI; R-up ₹1L; top 40 fast-track to TCPL ELP",
   "perks": [
    "ppi",

@@ -37,7 +37,7 @@
   },
   "fieldDocs": {
     "mo": "number 1-12, the month registrations usually open",
-    "window": "short text, when it usually runs, e.g. 'Aug–Sep'. Use 'Dormant (last run 2022)' if it has stopped",
+    "window": "short text, when it usually runs, e.g. 'Aug–Sep'. Use 'Dormant (last run 2022)' if it has stopped. MUST include the month in \"mo\" (that is the month registrations open). Do not put the finale or result month here.",
     "prize": "short text, latest confirmed prize",
     "edition": "short text, latest edition and year, e.g. 'S18 = 2026'. Start with 'Dormant' if no edition in the last two seasons",
     "blurb": "one or two plain sentences on what it is; only change if facts are now wrong",
@@ -86,5 +86,9 @@
     "include": "",
     "exclude": "institute|college|university|school of|iim|iit|xlri|nmims|symbiosis|management|academy|skilled sapiens|languify|rising scholars|foundation|association|nit|predict|stock|swing|nifty|intelligence|streak|bug|quiz|hirehelp|ambassador|e-cell",
     "titleMust": "case|b-plan|campus|marketing challenge|business challenge|strategy challenge|idea challenge"
+  },
+  "monthCheck": {
+    "month": "mo",
+    "text": "window"
   }
 }
