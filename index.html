@@ -4,871 +4,109 @@
 <meta charset="UTF-8">
 <script>/* moved to Vercel (the email gate needs its backend); send old GitHub Pages visitors along */
 if(/github\.io$/.test(location.hostname))location.replace('https://shivam-bschool-casecomps.vercel.app/'+location.search+location.hash);</script>
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#ffffeb">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="CaseComps">
-<title>B-School Case Comps Calendar · Curated by Shivam Meet</title>
-<meta name="description" content="A simple planning calendar of when Indian B-school corporate case competitions probably open — month by month. Estimates from past seasons, not live links.">
+<meta name="theme-color" content="#151515">
+<title>Corporate Case Comps for MBAs · Shivam Meet</title>
+<meta name="description" content="Every corporate case competition for Indian MBA students, by the month it opens. Live Unstop deadlines, one-tap links and reminders. Curated by Shivam Meet.">
 <link rel="icon" href="creator.jpeg" type="image/jpeg">
 <link rel="apple-touch-icon" href="creator.jpeg">
 <meta property="og:type" content="website">
-<meta property="og:title" content="B-School Case Comps Calendar · Curated by Shivam Meet">
-<meta property="og:description" content="93 comps · month-by-month planning calendar for Indian B-school corporate case competitions. Curated by Shivam Meet (134K+ on Instagram).">
-<meta property="og:image" content="https://sxivam.github.io/shivam-bschool-casecomps/creator.jpeg">
+<meta property="og:title" content="Corporate Case Comps for MBAs, month by month">
+<meta property="og:description" content="Every corporate case comp for Indian MBAs with live Unstop deadlines, links and reminders. By Shivam Meet (134K+ on Instagram).">
+<meta property="og:image" content="https://shivam-bschool-casecomps.vercel.app/creator.jpeg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://sxivam.github.io/shivam-bschool-casecomps/creator.jpeg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@600;800&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
-
-<style>
-:root{
-  --charcoal:#1a1a1a;--dark:#1a1a1a;--yellow:#f0d7ff;--yellow-deep:#6d28d9;
-  --sage:#ddddc8;--white:#ffffeb;--paper:#f5f0ff;
-  --ink-70:rgba(26,26,26,.72);--ink-50:#6b6b6b;--ink-10:rgba(26,26,26,.1);
-  --amber-3:#6d28d9;--ease:cubic-bezier(.4,0,.2,1);
-  --safe-t:env(safe-area-inset-top,0px);--safe-b:env(safe-area-inset-bottom,0px);
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{-webkit-text-size-adjust:100%}
-body{
-  font-family:'Satoshi',system-ui,-apple-system,sans-serif;background:var(--white);color:var(--charcoal);
-  line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden;min-height:100vh;
-  -webkit-tap-highlight-color:transparent;overscroll-behavior-y:none;
-}
-a{color:inherit;text-decoration:none}
-button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;-webkit-tap-highlight-color:transparent}
-img{display:block;max-width:100%}
-::selection{background:var(--yellow);color:var(--charcoal)}
-.anton{font-family:'Anton',Impact,sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.01em;line-height:.9}
-.wrap{width:100%;max-width:620px;margin:0 auto;padding:0 20px}
-
-/* ---------- hero header ---------- */
-.topbar{
-  background:var(--charcoal);
-  border-bottom:3px solid var(--yellow);
-  padding:28px 0 28px;
-  padding-top:calc(24px + var(--safe-t));
-}
-.cred-tickers{background:#ffffeb;padding:0 0 36px}
-.cred-tickers .wins-strip{border-top-color:rgba(0,0,0,.1)}
-.cred-tickers .wins-label{color:var(--charcoal);text-transform:none;font-size:11px;letter-spacing:.02em;font-family:'Anton',Impact,sans-serif}
-.cred-tickers .wins-track::before{background:linear-gradient(to right,#ffffeb,transparent)}
-.cred-tickers .wins-track::after{background:linear-gradient(to left,#ffffeb,transparent)}
-.cred-tickers .wins-inner .wi-name{color:var(--charcoal)}
-.cred-tickers .wins-inner .wi-rank{color:rgba(26,26,26,.55)}
-.cred-tickers .wins-inner .ws{color:rgba(0,0,0,.15)}
-.cred-tickers .wins-inner .wl-img{border:1px solid rgba(0,0,0,.07)}
-.cred-tickers .exp-strip{border-top-color:rgba(0,0,0,.06)}
-.hero-badge{
-  display:inline-flex;align-items:center;gap:6px;
-  background:var(--yellow);color:var(--charcoal);
-  font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-  padding:5px 14px;border-radius:9999px;margin-bottom:20px;
-}
-.hero-hl{
-  font-size:clamp(36px,10vw,54px);line-height:.97;
-  color:var(--white);
-  margin-bottom:16px;letter-spacing:.01em;
-}
-.hero-accent{color:var(--yellow)}
-.hero-sub{
-  font-size:13.5px;color:var(--sage);line-height:1.65;
-  margin-bottom:24px;max-width:480px;
-}
-.topbar .brandblock{border-top:1px solid rgba(255,255,255,.1);padding-top:20px}
-.topbar .brand-dp{border-color:rgba(255,255,255,.15);box-shadow:0 0 0 4px rgba(255,225,124,.35)}
-.topbar .brand-by{color:rgba(255,255,255,.5)}
-.topbar .brand-by b{color:var(--white)}
-.topbar .brand-foll a{color:rgba(255,255,255,.75)}
-.topbar .brand-foll a:hover,.topbar .brand-foll a:active{color:var(--yellow)}
-/* ---- wins ticker ---- */
-.wins-strip{display:flex;align-items:center;gap:0;margin-top:20px;border-top:1px solid rgba(255,255,255,.1);padding-top:16px;padding-bottom:4px;overflow:hidden}
-.wins-label{flex:none;font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--yellow);white-space:nowrap;padding-right:14px;border-right:1px solid rgba(255,255,255,.12);margin-right:14px}
-.wins-track{flex:1;min-width:0;overflow:hidden;position:relative}
-.wins-track::before,.wins-track::after{content:'';position:absolute;top:0;bottom:0;width:40px;z-index:1;pointer-events:none}
-.wins-track::before{left:0;background:linear-gradient(to right,#1a1a1a,transparent)}
-.wins-track::after{right:0;background:linear-gradient(to left,#1a1a1a,transparent)}
-.wins-inner{display:flex;align-items:center;gap:32px;animation:wins-scroll 42s linear infinite;width:max-content}
-.wins-inner .wi{white-space:nowrap;display:inline-flex;align-items:center;gap:14px}
-.wins-inner .wl{display:inline-flex;align-items:center;justify-content:center;width:60px;height:60px;border-radius:12px;font-size:9px;font-weight:900;color:#fff;flex:none;letter-spacing:.04em;font-family:'Anton',Impact,sans-serif}
-.wins-inner .wl-img{background:#fff;width:104px;height:60px;padding:7px 12px;border-radius:12px;display:inline-flex;align-items:center;justify-content:center}
-.wins-inner .wl-img img{width:80px;height:46px;object-fit:contain;display:block}
-.wins-inner .wi-text{display:flex;flex-direction:column;gap:2px}
-.wins-inner .wi-name{font-size:12.5px;font-weight:700;color:#fff;line-height:1.15;letter-spacing:.01em}
-.wins-inner .wi-rank{font-size:10px;font-weight:600;color:rgba(255,225,124,.7);line-height:1.15}
-.wins-inner .ws{color:rgba(255,225,124,.2);font-size:20px;line-height:1}
-@keyframes wins-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-@keyframes exp-scroll{from{transform:translateX(-50%)}to{transform:translateX(0)}}
-.exp-strip{margin-top:12px;border-top-color:rgba(255,255,255,.06)}
-.exp-strip .wins-inner{animation-name:exp-scroll;animation-duration:48s}
-
-/* ---------- sticky app bar ---------- */
-.brandblock{display:flex;align-items:center;gap:16px}
-.brand-dp{width:72px;height:72px;flex:none;border-radius:50%;object-fit:cover;border:3px solid var(--charcoal);box-shadow:0 0 0 4px var(--yellow)}
-.brand-text{min-width:0}
-.brand-title{font-size:clamp(20px,5.4vw,30px);line-height:.95}
-.brand-by{font-size:13px;color:var(--ink-50);margin-top:7px}
-.brand-by b{color:var(--charcoal);font-weight:700}
-.brand-foll{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:11px}
-.brand-foll a{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;color:var(--charcoal)}
-.brand-foll a:active,.brand-foll a:hover{color:var(--amber-3)}
-.brand-foll svg{width:15px;height:15px;flex:none}
-@media (min-width:560px){.brand-dp{width:86px;height:86px}}
-
-/* ---------- disclaimer ---------- */
-.disclaimer{padding:14px 0}
-.disclaimer .note{display:flex;gap:11px;align-items:flex-start;background:#fff8e6;border:1px solid rgba(245,201,58,.55);border-radius:14px;padding:14px 16px}
-.disclaimer .ic{flex:none;font-size:18px;line-height:1.45}
-.disclaimer p{font-size:12.5px;line-height:1.5;color:#6b5a14}
-.disclaimer b{font-weight:700;color:#5a4b10}
-
-/* ---------- sticky month strip ---------- */
-.monthbar{position:sticky;top:0;z-index:20;background:rgba(255,255,235,.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--ink-10)}
-.strip{display:flex;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:none;-webkit-overflow-scrolling:touch;gap:8px;padding:12px 20px}
-.strip::-webkit-scrollbar{display:none}
-.pill{scroll-snap-align:center;flex:none;min-width:50px;height:46px;border-radius:13px;border:1.5px solid var(--ink-10);background:var(--white);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;transition:transform .12s var(--ease)}
-.pill:active{transform:scale(.94)}
-.pill .pm{font-size:12px;font-weight:700;letter-spacing:.03em}
-.pill .pc{font-size:9px;font-weight:700;color:var(--ink-50)}
-.pill.has{border-color:rgba(245,201,58,.55)}
-.pill.peak{background:var(--yellow);border-color:var(--yellow)}
-.pill.peak .pc{color:var(--amber-3)}
-.pill.quiet{opacity:.45}
-.pill.active{background:var(--charcoal);border-color:var(--charcoal);color:var(--white);transform:scale(1.04)}
-.pill.active .pc{color:var(--sage)}
-
-/* ---------- month screen ---------- */
-.screen{padding-bottom:calc(30px + var(--safe-b))}
-.mhead{display:flex;align-items:center;gap:8px;padding:24px 0 6px}
-.arrow{flex:none;width:48px;height:48px;border-radius:50%;border:2px solid var(--charcoal);display:grid;place-items:center;font-size:20px;transition:transform .12s var(--ease),background .15s var(--ease),color .15s var(--ease)}
-.arrow:active{transform:scale(.9);background:var(--charcoal);color:#fff}
-.arrow:disabled{opacity:.22;cursor:default}
-.arrow:disabled:active{transform:none;background:none;color:var(--charcoal)}
-.mtitle{flex:1;min-width:0;text-align:center}
-.mtitle .mt{font-size:clamp(40px,13vw,58px);line-height:.84}
-.mtitle .when{margin-top:9px;font-size:13px;font-weight:700;letter-spacing:.02em;color:var(--charcoal)}
-.mtitle .when .soon{color:var(--amber-3)}
-.mtitle .meta{margin-top:6px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-50);display:flex;align-items:center;justify-content:center;gap:7px;flex-wrap:wrap}
-.mtitle .peak-flag{background:var(--yellow);color:var(--charcoal);padding:3px 9px;border-radius:6px;font-size:10px}
-
-/* cards */
-.cards{display:flex;flex-direction:column;gap:12px;padding-top:18px;transition:opacity .16s var(--ease),transform .16s var(--ease)}
-.cards.swapping{opacity:0;transform:translateY(10px)}
-.c-card{border:1.5px solid var(--ink-10);border-radius:18px;background:var(--white);overflow:hidden;transition:border-color .2s var(--ease),box-shadow .2s var(--ease)}
-.c-card.open{border-color:var(--yellow-deep);box-shadow:0 14px 30px -18px rgba(23,30,25,.4)}
-.c-card.dormant{background:var(--paper)}
-.c-btn{width:100%;text-align:left;display:flex;align-items:center;gap:14px;padding:18px;min-height:74px}
-.c-logo{width:58px;height:58px;flex:none;min-width:58px;border:1px solid var(--ink-10);border-radius:14px;background:#fff;display:grid;place-items:center;overflow:hidden;padding:9px}
-.c-logo img{max-width:40px;max-height:40px;object-fit:contain}
-.c-card.dormant .c-logo img{filter:grayscale(1);opacity:.6}
-.c-main{flex:1;min-width:0}
-.c-name{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:19px;letter-spacing:.01em;line-height:1.02;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
-.c-name .star{color:var(--yellow-deep);font-size:14px}
-.c-when{margin-top:7px;font-size:13.5px;font-weight:700;color:var(--charcoal);display:flex;align-items:center;gap:6px}
-.c-when .cal{font-size:13px}
-.c-when.dorm{color:var(--ink-50);font-weight:700}
-.c-org{font-size:12px;color:var(--ink-50);margin-top:3px;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.c-chev{flex:none;width:30px;height:30px;display:grid;place-items:center;color:var(--amber-3);font-size:25px;line-height:1;transition:transform .25s var(--ease)}
-.c-card.open .c-chev{transform:rotate(45deg)}
-.c-detail{height:0;overflow:hidden;transition:height .25s var(--ease)}
-.c-detail-in{padding:4px 16px 18px;border-top:1px solid var(--ink-10);padding-top:15px}
-.c-blurb{font-size:14px;line-height:1.55;color:var(--ink-70);margin-bottom:14px}
-.c-rows{display:flex;flex-direction:column;gap:9px}
-.c-row{display:flex;gap:12px;font-size:13.5px}
-.c-row .k{flex:none;width:74px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-50);padding-top:2px}
-.c-row .v{flex:1;min-width:0;font-weight:500;overflow-wrap:anywhere}
-.c-est{margin-top:13px;font-size:11.5px;color:var(--ink-50);background:var(--paper);border:1px dashed var(--ink-10);border-radius:10px;padding:9px 12px;line-height:1.4}
-.c-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:13px}
-.c-tag{font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:5px 10px;border-radius:7px;background:rgba(183,198,194,.25);color:var(--charcoal)}
-.c-tag.y{background:var(--yellow);color:var(--charcoal)}
-
-/* quiet month */
-.quiet-state{text-align:center;padding:44px 22px;border:2px dashed var(--ink-10);border-radius:20px;margin-top:14px}
-.quiet-state .qem{font-size:34px;margin-bottom:10px}
-.quiet-state .qbig{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:24px;margin-bottom:8px}
-.quiet-state p{font-size:14px;color:var(--ink-50);max-width:330px;margin:0 auto 20px}
-.quiet-jump{display:inline-flex;align-items:center;gap:8px;background:var(--charcoal);color:var(--white);padding:14px 24px;border-radius:9999px;font-weight:700;font-size:14px}
-.quiet-jump:active{transform:scale(.97)}
-
-.swipe-hint{text-align:center;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-50);margin-top:24px}
-
-footer{border-top:1px solid var(--ink-10);padding:20px 0 calc(24px + var(--safe-b));text-align:center;font-size:12px;color:var(--ink-50);line-height:1.6;margin-top:20px}
-footer a{font-weight:700;color:var(--charcoal);border-bottom:1px solid var(--yellow-deep)}
-
-:focus-visible{outline:2px solid var(--yellow-deep);outline-offset:2px}
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-
-/* ---------- filter bar ---------- */
-.filter-bar{background:var(--white);border-bottom:1px solid var(--ink-10);padding:10px 0}
-.filter-bar .wrap{display:flex;gap:10px}
-.fb-select{flex:1;min-width:0;appearance:none;-webkit-appearance:none;background:var(--white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b6b6b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 12px center;background-size:12px 8px;border:1.5px solid var(--ink-10);border-radius:10px;padding:9px 32px 9px 12px;font-size:12.5px;font-family:inherit;font-weight:600;color:var(--charcoal);cursor:pointer;transition:border-color .15s}
-.fb-select:focus{outline:none;border-color:var(--yellow-deep)}
-.fb-select.active{border-color:var(--yellow-deep);background-color:var(--paper)}
-.clr-link{background:none;border:none;color:var(--yellow-deep);font-weight:700;font-size:inherit;cursor:pointer;text-decoration:underline;padding:0}
-
-/* ---------- branding ---------- */
-.dp-link{display:block;width:38px;height:38px;border-radius:50%;overflow:hidden;border:2px solid var(--charcoal);flex:none}
-.dp-mini{width:100%;height:100%;object-fit:cover}
-.creator{display:flex;flex-direction:column;align-items:center;text-align:center;padding:4px 0 10px}
-.dp-frame{width:88px;height:88px;border-radius:50%;overflow:hidden;border:3px solid var(--charcoal);box-shadow:0 0 0 5px var(--yellow);margin-bottom:14px}
-.dp-frame img{width:100%;height:100%;object-fit:cover}
-.c-name-big{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:24px;letter-spacing:.01em;line-height:1}
-.c-role{font-size:13px;color:var(--ink-50);margin-top:6px;font-weight:500}
-.c-foll{display:inline-block;margin-top:12px;background:var(--yellow);color:var(--charcoal);font-weight:700;font-size:13px;padding:7px 16px;border-radius:9999px}
-.c-socials{display:flex;gap:10px;margin-top:16px}
-.c-socials a{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--ink-10);border-radius:9999px;padding:10px 18px;font-size:13px;font-weight:700;color:var(--charcoal);transition:background .15s var(--ease),color .15s var(--ease),border-color .15s var(--ease)}
-.c-socials a:active,.c-socials a:hover{background:var(--charcoal);color:#fff;border-color:var(--charcoal)}
-.c-socials svg{width:17px;height:17px}
-.legal{margin-top:22px;padding-top:18px;border-top:1px solid var(--ink-10);font-size:11.5px;color:var(--ink-50);line-height:1.6}
-.legal b{color:var(--charcoal);font-weight:700}
-
-/* ---------- wispr promo ---------- */
-.wispr-promo{padding:6px 0 28px}
-.wispr-card{display:block;background:var(--yellow);border-radius:22px;padding:26px 22px;transition:transform .15s var(--ease)}
-.wispr-card:active{transform:scale(.985)}
-.wp-logo{height:19px;width:auto;margin-bottom:18px;display:block}
-.wp-h{font-size:clamp(25px,7.2vw,32px);line-height:.96;margin-bottom:12px;color:var(--charcoal)}
-.wp-sub{font-size:13px;line-height:1.55;color:rgba(26,26,26,.72);max-width:480px;margin-bottom:20px}
-.wp-cta{display:inline-flex;align-items:center;gap:8px;background:var(--yellow-deep);color:var(--white);font-weight:700;font-size:13.5px;padding:13px 22px;border-radius:9999px}
-.wp-meta{display:block;margin-top:11px;font-size:11px;color:rgba(26,26,26,.5);font-weight:700;letter-spacing:.02em}
-
-/* ---- desktop ---- */
-@media (min-width:768px){
-  .wrap{max-width:1040px;padding:0 48px}
-  .topbar{padding:44px 0 36px}
-  .hero-badge{font-size:12px;margin-bottom:26px}
-  .hero-hl{font-size:clamp(56px,7.5vw,96px);margin-bottom:20px}
-  .hero-sub{font-size:16px;max-width:660px;margin-bottom:28px}
-  .brandblock{gap:22px}
-  .brand-dp{width:88px;height:88px}
-  .brand-title{font-size:clamp(26px,3vw,42px)}
-  .brand-by{font-size:14px;margin-top:8px}
-  .brand-foll{margin-top:13px;gap:10px 22px}
-  .brand-foll a{font-size:13.5px}
-  .disclaimer{padding:18px 0}
-  .strip{justify-content:center;flex-wrap:wrap;padding:14px 48px;gap:8px;overflow-x:visible}
-  .pill{min-width:68px;height:54px}
-  .pill .pm{font-size:13px}
-  .pill .pc{font-size:10px}
-  .mhead{padding:40px 0 10px;gap:14px}
-  .arrow{width:52px;height:52px;font-size:22px}
-  .mtitle .mt{font-size:clamp(62px,7.5vw,100px)}
-  .mtitle .when{font-size:14px;margin-top:11px}
-  .cards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-  .c-card{border-radius:16px}
-  .c-btn{padding:18px 16px;min-height:80px}
-  .c-logo{width:56px;height:56px;min-width:56px}
-  .c-name{font-size:17px}
-  .swipe-hint{display:none}
-  .creator{flex-direction:row;gap:28px;text-align:left;align-items:center;padding:8px 0 12px}
-  .dp-frame{margin-bottom:0;flex:none;width:80px;height:80px}
-  .c-socials{justify-content:flex-start}
-  .c-foll{margin-top:10px}
-  .legal{margin-top:18px}
-  footer{padding:28px 0 calc(28px + var(--safe-b))}
-  .wispr-card{display:flex;align-items:center;justify-content:space-between;gap:40px;padding:38px 46px}
-  .wp-logo{margin-bottom:20px}
-  .wp-h{font-size:clamp(30px,3.4vw,42px)}
-  .wp-sub{font-size:14.5px;margin-bottom:0}
-  .wp-right{flex:none;display:flex;flex-direction:column;align-items:flex-start}
-}
-@media (min-width:1120px){
-  .wrap{max-width:1260px;padding:0 64px}
-  .cards{grid-template-columns:repeat(3,1fr)}
-}
-
-/* ---------- v2: departures board (live from Unstop) ---------- */
-.board{background:var(--charcoal);padding:4px 0 34px;border-bottom:3px solid var(--yellow)}
-.board-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;color:#fffde8;padding:14px 0 12px;border-top:1px solid rgba(255,255,235,.12)}
-.board-head b{font-family:'Anton',Impact,sans-serif;font-weight:400;font-size:22px;letter-spacing:.02em;text-transform:uppercase}
-.led{width:9px;height:9px;border-radius:50%;background:#3ddc84;box-shadow:0 0 0 0 rgba(61,220,132,.6);animation:led 1.8s infinite}
-@keyframes led{70%{box-shadow:0 0 0 9px rgba(61,220,132,0)}100%{box-shadow:0 0 0 0 rgba(61,220,132,0)}}
-.board-sub{margin-left:auto;font:500 11.5px 'JetBrains Mono',ui-monospace,monospace;color:rgba(255,255,235,.55);letter-spacing:.04em;text-transform:uppercase}
-.board-cols{display:grid;grid-template-columns:96px 1fr auto;gap:12px;padding:0 12px 6px;font:700 10px 'JetBrains Mono',monospace;letter-spacing:.14em;color:rgba(255,255,235,.4);text-transform:uppercase}
-.board-rows{display:grid;gap:6px}
-.brow{display:grid;grid-template-columns:96px minmax(0,1fr) auto;gap:12px;align-items:center;padding:10px 12px;background:#111;border:1px solid #2a2a2a;border-radius:10px;color:#fffde8;transition:border-color .2s,transform .2s}
-.brow:hover{border-color:#ffd84d;transform:translateX(2px)}
-.flaps{display:flex;align-items:baseline;gap:3px}
-.flap{position:relative;display:inline-grid;place-items:center;width:26px;height:36px;background:linear-gradient(#232323 50%,#1b1b1b 50%);border-radius:5px;font:800 22px/1 'JetBrains Mono',monospace;color:#ffd84d;box-shadow:inset 0 -1px 0 rgba(0,0,0,.6),0 1px 0 rgba(255,255,255,.05)}
-.flap::after{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:rgba(0,0,0,.75)}
-.flap.tick{animation:flip .12s ease-in}
-@keyframes flip{0%{transform:rotateX(0)}50%{transform:rotateX(-80deg)}100%{transform:rotateX(0)}}
-.flaps .u{font:700 10px 'JetBrains Mono',monospace;letter-spacing:.08em;color:rgba(255,255,235,.5);text-transform:uppercase;margin-left:4px}
-.brow.hot .flap{color:#ff6b5b}
-.bt{min-width:0}
-.bt b{display:block;font-weight:700;font-size:15px;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.bt small{display:block;font-size:12.5px;color:rgba(255,255,235,.55);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.bt .bm{display:inline-block;margin-left:6px;padding:1px 6px;border-radius:4px;background:var(--yellow);color:var(--charcoal);font:700 10px 'JetBrains Mono',monospace;vertical-align:2px}
-.go{font:700 12px 'JetBrains Mono',monospace;color:#ffd84d;white-space:nowrap}
-.board-more{margin-top:10px;width:100%;padding:12px;border:1px dashed rgba(255,255,235,.25);border-radius:10px;color:rgba(255,255,235,.75);font:700 12px 'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase}
-.board-more:hover{border-color:#ffd84d;color:#ffd84d}
-@media (max-width:480px){.board-cols{display:none}.brow{grid-template-columns:auto minmax(0,1fr);gap:4px 12px}.brow .go{grid-column:2}.flap{width:23px;height:32px;font-size:19px}}
-
-/* ---------- v2: freshness line + changelog ---------- */
-.fresh{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:8px;font-size:13px}
-.fresh .stamp{display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border:1.5px solid var(--charcoal);border-radius:999px;font:700 11px 'JetBrains Mono',monospace;letter-spacing:.04em;text-transform:uppercase;transform:rotate(-1.5deg);background:#fff}
-.fresh button{font-weight:700;text-decoration:underline;text-underline-offset:3px;font-size:13px}
-dialog.log{max-width:560px;width:calc(100% - 32px);border:0;border-radius:18px;padding:0;background:var(--white);color:var(--charcoal);box-shadow:0 30px 80px rgba(0,0,0,.4)}
-dialog.log::backdrop{background:rgba(10,10,10,.55)}
-.log-h{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;background:var(--charcoal);color:#fffde8}
-.log-h b{font-family:'Anton',Impact,sans-serif;font-weight:400;font-size:22px;text-transform:uppercase}
-.log-h button{color:#fffde8;font-size:26px;line-height:1}
-.log-b{padding:8px 20px 22px;max-height:65vh;overflow:auto}
-.log-run h4{margin:16px 0 6px;font:700 12px 'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-50)}
-.log-run li{list-style:none;padding:9px 0;border-top:1px solid var(--ink-10);font-size:14px}
-.log-run li b{display:block}
-.log-run li span{color:var(--ink-70)}
-.log-run li a{font-size:12px;color:var(--yellow-deep);text-decoration:underline}
-.log-empty{padding:14px 0;color:var(--ink-70);font-size:14px}
-
-/* ---------- v2: card badges ---------- */
-.c-new{display:inline-block;margin-left:6px;padding:1px 6px;border-radius:5px;background:var(--charcoal);color:#ffd84d;font:800 10px 'JetBrains Mono',monospace;letter-spacing:.06em;vertical-align:3px}
-.c-when.open{color:#127a43}
-.c-when.open .dot{width:8px;height:8px;border-radius:50%;background:#3ddc84;flex:none}
-.c-apply{display:inline-flex;margin:4px 0 12px;padding:11px 16px;border-radius:12px;background:var(--charcoal);color:#ffd84d;font:700 13px 'JetBrains Mono',monospace}
-.c-mono{font-family:'Anton',Impact,sans-serif;font-size:22px;color:var(--charcoal)}
-.c-card{transition:transform .2s var(--ease),box-shadow .2s var(--ease)}
-@media (hover:hover){.c-card:hover{transform:translateY(-2px);box-shadow:0 10px 24px -14px rgba(0,0,0,.35)}}
-
-/* ===================== v3: motion layer ===================== */
-.topbar,.board{position:relative;isolation:isolate}
-.topbar::after,.board::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.09;mix-blend-mode:screen;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-.topbar::before{content:"";position:absolute;width:520px;height:520px;right:-180px;top:-260px;z-index:-1;border-radius:50%;background:radial-gradient(closest-side,rgba(240,215,255,.16),transparent);pointer-events:none}
-.hero-hl .ln{display:block;overflow:hidden;padding-bottom:.04em}
-.hero-hl .ln>span{display:inline-block;position:relative;transform:translateY(105%);animation:rise .9s cubic-bezier(.2,.75,.1,1) forwards}
-.hero-hl .ln:nth-child(2)>span{animation-delay:.12s}
-.hero-hl .ln:nth-child(3)>span{animation-delay:.24s}
-@keyframes rise{to{transform:none}}
-.hl-bar{position:absolute;left:0;right:0;bottom:-.02em;height:.09em;background:var(--yellow);transform:scaleX(0);transform-origin:left;animation:bar .8s .95s cubic-bezier(.65,0,.35,1) forwards}
-@keyframes bar{to{transform:scaleX(1)}}
-.hero-badge{opacity:0;animation:fadeup .6s .05s forwards}
-@keyframes fadeup{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-.hero-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:4px 0 22px;opacity:0;animation:fadeup .7s .7s forwards}
-.hero-stats>div{border-top:1.5px solid rgba(255,255,235,.18);padding-top:10px}
-.hero-stats b{display:block;font-family:'Anton',Impact,sans-serif;font-weight:400;font-size:clamp(30px,8vw,44px);line-height:1;color:#fffde8;font-variant-numeric:tabular-nums}
-.hero-stats>div:nth-child(2) b{color:#ffd84d}
-.hero-stats span{display:block;margin-top:5px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,235,.55)}
-.brandblock{opacity:0;animation:fadeup .7s .85s forwards}
-
-/* season chart */
-.season{display:grid;grid-template-columns:repeat(12,1fr);gap:4px;align-items:end;height:54px;margin:16px auto 0;max-width:420px}
-.season button{position:relative;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:4px;padding:0}
-.season i{display:block;width:100%;border-radius:4px 4px 2px 2px;background:var(--ink-10);height:calc(var(--h) * 1%);min-height:3px;transform-origin:bottom;transform:scaleY(0);animation:grow .7s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--k) * 40ms + .2s);transition:background .25s}
-.season button.peak i{background:var(--yellow)}
-.season button.on i{background:var(--charcoal)}
-.season button:hover i{background:var(--yellow-deep)}
-.season small{font-size:8.5px;font-weight:700;letter-spacing:.04em;color:var(--ink-50);line-height:1}
-.season button.on small{color:var(--charcoal)}
-@keyframes grow{to{transform:scaleY(1)}}
-
-/* month change: directional slide + letter roll + card stagger */
-.cards.swapping{opacity:0;transform:translateX(calc(var(--dir,1) * -28px))}
-.cards.entering{animation:slidein .42s cubic-bezier(.2,.8,.2,1)}
-@keyframes slidein{from{opacity:0;transform:translateX(calc(var(--dir,1) * 34px))}to{opacity:1;transform:none}}
-.mt .ch{display:inline-block;transform:translateY(60%);opacity:0;animation:roll .5s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--c) * 28ms)}
-@keyframes roll{to{transform:none;opacity:1}}
-.cards .c-card{opacity:0;animation:fadeup .45s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--i,0) * 45ms + 60ms)}
-.c-logo{transition:transform .3s cubic-bezier(.34,1.56,.64,1)}
-@media (hover:hover){.c-card:hover .c-logo{transform:rotate(-4deg) scale(1.06)}}
-.pill{transition:transform .2s cubic-bezier(.34,1.56,.64,1),background .25s,border-color .25s,color .25s}
-
-@media (prefers-reduced-motion:reduce){
-  .hero-hl .ln>span,.hl-bar,.hero-badge,.hero-stats,.brandblock,.season i,.mt .ch,.cards .c-card,.cards.entering{animation:none!important;transform:none!important;opacity:1!important}
-}
-</style>
+<link rel="stylesheet" href="app.css?v=5">
 </head>
 <body>
+<a class="skip" href="#calendar">Skip to the calendar</a>
 
-<header class="topbar">
-  <div class="wrap">
-    <div class="hero-badge">📌 2026 MBA Season · <span id="nComps">93</span> Comps Tracked</div>
-    <h1 class="anton hero-hl"><span class="ln"><span>India's MBA</span></span><span class="ln"><span class="hero-accent">Corporate Case Comp<i class="hl-bar" aria-hidden="true"></i></span></span><span class="ln"><span>Calendar</span></span></h1>
-    <div class="hero-stats" aria-label="At a glance">
-      <div><b data-count="0" id="stTracked">0</b><span>comps tracked</span></div>
-      <div><b data-count="0" id="stOpen">0</b><span>open on Unstop now</span></div>
-      <div><b data-count="0" id="stCos">0</b><span>companies</span></div>
-    </div>
-    <div class="brandblock">
-      <img class="brand-dp" src="creator.jpeg" alt="Shivam Meet" width="86" height="86">
-      <div class="brand-text">
-        <div class="brand-by">Curated by <b>Shivam Meet</b></div>
-        <div class="brand-foll">
-          <a href="https://instagram.com/meet_.shivam" target="_blank" rel="noopener" aria-label="Shivam Meet on Instagram — 134K+ followers">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-            134K+ on Instagram</a>
-          <a href="https://www.linkedin.com/in/shivammeet/" target="_blank" rel="noopener" aria-label="Shivam Meet on LinkedIn — 10K+ followers">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-            10K+ on LinkedIn</a>
-        </div>
-      </div>
-    </div>
+<!-- ===== HEADER ===== -->
+<header class="top">
+  <div class="wrap top-in">
+    <a class="me" href="https://instagram.com/meet_.shivam" target="_blank" rel="noopener">
+      <img src="creator.jpeg" alt="" width="34" height="34">
+      <span><b>Shivam Meet</b><small>134K+ on Instagram</small></span>
+    </a>
+    <a class="top-ig" href="https://instagram.com/meet_.shivam" target="_blank" rel="noopener">Follow ↗</a>
+  </div>
+  <div class="wrap hero">
+    <h1 class="anton"><span class="ln"><span>Corporate case comps</span></span><span class="ln"><span class="acc">for MBAs<i aria-hidden="true"></i></span></span></h1>
+    <p class="sub"><b id="nAll">94</b> comps by the month they open. <b class="amber" id="nOpenTxt">0</b> open on Unstop right now.</p>
   </div>
 </header>
 
-<section class="board" id="board" hidden>
+<!-- ===== OPEN NOW (live from Unstop) ===== -->
+<section class="board" id="board" hidden aria-labelledby="board-h">
   <div class="wrap">
-    <div class="board-head"><span class="led" aria-hidden="true"></span><b>Closing soon on Unstop</b><span class="board-sub" id="boardSub"></span></div>
-    <div class="board-cols" aria-hidden="true"><span>Closes in</span><span>Competition</span><span></span></div>
-    <div class="board-rows" id="boardRows"></div>
-    <button class="board-more" id="boardMore" hidden></button>
+    <div class="mod-h"><h2 id="board-h"><span class="led" aria-hidden="true"></span>Open now</h2><span class="mod-meta" id="boardMeta"></span></div>
+    <ol class="brows" id="brows"></ol>
+    <button class="more dark" id="boardMore" type="button" hidden></button>
   </div>
 </section>
 
-<div class="disclaimer">
+<!-- ===== CALENDAR ===== -->
+<main class="cal" id="calendar" aria-labelledby="cal-h">
   <div class="wrap">
-    <div class="note">
-      <span class="ic">📅</span>
-      <div><p><b>A planning calendar, checked every 10 days.</b> Windows are estimates from past seasons. The board above is live from Unstop.</p><div class="fresh" id="fresh"></div></div>
+    <div class="mod-h light"><h2 id="cal-h">The calendar</h2><span class="mod-meta">Starts this month</span></div>
+    <label class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><span class="sr">Search comps</span><input id="q" type="search" placeholder="Search a company or comp, e.g. HUL, Tata, L'Oréal" autocomplete="off"></label>
+  </div>
+  <div class="bar" id="bar">
+    <div class="wrap">
+      <nav class="months" id="months" aria-label="Jump to month"></nav>
+      <div class="filters" id="filters" aria-label="Filters"></div>
     </div>
   </div>
-</div>
-
-<div class="filter-bar">
   <div class="wrap">
-    <select class="fb-select" id="sel-year" aria-label="Filter by year">
-      <option value="all">All Years</option>
-      <option value="1">1st Year MBA</option>
-      <option value="2">2nd Year MBA</option>
-    </select>
-    <select class="fb-select" id="sel-school" aria-label="Filter by school">
-      <option value="all">My School</option>
-        <option value="iima">IIM Ahmedabad</option>
-        <option value="iimb">IIM Bangalore</option>
-        <option value="iimc">IIM Calcutta</option>
-        <option value="iiml">IIM Lucknow</option>
-        <option value="iimk">IIM Kozhikode</option>
-        <option value="iimi">IIM Indore</option>
-        <option value="iims">IIM Shillong</option>
-        <option value="iimudaipur">IIM Udaipur</option>
-        <option value="iimranchi">IIM Ranchi</option>
-        <option value="isb">ISB Hyderabad</option>
-        <option value="xlri">XLRI Jamshedpur</option>
-        <option value="fms">FMS Delhi</option>
-        <option value="mdi">MDI Gurgaon</option>
-        <option value="iift">IIFT Delhi</option>
-        <option value="tiss">TISS Mumbai</option>
-        <option value="nmims">NMIMS Mumbai</option>
-        <option value="sibm">SIBM Pune</option>
-        <option value="greatlakes">Great Lakes Chennai</option>
-        <option value="spjimr">SPJIMR Mumbai</option>
-        <option value="symbiosis">Symbiosis Pune</option>
-        <option value="imt">IMT Ghaziabad</option>
-        <option value="mica">MICA Ahmedabad</option>
-        <option value="kjsomaiya">KJ Somaiya Mumbai</option>
-        <option value="welingkar">Welingkar Mumbai</option>
-        <option value="other">Other MBA College</option>
-    </select>
-  </div>
-</div>
-
-<nav class="monthbar"><div class="strip" id="strip"></div></nav>
-
-<main class="screen" id="calendar">
-  <div class="wrap">
-    <div class="mhead">
-      <button class="arrow" id="prev" aria-label="Previous month">‹</button>
-      <div class="mtitle">
-        <h1 class="anton mt" id="mt">August</h1>
-        <div class="when" id="when"></div>
-        <div class="meta" id="meta"></div>
-        <div class="season" id="season" aria-label="Comps per month across the season"></div>
-      </div>
-      <button class="arrow" id="next" aria-label="Next month">›</button>
-    </div>
-    <div class="cards" id="cards" aria-live="polite"></div>
-    <p class="swipe-hint">Swipe ← → or tap a month above</p>
+    <div id="list" aria-live="polite"></div>
+    <button class="more" id="dormBtn" type="button" hidden></button>
   </div>
 </main>
 
-<div class="cred-tickers">
+<!-- ===== FOOTER ===== -->
+<footer class="foot">
   <div class="wrap">
-    <div class="wins-strip">
-      <span class="wins-label">Shivam's Wins :</span>
-      <div class="wins-track">
-        <div class="wins-inner" aria-hidden="true">
-          <span class="wi"><span class="wl wl-img"><img src="logos/unstop-logo.jpeg" alt="Unstop"></span><span class="wi-text"><span class="wi-name">Unstop</span><span class="wi-rank">Rank 1, Unstoppable UG Leader</span></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/iima-logo.png" alt="IIMA"></span><span class="wi-text"><span class="wi-name">Red Bricks Summit</span><span class="wi-rank">IIM Ahmedabad · Rank 1 · 1,000+ teams</span></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/isb-logo.png" alt="ISB"></span><span class="wi-text"><span class="wi-name">Advaita</span><span class="wi-rank">ISB Hyderabad · Rank 1 · 1,000+ teams</span></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/payzapp-logo.png" alt="PayZapp"></span><span class="wi-text"><span class="wi-name">PayZapp Challenge</span><span class="wi-rank">HDFC Bank · Rank 2 · 1,000+ teams</span></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/bain-logo.png" alt="Bain"></span><span class="wi-text"><span class="wi-name">BrainWars</span><span class="wi-rank">Bain &amp; Company · Top 10 · 2,800+ teams</span></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/loreal-logo.webp" alt="L'Oréal"></span><span class="wi-text"><span class="wi-name">Sustainability Challenge</span><span class="wi-rank">L'Oréal · Rank 3 · 73,000+ teams</span></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/srcc-logo.png" alt="SRCC"></span><span class="wi-text"><span class="wi-name">Business Conclave</span><span class="wi-rank">SRCC · Rank 1 · 1,750+ teams</span></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/unstop-logo.jpeg" alt="Unstop"></span><span class="wi-text"><span class="wi-name">Unstop</span><span class="wi-rank">Rank 1, Unstoppable UG Leader</span></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/iima-logo.png" alt="IIMA"></span><span class="wi-text"><span class="wi-name">Red Bricks Summit</span><span class="wi-rank">IIM Ahmedabad · Rank 1 · 1,000+ teams</span></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/isb-logo.png" alt="ISB"></span><span class="wi-text"><span class="wi-name">Advaita</span><span class="wi-rank">ISB Hyderabad · Rank 1 · 1,000+ teams</span></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/payzapp-logo.png" alt="PayZapp"></span><span class="wi-text"><span class="wi-name">PayZapp Challenge</span><span class="wi-rank">HDFC Bank · Rank 2 · 1,000+ teams</span></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/bain-logo.png" alt="Bain"></span><span class="wi-text"><span class="wi-name">BrainWars</span><span class="wi-rank">Bain &amp; Company · Top 10 · 2,800+ teams</span></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/loreal-logo.webp" alt="L'Oréal"></span><span class="wi-text"><span class="wi-name">Sustainability Challenge</span><span class="wi-rank">L'Oréal · Rank 3 · 73,000+ teams</span></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/srcc-logo.png" alt="SRCC"></span><span class="wi-text"><span class="wi-name">Business Conclave</span><span class="wi-rank">SRCC · Rank 1 · 1,750+ teams</span></span></span><span class="ws">·</span>
-        </div>
-      </div>
+    <div class="foot-me">
+      <img src="creator.jpeg" alt="Shivam Meet" width="56" height="56">
+      <div><b>Made by Shivam Meet</b><span>Rank 1 on Unstop · 25+ case comp wins · 134K+ on Instagram</span></div>
     </div>
-    <div class="wins-strip exp-strip">
-      <span class="wins-label">Shivam's Experience :</span>
-      <div class="wins-track">
-        <div class="wins-inner">
-          <span class="wi"><span class="wl wl-img"><img src="logos/nxtwave.png" alt="NxtWave"></span><span class="wi-text"><span class="wi-name">NxtWave</span><span class="wi-rank">B2B Growth | Current</span></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/whetstone.jpeg" alt="Whetstone"></span><span class="wi-text"><span class="wi-name">Whetstone</span><span class="wi-rank">Founder | $30K ARR</span></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/kpmg/kpmg-india_corporate.svg" alt="KPMG"></span><span class="wi-text"><span class="wi-name">KPMG</span><span class="wi-rank">Intern | PPO</span></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/juspay.webp" alt="Juspay"></span><span class="wi-text"><span class="wi-name">Juspay</span><span class="wi-rank">Intern | PPO</span></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/frost and sullivan .jpeg" alt="Frost &amp; Sullivan"></span><span class="wi-text"><span class="wi-name">Frost &amp; Sullivan</span><span class="wi-rank">Intern | PPO</span></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/publicis sapient logo.jpg" alt="Publicis Sapient"></span><span class="wi-text"><span class="wi-name">Publicis Sapient</span><span class="wi-rank">Intern | PPO</span></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/wispr-logo.png" alt="Wispr"></span><span class="wi-text"><span class="wi-name">Wispr</span><span class="wi-rank">Brand Partner</span></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/emergent.png" alt="Emergent"></span><span class="wi-text"><span class="wi-name">Emergent</span><span class="wi-rank">Brand Partner</span></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/matiks-logo.png" alt="Matiks"></span><span class="wi-text"><span class="wi-name">Matiks</span><span class="wi-rank">Brand Partner</span></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/nxtwave.png" alt="NxtWave"></span><span class="wi-text"><span class="wi-name">NxtWave</span><span class="wi-rank">B2B Growth | Current</span></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/whetstone.jpeg" alt="Whetstone"></span><span class="wi-text"><span class="wi-name">Whetstone</span><span class="wi-rank">Founder | $30K ARR</span></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/kpmg/kpmg-india_corporate.svg" alt="KPMG"></span><span class="wi-text"><span class="wi-name">KPMG</span><span class="wi-rank">Intern | PPO</span></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/juspay.webp" alt="Juspay"></span><span class="wi-text"><span class="wi-name">Juspay</span><span class="wi-rank">Intern | PPO</span></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/frost and sullivan .jpeg" alt="Frost &amp; Sullivan"></span><span class="wi-text"><span class="wi-name">Frost &amp; Sullivan</span><span class="wi-rank">Intern | PPO</span></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/publicis sapient logo.jpg" alt="Publicis Sapient"></span><span class="wi-text"><span class="wi-name">Publicis Sapient</span><span class="wi-rank">Intern | PPO</span></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/wispr-logo.png" alt="Wispr"></span><span class="wi-text"><span class="wi-name">Wispr</span><span class="wi-rank">Brand Partner</span></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/emergent.png" alt="Emergent"></span><span class="wi-text"><span class="wi-name">Emergent</span><span class="wi-rank">Brand Partner</span></span></span><span class="ws">·</span>
-          <span class="wi"><span class="wl wl-img"><img src="logos/matiks-logo.png" alt="Matiks"></span><span class="wi-text"><span class="wi-name">Matiks</span><span class="wi-rank">Brand Partner</span></span></span><span class="ws">·</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="wispr-promo">
-  <div class="wrap">
-    <a class="wispr-card" href="https://ref.wisprflow.ai/ShivamM" target="_blank" rel="sponsored noopener noreferrer" aria-label="Get Wispr Flow — voice to text for every app">
-      <div class="wp-left">
-        <img class="wp-logo" src="logos/wispr-logo.png" alt="Wispr Flow" width="146" height="24">
-        <h2 class="anton wp-h">Don't type your case.<br>Speak it.</h2>
-        <p class="wp-sub">Wispr Flow turns your voice into clean text in Docs, Notion, Slack or WhatsApp. Talk through your MECE tree or exec summary out loud, then let it clean up the words. Built for speed under a comp deadline.</p>
-      </div>
-      <div class="wp-right">
-        <span class="wp-cta">Get Wispr Flow →</span>
-        <span class="wp-meta">Mac · Windows · iPhone</span>
-      </div>
-    </a>
-  </div>
-</div>
-
-<footer>
-  <div class="wrap">
-    <div class="creator">
-      <div class="dp-frame"><img src="creator.jpeg" alt="Shivam Meet"></div>
-      <div class="c-name-big">Shivam Meet</div>
-      <div class="c-role">Sharing tools, systems &amp; opportunities for the ambitious</div>
-      <div class="c-socials">
-        <a href="https://instagram.com/meet_.shivam" target="_blank" rel="noopener" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-          Instagram</a>
-        <a href="https://www.linkedin.com/in/shivammeet/" target="_blank" rel="noopener" aria-label="LinkedIn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-          LinkedIn</a>
-      </div>
-    </div>
-    <p class="legal">93 comps · re-checked each season · estimated windows, <b>not live links</b> — confirm on Unstop before applying. Competition names &amp; logos belong to their respective organisers; used for identification only.</p>
+    <p class="foot-links"><a href="https://instagram.com/meet_.shivam" target="_blank" rel="noopener">Instagram ↗</a><a href="https://www.linkedin.com/in/shivammeet/" target="_blank" rel="noopener">LinkedIn ↗</a><a href="https://shivam-casecomp-calendar.vercel.app" target="_blank" rel="noopener">The Fest Map ↗</a><button type="button" id="logBtn" hidden>What changed</button></p>
+    <p class="fine"><span id="fresh"></span> Dates are estimates from past seasons. Always confirm on the organiser's page. Names and logos belong to their organisers.</p>
   </div>
 </footer>
 
-<script src="comps.js"></script>
-<script src="live.js"></script>
-<script src="updates.js" onerror="window.UPDATES=null"></script>
-<script>
-const COMPS = window.COMPS;
+<dialog class="log" id="logDlg"><div class="log-h"><b>What changed</b><button id="logX" type="button" aria-label="Close">×</button></div><div class="log-b" id="logB"></div></dialog>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-const MONTHS=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-const MONTH_FULL=["January","February","March","April","May","June","July","August","September","October","November","December"];
-const TRACKS={marketing:"Marketing",strategy:"Strategy","general-mgmt":"General Mgmt",finance:"Finance",
-  "product-tech":"Product / Tech","ops-supply":"Ops / Supply",hr:"HR",analytics:"Analytics",
-  entrepreneurship:"Entrepreneurship",sustainability:"Sustainability",pharma:"Pharma"};
-const PERKS={ppi:"PPI",ppo:"PPO",international:"International",cash:"Cash prize"};
-const TIERS={premier:"Premier-curated","all-mba":"All-MBA","all-india":"All-India open",global:"Global open"};
-const SEASON=[6,7,8,9,10,11,12,1,2,3,4,5];
-const PEAK=new Set([8,9,10,11]);
+<script src="comps.js?d=20261108"></script>
+<script src="live.js?d=20261108"></script>
+<script src="updates.js?d=20261108"></script>
+<script src="app.js?v=9"></script>
 
-const isDormant=c=>/dormant/i.test(c.edition||'')||/dormant/i.test(c.window||'');
-
-// group by launch month; active comps first, dormant sink to bottom
-const byMo={};
-COMPS.forEach(c=>{(byMo[c.mo]=byMo[c.mo]||[]).push(c);});
-Object.values(byMo).forEach(list=>list.sort((a,b)=>{
-  const da=isDormant(a),db=isDormant(b);
-  if(da!==db)return da?1:-1;
-  if(a.marquee!==b.marquee)return a.marquee?-1:1;
-  return 0;
-}));
-const activeCount=mo=>(byMo[mo]||[]).filter(c=>!isDormant(c)).length;
-
-const nowMo=new Date().getMonth()+1;
-const monthsAhead=mo=>(mo-nowMo+12)%12;
-function whenText(mo){
-  const d=monthsAhead(mo);
-  if(d===0)return ['Happening this month',true];
-  if(d===1)return ['Coming up next month',true];
-  if(d<=3)return ['In about '+d+' months',true];
-  return ['In about '+d+' months',false];
-}
-
-const PREMIER_SCHOOLS=new Set(['iima','iimb','iimc','iiml','iimk','iimi','iims','iimudaipur','iimranchi','isb','xlri','fms','mdi','iift','tiss']);
-let fYear='all',fSchool='all';
-function yearOf(c){
-  const s=(c.schools||'')+' '+(c.team||'');
-  if(/1st.yr|first.year/i.test(s)&&!/2nd|final/i.test(s))return '1';
-  if(/(2nd|final.yr|final-yr)/i.test(s)&&!/1st.yr|first.year/i.test(s))return '2';
-  return 'both';
-}
-function applyFilters(list){
-  return list.filter(c=>{
-    if(fYear!=='all'){const y=yearOf(c);if(y!=='both'&&y!==fYear)return false;}
-    if(fSchool==='nonpremier'&&c.tier==='premier')return false;
-    return true;
-  });
-}
-function clearFilters(){
-  fYear='all';fSchool='all';
-  document.getElementById('sel-year').value='all';
-  document.getElementById('sel-year').classList.remove('active');
-  document.getElementById('sel-school').value='all';
-  document.getElementById('sel-school').classList.remove('active');
-  paint();
-}
-
-let idx=(function(){const p=SEASON.indexOf(nowMo);return p>=0?p:SEASON.indexOf(8);})();
-
-/* ---- month strip ---- */
-const stripEl=document.getElementById('strip');
-stripEl.innerHTML=SEASON.map((mo,i)=>{
-  const n=activeCount(mo);
-  const cls=['pill',n?(PEAK.has(mo)?'peak':'has'):'quiet'].join(' ');
-  return `<button class="${cls}" data-i="${i}" aria-label="${MONTH_FULL[mo-1]}, ${n} competitions">
-    <span class="pm">${MONTHS[mo-1]}</span><span class="pc">${n||'·'}</span></button>`;
-}).join('');
-const pills=[...stripEl.querySelectorAll('.pill')];
-pills.forEach(p=>p.addEventListener('click',()=>go(parseInt(p.dataset.i,10))));
-
-const cardsEl=document.getElementById('cards'),mtEl=document.getElementById('mt'),
-  whenEl=document.getElementById('when'),metaEl=document.getElementById('meta'),
-  prevBtn=document.getElementById('prev'),nextBtn=document.getElementById('next');
-
-const LIVE_ITEMS=(window.LIVE&&window.LIVE.items||[]).filter(x=>!x.ends||new Date(x.ends)>new Date());
-const liveFor=c=>LIVE_ITEMS.find(x=>x.match===c.id||(c.unstop&&x.url===c.unstop));
-const fmtDay=d=>new Date(d).toLocaleDateString('en-IN',{day:'numeric',month:'short'});
-const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
-function cardHTML(c){
-  const dorm=isDormant(c), lv=liveFor(c);
-  const tier=TIERS[c.tier]||c.tier;
-  const tags=(c.tracks||[]).map(t=>`<span class="c-tag y">${TRACKS[t]||t}</span>`).join('')
-    +(c.women?`<span class="c-tag" style="background:#fde2ef;color:#a03579">Women-only</span>`:'')
-    +(c.perks||[]).map(p=>`<span class="c-tag">${PERKS[p]||p}</span>`).join('');
-  const whenLine=lv
-    ? `<div class="c-when open"><span class="dot"></span> Open now · closes ${fmtDay(lv.ends)}</div>`
-    : dorm
-    ? `<div class="c-when dorm">⏸ ${c.edition||'Likely inactive'}</div>`
-    : `<div class="c-when"><span class="cal">📅</span> Usually ${c.window}</div>`;
-  return `<div class="c-card${dorm?' dormant':''}" data-id="${c.id}">
-    <button class="c-btn" aria-expanded="false">
-      <span class="c-logo">${c.logo?`<img src="${c.logo}" alt="" loading="lazy">`:`<span class="c-mono">${esc((c.org||c.n)[0])}</span>`}</span>
-      <span class="c-main">
-        <span class="c-name">${c.n}${c.marquee?' <span class="star">★</span>':''}${c.isNew?'<span class="c-new">NEW</span>':''}</span>
-        ${whenLine}
-        <span class="c-org">${c.org}</span>
-      </span>
-      <span class="c-chev">+</span>
-    </button>
-    <div class="c-detail"><div class="c-detail-in">
-      <p class="c-blurb">${c.blurb||''}</p>
-      <div class="c-rows">
-        <div class="c-row"><span class="k">Probably</span><span class="v">${c.window}</span></div>
-        <div class="c-row"><span class="k">Eligible</span><span class="v">${tier}${c.schools?' — '+c.schools:''}</span></div>
-        <div class="c-row"><span class="k">Team</span><span class="v">${c.team}</span></div>
-        <div class="c-row"><span class="k">Prize</span><span class="v">${c.prize}</span></div>
-      </div>
-      ${lv?`<a class="c-apply" href="${lv.url}" target="_blank" rel="noopener">Apply on Unstop · closes ${fmtDay(lv.ends)} ↗</a>`
-        :c.unstop?`<a class="c-apply" href="${c.unstop}" target="_blank" rel="noopener">Last edition on Unstop ↗</a>`
-        :`<div class="c-est">📅 Estimated from past seasons. When the season opens, search "${c.n}" on Unstop or the ${c.org} careers page.</div>`}
-      <div class="c-tags">${tags}</div>
-    </div></div>
-  </div>`;
-}
-
-function paint(){
-  const mo=SEASON[idx],rawList=byMo[mo]||[],list=applyFilters(rawList),n=list.filter(c=>!isDormant(c)).length;
-  mtEl.innerHTML=[...MONTH_FULL[mo-1]].map((ch,i)=>`<span class="ch" style="--c:${i}">${ch}</span>`).join('');
-  const [wt,soon]=whenText(mo);
-  whenEl.innerHTML=`<span class="${soon?'soon':''}">${wt}</span>`;
-  metaEl.innerHTML=`<span>${n} comp${n===1?'':'s'} likely</span>`+(PEAK.has(mo)?'<span class="peak-flag">Peak season</span>':'');
-  if(list.length){
-    cardsEl.innerHTML=list.map(cardHTML).join('');
-    cardsEl.querySelectorAll('.c-card').forEach((c,i)=>c.style.setProperty('--i',Math.min(i,10)));
-    wireCards();
-  } else if((fYear!=='all'||fSchool!=='all')&&rawList.length){
-    cardsEl.innerHTML=`<div class="quiet-state">
-      <div class="qem">🔍</div>
-      <div class="qbig">No matches</div>
-      <p>No comps match your filters in ${MONTH_FULL[mo-1]}. Try another month or <button class="clr-link" id="clr-f">clear filters</button>.</p>
-    </div>`;
-    document.getElementById('clr-f')?.addEventListener('click',clearFilters);
-  } else {
-    let jump=idx;for(let k=1;k<=12;k++){const j=(idx+k)%12;if(applyFilters(byMo[SEASON[j]]||[]).length){jump=j;break;}}
-    cardsEl.innerHTML=`<div class="quiet-state">
-      <div class="qem">🌤️</div>
-      <div class="qbig">A quiet month</div>
-      <p>No major corporate comps usually open in ${MONTH_FULL[mo-1]} — a good window to prep submissions and lock in your team.</p>
-      <button class="quiet-jump" data-jump="${jump}">See ${MONTH_FULL[SEASON[jump]-1]} →</button>
-    </div>`;
-    const jb=cardsEl.querySelector('[data-jump]');
-    if(jb)jb.addEventListener('click',()=>go(parseInt(jb.dataset.jump,10)));
-  }
-  pills.forEach((p,i)=>{
-    const pmo=SEASON[i],fn=applyFilters(byMo[pmo]||[]).filter(c=>!isDormant(c)).length;
-    const pc=p.querySelector('.pc');if(pc)pc.textContent=fn||'·';
-    p.className=['pill',i===idx?'active':fn?PEAK.has(pmo)?'peak':'has':'quiet'].join(' ');
-    p.setAttribute('aria-label',`${MONTH_FULL[pmo-1]}, ${fn} competitions`);
-  });
-  const ap=pills[idx];if(ap&&ap.scrollIntoView)ap.scrollIntoView({inline:'center',block:'nearest'});
-  prevBtn.disabled=(idx===0);nextBtn.disabled=(idx===SEASON.length-1);
-  paintSeason();
-}
-function paintSeason(){
-  const el=document.getElementById('season');if(!el)return;
-  const counts=SEASON.map(m=>applyFilters(byMo[m]||[]).filter(c=>!isDormant(c)).length),max=Math.max(1,...counts);
-  if(!el.children.length){
-    el.innerHTML=SEASON.map((m,i)=>`<button type="button" data-i="${i}" style="--k:${i}" aria-label="${MONTH_FULL[m-1]}: ${counts[i]} comps"><i></i><small>${MONTHS[m-1][0]}</small></button>`).join('');
-    el.addEventListener('click',e=>{const b=e.target.closest('button');if(b)go(parseInt(b.dataset.i,10));});
-  }
-  [...el.children].forEach((b,i)=>{b.style.setProperty('--h',Math.max(6,counts[i]/max*100));b.classList.toggle('on',i===idx);b.classList.toggle('peak',PEAK.has(SEASON[i]));});
-}
-
-function wireCards(){
-  cardsEl.querySelectorAll('.c-card').forEach(card=>{
-    const btn=card.querySelector('.c-btn'),det=card.querySelector('.c-detail'),inn=det.firstElementChild;
-    det.addEventListener('transitionend',e=>{if(e.propertyName==='height'&&card.classList.contains('open'))det.style.height='auto';});
-    btn.addEventListener('click',()=>{
-      const open=card.classList.contains('open');
-      if(open){det.style.height=inn.scrollHeight+'px';requestAnimationFrame(()=>det.style.height='0px');card.classList.remove('open');btn.setAttribute('aria-expanded','false');}
-      else{det.style.height=inn.scrollHeight+'px';card.classList.add('open');btn.setAttribute('aria-expanded','true');}
-    });
-  });
-}
-
-function go(to){
-  to=Math.max(0,Math.min(SEASON.length-1,to));
-  if(to===idx)return;
-  cardsEl.style.setProperty('--dir',to>idx?1:-1);
-  idx=to;
-  cardsEl.classList.add('swapping');
-  setTimeout(()=>{paint();cardsEl.classList.remove('swapping');cardsEl.classList.remove('entering');void cardsEl.offsetWidth;cardsEl.classList.add('entering');window.scrollTo({top:0,behavior:'smooth'});},170);
-}
-
-prevBtn.addEventListener('click',()=>go(idx-1));
-nextBtn.addEventListener('click',()=>go(idx+1));
-document.addEventListener('keydown',e=>{if(e.key==='ArrowLeft')go(idx-1);if(e.key==='ArrowRight')go(idx+1);});
-
-let tx=0,ty=0,tracking=false;
-document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY;tracking=true;},{passive:true});
-document.addEventListener('touchend',e=>{
-  if(!tracking)return;tracking=false;
-  const dx=e.changedTouches[0].clientX-tx, dy=e.changedTouches[0].clientY-ty;
-  if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)*1.5){ go(dx<0?idx+1:idx-1); }
-},{passive:true});
-
-document.getElementById('sel-year').addEventListener('change',e=>{
-  fYear=e.target.value;
-  e.target.classList.toggle('active',fYear!=='all');
-  paint();
-});
-document.getElementById('sel-school').addEventListener('change',e=>{
-  const val=e.target.value;
-  fSchool=val==='all'?'all':PREMIER_SCHOOLS.has(val)?'premier':'nonpremier';
-  e.target.classList.toggle('active',val!=='all');
-  paint();
-});
-
-paint();
-</script>
-<script>
-(function(){
-  var tickers=[
-    {el:document.querySelectorAll('.wins-strip:not(.exp-strip) .wins-inner')[0],anim:'wins-scroll 42s linear infinite'},
-    {el:document.querySelectorAll('.exp-strip .wins-inner')[0],anim:'exp-scroll 48s linear infinite'}
-  ];
-  tickers.forEach(function(t){if(t.el)t.el.style.setProperty('animation',t.anim,'important');});
-})();
-</script>
-
-<dialog class="log" id="logDlg"><div class="log-h"><b>What changed</b><button id="logX" aria-label="Close">×</button></div><div class="log-b" id="logB"></div></dialog>
-<script>
-/* v2: departures board + freshness line */
-(function(){
-  const items=LIVE_ITEMS.slice().sort((a,b)=>String(a.ends).localeCompare(String(b.ends)));
-  const board=document.getElementById('board'), rows=document.getElementById('boardRows'), more=document.getElementById('boardMore');
-  const DAY=864e5, daysLeft=d=>Math.max(0,Math.ceil((new Date(d)-Date.now())/DAY));
-  let showAll=false;
-  function flaps(n){const s=n===0?'0':String(Math.min(n,99)).padStart(2,'0');return s.split('').map(ch=>`<i class="flap" data-v="${ch}">${ch}</i>`).join('');}
-  function render(){
-    const list=showAll?items:items.slice(0,6);
-    rows.innerHTML=list.map(x=>{const n=daysLeft(x.ends),c=COMPS.find(k=>k.id===x.match);
-      return `<a class="brow${n<=3?' hot':''}" href="${x.url}" target="_blank" rel="noopener">
-        <span class="flaps">${flaps(n)}<span class="u">${n===1?'day':'days'}</span></span>
-        <span class="bt"><b>${esc(x.title)}${c?'<span class="bm">IN CALENDAR</span>':''}</b><small>${esc(x.org)} · closes ${fmtDay(x.ends)}</small></span>
-        <span class="go">Apply ↗</span></a>`;}).join('');
-    more.hidden=items.length<=6; more.textContent=showAll?'Show fewer':`Show all ${items.length} open now`;
-    spin();
-  }
-  function spin(){
-    if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-    [...rows.querySelectorAll('.flap')].forEach((f,i)=>{const v=f.dataset.v;let k=0;const steps=6+((i*3)%7);
-      setTimeout(function t(){if(k++<steps){f.textContent=String(Math.floor(Math.random()*10));f.classList.remove('tick');void f.offsetWidth;f.classList.add('tick');setTimeout(t,70);}else{f.textContent=v;}},i*40);});
-  }
-  if(items.length){board.hidden=false;document.getElementById('boardSub').textContent=`${items.length} open · refreshed ${fmtDay(window.LIVE.updated)}`;render();
-    new IntersectionObserver((e,o)=>{if(e[0].isIntersecting){spin();o.disconnect();}}).observe(board);}
-  more.addEventListener('click',()=>{showAll=!showAll;render();});
-
-  document.getElementById('nComps').textContent=COMPS.length;
-  const stat={stTracked:COMPS.length,stOpen:items.length,stCos:new Set(COMPS.map(c=>c.org)).size};
-  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  Object.entries(stat).forEach(([id,v])=>{const el=document.getElementById(id);if(!el)return;
-    if(reduce){el.textContent=v;return;}
-    const t0=performance.now()+700,dur=1300;
-    (function tick(t){const p=Math.min(1,Math.max(0,(t-t0)/dur)),e=1-Math.pow(1-p,4);el.textContent=Math.round(v*e);if(p<1)requestAnimationFrame(tick);})(t0);
-  });
-  const U=window.UPDATES, fresh=document.getElementById('fresh');
-  const last=U&&U.runs&&U.runs[0];
-  fresh.innerHTML=last
-    ? `<span class="stamp">✓ Checked ${fmtDay(last.date)}</span><span>${last.changes.length} ${last.changes.length===1?'change':'changes'} in the last check</span><button id="logBtn">What changed</button>`
-    : `<span class="stamp">Auto-checks every 10 days</span>`;
-  const dlg=document.getElementById('logDlg');
-  const lbl={'(new entry)':'Added to the calendar',mo:'Month',window:'Window',prize:'Prize',edition:'Latest edition',blurb:'Description',schools:'Who can enter',team:'Team size',unstop:'Unstop link',site:'Official site'};
-  document.addEventListener('click',e=>{
-    if(e.target.id==='logBtn'){document.getElementById('logB').innerHTML=(U.runs||[]).slice(0,6).map(r=>`<div class="log-run"><h4>${fmtDay(r.date)} · ${r.changes.length} changes</h4>${r.changes.length?'<ul>'+r.changes.map(c=>`<li><b>${esc(c.name)}</b><span>${esc(lbl[c.field]||c.field)}: ${esc(c.field==='(new entry)'?'':(c.from??'none')+' → ')}${esc(c.to)}</span><br><a href="${esc(c.source)}" target="_blank" rel="noopener">source</a></li>`).join('')+'</ul>':'<p class="log-empty">Nothing changed. Every entry still matched its sources.</p>'}</div>`).join('');dlg.showModal();}
-    if(e.target.id==='logX'||e.target===dlg)dlg.close();
-  });
-})();
-</script>
-
-<!-- Wispr Gate (email gate + Wispr Flow Pro claim), from ~/Downloads/wispr-gate-kit. The board stays free; the calendar fades after the first cards. -->
+<!-- Wispr Gate (email gate + Wispr Flow Pro claim), from ~/Downloads/wispr-gate-kit. "Open now" stays free; the calendar fades after the first rows. -->
 <link rel="stylesheet" href="wispr/wispr-gate.css?v=5">
 <style>
-  :root{--wg-bg:#fff;--wg-ink:var(--charcoal);--wg-sub:var(--ink-50);--wg-accent:var(--charcoal);--wg-accent-ink:#ffd84d;--wg-border:var(--ink-10);
-    --wg-field-bg:var(--white);--wg-field-ink:var(--charcoal);--wg-head:'Anton',Impact,sans-serif;--wg-font:'Satoshi',system-ui,sans-serif;--wg-radius:18px;--wg-shadow:0 24px 60px -24px rgba(0,0,0,.45)}
+  :root{--wg-bg:#fff;--wg-ink:#151515;--wg-sub:#6b6b6b;--wg-accent:#151515;--wg-accent-ink:#ffd84d;--wg-border:rgba(21,21,21,.1);
+    --wg-field-bg:#fbfaf3;--wg-field-ink:#151515;--wg-head:'Anton',Impact,sans-serif;--wg-font:'Satoshi',system-ui,sans-serif;--wg-radius:18px;--wg-shadow:0 24px 60px -24px rgba(0,0,0,.45)}
   .wg-card h2{font-weight:400;text-transform:uppercase;font-size:48px;line-height:.95;letter-spacing:.01em}
   .wg-card h2+p{font-size:17px}
   .wg-btn{font-family:'Anton',Impact,sans-serif!important;text-transform:uppercase;font-size:24px!important;letter-spacing:.03em;min-height:58px}
-  #calendar.wg-locked{-webkit-mask-image:linear-gradient(#000 50%,transparent 95%);mask-image:linear-gradient(#000 50%,transparent 95%)}
+  #calendar.wg-locked{-webkit-mask-image:linear-gradient(#000 55%,transparent 96%);mask-image:linear-gradient(#000 55%,transparent 96%)}
+  .wg-is-locked .bar{position:static}
   @media(max-width:600px){.wg-card h2{font-size:40px}}
 </style>
 <script>
 window.WISPR_GATE = {
   lock: "#calendar",
-  peek: "#cards",
-  peekExtra: 260,
+  peek: "#list",
+  peekExtra: 380,
   title: "Unlock it all. FREE.",
   lede: "Just your name and email. No payment, ever.",
-  perks: [`All ${(window.COMPS && window.COMPS.length) || 93} corporate case comps, month by month`],
+  perks: [`All ${(window.COMPS && window.COMPS.length) || 94} corporate case comps, with links and reminders`],
   button: "Unlock for FREE",
   welcome: ["Every corporate case comp, unlocked"],
   note: "Talk your case notes into Wispr Flow. It works in every app.",
