@@ -1,6 +1,6 @@
 /* Open competitions on Unstop, refreshed by scripts/update.mjs. Titles, dates and links come straight from Unstop. */
 window.LIVE = {
- "updated": "2026-11-07",
+ "updated": "2026-11-08",
  "source": "unstop.com",
  "items": [
   {
