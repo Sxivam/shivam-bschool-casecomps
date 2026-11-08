@@ -4,6 +4,8 @@
 (() => {
   const $ = (s, r = document) => r.querySelector(s);
   const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  // Only plain web links reach an href; anything else (javascript:, data:, odd schemes) becomes a dead link.
+  const safeUrl = (u) => (/^https?:\/\//i.test(String(u || '').trim()) ? String(u).trim() : '#');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   const MONTH_FULL = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -77,14 +79,14 @@
   /* ---------- the row ---------- */
   function rowHTML(c, i) {
     const [cls, txt] = status(c), link = primaryLink(c), dorm = isDormant(c);
-    const logo = c.logo ? `<img src="${esc(c.logo)}" alt="" loading="lazy">` : `<span class="mono">${esc((c.org || c.n)[0])}</span>`;
+    const logo = c.logo ? `<img src="${esc(/^logos\/[\w./-]+$/.test(c.logo) ? c.logo : '')}" alt="" loading="lazy">` : `<span class="mono">${esc((c.org || c.n)[0])}</span>`;
     const tracks = (c.tracks || []).map((t) => TRACKS[t] || t).join(', ');
     return `<li class="row${dorm ? ' dorm' : ''}" data-id="${esc(c.id)}" style="--i:${Math.min(i, 8)}">
       <div class="r-top"><span class="logo">${logo}</span>
         <span class="r-name"><b>${esc(c.n)}${c.isNew ? '<span class="tag-new">NEW</span>' : ''}</b><small>${esc(c.org)}${c.prize ? ' · ' + esc(c.prize.split(/[;+]/)[0].trim()) : ''}</small></span></div>
       <span class="status ${cls}"><i></i>${esc(txt)}</span>
       <div class="r-acts">
-        <a class="btn go" href="${esc(link.url)}" target="_blank" rel="noopener">${esc(link.label)} ${icon.out}</a>
+        <a class="btn go" href="${esc(safeUrl(link.url))}" target="_blank" rel="noopener">${esc(link.label)} ${icon.out}</a>
         <a class="btn ghost" href="${esc(remindFor(c))}" target="_blank" rel="noopener" aria-label="Remind me about ${esc(c.n)} in Google Calendar">${icon.cal}<span class="lbl">Remind</span></a>
         <button class="btn ghost det-btn" type="button" aria-expanded="false" aria-label="Details for ${esc(c.n)}">${icon.down}</button>
       </div>
@@ -204,7 +206,7 @@
       return `<li class="brow${n <= 3 ? ' hot' : ''}" style="--i:${i}">
         <span class="flaps">${flaps(n)}<small>${n === 1 ? 'day' : 'days'}</small></span>
         <span class="bt"><b>${esc(x.title)}</b><small>${esc(x.org)} · closes ${fmtDay(x.ends)}</small></span>
-        <span class="bacts"><a class="btn go" href="${esc(x.url)}" target="_blank" rel="noopener">Apply ${icon.out}</a><a class="btn ghost" href="${esc(rem)}" target="_blank" rel="noopener" aria-label="Remind me about the deadline">${icon.cal}</a></span></li>`;
+        <span class="bacts"><a class="btn go" href="${esc(safeUrl(x.url))}" target="_blank" rel="noopener">Apply ${icon.out}</a><a class="btn ghost" href="${esc(rem)}" target="_blank" rel="noopener" aria-label="Remind me about the deadline">${icon.cal}</a></span></li>`;
     }).join('');
     const more = $('#boardMore'); more.hidden = LIVE.length <= 3; more.textContent = boardAll ? 'Show fewer' : `Show all ${LIVE.length} open now`;
     if (!reduce) [...document.querySelectorAll('#brows .flap')].forEach((f, i) => {
@@ -223,7 +225,7 @@
     const lb = $('#logBtn'); lb.hidden = false;
     const lbl = { '(new entry)': 'Added', mo: 'Month', window: 'Timing', prize: 'Prize', edition: 'Latest edition', blurb: 'Description', schools: 'Who can enter', team: 'Team', unstop: 'Unstop link', site: 'Official page' };
     lb.addEventListener('click', () => {
-      $('#logB').innerHTML = UPDATES.runs.slice(0, 6).map((r) => `<h4>${fmtDay(r.date)} · ${r.changes.length} changes</h4>${r.changes.length ? '<ul>' + r.changes.map((c) => `<li><b>${esc(c.name)}</b> · ${esc(lbl[c.field] || c.field)}: ${c.field === '(new entry)' ? '' : esc(c.from ?? 'none') + ' → '}${esc(c.to)} <a href="${esc(c.source)}" target="_blank" rel="noopener">source</a></li>`).join('') + '</ul>' : '<p>Nothing changed.</p>'}`).join('');
+      $('#logB').innerHTML = UPDATES.runs.slice(0, 6).map((r) => `<h4>${fmtDay(r.date)} · ${r.changes.length} changes</h4>${r.changes.length ? '<ul>' + r.changes.map((c) => `<li><b>${esc(c.name)}</b> · ${esc(lbl[c.field] || c.field)}: ${c.field === '(new entry)' ? '' : esc(c.from ?? 'none') + ' → '}${esc(c.to)} <a href="${esc(safeUrl(c.source))}" target="_blank" rel="noopener">source</a></li>`).join('') + '</ul>' : '<p>Nothing changed.</p>'}`).join('');
       $('#logDlg').showModal();
     });
   }
