@@ -1,6 +1,6 @@
 /* Open competitions on Unstop, refreshed by scripts/update.mjs. Titles, dates and links come straight from Unstop. */
 window.LIVE = {
- "updated": "2026-11-08",
+ "updated": "2026-11-09",
  "source": "unstop.com",
  "items": [
   {
@@ -90,17 +90,6 @@ window.LIVE = {
    "region": "hybrid",
    "match": null,
    "track": "Finance"
-  },
-  {
-   "id": 1777791,
-   "title": "True Fan AI - The Synthetic Scale-Up",
-   "org": "Masters' Union School of Business",
-   "festival": "",
-   "ends": "2026-11-09T00:00:00+05:30",
-   "url": "https://unstop.com/competitions/true-fan-ai-the-synthetic-scale-up-caseunion-40-masters-union-school-of-business-1777791",
-   "region": "online",
-   "match": null,
-   "track": "Strategy"
   }
  ]
 };
