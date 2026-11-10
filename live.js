@@ -1,19 +1,8 @@
 /* Open competitions on Unstop, refreshed by scripts/update.mjs. Titles, dates and links come straight from Unstop. */
 window.LIVE = {
- "updated": "2026-11-09",
+ "updated": "2026-11-10",
  "source": "unstop.com",
  "items": [
-  {
-   "id": 1787004,
-   "title": "PetKids Paws and Grow Business Case Competition",
-   "org": "Indian Institute of Management (IIM), Ranchi",
-   "festival": "",
-   "ends": "2026-11-10T00:00:00+05:30",
-   "url": "https://unstop.com/competitions/petkids-paws-and-grow-business-case-competition-indian-institute-of-management-iim-ranchi-1787004",
-   "region": "online",
-   "match": null,
-   "track": "Strategy"
-  },
   {
    "id": 1778715,
    "title": "REIT NEXT — Marketing Challenge 2026",
