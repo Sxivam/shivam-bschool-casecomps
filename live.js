@@ -1,29 +1,40 @@
 /* Open competitions on Unstop, refreshed by scripts/update.mjs. Titles, dates and links come straight from Unstop. */
 window.LIVE = {
- "updated": "2026-11-14",
+ "updated": "2026-11-15",
  "source": "unstop.com",
  "items": [
   {
-   "id": 1778715,
-   "title": "REIT NEXT — Marketing Challenge 2026",
-   "org": "INDIAN REITs ASSOCIATION",
+   "id": 1791166,
+   "title": "Building Brands - The Streetwear Business Challenge",
+   "org": "The Tough Ones Private Limited",
    "festival": "",
-   "ends": "2026-11-30T17:00:00+05:30",
-   "url": "https://unstop.com/competitions/reit-next-marketing-challenge-2026-reit-next-case-study-challenge-indian-reits-association-1778715",
-   "region": "hybrid",
+   "ends": "2026-11-16T00:00:00+05:30",
+   "url": "https://unstop.com/competitions/building-brands-the-streetwear-business-challenge-the-tough-ones-private-limited-1791166",
+   "region": "online",
    "match": null,
    "track": "Marketing"
   },
   {
-   "id": 1777919,
-   "title": "REIT NEXT — Finance Challenge 2026",
-   "org": "INDIAN REITs ASSOCIATION",
+   "id": 1797270,
+   "title": "Steel Authority of India Limited (SAIL) X IIM Ranchi - National Case Competition",
+   "org": "Indian Institute of Management (IIM), Ranchi",
    "festival": "",
-   "ends": "2026-11-30T17:00:00+05:30",
-   "url": "https://unstop.com/competitions/reit-next-finance-challenge-2026-indian-reits-association-1777919",
+   "ends": "2026-11-20T21:00:00+05:30",
+   "url": "https://unstop.com/competitions/national-case-competition-indian-institute-of-management-iim-ranchi-1797270",
    "region": "hybrid",
    "match": null,
-   "track": "Finance"
+   "track": "Strategy"
+  },
+  {
+   "id": 1810863,
+   "title": "Vats Mobility – National Business & Innovation Challenge 2026",
+   "org": "Vats Mobility",
+   "festival": "",
+   "ends": "2026-11-28T00:00:00+05:30",
+   "url": "https://unstop.com/competitions/vats-mobility-national-business-innovation-challenge-2026-vats-mobility-1810863",
+   "region": "online",
+   "match": null,
+   "track": "General"
   },
   {
    "id": 1757375,
@@ -32,17 +43,6 @@ window.LIVE = {
    "festival": "",
    "ends": "2026-11-30T23:59:41+05:30",
    "url": "https://unstop.com/competitions/gostops-case-study-competition-gostops-1757375",
-   "region": "online",
-   "match": null,
-   "track": "Marketing"
-  },
-  {
-   "id": 1791166,
-   "title": "Building Brands - The Streetwear Business Challenge",
-   "org": "The Tough Ones Private Limited",
-   "festival": "",
-   "ends": "2026-11-16T00:00:00+05:30",
-   "url": "https://unstop.com/competitions/building-brands-the-streetwear-business-challenge-the-tough-ones-private-limited-1791166",
    "region": "online",
    "match": null,
    "track": "Marketing"

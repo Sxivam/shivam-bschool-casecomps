@@ -237,7 +237,7 @@ window.COMPS = [
    "ppi",
    "cash"
   ],
-  "edition": "S9 = 2025",
+  "edition": "S10 = 2026",
   "marquee": true,
   "logo": "logos/hindustan-unilever/hul-finace_competition.png",
   "orgLogo": "logos/hindustan-unilever/hul_corporate.svg",
@@ -260,7 +260,7 @@ window.COMPS = [
    "ppi",
    "cash"
   ],
-  "edition": "S7 = 2025 (won by IIM Calcutta)",
+  "edition": "S8 = 2026",
   "marquee": true,
   "logo": "logos/hindustan-unilever/hul-techtonic_competition.png",
   "orgLogo": "logos/hindustan-unilever/hul_corporate.svg",
@@ -393,16 +393,16 @@ window.COMPS = [
    "marketing"
   ],
   "tier": "premier",
-  "schools": "Premier-curated (XLRI, SPJIMR, NMIMS, TAPMI, KJ Somaiya…)",
+  "schools": "First-yr MBA/PGDM at 65 partner campuses",
   "team": "2–3 (1st-yr)",
   "mo": 8,
   "window": "Aug",
-  "prize": "Up to ₹10L pool + Dabur summer internship ('Campus Star')",
+  "prize": "₹9L pool + Dabur Campus Star internship",
   "perks": [
    "ppi",
    "cash"
   ],
-  "edition": "since 2022",
+  "edition": "S5 = 2026",
   "marquee": true,
   "logo": "logos/dabur/dabur-verve_competition.png",
   "orgLogo": "logos/dabur/dabur-india_corporate.svg",
@@ -421,8 +421,8 @@ window.COMPS = [
   "tier": "all-mba",
   "schools": "All B-schools in India (started 7 institutes, now open)",
   "team": "1–3 (cross-campus / year / spec)",
-  "mo": 8,
-  "window": "Aug–Sep",
+  "mo": 7,
+  "window": "Jul–Aug",
   "prize": "₹1–1.25L EGV per track winner + R-up ₹75K EGV + PPIs",
   "perks": [
    "ppi",

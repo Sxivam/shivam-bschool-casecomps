@@ -2,6 +2,68 @@
 window.UPDATES = {
  "runs": [
   {
+   "date": "2026-11-15",
+   "changes": [
+    {
+     "id": "hul-finace",
+     "name": "HUL FinAce",
+     "field": "edition",
+     "from": "S9 = 2025",
+     "to": "S10 = 2026",
+     "source": "https://careers.unilever.com/en/early-careers-india-2026"
+    },
+    {
+     "id": "hul-techtonic",
+     "name": "HUL TechTonic",
+     "field": "edition",
+     "from": "S7 = 2025 (won by IIM Calcutta)",
+     "to": "S8 = 2026",
+     "source": "https://careers.unilever.com/en/early-careers-india-2026"
+    },
+    {
+     "id": "dabur-verve",
+     "name": "Dabur Verve",
+     "field": "edition",
+     "from": "since 2022",
+     "to": "S5 = 2026",
+     "source": "https://www.daburverve.com/"
+    },
+    {
+     "id": "dabur-verve",
+     "name": "Dabur Verve",
+     "field": "prize",
+     "from": "Up to ₹10L pool + Dabur summer internship ('Campus Star')",
+     "to": "₹9L pool + Dabur Campus Star internship",
+     "source": "https://www.daburverve.com/"
+    },
+    {
+     "id": "dabur-verve",
+     "name": "Dabur Verve",
+     "field": "schools",
+     "from": "Premier-curated (XLRI, SPJIMR, NMIMS, TAPMI, KJ Somaiya…)",
+     "to": "First-yr MBA/PGDM at 65 partner campuses",
+     "source": "https://www.daburverve.com/"
+    },
+    {
+     "id": "flipkart-wired",
+     "name": "Flipkart WiRED",
+     "field": "mo",
+     "from": 8,
+     "to": 7,
+     "source": "https://mycareernet.co/events/flipkart-earlycareers-wired-10-0/"
+    },
+    {
+     "id": "flipkart-wired",
+     "name": "Flipkart WiRED",
+     "field": "window",
+     "from": "Aug–Sep",
+     "to": "Jul–Aug",
+     "source": "https://mycareernet.co/events/flipkart-earlycareers-wired-10-0/"
+    }
+   ],
+   "live": 4
+  },
+  {
    "date": "2026-11-05",
    "changes": [
     {
@@ -704,5 +766,5 @@ window.UPDATES = {
    "live": 9
   }
  ],
- "last": "2026-11-05"
+ "last": "2026-11-15"
 };
