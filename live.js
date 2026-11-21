@@ -1,19 +1,8 @@
 /* Open competitions on Unstop, refreshed by scripts/update.mjs. Titles, dates and links come straight from Unstop. */
 window.LIVE = {
- "updated": "2026-11-20",
+ "updated": "2026-11-21",
  "source": "unstop.com",
  "items": [
-  {
-   "id": 1797270,
-   "title": "Steel Stride: Steel Authority of India Limited (SAIL) X IIM Ranchi - National Case Competition",
-   "org": "Indian Institute of Management (IIM), Ranchi",
-   "festival": "",
-   "ends": "2026-11-20T21:00:00+05:30",
-   "url": "https://unstop.com/competitions/national-case-competition-indian-institute-of-management-iim-ranchi-1797270",
-   "region": "hybrid",
-   "match": null,
-   "track": "Strategy"
-  },
   {
    "id": 1757375,
    "title": "goSTOPS Marketing Case Study | The Road Less Booked | ₹30,000 Prize Money + Internship Opportunity",
