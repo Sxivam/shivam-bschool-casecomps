@@ -2,6 +2,11 @@
 window.UPDATES = {
  "runs": [
   {
+   "date": "2026-11-25",
+   "changes": [],
+   "live": 4
+  },
+  {
    "date": "2026-11-15",
    "changes": [
     {
@@ -766,5 +771,5 @@ window.UPDATES = {
    "live": 9
   }
  ],
- "last": "2026-11-15"
+ "last": "2026-11-25"
 };
