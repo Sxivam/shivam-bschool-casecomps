@@ -1,6 +1,6 @@
 /* Open competitions on Unstop, refreshed by scripts/update.mjs. Titles, dates and links come straight from Unstop. */
 window.LIVE = {
- "updated": "2026-11-26",
+ "updated": "2026-11-27",
  "source": "unstop.com",
  "items": [
   {
@@ -19,7 +19,7 @@ window.LIVE = {
    "title": "The Challenger",
    "org": "Gresbond by Kajaria",
    "festival": "",
-   "ends": "2026-12-02T23:59:00+05:30",
+   "ends": "2026-12-11T23:59:00+05:30",
    "url": "https://unstop.com/competitions/crp-the-challenger-gresbond-by-kajaria-1815488",
    "region": "online",
    "match": null,
